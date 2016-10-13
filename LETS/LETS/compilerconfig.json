@@ -10,5 +10,9 @@
   {
     "outputFile": "Content/theme/variables.css",
     "inputFile": "Content/theme/variables.less"
+  },
+  {
+    "outputFile": "Content/mdl/material.css",
+    "inputFile": "Content/mdl/material.less"
   }
 ]

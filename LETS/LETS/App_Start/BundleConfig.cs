@@ -24,13 +24,15 @@ namespace LETS
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/BootstrapJsLib/bootstrap.js",
-                      "~/Scripts/BootstrapJsLib/respond.js"));
+                      "~/Scripts/BootstrapJsLib/respond.js",
+                      "~/Scripts/mdl/material.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/shared").IncludeDirectory(
                       "~/Scripts/Shared", "*.js", true));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/theme/bootstrap.css",
+                      "~/Content/mdl/material.css",
                       "~/Content/site.css"));
         }
     }
