@@ -34,6 +34,10 @@ namespace LETS
                       "~/Content/theme/bootstrap.css",
                       "~/Content/mdl/material.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new StyleBundle("~/Content/customSharedCSS").IncludeDirectory(
+                      "~/Content/lets/shared", "*.css", true));
+
         }
     }
 }

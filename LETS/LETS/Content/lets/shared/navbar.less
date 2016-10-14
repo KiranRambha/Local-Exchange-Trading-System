@@ -1,0 +1,67 @@
+﻿@import "../../theme/variables.less";
+@import "../../theme/colors.less";
+
+.navbar {
+    &.navbar-default {
+        background-color: @brand-primary-600;
+        border-color: darken(@brand-primary-600, 6.5%);
+        .navbar-brand {
+            color: @brand-primary-100;
+
+            &:hover {
+                color: @brand-primary-900;
+            }
+        }
+
+        .navbar-nav > li > a {
+            color: @brand-primary-100;
+
+            &:hover {
+                color: @brand-primary-900;
+                background-color: @brand-primary-a200;
+            }
+
+            &:focus {
+                background-color: @brand-primary-a400;
+            }
+        }
+
+        .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+            color: @brand-primary-100;
+            background-color: @brand-primary-a700;
+        }
+
+        .navbar-header {
+            button.navbar-toggle.active {
+                background-color: @brand-primary-100;
+            }
+
+            .navbar-toggle:hover, .navbar-toggle:focus {
+                background-color: transparent;
+            }
+        }
+
+        .navbar-collapse {
+            border-color: darken(@brand-primary-600, 6.5%);
+
+            .nav.navbar-nav {
+                margin-top: 0px;
+                margin-bottom: 0px;
+
+                & > li > a {
+                    border-bottom: 1px solid darken(@brand-primary-500, 6.5%);
+                }
+
+                & > li:last-child > a {
+                    border-bottom: none;
+                }
+
+                @media (min-width: @screen-sm) {
+                    & > li > a {
+                        border-bottom: none;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -10,13 +10,38 @@
 
     <title>@ViewBag.Title - Local Exchange Trading System</title>
     @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/customSharedCSS")
     @Scripts.Render("~/bundles/modernizr")
 </head>
-<body ng-app="letsApp">
-    <div class="container body-content">
-        @RenderBody()
+<body ng-app="letsApp" class="flexbox">
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("LETS", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="@(ViewBag.Title == "Home" ? "active" : "")">@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li class="@(ViewBag.Title == "Components" ? "active" : "")">@Html.ActionLink("Components", "ComponentsGuide", "Home")</li>
+                </ul>
+            </div>
+        </div>
     </div>
-
+    <div class="container body-content">
+        <div class="panel panel-default">
+            @RenderBody()
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">&copy; @DateTime.Now.Year - Local Exchange Trading System</p>
+        </div>
+    </footer>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/angular")

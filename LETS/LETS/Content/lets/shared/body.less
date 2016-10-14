@@ -1,0 +1,55 @@
+﻿@import "../../theme/variables.less";
+@import "../../theme/colors.less";
+
+body {
+    background-color: @brand-primary-500;
+    padding-top: 50px;
+
+    &.flexbox {
+        display: flex;
+        flex-direction: column;
+
+        .container.body-content {
+            display: flex;
+            flex-direction: column;
+            flex: 1 1 auto;
+
+            @media (max-width: @screen-sm) {
+                width: 100%;
+            }
+        }
+    }
+
+    .footer {
+        background-color: @brand-primary-600;
+        border-color: darken(@brand-primary-600, 6.5%);
+        position: relative;
+        min-height: 50px;
+
+        .container {
+            padding-top: 5px;
+            padding-bottom: 5px;
+
+            .footer-text {
+                margin: 10px;
+                text-align: center;
+                line-height: 20px;
+                color: @brand-primary-100;
+            }
+        }
+    }
+
+    .panel {
+        border: none;
+        border-radius: 0px;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+    }
+
+    .panel-default {
+        flex: 1 1 auto;
+        margin-bottom: 0px;
+        border-radius: 0px;
+        padding: 15px;
+    }
+}

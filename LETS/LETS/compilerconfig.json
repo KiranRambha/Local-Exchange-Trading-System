@@ -14,5 +14,17 @@
   {
     "outputFile": "Content/mdl/material.css",
     "inputFile": "Content/mdl/material.less"
+  },
+  {
+    "outputFile": "Content/lets/shared/navbar.css",
+    "inputFile": "Content/lets/shared/navbar.less"
+  },
+  {
+    "outputFile": "Content/theme/colors.css",
+    "inputFile": "Content/theme/colors.less"
+  },
+  {
+    "outputFile": "Content/lets/shared/body.css",
+    "inputFile": "Content/lets/shared/body.less"
   }
 ]
