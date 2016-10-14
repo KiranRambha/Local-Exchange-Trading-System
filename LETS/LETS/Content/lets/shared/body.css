@@ -17,8 +17,8 @@ body.flexbox .container.body-content {
   }
 }
 body .footer {
-  background-color: #757575;
-  border-color: #646464;
+  background-color: #616161;
+  border-color: #505050;
   position: relative;
   min-height: 50px;
 }
@@ -30,7 +30,7 @@ body .footer .container .footer-text {
   margin: 10px;
   text-align: center;
   line-height: 20px;
-  color: #F5F5F5;
+  color: #FAFAFA;
 }
 body .panel {
   border: none;
@@ -43,4 +43,5 @@ body .panel-default {
   margin-bottom: 0px;
   border-radius: 0px;
   padding: 15px;
+  background-color: #EEEEEE;
 }
