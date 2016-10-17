@@ -1,0 +1,72 @@
+﻿@import "../../theme/variables.less";
+@import "../../theme/colors.less";
+@import "../../fontawesome/less/variables.less";
+
+/*Errors*/
+.error-block {
+    display: none;
+    color: @brand-danger;
+    padding: 5px 0px 0px 0px;
+}
+
+.form-group {
+    &.has-error {
+        .form-control {
+            box-shadow: none;
+            border: none;
+            border-bottom: 1px solid @brand-danger;
+        }
+
+        .error-block {
+            display: block;
+        }
+
+        .bar {
+            &:before, &:after {
+                background: @brand-danger;
+                box-shadow: inset 0 1px 1px @brand-danger, 0 0 8px @brand-danger;
+            }
+        }
+
+        .textbox:after {
+            font-family: FontAwesome;
+            content: "\f00d";
+            display: inline-block;
+            vertical-align: middle;
+            font-size: 24px;
+            float: right;
+            margin-top: -28px;
+            color: @brand-danger;
+        }
+    }
+
+    &.success {
+        .form-control {
+            box-shadow: none;
+            border: none;
+            border-bottom: 1px solid @brand-success;
+        }
+
+        .error-block {
+            display: none;
+        }
+
+        .bar {
+            &:before, &:after {
+                background: @brand-success;
+                box-shadow: inset 0 1px 1px @brand-success, 0 0 8px @brand-success;
+            }
+        }
+
+        .textbox:after {
+            font-family: FontAwesome;
+            content: "\f00c";
+            display: inline-block;
+            vertical-align: middle;
+            font-size: 24px;
+            float: right;
+            margin-top: -28px;
+            color: @brand-success;
+        }
+    }
+}

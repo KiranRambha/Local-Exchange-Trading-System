@@ -33,6 +33,7 @@ namespace LETS
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/theme/bootstrap.css",
                       "~/Content/mdl/material.css",
+                      "~/Content/fontawesome/less/font-awesome.css",
                       "~/Content/site.css"));
 
             bundles.Add(new StyleBundle("~/Content/customSharedCSS").IncludeDirectory(

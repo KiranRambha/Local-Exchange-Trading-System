@@ -171,10 +171,21 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ComponentsGuideModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\fontawesome\css\font-awesome.css" />
+    <Content Include="Content\fontawesome\css\font-awesome.min.css" />
+    <Content Include="Content\fontawesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\fontawesome\HELP-US-OUT.txt" />
+    <Content Include="Content\fontawesome\less\font-awesome.css">
+      <DependentUpon>font-awesome.less</DependentUpon>
+    </Content>
+    <Content Include="Content\fontawesome\less\font-awesome.min.css">
+      <DependentUpon>font-awesome.css</DependentUpon>
+    </Content>
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\lets\shared\body.css">
       <DependentUpon>body.less</DependentUpon>
@@ -182,11 +193,29 @@
     <Content Include="Content\lets\shared\body.min.css">
       <DependentUpon>body.css</DependentUpon>
     </Content>
+    <Content Include="Content\lets\shared\errors.css">
+      <DependentUpon>errors.less</DependentUpon>
+    </Content>
+    <Content Include="Content\lets\shared\errors.min.css">
+      <DependentUpon>errors.css</DependentUpon>
+    </Content>
+    <Content Include="Content\lets\shared\fonts.css">
+      <DependentUpon>fonts.less</DependentUpon>
+    </Content>
+    <Content Include="Content\lets\shared\fonts.min.css">
+      <DependentUpon>fonts.css</DependentUpon>
+    </Content>
     <Content Include="Content\lets\shared\navbar.css">
       <DependentUpon>navbar.less</DependentUpon>
     </Content>
     <Content Include="Content\lets\shared\navbar.min.css">
       <DependentUpon>navbar.css</DependentUpon>
+    </Content>
+    <Content Include="Content\lets\shared\textbox.css">
+      <DependentUpon>textbox.less</DependentUpon>
+    </Content>
+    <Content Include="Content\lets\shared\textbox.min.css">
+      <DependentUpon>textbox.css</DependentUpon>
     </Content>
     <Content Include="Content\mdl\material.css">
       <DependentUpon>material.less</DependentUpon>
@@ -226,6 +255,42 @@
     </None>
     <Content Include="Content\mdl\material.less" />
     <Content Include="Content\lets\shared\body.less" />
+    <Content Include="Content\lets\shared\textbox.less" />
+    <Content Include="Content\lets\shared\fonts.less" />
+    <Content Include="Content\lets\shared\errors.less" />
+    <Content Include="Content\fontawesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\fontawesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\fontawesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\fontawesome\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\fontawesome\fonts\FontAwesome.otf" />
+    <Content Include="Content\fontawesome\less\animated.less" />
+    <Content Include="Content\fontawesome\less\bordered-pulled.less" />
+    <Content Include="Content\fontawesome\less\core.less" />
+    <Content Include="Content\fontawesome\less\fixed-width.less" />
+    <Content Include="Content\fontawesome\less\font-awesome.less" />
+    <Content Include="Content\fontawesome\less\icons.less" />
+    <Content Include="Content\fontawesome\less\larger.less" />
+    <Content Include="Content\fontawesome\less\list.less" />
+    <Content Include="Content\fontawesome\less\mixins.less" />
+    <Content Include="Content\fontawesome\less\path.less" />
+    <Content Include="Content\fontawesome\less\rotated-flipped.less" />
+    <Content Include="Content\fontawesome\less\screen-reader.less" />
+    <Content Include="Content\fontawesome\less\stacked.less" />
+    <Content Include="Content\fontawesome\less\variables.less" />
+    <Content Include="Content\fontawesome\scss\font-awesome.scss" />
+    <Content Include="Content\fontawesome\scss\_animated.scss" />
+    <Content Include="Content\fontawesome\scss\_bordered-pulled.scss" />
+    <Content Include="Content\fontawesome\scss\_core.scss" />
+    <Content Include="Content\fontawesome\scss\_fixed-width.scss" />
+    <Content Include="Content\fontawesome\scss\_icons.scss" />
+    <Content Include="Content\fontawesome\scss\_larger.scss" />
+    <Content Include="Content\fontawesome\scss\_list.scss" />
+    <Content Include="Content\fontawesome\scss\_mixins.scss" />
+    <Content Include="Content\fontawesome\scss\_path.scss" />
+    <Content Include="Content\fontawesome\scss\_rotated-flipped.scss" />
+    <Content Include="Content\fontawesome\scss\_screen-reader.scss" />
+    <Content Include="Content\fontawesome\scss\_stacked.scss" />
+    <Content Include="Content\fontawesome\scss\_variables.scss" />
     <None Include="Content\Site.less" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
@@ -347,7 +412,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\images\" />
-    <Folder Include="Models\" />
     <Folder Include="Views\Home\_Partials\" />
     <Folder Include="Views\Shared\DisplayTemplates\" />
   </ItemGroup>

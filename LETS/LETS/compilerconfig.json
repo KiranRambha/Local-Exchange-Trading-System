@@ -26,5 +26,21 @@
   {
     "outputFile": "Content/lets/shared/body.css",
     "inputFile": "Content/lets/shared/body.less"
+  },
+  {
+    "outputFile": "Content/lets/shared/textbox.css",
+    "inputFile": "Content/lets/shared/textbox.less"
+  },
+  {
+    "outputFile": "Content/lets/shared/fonts.css",
+    "inputFile": "Content/lets/shared/fonts.less"
+  },
+  {
+    "outputFile": "Content/lets/shared/errors.css",
+    "inputFile": "Content/lets/shared/errors.less"
+  },
+  {
+    "outputFile": "Content/fontawesome/less/font-awesome.css",
+    "inputFile": "Content/fontawesome/less/font-awesome.less"
   }
 ]
