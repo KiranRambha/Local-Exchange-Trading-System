@@ -1,4 +1,5 @@
-﻿input[type="text"] {
+﻿input[type="text"],
+input[type="password"] {
   border: none;
   border-radius: 0px;
   background-color: #EEEEEE;
@@ -6,7 +7,8 @@
   border-bottom: 1px solid #616161;
   padding: 6px 0px;
 }
-input[type="text"]:focus {
+input[type="text"]:focus,
+input[type="password"]:focus {
   border-bottom: 1px solid #0091EA;
   box-shadow: none;
 }

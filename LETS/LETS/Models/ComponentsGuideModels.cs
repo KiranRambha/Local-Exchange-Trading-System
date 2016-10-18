@@ -22,13 +22,13 @@ namespace LETS.Models
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Please enter a password")]
-        [RegularExpression(@"(?=.*[A-Z,a-z])(?=.*[1-9])(?=.*[!-/,:-@,[-`,{-~,\243])([!-~,\243]){8,}", ErrorMessage = "Please enter at least eight characters, including one letter, number and special character")]
+        [RegularExpression(@"^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$", ErrorMessage = "Please enter at least eight characters, including one letter, number and special character")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
         [Required(ErrorMessage = "Please confirm your password.")]
         [Compare("Password", ErrorMessage = "Please ensure that the password here matches the password that you provided above")]
-        [RegularExpression(@"(?=.*[A-Z,a-z])(?=.*[1-9])(?=.*[!-/,:-@,[-`,{-~,\243])([!-~,\243]){8,}", ErrorMessage = "Please enter at least eight characters, including one letter, number and special character")]
+        [RegularExpression(@"^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$", ErrorMessage = "Please enter at least eight characters, including one letter, number and special character")]
         [DataType(DataType.Password)]
         public string ConfirmPassword { get; set; }
 

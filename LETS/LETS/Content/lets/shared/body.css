@@ -45,3 +45,6 @@ body .panel-default {
   padding: 15px;
   background-color: #EEEEEE;
 }
+body .mdl-button--raised:hover {
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.18), 0 8px 16px rgba(0, 0, 0, 0.36);
+}

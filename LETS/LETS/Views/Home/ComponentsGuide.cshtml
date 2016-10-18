@@ -13,7 +13,7 @@
         <h4>TextBox</h4>
         <div class="row">
             <div class="col-md-6">
-                @Html.EditorFor(m => m.FullName, "Text", new { label = "Full Name", @class = "col-xs-12", @required_message = "Please enter your full name", @placeholder = "Full Name" })
+                @Html.EditorFor(m => m.FullName, "Text", new { label = "Full Name", @class = "col-xs-12", @required_message = "Please enter your full name.", @placeholder = "Full Name" })
                 @*<p ng-cloak class="lead">My full name is {{FullName}}</p>*@
             </div>
         </div>
@@ -30,5 +30,36 @@
         </div>
 
         <hr />
+
+        <h4>Password</h4>
+        <div class="row">
+            <div class="col-md-6">
+                @Html.EditorFor(m => m.Password, "Password", new { label = "Password", @class = "col-xs-12", @required_message = "Please enter your password.", @placeholder = "Password"})
+            </div>
+            <div class="col-md-6">
+                @Html.EditorFor(m => m.ConfirmPassword, "Password", new { label = "Confirm Password", @class = "col-xs-12", @required_message = "Please confirm your selected password", @placeholder = "Confirm Password" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <figure class="highlight">
+                    <div class="well">
+                        <code class="language-html" data-lang="html">
+                            <span>@@Html.EditorFor(m => m.Password, "Password", new { label = "Password", @@class = "col-xs-12", @@required_message = "Please enter your password.", @@placeholder = "Password" })</span>
+                        </code>
+                    </div>
+                </figure>
+            </div>
+        </div>
+
+        <hr />
+
+        <div class="row">
+            <div class="col-md-6">
+                <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                    Submit
+                </button>
+            </div>
+        </div>
     </div>
 }

@@ -393,6 +393,7 @@
     <Content Include="Scripts\BootstrapJsLib\respond.min.js" />
     <Content Include="Scripts\Shared\app.js" />
     <Content Include="Scripts\Shared\navbar.js" />
+    <Content Include="Scripts\Shared\validation.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -408,6 +409,7 @@
     <Content Include="Views\Shared\EditorTemplates\Text.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Radio.cshtml" />
     <Content Include="Views\Home\ComponentsGuide.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Password.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
