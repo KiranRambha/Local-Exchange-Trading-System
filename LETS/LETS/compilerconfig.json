@@ -42,5 +42,9 @@
   {
     "outputFile": "Content/fontawesome/less/font-awesome.css",
     "inputFile": "Content/fontawesome/less/font-awesome.less"
+  },
+  {
+    "outputFile": "Content/lets/shared/radio.css",
+    "inputFile": "Content/lets/shared/radio.less"
   }
 ]

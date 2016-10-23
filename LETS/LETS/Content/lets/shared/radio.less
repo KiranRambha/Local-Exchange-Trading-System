@@ -1,0 +1,80 @@
+﻿@import "../../theme/variables.less";
+@import "../../theme/colors.less";
+
+.form-group {
+    &.has-error {
+        .radio-group {
+            .radio-toggle {
+                border-color: @brand-danger;
+
+                input[type="radio"]:focus + label {
+                    border-color: @brand-danger;
+                    box-shadow: inset 0 0px 0px @brand-danger, 0 0 8px @brand-danger;
+                }
+            }
+        }
+    }
+
+    &.success {
+        .radio-group {
+            input[type=radio]:checked + label {
+                background-color: @brand-success;
+            }
+
+            .radio-toggle {
+                border-color: @brand-success;
+
+                input[type="radio"]:focus + label {
+                    border-color: @brand-success;
+                    background-color: @brand-success;
+                    box-shadow: inset 0 0px 0px @brand-success, 0 0 8px @brand-success;
+                }
+            }
+        }
+    }
+}
+
+.no-padding {
+    padding: 0;
+}
+
+.no-margin {
+    margin: 0;
+}
+
+.radio-group {
+    input[type="radio"] {
+        position: absolute;
+        left: -9999px;
+    }
+
+    input[type="radio"]:focus + label {
+        border-color: @brand-info;
+        box-shadow: inset 0 0px 0px @brand-info, 0 0 8px @brand-info;
+    }
+
+    input[type=radio]:checked + label {
+        background-color: @brand-info;
+        color: @brand-primary-100;
+    }
+
+    .radio-toggle {
+        border: 1px solid @brand-primary-700;
+
+        .radio-label {
+            padding: 5px 10px;
+
+            span {
+                font-size: 22px;
+            }
+
+            &.btn {
+                border-radius: 0;
+            }
+        }
+
+        & ~ .radio-toggle {
+            border-left: 0 !important;
+        }
+    }
+}

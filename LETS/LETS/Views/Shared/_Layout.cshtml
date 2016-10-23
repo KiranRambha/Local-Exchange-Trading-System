@@ -22,12 +22,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("LETS", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Royal Holloway LETS", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li class="@(ViewBag.Title == "Home" ? "active" : "")">@Html.ActionLink("Home", "Index", "Home", new { @class = "mdl-js-button mdl-js-ripple-effect" })</li>
-                    <li class="@(ViewBag.Title == "Components" ? "active" : "")">@Html.ActionLink("Components", "ComponentsGuide", "Home", new { @class = "mdl-js-button mdl-js-ripple-effect" })</li>
+                    <li class="@(ViewBag.Title == "Home" ? "active" : "")">@Html.ActionLink("Home", "Index", new { controller = "Home" }, new { @class = "mdl-js-button mdl-js-ripple-effect" })</li>
+                    <li class="@(ViewBag.Title == "Components" ? "active" : "")">@Html.ActionLink("Components", "ComponentsGuide", new { controller = "Home" }, new { @class = "mdl-js-button mdl-js-ripple-effect" })</li>
                 </ul>
             </div>
         </div>

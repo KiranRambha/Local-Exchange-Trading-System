@@ -3,26 +3,26 @@
   border: none;
 }
 .navbar.navbar-default .navbar-brand {
-  color: #FAFAFA;
+  color: #FF6D00;
 }
 .navbar.navbar-default .navbar-brand:hover {
-  color: #9E9E9E;
+  color: #FFAB40;
 }
 .navbar.navbar-default .navbar-nav > li > a {
   color: #FAFAFA;
 }
 .navbar.navbar-default .navbar-nav > li > a:hover {
   color: #212121;
-  background-color: #FF9100;
+  background-color: #0091EA;
 }
 .navbar.navbar-default .navbar-nav > li > a:focus {
-  background-color: #FF9100;
+  background-color: #0091EA;
 }
 .navbar.navbar-default .navbar-nav > .active > a,
 .navbar.navbar-default .navbar-default .navbar-nav > .active > a:hover,
 .navbar.navbar-default .navbar-default .navbar-nav > .active > a:focus {
   color: #212121;
-  background-color: #FF6D00;
+  background-color: #00B0FF;
 }
 .navbar.navbar-default .navbar-header button.navbar-toggle.active {
   background-color: #FAFAFA;

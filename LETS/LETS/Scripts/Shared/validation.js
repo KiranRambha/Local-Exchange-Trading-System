@@ -7,3 +7,8 @@
     },
     errorPlacement: function (error, element) { }
 });
+
+$("input").on('blur', function () {
+    $(this).valid();
+    $("form").validate().element(this);
+});

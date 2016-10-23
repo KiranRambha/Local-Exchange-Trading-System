@@ -1,1 +1,81 @@
-﻿
+﻿@model object
+
+@{
+    List<SelectListItem> radioItems = new List<SelectListItem>();
+    radioItems.Add(new SelectListItem { Text = "Yes", Value = "true", Selected = true });
+    radioItems.Add(new SelectListItem { Text = "No", Value = "false", Selected = false });
+}
+<div class="row">
+    <div class="form-group col-xs-12">
+        <fieldset>
+            <div class="row">
+                <div class="col-sm-12">
+                    <label>@(ViewData.ContainsKey("label") && ViewData["label"] != null ? ViewData["label"].ToString() : Html.NameForModel().ToString())</label>
+                    @if (ViewData.ContainsKey("subtext") && ViewData["subtext"] != null)
+                    {
+                        <p>@ViewData["subtext"]</p>
+                    }
+                </div>
+            </div>
+            <div class="row radio-group no-margin">
+                <fieldset>
+                    @foreach (var item in radioItems)
+                    {
+                        var dataDictionary = new Dictionary<string, object>();
+
+                        if (ViewData.ModelMetadata.AdditionalValues.ContainsKey("Category") && !string.IsNullOrEmpty(ViewData.ModelMetadata.AdditionalValues["Category"].ToString()))
+                        {
+                            dataDictionary.Add("category", ViewData.ModelMetadata.AdditionalValues["Category"].ToString());
+                        }
+
+                        //Add the required validation message if present
+                        if (ViewData.ContainsKey("required_message") && ViewData["required_message"] != null && ViewData["required_message"].ToString() != "")
+                        {
+                            dataDictionary.Add("required", "true");
+                            dataDictionary.Add("data-val-required", ViewData["required_message"]);
+                        }
+
+                        //Add the core input attributes
+                        dataDictionary.Add("ng-model", Html.NameForModel().ToString());
+                        dataDictionary.Add("id", Html.IdForModel() + "-" + item.Value);
+                        dataDictionary.Add("ng-checked", "(" + @Html.NameForModel() + "==" + "'" + item.Value + "')");
+                        var inputId = Html.IdForModel() + "-" + item.Value;
+                        <div class="col-xs-@(12/radioItems.Count) no-padding radio-toggle">
+                            @if (ViewData.ModelMetadata.AdditionalValues.ContainsKey("Category") && !ViewData.ModelMetadata.ModelType.Equals(typeof(bool?)))
+                            {
+                                if (Model != null && Model.ToString().Equals(item.Value))
+                                {
+                                    dataDictionary.Add("checked", "checked");
+                                }
+                                @Html.RadioButtonFor(m => m, item.Value, dataDictionary)
+                            }
+                            else
+                            {
+                                if (Model != null && (Model as bool?).HasValue && (Model as bool?).Value == Convert.ToBoolean(item.Value))
+                                {
+                                    dataDictionary.Add("checked", "checked");
+                                }
+                                try
+                                {
+                                    @Html.RadioButtonFor(m => m, @item.Value, dataDictionary)
+                                }
+                                catch (Exception)
+                                {
+                                    @Html.RadioButtonFor(m => m, @item.Value, dataDictionary)
+                                }
+                            }
+                            <label for=@(Html.IdForModel() + "-" + item.Value) class="btn col-xs-12 radio-label">
+                                <span>@item.Text</span>
+                            </label>
+                        </div>
+                    }
+                </fieldset>
+            </div>
+            <div class="error-block">
+                <div class="error-message" role="alert">
+                    <label>@(ViewData.ContainsKey("required_message") && ViewData["required_message"] != null ? ViewData["required_message"].ToString() : "")</label>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div>
