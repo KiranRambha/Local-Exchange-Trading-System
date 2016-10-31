@@ -30,15 +30,15 @@
 .form-group.success .form-control {
   box-shadow: none;
   border: none;
-  border-bottom: 1px solid #00C853;
+  border-bottom: 1px solid #00BFA5;
 }
 .form-group.success .error-block {
   display: none;
 }
 .form-group.success .bar:before,
 .form-group.success .bar:after {
-  background: #00C853;
-  box-shadow: inset 0 1px 1px #00C853, 0 0 8px #00C853;
+  background: #00BFA5;
+  box-shadow: inset 0 1px 1px #00BFA5, 0 0 8px #00BFA5;
 }
 .form-group.success .textbox:after {
   font-family: FontAwesome;
@@ -48,5 +48,5 @@
   font-size: 24px;
   float: right;
   margin-top: -28px;
-  color: #00C853;
+  color: #00BFA5;
 }

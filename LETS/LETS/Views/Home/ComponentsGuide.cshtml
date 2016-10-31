@@ -57,7 +57,7 @@
         <h4>Agree or Disagree</h4>
         <div class="row">
             <div class="col-md-6">
-                @Html.EditorFor(m => m.Agree, "Radio", new { label = "Agree", @class = "col-xs-12", @required_message = "Please select 'Yes' or 'No'." })
+                @Html.EditorFor(m => m.Gender, "Radio", new { label = "Gender", @class = "col-xs-12", @required_message = "Please select your gender." })
             </div>
         </div>
         <div class="row">
@@ -65,7 +65,7 @@
                 <figure class="highlight">
                     <div class="well">
                         <code class="language-html" data-lang="html">
-                            <span>@@Html.EditorFor(m => m.Agree, "Radio", new { label = "Agree", @@class = "col-xs-12", @@required_message = "Please select 'Yes' or 'No'." })</span>
+                            <span>@@Html.EditorFor(m => m.Gender, "Radio", new { label = "Agree", @@class = "col-xs-12", @@required_message = "Please select your gender." })</span>
                         </code>
                     </div>
                 </figure>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LETS.Helpers;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -10,6 +11,7 @@ namespace LETS.Models
     {
         [Required(ErrorMessage = "What is your title.")]
         [Display(Name = "Title")]
+        [CategoryLookup("ComponentsGuide.Title")]
         public string Title { get; set; }
 
         [Required(ErrorMessage = "Please enter your full name.")]
@@ -37,6 +39,8 @@ namespace LETS.Models
         public int? PhoneNumber { get; set; }
 
         [Required(ErrorMessage = "Please check to agree.")]
-        public bool Agree { get; set; }
+        [Display(Name = "Gender")]
+        [CategoryLookup("ComponentsGuide.Gender")]
+        public bool? Gender { get; set; }
     }
 }

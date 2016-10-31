@@ -2,11 +2,33 @@
 
 @{
     List<SelectListItem> radioItems = new List<SelectListItem>();
-    radioItems.Add(new SelectListItem { Text = "Yes", Value = "true", Selected = true });
-    radioItems.Add(new SelectListItem { Text = "No", Value = "false", Selected = false });
+    string category = "";
+    Dictionary<string, string> referenceData = new Dictionary<string, string>();
+    //Build up the data dictionary for variables to be used in the HTML
+    if (ViewData.ModelMetadata.AdditionalValues.ContainsKey("Category") && !string.IsNullOrEmpty(ViewData.ModelMetadata.AdditionalValues["Category"].ToString()))
+    {
+        category = ViewData.ModelMetadata.AdditionalValues["Category"].ToString();
+        if (MvcApplication.referenceDataDictionary.ContainsKey(category) && !string.IsNullOrEmpty(MvcApplication.referenceDataDictionary[category].ToString()))
+        {
+            referenceData = MvcApplication.referenceDataDictionary[category];
+        }
+    }
+
+    if (referenceData.Count > 0)
+    {
+        foreach (var dataItem in referenceData)
+        {
+            radioItems.Add(new SelectListItem { Text = dataItem.Key, Value = dataItem.Value });
+        }
+    }
+    else
+    {
+        radioItems.Add(new SelectListItem { Text = "Yes", Value = "true", Selected = true });
+        radioItems.Add(new SelectListItem { Text = "No", Value = "false", Selected = false });
+    }
 }
 <div class="row">
-    <div class="form-group col-xs-12">
+    <div class="form-group col-xs-12 @(ViewData.ModelState != null && !ViewData.ModelState.IsValid && ViewData.ModelState[Html.NameForModel().ToString()] != null && ViewData.ModelState[Html.NameForModel().ToString()].Errors.Any() ? "has-error" : "")">
         <fieldset>
             <div class="row">
                 <div class="col-sm-12">

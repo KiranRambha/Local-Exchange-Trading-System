@@ -7,6 +7,14 @@
             .radio-toggle {
                 border-color: @brand-danger;
 
+                label {
+                    color: @brand-danger;
+
+                    &:hover {
+                        color: @brand-danger;
+                    }
+                }
+
                 input[type="radio"]:focus + label {
                     border-color: @brand-danger;
                     box-shadow: inset 0 0px 0px @brand-danger, 0 0 8px @brand-danger;

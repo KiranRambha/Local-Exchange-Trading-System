@@ -26,7 +26,7 @@
     }
 }
 <div class="row">
-    <div class="form-group @(ViewData["class"] != null ? ViewData["class"] : "col-xs-12")">
+    <div class="form-group @(ViewData["class"] != null ? ViewData["class"] : "col-xs-12") @(ViewData.ModelState != null && !ViewData.ModelState.IsValid && ViewData.ModelState[Html.NameForModel().ToString()] != null && ViewData.ModelState[Html.NameForModel().ToString()].Errors.Any() ? "has-error" : "")">
         <div ng-init="@modelValue" class="row">
             <div class="col-xs-12">
                 @Html.LabelFor(m => m, ViewData.ContainsKey("label") && ViewData["label"] != null ? ViewData["label"].ToString() : Html.NameForModel().ToString())

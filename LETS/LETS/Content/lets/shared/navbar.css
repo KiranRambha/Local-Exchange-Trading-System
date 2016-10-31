@@ -13,16 +13,16 @@
 }
 .navbar.navbar-default .navbar-nav > li > a:hover {
   color: #212121;
-  background-color: #0091EA;
+  background-color: #FFAB40;
 }
 .navbar.navbar-default .navbar-nav > li > a:focus {
-  background-color: #0091EA;
+  background-color: #FF9100;
 }
 .navbar.navbar-default .navbar-nav > .active > a,
 .navbar.navbar-default .navbar-default .navbar-nav > .active > a:hover,
 .navbar.navbar-default .navbar-default .navbar-nav > .active > a:focus {
   color: #212121;
-  background-color: #00B0FF;
+  background-color: #FF6D00;
 }
 .navbar.navbar-default .navbar-header button.navbar-toggle.active {
   background-color: #FAFAFA;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LETS.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -17,6 +18,16 @@ namespace LETS.Controllers
         [HttpGet]
         public ActionResult ComponentsGuide()
         {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ComponentsGuide(ComponentsGuideModels componentsGuide)
+        {
+            if (componentsGuide != null && ModelState.IsValid)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             return View();
         }
     }

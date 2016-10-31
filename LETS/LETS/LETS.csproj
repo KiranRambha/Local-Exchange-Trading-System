@@ -171,6 +171,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\CategoryLookupAttribute.cs" />
+    <Compile Include="Helpers\MetadataProvider.cs" />
+    <Compile Include="Helpers\ReferenceDataController.cs" />
     <Compile Include="Models\ComponentsGuideModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -378,6 +381,7 @@
     <Content Include="Content\theme\variables.less" />
     <Content Include="Content\theme\colors.less" />
     <Content Include="Content\lets\shared\navbar.less" />
+    <Content Include="Helpers\referencedata.csv" />
     <None Include="Scripts\jQueryLib\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\AngularJsLib\angular.js" />
     <Content Include="Scripts\AngularJsLib\angular.min.js" />
