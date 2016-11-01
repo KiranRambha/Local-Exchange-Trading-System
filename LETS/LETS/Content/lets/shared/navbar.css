@@ -1,6 +1,6 @@
 ﻿.navbar.navbar-default {
   background-color: #212121;
-  border: none;
+  border-bottom: 4px solid #FF6D00;
 }
 .navbar.navbar-default .navbar-brand {
   color: #FF6D00;
@@ -39,7 +39,7 @@
   margin-bottom: 0px;
 }
 .navbar.navbar-default .navbar-collapse .nav.navbar-nav > li > a {
-  border-bottom: 1px solid #8d8d8d;
+  border-bottom: none;
 }
 .navbar.navbar-default .navbar-collapse .nav.navbar-nav > li:last-child > a {
   border-bottom: none;
@@ -47,5 +47,15 @@
 @media (min-width: 768px) {
   .navbar.navbar-default .navbar-collapse .nav.navbar-nav > li > a {
     border-bottom: none;
+  }
+}
+@media (min-width: 768px) {
+  .navbar.navbar-default .navbar-collapse .nav.navbar-nav.navbar-right {
+    margin-right: -10px;
+  }
+}
+@media (min-width: 992px) {
+  .navbar.navbar-default .navbar-collapse .nav.navbar-nav.navbar-right {
+    margin-right: 0px;
   }
 }

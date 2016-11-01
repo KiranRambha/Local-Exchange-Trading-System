@@ -1,0 +1,86 @@
+﻿@model object
+
+@{
+    //Build up the data dictionary for variables to be used in the HTML
+    var dataDictionary = new Dictionary<string, object>();
+    var containsHelpText = (ViewData.ContainsKey("helptext") && ViewData["helptext"] != null) ? true : false;
+
+    //Add the required validation message if present
+    if (ViewData.ContainsKey("required_message") && ViewData["required_message"] != null)
+    {
+        dataDictionary.Add("required", "true");
+        dataDictionary.Add("data-val-required", ViewData["required_message"]);
+    }
+
+    //Add the core input attributes
+    dataDictionary.Add("ng-model", Html.NameForModel().ToString());
+    //Add the core input attributes
+    dataDictionary.Add("class", "form-control");
+
+    //Build up the dynamic select list items
+    List<SelectListItem> selectListItems = new List<SelectListItem> {
+        new SelectListItem{Text = ViewData.ContainsKey("placeholder") && ViewData["placeholder"] != null ? ViewData["placeholder"].ToString() : "Please select", Value = ""}
+    };
+
+    //Call reference data service and create select list with returned data
+    if (ViewData.ModelMetadata.AdditionalValues.ContainsKey("Category"))
+    {
+        string category = "";
+        Dictionary<string, string> referenceData = new Dictionary<string, string>();
+        //Build up the data dictionary for variables to be used in the HTML
+        if (ViewData.ModelMetadata.AdditionalValues.ContainsKey("Category") && !string.IsNullOrEmpty(ViewData.ModelMetadata.AdditionalValues["Category"].ToString()))
+        {
+            category = ViewData.ModelMetadata.AdditionalValues["Category"].ToString();
+            if (MvcApplication.referenceDataDictionary.ContainsKey(category) && !string.IsNullOrEmpty(MvcApplication.referenceDataDictionary[category].ToString()))
+            {
+                referenceData = MvcApplication.referenceDataDictionary[category];
+            }
+        }
+
+        foreach (var referenceItem in referenceData)
+        {
+            selectListItems.Add(new SelectListItem
+            {
+                Text = referenceItem.Key,
+                Value = referenceItem.Value,
+                Selected = Model != null && Model.ToString() == referenceItem.Value ? true : false
+            });
+        }
+    }
+
+    var modelValue = "";
+    if (Model != null)
+    {
+        modelValue = Html.NameForModel().ToString() + "=" + "'" + Model.ToString() + "'";
+    }
+
+}
+<div class="row">
+    <div class="form-group col-xs-12">
+        <fieldset>
+            <div class="row">
+                <div class="col-sm-12">
+                    <label>@(ViewData.ContainsKey("label") && ViewData["label"] != null ? ViewData["label"].ToString() : Html.NameForModel().ToString())</label>
+                    @if (ViewData.ContainsKey("subtext") && ViewData["subtext"] != null)
+                    {
+                        <p>@ViewData["subtext"]</p>
+                    }
+                </div>
+            </div>
+            <div class="row no-margin">
+                <fieldset>
+                    <div class="col-xs-12 no-padding">
+                        <div class="form-select @ViewData["labelClass"] pd-left-0">
+                            @Html.DropDownListFor(m => m, selectListItems, dataDictionary)
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+            <div class="error-block">
+                <div class="error-message" role="alert">
+                    <label>@(ViewData.ContainsKey("required_message") && ViewData["required_message"] != null ? ViewData["required_message"].ToString() : "")</label>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div>

@@ -1,0 +1,4 @@
+﻿<ul class="nav navbar-nav navbar-right">
+    <li class="@(ViewBag.Title == "Register" ? "active" : "")">@Html.ActionLink("Register", "Register", new { controller = "Account" }, new { @class = "mdl-js-button mdl-js-ripple-effect" })</li>
+    <li class="@(ViewBag.Title == "Login" ? "active" : "")">@Html.ActionLink("Log in", "Login", new { controller = "Account" }, new { @class = "mdl-js-button mdl-js-ripple-effect" })</li>
+</ul>

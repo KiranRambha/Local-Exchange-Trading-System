@@ -18,10 +18,10 @@ namespace LETS.Models
         [Display(Name = "First Name")]
         public string FullName { get; set; }
 
-        [Required(ErrorMessage = "Please enter you email address.")]
-        [EmailAddress(ErrorMessage = "You have entered an invalid email address.")]
-        [Display(Name = "Email")]
-        public string Email { get; set; }
+        //[Required(ErrorMessage = "Please enter you email address.")]
+        //[EmailAddress(ErrorMessage = "You have entered an invalid email address.")]
+        //[Display(Name = "Email")]
+        //public string Email { get; set; }
 
         [Required(ErrorMessage = "Please enter a password")]
         [RegularExpression(@"^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$", ErrorMessage = "Please enter at least eight characters, including one letter, number and special character")]
@@ -34,13 +34,13 @@ namespace LETS.Models
         [DataType(DataType.Password)]
         public string ConfirmPassword { get; set; }
 
-        [Required(ErrorMessage = "Please enter your phone number.")]
-        [Display(Name = "Phone Number")]
-        public int? PhoneNumber { get; set; }
+        //[Required(ErrorMessage = "Please enter your phone number.")]
+        //[Display(Name = "Phone Number")]
+        //public int? PhoneNumber { get; set; }
 
         [Required(ErrorMessage = "Please check to agree.")]
         [Display(Name = "Gender")]
         [CategoryLookup("ComponentsGuide.Gender")]
-        public bool? Gender { get; set; }
+        public string Gender { get; set; }
     }
 }

@@ -4,7 +4,8 @@
 .navbar {
     &.navbar-default {
         background-color: @brand-primary-900;
-        border: none;
+        border-bottom: 4px solid @brand-primary-a700;
+
         .navbar-brand {
             color: @brand-primary-a700;
 
@@ -49,7 +50,7 @@
                 margin-bottom: 0px;
 
                 & > li > a {
-                    border-bottom: 1px solid darken(@brand-primary-500, 6.5%);
+                    border-bottom: none;
                 }
 
                 & > li:last-child > a {
@@ -59,6 +60,18 @@
                 @media (min-width: @screen-sm) {
                     & > li > a {
                         border-bottom: none;
+                    }
+                }
+
+                @media (min-width: @screen-tablet) {
+                    &.navbar-right {
+                        margin-right: -10px;
+                    }
+                }
+
+                @media (min-width: @screen-desktop) {
+                    &.navbar-right {
+                        margin-right: 0px;
                     }
                 }
             }
