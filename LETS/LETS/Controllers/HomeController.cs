@@ -8,10 +8,12 @@ using System.Web.Mvc;
 
 namespace LETS.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         public LETSContext Context = new LETSContext();
 
+        [AllowAnonymous]
         [HttpGet]
         public ActionResult Index()
         {
@@ -25,6 +27,7 @@ namespace LETS.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult ComponentsGuide(RegisterUserViewModel registerUser)
         {
             if (registerUser != null && ModelState.IsValid)

@@ -9,24 +9,51 @@ using LETS.Properties;
 using LETS.Helpers;
 using MongoDB.Bson;
 using MongoDB.Bson.IO;
+using System.Security.Claims;
+using Microsoft.AspNet.Identity;
+using Microsoft.Owin.Security;
 
 namespace LETS.Controllers
 {
+    [Authorize]
     public class AccountController : Controller
     {
-        public LETSContext Context = new LETSContext();
+        public readonly LETSContext Context = new LETSContext();
 
-        public AccountController()
-        {
-            JsonWriterSettings.Defaults.Indent = true;
-        }
-
+        [AllowAnonymous]
         [HttpGet]
         public ActionResult Login()
         {
             return View();
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [AllowAnonymous]
+        public ActionResult Login(LoginViewModel loginUser)
+        {
+            if (loginUser != null && ModelState.IsValid)
+            {
+                if (true)
+                {
+                    UserAuthentication userAuthentication = new UserAuthentication();
+
+                    string role = "user";
+
+                    var ident = userAuthentication.AuthenticateUser(loginUser.UserName, role);
+
+                    HttpContext.GetOwinContext().Authentication.SignIn(new AuthenticationProperties { IsPersistent = false }, ident);
+
+                    return RedirectToAction("ComponentsGuide", "Home");
+                } else
+                {
+                    return View();
+                }
+            }
+            return View();
+        }
+
+        [AllowAnonymous]
         [HttpGet]
         public ActionResult Register()
         {
@@ -34,28 +61,41 @@ namespace LETS.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
+        [AllowAnonymous]
         public ActionResult Register(RegisterUserViewModel registerUser)
         {
             if (registerUser != null && ModelState.IsValid)
             {
-                registerUser.PersonId = Guid.NewGuid().ToString();
-                var person = registerUser.ToJson();
-                System.Diagnostics.Debug.WriteLine(person);
-                return View();
+                PasswordHashAndSalt passowordEncription = new PasswordHashAndSalt();
+                registerUser.Account.Password = passowordEncription.getHashedPassword(registerUser.Account.Password);
+                registerUser.Account.ConfirmPassword = passowordEncription.getHashedPassword(registerUser.Account.ConfirmPassword);
+                Context.RegisteredUsers.InsertOne(registerUser);
+                return RedirectToAction("RegisteredUsers");
             }
             return View();
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public ActionResult ForgotUsername()
         {
             return View();
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public ActionResult ForgotPassword()
         {
             return View();
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "admin")]
+        public ActionResult RegisteredUsers()
+        {
+            var registeredUsers = Context.RegisteredUsers.Find(new BsonDocument()).ToList();
+            return View(registeredUsers);
         }
     }
 }

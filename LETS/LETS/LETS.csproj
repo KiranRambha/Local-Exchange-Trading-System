@@ -49,6 +49,14 @@
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.AspNetCore.Cryptography.Internal, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Cryptography.Internal.1.0.0\lib\net451\Microsoft.AspNetCore.Cryptography.Internal.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Cryptography.KeyDerivation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNetCore.Cryptography.KeyDerivation.1.0.0\lib\net451\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.2\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -187,7 +195,9 @@
     <Compile Include="Helpers\CategoryLookupAttribute.cs" />
     <Compile Include="Helpers\LETSContext.cs" />
     <Compile Include="Helpers\MetadataProvider.cs" />
+    <Compile Include="Helpers\PasswordHashAndSalt.cs" />
     <Compile Include="Helpers\ReferenceDataController.cs" />
+    <Compile Include="Helpers\UserAuthentication.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ComponentsGuideModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -437,7 +447,9 @@
     <Content Include="Scripts\Shared\navbar.js" />
     <Content Include="Scripts\Shared\validation.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -460,6 +472,7 @@
     <Content Include="Views\Account\ForgotUsername.cshtml" />
     <Content Include="Views\Account\ForgotPassword.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Email.cshtml" />
+    <Content Include="Views\Account\RegisteredUsers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -469,7 +482,9 @@
     <Folder Include="Views\Shared\DisplayTemplates\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="packages.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jQueryLib\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jQueryLib\jquery-3.1.1.min.map" />

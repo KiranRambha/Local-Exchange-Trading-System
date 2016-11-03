@@ -5,6 +5,7 @@
 }
 @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { id = "login", name = "form", novalidate = "" }))
 {
+    @Html.AntiForgeryToken()
     <div class="form-body">
         <h3 class="form-section">Login</h3>
 

@@ -1,0 +1,71 @@
+﻿@model IEnumerable<LETS.Models.RegisterUserViewModel>
+
+@{
+    ViewBag.Title = "Registered Users";
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PersonId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.About.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.About.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.About.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.About.Gender)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Account.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Account.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Account.Password)
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(model => item.PersonId)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.About.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.About.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.About.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.About.Gender)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Account.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Account.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Account.Password)
+            </td>
+        </tr>
+    }
+</table>
+
+<div class="form-group">
+    <div class="row">
+        <div class="col-md-6">
+            <h5>@Html.ActionLink("Register", "Register", new { controller = "Account" }, new { @class = "mdl-color-text--orange-A700" })</h5>
+        </div>
+    </div>
+</div>

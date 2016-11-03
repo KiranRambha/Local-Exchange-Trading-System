@@ -78,7 +78,7 @@
             </div>
             <div class="error-block">
                 <div class="error-message" role="alert">
-                    <label>@(ViewData.ContainsKey("required_message") && ViewData["required_message"] != null ? ViewData["required_message"].ToString() : "")</label>
+                    <label>@Html.ValidationMessageFor(model => model, String.Empty)</label>
                 </div>
             </div>
         </fieldset>

@@ -1,4 +1,5 @@
 ﻿using LETS.Helpers;
+using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ namespace LETS.Models
     public class LoginViewModel
     {
         [Required(ErrorMessage = "Please enter your username.")]
+        [RegularExpression(@"^\S*$", ErrorMessage = "Whitespaces are not allowed in usernames.")]
         [Display(Name = "User Name")]
         public string UserName { get; set; }
 
@@ -40,6 +42,7 @@ namespace LETS.Models
     public class RegisterUserViewModel
     {
         [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
         public string PersonId { get; set; }
 
         public About About { get; set; }
@@ -55,13 +58,12 @@ namespace LETS.Models
         public string Title { get; set; }
 
         [Required(ErrorMessage = "Please enter your first name.")]
-        [Display(Name = "User Name")]
+        [Display(Name = "First Name")]
         public string FirstName { get; set; }
 
         [Required(ErrorMessage = "Please enter your last name.")]
-        [Display(Name = "User Name")]
+        [Display(Name = "Last Name")]
         public string LastName { get; set; }
-
 
         [Required(ErrorMessage = "Please select your gender.")]
         [Display(Name = "Gender")]
@@ -72,15 +74,17 @@ namespace LETS.Models
     public class Account
     {
         [Required(ErrorMessage = "Please enter your username.")]
+        [RegularExpression(@"^\S*$", ErrorMessage = "Whitespaces are not allowed in usernames.")]
         [Display(Name = "User Name")]
         public string UserName { get; set; }
 
         [Required(ErrorMessage = "Please enter your email address")]
         [EmailAddress(ErrorMessage = "Please enter a valid email address")]
+        [RegularExpression(@"^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$", ErrorMessage = "Please enter an email in \"name@company.domain\" format")]
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Please enter a password")]
-        [RegularExpression(@"^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$", ErrorMessage = "Please enter at least eight characters, including one letter, number and special character")]
+        [RegularExpression(@"^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$", ErrorMessage = "Please enter at least eight characters, including upper, lower letters and numbers")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
@@ -88,6 +92,7 @@ namespace LETS.Models
         [Compare("Password", ErrorMessage = "Please ensure that the password here matches the password that you provided above")]
         [RegularExpression(@"^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$", ErrorMessage = "Please enter at least eight characters, including one letter, number and special character")]
         [DataType(DataType.Password)]
+        [BsonIgnore]
         public string ConfirmPassword { get; set; }
     }
 }

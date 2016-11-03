@@ -18,7 +18,7 @@ namespace LETS.Helpers
             var client = new MongoClient(connectionString);
             Database = client.GetDatabase(Settings.Default.LETSDatabaseName);
         }
-
-        //public IMongoCollection<RegisterUserViewModel> Rentals => Database.GetCollection<RegisterUserViewModel>("lets");
+        
+        public IMongoCollection<RegisterUserViewModel> RegisteredUsers => Database.GetCollection<RegisterUserViewModel>("registeredUsers");
     }
 }
