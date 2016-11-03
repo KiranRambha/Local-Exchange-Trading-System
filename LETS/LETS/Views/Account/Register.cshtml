@@ -1,3 +1,83 @@
-﻿@{
+﻿@using LETS.Models
+@model RegisterUserViewModel
+@{
     ViewBag.Title = "Register";
+}
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { id = "register", name = "form", novalidate = "" }))
+{
+    <div class="form-body">
+        <h3 class="form-section">Register</h3>
+
+        <hr />
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    @Html.EditorFor(m => m.About.Title, "SelectList", new { label = "Title", @class = "col-xs-12", @required_message = "Please select your title." })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    @Html.EditorFor(m => m.About.FirstName, "Text", new { label = "First name", @class = "col-xs-12", @required_message = "Please enter your first name.", @placeholder = "First name" })
+                </div>
+                <div class="col-md-6">
+                    @Html.EditorFor(m => m.About.LastName, "Text", new { label = "Last name", @class = "col-xs-12", @required_message = "Please enter your last name.", @placeholder = "Last name" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    @Html.EditorFor(m => m.About.Gender, "Radio", new { label = "Gender", @class = "col-xs-12", @required_message = "Please select your gender." })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    @Html.EditorFor(m => m.Account.UserName, "Text", new { label = "Username", @class = "col-xs-12", @required_message = "Please select a unique username.", @placeholder = "Username" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    @Html.EditorFor(m => m.Account.Email, "Email", new { label = "Email", @class = "col-xs-12", @required_message = "Please enter a valid email address.", @placeholder = "john@rhul.ac.uk" })
+                </div>
+            </div>
+        </div>
+       
+        <div class="row">
+            <div class="col-md-6">
+                @Html.EditorFor(m => m.Account.Password, "Password", new { label = "Password", @class = "col-xs-12", @required_message = "Please enter your password.", @placeholder = "Password" })
+            </div>
+            <div class="col-md-6">
+                @Html.EditorFor(m => m.Account.ConfirmPassword, "Password", new { label = "Confirm Password", @class = "col-xs-12", @required_message = "Please confirm your selected password.", @placeholder = "Confirm Password" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                        Submit
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    @Html.ActionLink("go back to Login", "Login", new { controller = "Account" }, new { @class = "mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect btn", @role = "button" })
+                </div>
+            </div>
+        </div>
+    </div>
 }

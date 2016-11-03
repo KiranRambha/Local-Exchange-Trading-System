@@ -1,2 +1,4 @@
-ComponentsGuide.Gender/(Male|male)/(Female|female)/(Other|other)
+ComponentsGuide.Gender/(Male|male)/(Female|female)
 ComponentsGuide.Title/(Mr|mr)/(Mrs|mrs)/(Master|master)/(Miss|miss)/(King|king)/(Queen|queen)
+RegisterUser.Gender/(Male|male)/(Female|female)
+RegisterUser.Title/(Mr|mr)/(Mrs|mrs)/(Dr|Dr)/(Miss|miss)/(Ms|ms)/(Sir|sir)

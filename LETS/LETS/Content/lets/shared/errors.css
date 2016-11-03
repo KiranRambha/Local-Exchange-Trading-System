@@ -9,6 +9,10 @@
   border: none;
   border-bottom: 1px solid #D50000;
 }
+.form-group.has-error .form-control:focus {
+  border-bottom: 3px solid #D50000;
+  box-shadow: none;
+}
 .form-group.has-error .error-block {
   display: block;
 }
@@ -31,6 +35,10 @@
   box-shadow: none;
   border: none;
   border-bottom: 1px solid #00BFA5;
+}
+.form-group.success .form-control:focus {
+  border-bottom: 3px solid #00BFA5;
+  box-shadow: none;
 }
 .form-group.success .error-block {
   display: none;

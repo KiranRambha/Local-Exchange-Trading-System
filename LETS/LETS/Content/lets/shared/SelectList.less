@@ -10,6 +10,10 @@
             padding-right: 28px;
             -webkit-appearance: none;
             -moz-appearance: none;
+
+            &:focus {
+                box-shadow: inset 0 0px 1px @brand-info, 0 0 5px @brand-info;
+            }
         }
 
         &::after {
@@ -19,12 +23,12 @@
             line-height: 42px;
             pointer-events: none;
             content: '\f0d7';
-            background: @brand-primary-400;
+            background-color: @brand-primary-400;
             color: @brand-primary-900;
             padding: 0 10px;
-            right: 1px;
-            bottom: 1px;
-            top: 1px;
+            right: 0px;
+            bottom: 0px;
+            top: 0px;
         }
     }
 
@@ -32,6 +36,10 @@
         .form-select {
             .form-control {
                 border: 1px solid @brand-success;
+
+                &:focus {
+                    box-shadow: inset 0 0px 1px @brand-success, 0 0 5px @brand-success;
+                }
             }
 
             &::after {
@@ -44,6 +52,10 @@
         .form-select {
             .form-control {
                 border: 1px solid @brand-danger;
+
+                &:focus {
+                    box-shadow: inset 0 0px 1px @brand-danger, 0 0 5px @brand-danger;
+                }
             }
 
             &::after {

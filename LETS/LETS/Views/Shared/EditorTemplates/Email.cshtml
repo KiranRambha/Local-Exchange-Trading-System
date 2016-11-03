@@ -13,9 +13,12 @@
     }
 
     //Add the core input attributes
-    dataDictionary.Add("type", "text");
+    dataDictionary.Add("type", "email");
+    dataDictionary.Add("data-regex", "email");
     dataDictionary.Add("class", "form-control");
     dataDictionary.Add("placeholder", ViewData.ContainsKey("placeholder") && ViewData["placeholder"] != null ? ViewData["placeholder"].ToString() : "");
+    dataDictionary.Add("autocomplete", (ViewData["autocomplete"] != null && ViewData["autocomplete"].Equals("off")) ? "off" : "on");
+    dataDictionary.Add("onPaste", (ViewData["onPaste"] != null && ViewData["onPaste"].ToString().ToLower().Equals("false") ? "return false" : "return true"));
 
     //Angular model
     dataDictionary.Add("ng-model", Html.NameForModel().ToString());

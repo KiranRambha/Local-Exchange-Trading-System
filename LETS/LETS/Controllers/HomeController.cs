@@ -1,4 +1,5 @@
-﻿using LETS.Models;
+﻿using LETS.Helpers;
+using LETS.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,8 @@ namespace LETS.Controllers
 {
     public class HomeController : Controller
     {
+        public LETSContext Context = new LETSContext();
+
         [HttpGet]
         public ActionResult Index()
         {
@@ -22,9 +25,9 @@ namespace LETS.Controllers
         }
 
         [HttpPost]
-        public ActionResult ComponentsGuide(ComponentsGuideModels componentsGuide)
+        public ActionResult ComponentsGuide(RegisterUserViewModel registerUser)
         {
-            if (componentsGuide != null && ModelState.IsValid)
+            if (registerUser != null && ModelState.IsValid)
             {
                 return RedirectToAction("Index", "Home");
             }
