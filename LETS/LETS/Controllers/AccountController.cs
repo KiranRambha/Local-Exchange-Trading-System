@@ -12,6 +12,8 @@ using MongoDB.Bson.IO;
 using System.Security.Claims;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
+using System.Web.Security;
+using System.Web.Configuration;
 
 namespace LETS.Controllers
 {
@@ -24,7 +26,13 @@ namespace LETS.Controllers
         [HttpGet]
         public ActionResult Login()
         {
-            return View();
+            if (Request.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Home");
+            } else
+            {
+                return View();
+            }
         }
 
         [HttpPost]
@@ -38,7 +46,7 @@ namespace LETS.Controllers
                 {
                     UserAuthentication userAuthentication = new UserAuthentication();
 
-                    string role = "user";
+                    string role = "admin";
 
                     var ident = userAuthentication.AuthenticateUser(loginUser.UserName, role);
 
@@ -52,12 +60,28 @@ namespace LETS.Controllers
             }
             return View();
         }
+        
+        [HttpGet]
+        public ActionResult Logoff()
+        {
+            var AutheticationManager = HttpContext.GetOwinContext().Authentication;
+            AutheticationManager.SignOut();
+
+            return RedirectToAction("Index", "Home");
+        }
 
         [AllowAnonymous]
         [HttpGet]
         public ActionResult Register()
         {
-            return View();
+            if (Request.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         [HttpPost]
@@ -80,14 +104,28 @@ namespace LETS.Controllers
         [HttpGet]
         public ActionResult ForgotUsername()
         {
-            return View();
+            if (Request.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         [AllowAnonymous]
         [HttpGet]
         public ActionResult ForgotPassword()
         {
-            return View();
+            if (Request.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         [HttpGet]

@@ -59,3 +59,11 @@
     margin-right: 0px;
   }
 }
+.navbar.navbar-default .navbar-collapse .nav.navbar-nav.authenticated {
+  margin-right: 15px;
+}
+@media (max-width: 480px) {
+  .navbar.navbar-default .navbar-collapse .nav.navbar-nav.authenticated {
+    margin-right: -15px;
+  }
+}

@@ -74,6 +74,16 @@
                         margin-right: 0px;
                     }
                 }
+
+                &.authenticated {
+                    margin-right: 15px;
+                }
+
+                @media (max-width: @screen-xs) {
+                    &.authenticated {
+                        margin-right: -15px;
+                    }
+                }
             }
         }
     }
