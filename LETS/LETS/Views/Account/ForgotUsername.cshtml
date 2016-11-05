@@ -2,21 +2,35 @@
 @model ForgotUsernameViewModel
 @{
     ViewBag.Title = "Forgot Username";
+    string message = "";
+    if (ViewData.ModelState != null && ViewData.ModelState.Keys.Count != 0 && ViewData.ModelState.Values.Count != 0 && ViewData.ModelState.ContainsKey("Success"))
+    {
+        message = ViewData.ModelState.Where(m => m.Key == "Success").FirstOrDefault().Value.Errors.FirstOrDefault().ErrorMessage.ToString();
+    }
 }
 @using (Html.BeginForm("ForgotUsername", "Account", FormMethod.Post, new { id = "forgotUsername", name = "form", novalidate = "" }))
 {
+    @Html.AntiForgeryToken()
     <div class="form-body">
-        <h3 class="form-section">ForgotUserName</h3>
+        <h3 class="form-section">Forgot Username</h3>
 
         <hr />
+
+        <div class="alert alert-success @(string.IsNullOrEmpty(message) ? "hide" : "")">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>@message</strong>
+        </div>
+
         <div class="form-group">
             <div class="row">
                 <div class="col-md-6">
-                    @Html.EditorFor(m => m.Email, "Text", new { label = "Email", @class = "col-xs-12", @required_message = "Please enter your email address.", @placeholder = "Email" })
+                    @Html.EditorFor(m => m.Email, "Email", new { label = "Email", @class = "col-xs-12", @required_message = "Please enter a valid email address.", @placeholder = "john@rhul.ac.uk" })
                 </div>
             </div>
         </div>
-
+        <div class="form-group">
+            @Html.Partial("_Partials/CustomReCaptcha")
+        </div>
         <div class="form-group">
             <div class="row">
                 <div class="col-md-6">

@@ -10,6 +10,10 @@ using Microsoft.Owin.Security;
 using System.Threading.Tasks;
 using System.Net.Mail;
 using System.Net;
+using System.Web.Security;
+using System.Security.Cryptography;
+using System;
+using System.Text;
 
 namespace LETS.Controllers
 {
@@ -177,6 +181,55 @@ namespace LETS.Controllers
         }
 
         [AllowAnonymous]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ForgotUsername(ForgotUsernameViewModel forgotUsername)
+        {
+            ReCaptcha recaptcha = new ReCaptcha();
+            string responseFromServer = recaptcha.OnActionExecuting();
+            if (responseFromServer.StartsWith("true"))
+            {
+                if (forgotUsername != null && ModelState.IsValid)
+                {
+                    var userByEmail = await Context.RegisteredUsers.Find(new BsonDocument {
+                        { "Account.Email", forgotUsername.Email }
+                    }).ToListAsync();
+
+                    if (userByEmail.Count > 0)
+                    {
+                        using (MailMessage mail = new MailMessage())
+                        {
+                            mail.From = new MailAddress("rhulletsteam@gmail.com");
+                            mail.To.Add(forgotUsername.Email);
+                            mail.Subject = "Royal Holloway LETS Username Recovery";
+                            mail.Body = "<p>Hello " + userByEmail[0].About.FirstName + ",</p><h3>Forgotten your username?</h3><p>We got a request about your Royal Holloway LETS account's username.<br/>Please find your username highlighted in bold below.<br/></p><h2>" + userByEmail[0].Account.UserName + "</h2><p>All the best,<br/>Royal Holloway LETS</p>";
+                            mail.IsBodyHtml = true;
+
+                            using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
+                            {
+                                smtp.Credentials = new NetworkCredential("rhulletsteam@gmail.com", "zyvb492@rhul@egham");
+                                smtp.EnableSsl = true;
+                                smtp.Send(mail);
+                            }
+                            ModelState.AddModelError("Success", "Please check you email, We have sent you your username.");
+                            forgotUsername.Email = null;
+                        }
+                    } else
+                    {
+                        ModelState.AddModelError("Email", "Sorry, The Email you provided is not present in our system.");
+                        return View(forgotUsername);
+                    }
+                }
+            }
+            else
+            {
+                ModelState.AddModelError("ReCaptcha", "Incorrect CAPTCHA entered.");
+                return View(forgotUsername);
+            }
+            return View();
+        }
+
+        [AllowAnonymous]
         [HttpGet]
         public ActionResult ForgotPassword()
         {
@@ -193,27 +246,74 @@ namespace LETS.Controllers
         [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult ForgotPassword(ForgotPasswordViewModel forgotPassword)
+        public async Task<ActionResult> ForgotPassword(ForgotPasswordViewModel forgotPassword)
         {
-            if (forgotPassword != null && ModelState.IsValid)
+            ReCaptcha recaptcha = new ReCaptcha();
+            string responseFromServer = recaptcha.OnActionExecuting();
+            if (responseFromServer.StartsWith("true"))
             {
-                using (MailMessage mail = new MailMessage())
+                if (forgotPassword != null && ModelState.IsValid)
                 {
-                    mail.From = new MailAddress("rhulletsteam@gmail.com");
-                    mail.To.Add(forgotPassword.Email);
-                    mail.Subject = "Royal Holloway LETS Password Recovery";
-                    mail.Body = "<h1>Please enter the below text along with your username when loggin in</h1><br/><p><b>ABCDEFGH</b><p>";
-                    mail.IsBodyHtml = true;
+                    var userByUsername = await Context.RegisteredUsers.Find(new BsonDocument {
+                        { "Account.UserName", forgotPassword.UserName }
+                    }).ToListAsync();
 
-                    using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
+                    if (userByUsername.Count > 0)
                     {
-                        smtp.Credentials = new NetworkCredential("rhulletsteam@gmail.com", "zyvb492@rhul@egham");
-                        smtp.EnableSsl = true;
-                        smtp.Send(mail);
+                        if (userByUsername[0].Account.Email.Equals(forgotPassword.Email))
+                        {
+                            string password = CreatePassword();
+
+                            using (MailMessage mail = new MailMessage())
+                            {
+                                mail.From = new MailAddress("rhulletsteam@gmail.com");
+                                mail.To.Add(forgotPassword.Email);
+                                mail.Subject = "Royal Holloway LETS Password Recovery";
+                                mail.Body = "<p>Hello " + userByUsername[0].About.FirstName + ",</p><h3>Forgotten your password?</h3><p>We got a request to reset your Royal Holloway LETS account's password.<br/>You use the below code in bold to login to your account.<br/><b>Please change your password to something memorable when you have logged in.</b></p><h2>" + password + "</h2><p>All the best,<br/>Royal Holloway LETS</p>";
+                                mail.IsBodyHtml = true;
+
+                                using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
+                                {
+                                    smtp.Credentials = new NetworkCredential("rhulletsteam@gmail.com", "zyvb492@rhul@egham");
+                                    smtp.EnableSsl = true;
+                                    smtp.Send(mail);
+                                }
+                                ModelState.AddModelError("Success", "Please check you email, We have sent you your recovery password to your account.");
+                                forgotPassword.UserName = null;
+                                forgotPassword.Email = null;
+                            }
+                        }
+                        else
+                        {
+                            ModelState.AddModelError("Email", "Sorry, The Email you provided is not associated with the username you entered.");
+                            return View(forgotPassword);
+                        }
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("UserName", "Sorry, We didn't find any account associated with this username in our system.");
                     }
                 }
             }
+            else
+            {
+                ModelState.AddModelError("ReCaptcha", "Incorrect CAPTCHA entered.");
+                return View(forgotPassword);
+            }
             return View();
+        }
+        public string CreatePassword()
+        {
+            string randomPassword = getRandomCharacter();
+            return randomPassword.ToString();
+        }
+
+        private static Random random = new Random();
+
+        public string getRandomCharacter()
+        {
+            const string valid = "abcdFGHIJKLefghijklm678STUVW90nopqrstBCDEMNOuvwxyz12345APQRXYZ";
+            return new string(Enumerable.Repeat(valid, 16).Select(s => s[random.Next(s.Length)]).ToArray());
         }
 
         [HttpGet]
