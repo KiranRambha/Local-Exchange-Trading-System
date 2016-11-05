@@ -18,7 +18,7 @@
                 </div>
             </div>
         </div>
-
+        
         <div class="form-group">
             <div class="row">
                 <div class="col-md-6">
@@ -54,13 +54,19 @@
             </div>
         </div>
        
-        <div class="row">
-            <div class="col-md-6">
-                @Html.EditorFor(m => m.Account.Password, "Password", new { label = "Password", @class = "col-xs-12", @required_message = "Please enter your password.", @placeholder = "Password" })
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    @Html.EditorFor(m => m.Account.Password, "Password", new { label = "Password", @class = "col-xs-12", @required_message = "Please enter your password.", @placeholder = "Password" })
+                </div>
+                <div class="col-md-6">
+                    @Html.EditorFor(m => m.Account.ConfirmPassword, "Password", new { label = "Confirm Password", @class = "col-xs-12", @required_message = "Please confirm your selected password.", @placeholder = "Confirm Password" })
+                </div>
             </div>
-            <div class="col-md-6">
-                @Html.EditorFor(m => m.Account.ConfirmPassword, "Password", new { label = "Confirm Password", @class = "col-xs-12", @required_message = "Please confirm your selected password.", @placeholder = "Confirm Password" })
-            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Partial("_Partials/CustomReCaptcha")
         </div>
 
         <div class="form-group">

@@ -34,6 +34,11 @@ namespace LETS.Models
 
     public class ForgotPasswordViewModel
     {
+        [Required(ErrorMessage = "Please enter your username.")]
+        [RegularExpression(@"^\S*$", ErrorMessage = "Whitespaces are not allowed in usernames.")]
+        [Display(Name = "User Name")]
+        public string UserName { get; set; }
+
         [Required(ErrorMessage = "Please enter your email address.")]
         [Display(Name = "Email")]
         public string Email { get; set; }

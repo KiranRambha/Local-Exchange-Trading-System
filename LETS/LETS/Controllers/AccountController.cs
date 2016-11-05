@@ -8,6 +8,8 @@ using MongoDB.Bson;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using System.Threading.Tasks;
+using System.Net.Mail;
+using System.Net;
 
 namespace LETS.Controllers
 {
@@ -103,47 +105,59 @@ namespace LETS.Controllers
         [AllowAnonymous]
         public async Task<ActionResult> Register(RegisterUserViewModel registerUser)
         {
-            if (registerUser != null && ModelState.IsValid)
+            ReCaptcha recaptcha = new ReCaptcha();
+            string responseFromServer = recaptcha.OnActionExecuting();
+            if (responseFromServer.StartsWith("true"))
             {
-                var userByUsername = await Context.RegisteredUsers.Find(new BsonDocument {
+                if (registerUser != null && ModelState.IsValid)
+                {
+                    var userByUsername = await Context.RegisteredUsers.Find(new BsonDocument {
                     { "Account.UserName", registerUser.Account.UserName }
                 }).ToListAsync();
 
-                var userByEmail = await Context.RegisteredUsers.Find(new BsonDocument {
+                    var userByEmail = await Context.RegisteredUsers.Find(new BsonDocument {
                     { "Account.Email", registerUser.Account.Email }
                 }).ToListAsync();
 
-                if (userByUsername.Count == 0)
-                {
-                    if (userByEmail.Count == 0)
+                    if (userByUsername.Count == 0)
                     {
-                        PasswordHashAndSalt passowordEncription = new PasswordHashAndSalt();
-                        registerUser.Account.Password = passowordEncription.getHashedPassword(registerUser.Account.Password);
-                        registerUser.Account.ConfirmPassword = passowordEncription.getHashedPassword(registerUser.Account.ConfirmPassword);
-                        Context.RegisteredUsers.InsertOne(registerUser);
-                        return RedirectToAction("RegisteredUsers");
+                        if (userByEmail.Count == 0)
+                        {
+                            PasswordHashAndSalt passowordEncription = new PasswordHashAndSalt();
+                            registerUser.Account.Password = passowordEncription.getHashedPassword(registerUser.Account.Password);
+                            registerUser.Account.ConfirmPassword = passowordEncription.getHashedPassword(registerUser.Account.ConfirmPassword);
+                            Context.RegisteredUsers.InsertOne(registerUser);
+                            return RedirectToAction("RegisteredUsers");
+                        }
+                        else
+                        {
+                            registerUser.Account.Password = null;
+                            registerUser.Account.ConfirmPassword = null;
+                            ModelState.AddModelError("Account.Email", "Sorry, The following email already exists in our system.");
+                            return View(registerUser);
+                        }
                     }
                     else
                     {
                         registerUser.Account.Password = null;
                         registerUser.Account.ConfirmPassword = null;
-                        ModelState.AddModelError("Account.Email", "Sorry, The following email already exists in our system.");
+                        ModelState.AddModelError("Account.UserName", "Sorry, This username is not available.");
+
+                        if (userByEmail.Count > 0)
+                        {
+                            ModelState.AddModelError("Account.Email", "Sorry, The following email already exists in our system.");
+                        }
+
                         return View(registerUser);
                     }
                 }
-                else
-                {
-                    registerUser.Account.Password = null;
-                    registerUser.Account.ConfirmPassword = null;
-                    ModelState.AddModelError("Account.UserName", "Sorry, This username is not available.");
-
-                    if (userByEmail.Count > 0)
-                    {
-                        ModelState.AddModelError("Account.Email", "Sorry, The following email already exists in our system.");
-                    }
-
-                    return View(registerUser);
-                }
+            }
+            else
+            {
+                registerUser.Account.Password = null;
+                registerUser.Account.ConfirmPassword = null;
+                ModelState.AddModelError("ReCaptcha", "Incorrect CAPTCHA entered.");
+                return View(registerUser);
             }
             return View();
         }
@@ -174,6 +188,32 @@ namespace LETS.Controllers
             {
                 return View();
             }
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ForgotPassword(ForgotPasswordViewModel forgotPassword)
+        {
+            if (forgotPassword != null && ModelState.IsValid)
+            {
+                using (MailMessage mail = new MailMessage())
+                {
+                    mail.From = new MailAddress("rhulletsteam@gmail.com");
+                    mail.To.Add(forgotPassword.Email);
+                    mail.Subject = "Royal Holloway LETS Password Recovery";
+                    mail.Body = "<h1>Please enter the below text along with your username when loggin in</h1><br/><p><b>ABCDEFGH</b><p>";
+                    mail.IsBodyHtml = true;
+
+                    using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
+                    {
+                        smtp.Credentials = new NetworkCredential("rhulletsteam@gmail.com", "zyvb492@rhul@egham");
+                        smtp.EnableSsl = true;
+                        smtp.Send(mail);
+                    }
+                }
+            }
+            return View();
         }
 
         [HttpGet]

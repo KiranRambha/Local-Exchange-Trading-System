@@ -8,6 +8,16 @@
     @* Fall back CSS *@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <script type="text/javascript" src="http://www.google.com/recaptcha/api/js/recaptcha_ajax.js"></script>
+    <script type="text/javascript">
+        var RecaptchaOptions = {
+            theme : 'custom',
+            custom_theme_widget: 'recaptcha_widget'
+        };
+    </script>
+
     <title>@ViewBag.Title - Local Exchange Trading System</title>
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/customSharedCSS")

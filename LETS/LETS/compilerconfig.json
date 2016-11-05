@@ -50,5 +50,13 @@
   {
     "outputFile": "Content/lets/shared/SelectList.css",
     "inputFile": "Content/lets/shared/SelectList.less"
+  },
+  {
+    "outputFile": "Content/lets/shared/ReCaptcha.css",
+    "inputFile": "Content/lets/shared/ReCaptcha.less"
+  },
+  {
+    "outputFile": "Content/lets/shared/utilities.css",
+    "inputFile": "Content/lets/shared/utilities.less"
   }
 ]

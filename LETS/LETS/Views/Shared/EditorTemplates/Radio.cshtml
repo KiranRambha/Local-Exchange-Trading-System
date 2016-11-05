@@ -26,6 +26,22 @@
         radioItems.Add(new SelectListItem { Text = "Yes", Value = "true", Selected = true });
         radioItems.Add(new SelectListItem { Text = "No", Value = "false", Selected = false });
     }
+
+    String modelValue = string.Empty;
+    if (ViewData.ModelMetadata.AdditionalValues.ContainsKey("Category") && !ViewData.ModelMetadata.ModelType.Equals(typeof(bool?)))
+    {
+        if (Model != null)
+        {
+            modelValue = Html.NameForModel().ToString() + "=" + "'" + Model.ToString() + "'";
+        }
+    }
+    else
+    {
+        if (Model != null && (Model as bool?).HasValue)
+        {
+            modelValue = Html.NameForModel().ToString() + "=" + "'" + (Model as bool?).Value.ToString() + "'";
+        }
+    }
 }
 <div class="row">
     <div class="form-group col-xs-12 @(ViewData.ModelState != null && !ViewData.ModelState.IsValid && ViewData.ModelState[Html.NameForModel().ToString()] != null && ViewData.ModelState[Html.NameForModel().ToString()].Errors.Any() ? "has-error" : "")">
@@ -39,7 +55,7 @@
                     }
                 </div>
             </div>
-            <div class="row radio-group no-margin">
+            <div ng-init="@modelValue" class="row radio-group no-margin">
                 <fieldset>
                     @foreach (var item in radioItems)
                     {
