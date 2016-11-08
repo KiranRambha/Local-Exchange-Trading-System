@@ -99,5 +99,7 @@ namespace LETS.Models
         [DataType(DataType.Password)]
         [BsonIgnore]
         public string ConfirmPassword { get; set; }
+
+        public string TempPassword { get; set; }
     }
 }

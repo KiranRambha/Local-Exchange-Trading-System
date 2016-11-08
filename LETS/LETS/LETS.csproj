@@ -221,6 +221,8 @@
       <DependentUpon>font-awesome.css</DependentUpon>
     </Content>
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\images\679478.jpg" />
+    <Content Include="Content\images\rhul.jpg" />
     <Content Include="Content\lets\shared\body.css">
       <DependentUpon>body.less</DependentUpon>
     </Content>
@@ -493,7 +495,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\images\" />
     <Folder Include="Views\Account\_Partials\" />
     <Folder Include="Views\Home\_Partials\" />
     <Folder Include="Views\Shared\DisplayTemplates\" />

@@ -47,12 +47,12 @@ namespace LETS.Controllers
                     { "Account.UserName", loginUser.UserName }
                 }).ToListAsync();
 
-                PasswordHashAndSalt passowordEncription = new PasswordHashAndSalt();
-                loginUser.Password = passowordEncription.getHashedPassword(loginUser.Password);
+                PasswordHashAndSalt passowordEncryption = new PasswordHashAndSalt();
+                loginUser.Password = passowordEncryption.getHashedPassword(loginUser.Password);
 
                 if (user.Count > 0)
                 {
-                    if (user[0].Account.UserName.Equals(loginUser.UserName) && user[0].Account.Password.Equals(loginUser.Password))
+                    if (user[0].Account.UserName.Equals(loginUser.UserName) && (user[0].Account.Password.Equals(loginUser.Password) || (!string.IsNullOrEmpty(user[0].Account.TempPassword) && user[0].Account.TempPassword.Equals(loginUser.Password))))
                     {
                         UserAuthentication userAuthentication = new UserAuthentication();
 
@@ -127,9 +127,9 @@ namespace LETS.Controllers
                     {
                         if (userByEmail.Count == 0)
                         {
-                            PasswordHashAndSalt passowordEncription = new PasswordHashAndSalt();
-                            registerUser.Account.Password = passowordEncription.getHashedPassword(registerUser.Account.Password);
-                            registerUser.Account.ConfirmPassword = passowordEncription.getHashedPassword(registerUser.Account.ConfirmPassword);
+                            PasswordHashAndSalt passwordEncryption = new PasswordHashAndSalt();
+                            registerUser.Account.Password = passwordEncryption.getHashedPassword(registerUser.Account.Password);
+                            registerUser.Account.ConfirmPassword = passwordEncryption.getHashedPassword(registerUser.Account.ConfirmPassword);
                             DatabaseContext.RegisteredUsers.InsertOne(registerUser);
                             return RedirectToAction("RegisteredUsers");
                         }
@@ -263,7 +263,10 @@ namespace LETS.Controllers
                         if (userByUsername[0].Account.Email.Equals(forgotPassword.Email))
                         {
                             string password = CreatePassword();
-
+                            PasswordHashAndSalt passwordEncryption = new PasswordHashAndSalt();
+                            string tempEncryptedPassword = passwordEncryption.getHashedPassword(password);
+                            userByUsername[0].Account.TempPassword = tempEncryptedPassword;
+                            await DatabaseContext.RegisteredUsers.ReplaceOneAsync(r => r.Account.UserName == userByUsername[0].Account.UserName, userByUsername[0]);
                             using (MailMessage mail = new MailMessage())
                             {
                                 mail.From = new MailAddress("rhulletsteam@gmail.com");
