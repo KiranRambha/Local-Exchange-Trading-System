@@ -14,6 +14,7 @@ using System.Web.Security;
 using System.Security.Cryptography;
 using System;
 using System.Text;
+using System.Collections.Generic;
 
 namespace LETS.Controllers
 {
@@ -43,25 +44,22 @@ namespace LETS.Controllers
         {
             if (loginUser != null && ModelState.IsValid)
             {
-                var user = await DatabaseContext.RegisteredUsers.Find(new BsonDocument {
+                var userByUsername = await DatabaseContext.RegisteredUsers.Find(new BsonDocument {
                     { "Account.UserName", loginUser.UserName }
                 }).ToListAsync();
 
                 PasswordHashAndSalt passowordEncryption = new PasswordHashAndSalt();
                 loginUser.Password = passowordEncryption.getHashedPassword(loginUser.Password);
 
-                if (user.Count > 0)
+                if (userByUsername.Count > 0)
                 {
-                    if (user[0].Account.UserName.Equals(loginUser.UserName) && (user[0].Account.Password.Equals(loginUser.Password) || (!string.IsNullOrEmpty(user[0].Account.TempPassword) && user[0].Account.TempPassword.Equals(loginUser.Password))))
+                    if (userByUsername[0].Account.UserName.Equals(loginUser.UserName) && (userByUsername[0].Account.Password.Equals(loginUser.Password) || (!string.IsNullOrEmpty(userByUsername[0].Account.TempPassword) && userByUsername[0].Account.TempPassword.Equals(loginUser.Password))))
                     {
                         UserAuthentication userAuthentication = new UserAuthentication();
 
                         string role = "admin";
-
-                        var ident = userAuthentication.AuthenticateUser(loginUser.UserName, role);
-
-                        HttpContext.GetOwinContext().Authentication.SignIn(new AuthenticationProperties { IsPersistent = false }, ident);
-
+                        var identity = userAuthentication.AuthenticateUser(loginUser.UserName, role);
+                        HttpContext.GetOwinContext().Authentication.SignIn(new AuthenticationProperties { IsPersistent = false }, identity);
                         return RedirectToAction("ComponentsGuide", "Home");
                     }
                     else
@@ -214,7 +212,8 @@ namespace LETS.Controllers
                             ModelState.AddModelError("Success", "Please check you email, We have sent you your username.");
                             forgotUsername.Email = null;
                         }
-                    } else
+                    }
+                    else
                     {
                         ModelState.AddModelError("Email", "Sorry, The Email you provided is not present in our system.");
                         return View(forgotUsername);
@@ -325,6 +324,13 @@ namespace LETS.Controllers
         {
             var registeredUsers = DatabaseContext.RegisteredUsers.Find(new BsonDocument()).ToList();
             return View(registeredUsers);
+        }
+
+        public async Task<List<RegisterUserViewModel>> getUserByUsername(string userName)
+        {
+            return await DatabaseContext.RegisteredUsers.Find(new BsonDocument {
+                    { "Account.UserName", userName }
+                }).ToListAsync();
         }
     }
 }
