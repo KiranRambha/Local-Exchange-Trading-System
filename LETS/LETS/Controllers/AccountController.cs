@@ -20,7 +20,7 @@ namespace LETS.Controllers
     [Authorize]
     public class AccountController : Controller
     {
-        public readonly LETSContext Context = new LETSContext();
+        public readonly LETSContext DatabaseContext = new LETSContext();
 
         [AllowAnonymous]
         [HttpGet]
@@ -43,7 +43,7 @@ namespace LETS.Controllers
         {
             if (loginUser != null && ModelState.IsValid)
             {
-                var user = await Context.RegisteredUsers.Find(new BsonDocument {
+                var user = await DatabaseContext.RegisteredUsers.Find(new BsonDocument {
                     { "Account.UserName", loginUser.UserName }
                 }).ToListAsync();
 
@@ -115,11 +115,11 @@ namespace LETS.Controllers
             {
                 if (registerUser != null && ModelState.IsValid)
                 {
-                    var userByUsername = await Context.RegisteredUsers.Find(new BsonDocument {
+                    var userByUsername = await DatabaseContext.RegisteredUsers.Find(new BsonDocument {
                     { "Account.UserName", registerUser.Account.UserName }
                 }).ToListAsync();
 
-                    var userByEmail = await Context.RegisteredUsers.Find(new BsonDocument {
+                    var userByEmail = await DatabaseContext.RegisteredUsers.Find(new BsonDocument {
                     { "Account.Email", registerUser.Account.Email }
                 }).ToListAsync();
 
@@ -130,7 +130,7 @@ namespace LETS.Controllers
                             PasswordHashAndSalt passowordEncription = new PasswordHashAndSalt();
                             registerUser.Account.Password = passowordEncription.getHashedPassword(registerUser.Account.Password);
                             registerUser.Account.ConfirmPassword = passowordEncription.getHashedPassword(registerUser.Account.ConfirmPassword);
-                            Context.RegisteredUsers.InsertOne(registerUser);
+                            DatabaseContext.RegisteredUsers.InsertOne(registerUser);
                             return RedirectToAction("RegisteredUsers");
                         }
                         else
@@ -191,7 +191,7 @@ namespace LETS.Controllers
             {
                 if (forgotUsername != null && ModelState.IsValid)
                 {
-                    var userByEmail = await Context.RegisteredUsers.Find(new BsonDocument {
+                    var userByEmail = await DatabaseContext.RegisteredUsers.Find(new BsonDocument {
                         { "Account.Email", forgotUsername.Email }
                     }).ToListAsync();
 
@@ -254,7 +254,7 @@ namespace LETS.Controllers
             {
                 if (forgotPassword != null && ModelState.IsValid)
                 {
-                    var userByUsername = await Context.RegisteredUsers.Find(new BsonDocument {
+                    var userByUsername = await DatabaseContext.RegisteredUsers.Find(new BsonDocument {
                         { "Account.UserName", forgotPassword.UserName }
                     }).ToListAsync();
 
@@ -320,7 +320,7 @@ namespace LETS.Controllers
         [Authorize(Roles = "admin")]
         public ActionResult RegisteredUsers()
         {
-            var registeredUsers = Context.RegisteredUsers.Find(new BsonDocument()).ToList();
+            var registeredUsers = DatabaseContext.RegisteredUsers.Find(new BsonDocument()).ToList();
             return View(registeredUsers);
         }
     }

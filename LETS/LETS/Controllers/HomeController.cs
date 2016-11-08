@@ -11,7 +11,7 @@ namespace LETS.Controllers
     [Authorize]
     public class HomeController : Controller
     {
-        public LETSContext Context = new LETSContext();
+        public LETSContext DatabaseContext = new LETSContext();
 
         [AllowAnonymous]
         [HttpGet]

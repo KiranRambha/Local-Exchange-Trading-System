@@ -51,3 +51,12 @@
   color: #FF9100;
   background-color: #BDBDBD;
 }
+.recaptcha_branding {
+  position: absolute;
+  bottom: -3px;
+}
+@media (max-width: 480px) {
+  .recaptcha_branding {
+    position: relative;
+  }
+}
