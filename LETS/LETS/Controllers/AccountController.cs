@@ -55,7 +55,7 @@ namespace LETS.Controllers
                         var userAuthentication = new UserAuthentication();
 
                         var role = "admin";
-                        var identity = userAuthentication.AuthenticateUser(loginUser.UserName, role);
+                        var identity = userAuthentication.AuthenticateUser(userByUsername[0].About.FirstName, role);
                         HttpContext.GetOwinContext().Authentication.SignIn(new AuthenticationProperties { IsPersistent = false }, identity);
                         return RedirectToAction("ComponentsGuide", "Home");
                     }
@@ -285,7 +285,7 @@ namespace LETS.Controllers
             }
             return View();
         }
-
+        
         public string CreatePassword()
         {
             var randomPassword = RandomCharacter;
@@ -316,6 +316,7 @@ namespace LETS.Controllers
                 }).ToListAsync();
         }
 
+        [HttpGet]
         public ActionResult UserProfile()
         {
             return View();

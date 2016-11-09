@@ -1,0 +1,42 @@
+﻿.information-cols {
+  padding-bottom: 15px;
+}
+.information-cols .information-card {
+  padding: 10px;
+  border: 3px solid #BDBDBD;
+  border-radius: 5px;
+  background-color: #E0E0E0;
+}
+.information-cols .information-card .userprofile {
+  display: inline-block;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  display: table;
+  margin: 0 auto;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+@media (max-width: 768px) {
+  .information-cols .information-card .userprofile {
+    width: 200px;
+    height: 200px;
+  }
+}
+.information-cols .information-card .username {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 0px;
+}
+.information-cols .information-card .userrole {
+  text-align: center;
+  margin: 0px;
+  font-weight: bold;
+  color: #616161;
+}
+@media (min-width: 992px) {
+  .information-cols.col-md-8 {
+    padding-left: 0px;
+  }
+}

@@ -221,8 +221,15 @@
       <DependentUpon>font-awesome.css</DependentUpon>
     </Content>
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Content\images\679478.jpg" />
+    <Content Include="Content\images\DefaultProfile.jpg" />
+    <Content Include="Content\images\KiranRambha.jpg" />
     <Content Include="Content\images\rhul.jpg" />
+    <Content Include="Content\lets\pages\userProfile.css">
+      <DependentUpon>userProfile.less</DependentUpon>
+    </Content>
+    <Content Include="Content\lets\pages\userProfile.min.css">
+      <DependentUpon>userProfile.css</DependentUpon>
+    </Content>
     <Content Include="Content\lets\shared\body.css">
       <DependentUpon>body.less</DependentUpon>
     </Content>
@@ -356,6 +363,7 @@
     <Content Include="Content\lets\shared\SelectList.less" />
     <Content Include="Content\lets\shared\reCaptcha.less" />
     <Content Include="Content\lets\shared\utilities.less" />
+    <Content Include="Content\lets\pages\userProfile.less" />
     <None Include="Content\Site.less" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
