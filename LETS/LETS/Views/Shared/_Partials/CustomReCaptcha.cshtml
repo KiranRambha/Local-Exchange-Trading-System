@@ -25,7 +25,9 @@
                                 <label class="recaptcha_only_if_audio">Please type every number you hear *</label>
                             </div>
                             <div class="col-xs-12">
-                                <input class="form-control" type="text" placeholder="Enter Captcha Here" required id="recaptcha_response_field" name="recaptcha_response_field" data-val-required="Please enter the text displayed above." />
+                                <div class="textbox">
+                                    <input class="form-control" type="text" placeholder="Enter Captcha Here" required id="recaptcha_response_field" name="recaptcha_response_field" data-val-required="Please enter the text displayed above." />
+                                </div>
                                 <div class="error-block">
                                     <div class="error-message" role="alert">
                                         <label>Please respond to this recaptcha.</label>
@@ -37,10 +39,10 @@
                 </div>
                 <div class="row">
                     <div class="form-group col-sm-12 mg-bottom-0">
-                        <a class="btn btn-default mdl-button--raised mdl-js-ripple-effect recaptcha_custom_button pull-right no-pull-right-mobile mobile-mg-bottom-5" href="javascript:Recaptcha.showhelp()"><i class="fa fa-info" aria-hidden="true"></i></a>
-                        <a class="recaptcha_only_if_image btn btn-default mdl-button--raised mdl-js-ripple-effect recaptcha_custom_button pull-right mg-right-5 no-pull-right-mobile mobile-mg-bottom-5" href="javascript:Recaptcha.switch_type('audio')"><i class="fa fa-headphones" aria-hidden="true"></i></a>
-                        <a class="recaptcha_only_if_audio btn btn-default mdl-button--raised mdl-js-ripple-effect recaptcha_custom_button pull-right mg-right-5 no-pull-right-mobile mobile-mg-bottom-5" href="javascript:Recaptcha.switch_type('image')"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                        <a class="btn btn-default mdl-button--raised mdl-js-ripple-effect recaptcha_custom_button pull-right mg-right-5 no-pull-right-mobile mobile-mg-bottom-5" href="javascript:Recaptcha.reload()"><i class="fa fa-refresh" aria-hidden="true"></i></a>
+                        <a class="btn btn-default mdl-button--raised recaptcha_custom_button pull-right no-pull-right-mobile mobile-mg-bottom-5" href="javascript:Recaptcha.showhelp()"><i class="fa fa-info" aria-hidden="true"></i></a>
+                        <a class="recaptcha_only_if_image btn btn-default mdl-button--raised recaptcha_custom_button pull-right mg-right-5 no-pull-right-mobile mobile-mg-bottom-5" href="javascript:Recaptcha.switch_type('audio')"><i class="fa fa-headphones" aria-hidden="true"></i></a>
+                        <a class="recaptcha_only_if_audio btn btn-default mdl-button--raised recaptcha_custom_button pull-right mg-right-5 no-pull-right-mobile mobile-mg-bottom-5" href="javascript:Recaptcha.switch_type('image')"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                        <a class="btn btn-default mdl-button--raised recaptcha_custom_button pull-right mg-right-5 no-pull-right-mobile mobile-mg-bottom-5" href="javascript:Recaptcha.reload()"><i class="fa fa-refresh" aria-hidden="true"></i></a>
                         <label class="mg-bottom-0 pull-left recaptcha_branding">powered by reCAPTCHA</label>
                     </div>
                 </div>

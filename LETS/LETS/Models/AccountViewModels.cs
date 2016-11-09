@@ -17,7 +17,7 @@ namespace LETS.Models
         public string UserName { get; set; }
 
         [Required(ErrorMessage = "Please enter a password")]
-        [RegularExpression(@"^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$", ErrorMessage = "Please enter at least eight characters, including one letter, number and special character")]
+        //[RegularExpression(@"^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$", ErrorMessage = "Please enter at least eight characters, including one letter, number and special character")]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }

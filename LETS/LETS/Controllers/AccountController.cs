@@ -5,15 +5,11 @@ using LETS.Models;
 using MongoDB.Driver;
 using LETS.Helpers;
 using MongoDB.Bson;
-using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using System.Threading.Tasks;
 using System.Net.Mail;
 using System.Net;
-using System.Web.Security;
-using System.Security.Cryptography;
 using System;
-using System.Text;
 using System.Collections.Generic;
 
 namespace LETS.Controllers
@@ -22,6 +18,7 @@ namespace LETS.Controllers
     public class AccountController : Controller
     {
         public readonly LETSContext DatabaseContext = new LETSContext();
+        private static readonly Random Random = new Random();
 
         [AllowAnonymous]
         [HttpGet]
@@ -48,16 +45,16 @@ namespace LETS.Controllers
                     { "Account.UserName", loginUser.UserName }
                 }).ToListAsync();
 
-                PasswordHashAndSalt passowordEncryption = new PasswordHashAndSalt();
+                var passowordEncryption = new PasswordHashAndSalt();
                 loginUser.Password = passowordEncryption.getHashedPassword(loginUser.Password);
 
                 if (userByUsername.Count > 0)
                 {
                     if (userByUsername[0].Account.UserName.Equals(loginUser.UserName) && (userByUsername[0].Account.Password.Equals(loginUser.Password) || (!string.IsNullOrEmpty(userByUsername[0].Account.TempPassword) && userByUsername[0].Account.TempPassword.Equals(loginUser.Password))))
                     {
-                        UserAuthentication userAuthentication = new UserAuthentication();
+                        var userAuthentication = new UserAuthentication();
 
-                        string role = "admin";
+                        var role = "admin";
                         var identity = userAuthentication.AuthenticateUser(loginUser.UserName, role);
                         HttpContext.GetOwinContext().Authentication.SignIn(new AuthenticationProperties { IsPersistent = false }, identity);
                         return RedirectToAction("ComponentsGuide", "Home");
@@ -82,8 +79,8 @@ namespace LETS.Controllers
         [HttpGet]
         public ActionResult Logoff()
         {
-            var AutheticationManager = HttpContext.GetOwinContext().Authentication;
-            AutheticationManager.SignOut();
+            var autheticationManager = HttpContext.GetOwinContext().Authentication;
+            autheticationManager.SignOut();
 
             return RedirectToAction("Index", "Home");
         }
@@ -107,8 +104,8 @@ namespace LETS.Controllers
         [AllowAnonymous]
         public async Task<ActionResult> Register(RegisterUserViewModel registerUser)
         {
-            ReCaptcha recaptcha = new ReCaptcha();
-            string responseFromServer = recaptcha.OnActionExecuting();
+            var recaptcha = new ReCaptcha();
+            var responseFromServer = recaptcha.OnActionExecuting();
             if (responseFromServer.StartsWith("true"))
             {
                 if (registerUser != null && ModelState.IsValid)
@@ -125,7 +122,7 @@ namespace LETS.Controllers
                     {
                         if (userByEmail.Count == 0)
                         {
-                            PasswordHashAndSalt passwordEncryption = new PasswordHashAndSalt();
+                            var passwordEncryption = new PasswordHashAndSalt();
                             registerUser.Account.Password = passwordEncryption.getHashedPassword(registerUser.Account.Password);
                             registerUser.Account.ConfirmPassword = passwordEncryption.getHashedPassword(registerUser.Account.ConfirmPassword);
                             DatabaseContext.RegisteredUsers.InsertOne(registerUser);
@@ -183,8 +180,8 @@ namespace LETS.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ForgotUsername(ForgotUsernameViewModel forgotUsername)
         {
-            ReCaptcha recaptcha = new ReCaptcha();
-            string responseFromServer = recaptcha.OnActionExecuting();
+            var recaptcha = new ReCaptcha();
+            var responseFromServer = recaptcha.OnActionExecuting();
             if (responseFromServer.StartsWith("true"))
             {
                 if (forgotUsername != null && ModelState.IsValid)
@@ -195,20 +192,12 @@ namespace LETS.Controllers
 
                     if (userByEmail.Count > 0)
                     {
-                        using (MailMessage mail = new MailMessage())
+                        using (var mail = new MailMessage())
                         {
-                            mail.From = new MailAddress("rhulletsteam@gmail.com");
                             mail.To.Add(forgotUsername.Email);
                             mail.Subject = "Royal Holloway LETS Username Recovery";
                             mail.Body = "<p>Hello " + userByEmail[0].About.FirstName + ",</p><h3>Forgotten your username?</h3><p>We got a request about your Royal Holloway LETS account's username.<br/>Please find your username highlighted in bold below.<br/></p><h2>" + userByEmail[0].Account.UserName + "</h2><p>All the best,<br/>Royal Holloway LETS</p>";
-                            mail.IsBodyHtml = true;
-
-                            using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
-                            {
-                                smtp.Credentials = new NetworkCredential("rhulletsteam@gmail.com", "zyvb492@rhul@egham");
-                                smtp.EnableSsl = true;
-                                smtp.Send(mail);
-                            }
+                            SendEmail(mail);
                             ModelState.AddModelError("Success", "Please check you email, We have sent you your username.");
                             forgotUsername.Email = null;
                         }
@@ -247,8 +236,8 @@ namespace LETS.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ForgotPassword(ForgotPasswordViewModel forgotPassword)
         {
-            ReCaptcha recaptcha = new ReCaptcha();
-            string responseFromServer = recaptcha.OnActionExecuting();
+            var recaptcha = new ReCaptcha();
+            var responseFromServer = recaptcha.OnActionExecuting();
             if (responseFromServer.StartsWith("true"))
             {
                 if (forgotPassword != null && ModelState.IsValid)
@@ -261,25 +250,17 @@ namespace LETS.Controllers
                     {
                         if (userByUsername[0].Account.Email.Equals(forgotPassword.Email))
                         {
-                            string password = CreatePassword();
-                            PasswordHashAndSalt passwordEncryption = new PasswordHashAndSalt();
-                            string tempEncryptedPassword = passwordEncryption.getHashedPassword(password);
+                            var password = CreatePassword();
+                            var passwordEncryption = new PasswordHashAndSalt();
+                            var tempEncryptedPassword = passwordEncryption.getHashedPassword(password);
                             userByUsername[0].Account.TempPassword = tempEncryptedPassword;
                             await DatabaseContext.RegisteredUsers.ReplaceOneAsync(r => r.Account.UserName == userByUsername[0].Account.UserName, userByUsername[0]);
-                            using (MailMessage mail = new MailMessage())
+                            using (var mail = new MailMessage())
                             {
-                                mail.From = new MailAddress("rhulletsteam@gmail.com");
                                 mail.To.Add(forgotPassword.Email);
                                 mail.Subject = "Royal Holloway LETS Password Recovery";
                                 mail.Body = "<p>Hello " + userByUsername[0].About.FirstName + ",</p><h3>Forgotten your password?</h3><p>We got a request to reset your Royal Holloway LETS account's password.<br/>You use the below code in bold to login to your account.<br/><b>Please change your password to something memorable when you have logged in.</b></p><h2>" + password + "</h2><p>All the best,<br/>Royal Holloway LETS</p>";
-                                mail.IsBodyHtml = true;
-
-                                using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
-                                {
-                                    smtp.Credentials = new NetworkCredential("rhulletsteam@gmail.com", "zyvb492@rhul@egham");
-                                    smtp.EnableSsl = true;
-                                    smtp.Send(mail);
-                                }
+                                SendEmail(mail);
                                 ModelState.AddModelError("Success", "Please check you email, We have sent you your recovery password to your account.");
                                 forgotPassword.UserName = null;
                                 forgotPassword.Email = null;
@@ -304,18 +285,20 @@ namespace LETS.Controllers
             }
             return View();
         }
+
         public string CreatePassword()
         {
-            string randomPassword = getRandomCharacter();
-            return randomPassword.ToString();
+            var randomPassword = RandomCharacter;
+            return randomPassword;
         }
 
-        private static Random random = new Random();
-
-        public string getRandomCharacter()
+        public string RandomCharacter
         {
-            const string valid = "abcdFGHIJKLefghijklm678STUVW90nopqrstBCDEMNOuvwxyz12345APQRXYZ";
-            return new string(Enumerable.Repeat(valid, 16).Select(s => s[random.Next(s.Length)]).ToArray());
+            get
+            {
+                const string valid = "abcdFGHIJKLefghijklm678STUVW90nopqrstBCDEMNOuvwxyz12345APQRXYZ";
+                return new string(Enumerable.Repeat(valid, 16).Select(s => s[Random.Next(s.Length)]).ToArray());
+            }
         }
 
         [HttpGet]
@@ -326,11 +309,29 @@ namespace LETS.Controllers
             return View(registeredUsers);
         }
 
-        public async Task<List<RegisterUserViewModel>> getUserByUsername(string userName)
+        public async Task<List<RegisterUserViewModel>> GetUserByUsername(string userName)
         {
             return await DatabaseContext.RegisteredUsers.Find(new BsonDocument {
                     { "Account.UserName", userName }
                 }).ToListAsync();
+        }
+
+        public ActionResult UserProfile()
+        {
+            return View();
+        }
+
+        public void SendEmail(MailMessage mail)
+        {
+            mail.From = new MailAddress("rhulletsteam@gmail.com");
+            mail.IsBodyHtml = true;
+
+            using (var smtp = new SmtpClient("smtp.gmail.com", 587))
+            {
+                smtp.Credentials = new NetworkCredential("rhulletsteam@gmail.com", "zyvb492@rhul@egham");
+                smtp.EnableSsl = true;
+                smtp.Send(mail);
+            }
         }
     }
 }

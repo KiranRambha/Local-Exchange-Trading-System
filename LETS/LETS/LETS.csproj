@@ -492,6 +492,7 @@
     <Content Include="Views\Shared\EditorTemplates\Email.cshtml" />
     <Content Include="Views\Account\RegisteredUsers.cshtml" />
     <Content Include="Views\Shared\_Partials\CustomReCaptcha.cshtml" />
+    <Content Include="Views\Account\UserProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

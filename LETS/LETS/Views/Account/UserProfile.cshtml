@@ -1,0 +1,22 @@
+﻿@using LETS.Models
+@model ForgotPasswordViewModel
+@{
+    ViewBag.Title = "My Profile";
+}
+@using (Html.BeginForm("ForgotPassword", "Account", FormMethod.Post, new { id = "forgotPassword", name = "form", novalidate = "" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-body">
+        <h3 class="form-section">My Profile</h3>
+
+        <hr />
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-12">
+
+                </div>
+            </div>
+        </div>
+    </div>
+}
