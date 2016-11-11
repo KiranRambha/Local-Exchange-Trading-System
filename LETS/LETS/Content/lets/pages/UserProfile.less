@@ -8,36 +8,91 @@
         padding: 10px;
         border: 3px solid @brand-primary-400;
         border-radius: 5px;
-        background-color: @brand-primary-300;
+        background-color: @brand-primary-200;
 
-        .userprofile {
-            display: inline-block;
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            display: table;
-            margin: 0 auto;
-            background-repeat: no-repeat;
-            background-position: center center;
-            background-size: cover;
+        .userinfo {
+            margin-bottom: 30px;
 
-            @media (max-width: @screen-tablet) {
+            .userprofile {
+                display: inline-block;
                 width: 200px;
                 height: 200px;
+                border-radius: 50%;
+                display: table;
+                margin: 0 auto;
+                background-repeat: no-repeat;
+                background-position: center center;
+                background-size: cover;
+
+                @media (max-width: @screen-tablet) {
+                    width: 200px;
+                    height: 200px;
+                }
+            }
+
+            .username {
+                text-align: center;
+                font-weight: bold;
+                margin-bottom: 0px;
+            }
+
+            .userrole {
+                text-align: center;
+                margin: 0px;
+                font-weight: bold;
+                color: @brand-primary-700;
+            }
+
+            .useraccountbalance {
+                background-color: @brand-primary-900;
+                font-weight: bolder;
+                margin: 5px -12.5px 0px -12.5px;
+                padding: 20px;
+                text-align: center;
+                color: #F0AD4E;
             }
         }
 
-        .username {
-            text-align: center;
-            font-weight: bold;
-            margin-bottom: 0px;
-        }
+        .usermenu {
+            margin-left: -10px;
+            margin-right: -10px;
 
-        .userrole {
-            text-align: center;
-            margin: 0px;
-            font-weight: bold;
-            color: @brand-primary-700;
+            .nav {
+                li {
+                    font-size: 18px;
+
+                    a {
+                        font-weight: normal;
+                        color: @brand-primary-900;
+
+                        &:hover {
+                            background-color: @brand-primary-400;
+                        }
+                    }
+
+                    &.active {
+                        background-color: @brand-primary-50;
+                        border-left: 3px solid @brand-primary-a400;
+                        margin-left: -2.5px;
+
+                        a {
+                            color: @brand-primary-a400;
+
+                            &:focus {
+                                background-color: @brand-primary-50;
+                            }
+                        }
+
+                        @media (max-width: @screen-phone) {
+                            margin-left: -3px;
+                        }
+
+                        @media (min-width: @screen-tablet) {
+                            margin-left: -2.5px;
+                        }
+                    }
+                }
+            }
         }
     }
 

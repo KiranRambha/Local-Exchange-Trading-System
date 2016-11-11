@@ -1,6 +1,5 @@
-﻿@using System.Web.ModelBinding
-@using LETS.Models
-@model ForgotPasswordViewModel
+﻿@using LETS.Models
+@model RegisterUserViewModel
 @{
     ViewBag.Title = "My Profile";
     ViewBag.stylesheet = "userProfile.css";
@@ -17,12 +16,29 @@
             <div class="row">
                 <div class="col-md-4 information-cols">
                     <div class="information-card">
-                        <img class="userprofile" alt="User Profile" src="~/Content/images/KiranRambha.jpg"/>
-                        <h4 class="username">Kiran Rambha</h4>
-                        <h6 class="userrole">Developer</h6>
+                        <div class="userinfo">
+                            <div class="userprofile" style="background-image:url('/Content/images/DefaultProfile.jpg')"></div>
+                            <h4 class="username">@Model.About.FirstName @Model.About.LastName</h4>
+                            <h6 class="userrole">Developer</h6>
+                            <h5 class="useraccountbalance"><i class="fa fa-diamond fa-fw" aria-hidden="true"></i> @Model.Account.Credit</h5>
+                        </div>
+                        <div class="usermenu">
+                            <ul class="nav">
+                                <li class="account_overview_toggle active" onclick="return changeProfile(this);">
+                                    <a href="#">
+                                        <i class="fa fa-home fa-fw" aria-hidden="true"></i> Overview
+                                    </a>
+                                </li>
+                                <li class="account_settings_toggle" onclick="return changeProfile(this);">
+                                    <a href="#">
+                                        <i class="fa fa-cog fa-fw" aria-hidden="true"></i> Account Settings
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-8 information-cols">
+                <div id="account_overview_view" class="col-md-8 information-cols show">
                     <div class="information-card">
                         <p>Six started far placing saw respect females old. Civilly why how end viewing attempt related enquire visitor. Man particular insensible celebrated conviction stimulated principles day. Sure fail or in said west. Right my front it wound cause fully am sorry if. She jointure goodness interest debating did outweigh. Is time from them full my gone in went. Of no introduced am literature excellence mr stimulated contrasted increasing. Age sold some full like rich new. Amounted repeated as believed in confined juvenile.</p>
 
@@ -33,7 +49,68 @@
                         <p>Dependent certainty off discovery him his tolerably offending. Ham for attention remainder sometimes additions recommend fat our. Direction has strangers now believing. Respect enjoyed gay far exposed parlors towards. Enjoyment use tolerably dependent listening men. No peculiar in handsome together unlocked do by. Article concern joy anxious did picture sir her. Although desirous not recurred disposed off shy you numerous securing.</p>
                     </div>
                 </div>
+                <div id="account_settings_view" class="col-md-8 information-cols hide">
+                    <div class="information-card">
+                        <div class="form-body">
+                            <h4 class="form-section">Account Settings</h4>
+
+                            <hr />
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        @Html.DisplayNameFor(model => model.About.Title): @Html.DisplayFor(model => model.About.Title)
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        @Html.DisplayNameFor(model => model.About.FirstName): @Html.DisplayFor(model => model.About.FirstName)
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        @Html.DisplayNameFor(model => model.About.LastName): @Html.DisplayFor(model => model.About.LastName)
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        @Html.DisplayNameFor(model => model.About.Gender): @Html.DisplayFor(model => model.About.Gender)
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        @Html.DisplayNameFor(model => model.Account.UserName): @Html.DisplayFor(model => model.Account.UserName)
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        @Html.DisplayNameFor(model => model.Account.Email): @Html.DisplayFor(model => model.Account.Email)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+}
+
+@section scripts {
+    <script type="text/javascript" src="~/Scripts/lets/userProfile.js"></script>
 }

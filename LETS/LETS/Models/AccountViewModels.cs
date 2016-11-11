@@ -101,5 +101,7 @@ namespace LETS.Models
         public string ConfirmPassword { get; set; }
 
         public string TempPassword { get; set; }
+
+        public int Credit { get; set; }
     }
 }

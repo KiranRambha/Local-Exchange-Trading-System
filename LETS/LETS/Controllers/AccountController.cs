@@ -10,7 +10,6 @@ using System.Threading.Tasks;
 using System.Net.Mail;
 using System.Net;
 using System;
-using System.Collections.Generic;
 
 namespace LETS.Controllers
 {
@@ -53,10 +52,9 @@ namespace LETS.Controllers
                     if (userByUsername[0].Account.UserName.Equals(loginUser.UserName) && (userByUsername[0].Account.Password.Equals(loginUser.Password) || (!string.IsNullOrEmpty(userByUsername[0].Account.TempPassword) && userByUsername[0].Account.TempPassword.Equals(loginUser.Password))))
                     {
                         var userAuthentication = new UserAuthentication();
-
-                        var role = "admin";
-                        var identity = userAuthentication.AuthenticateUser(userByUsername[0].About.FirstName, role);
+                        var identity = userAuthentication.AuthenticateUser(userByUsername[0].About.FirstName);
                         HttpContext.GetOwinContext().Authentication.SignIn(new AuthenticationProperties { IsPersistent = false }, identity);
+                        Session["UserName"] = userByUsername[0].Account.UserName;
                         return RedirectToAction("ComponentsGuide", "Home");
                     }
                     else
@@ -81,7 +79,8 @@ namespace LETS.Controllers
         {
             var autheticationManager = HttpContext.GetOwinContext().Authentication;
             autheticationManager.SignOut();
-
+            Session.Clear();
+            Session.Abandon();
             return RedirectToAction("Index", "Home");
         }
 
@@ -125,6 +124,7 @@ namespace LETS.Controllers
                             var passwordEncryption = new PasswordHashAndSalt();
                             registerUser.Account.Password = passwordEncryption.getHashedPassword(registerUser.Account.Password);
                             registerUser.Account.ConfirmPassword = passwordEncryption.getHashedPassword(registerUser.Account.ConfirmPassword);
+                            registerUser.Account.Credit = 100;
                             DatabaseContext.RegisteredUsers.InsertOne(registerUser);
                             return RedirectToAction("RegisteredUsers");
                         }
@@ -309,17 +309,14 @@ namespace LETS.Controllers
             return View(registeredUsers);
         }
 
-        public async Task<List<RegisterUserViewModel>> GetUserByUsername(string userName)
-        {
-            return await DatabaseContext.RegisteredUsers.Find(new BsonDocument {
-                    { "Account.UserName", userName }
-                }).ToListAsync();
-        }
-
         [HttpGet]
-        public ActionResult UserProfile()
+        public async Task<ActionResult> UserProfile()
         {
-            return View();
+            var username = Session["UserName"].ToString();
+            var userByUsername = await DatabaseContext.RegisteredUsers.Find(new BsonDocument {
+                    { "Account.UserName", username }
+                }).ToListAsync();
+            return View(userByUsername[0]);
         }
 
         public void SendEmail(MailMessage mail)
