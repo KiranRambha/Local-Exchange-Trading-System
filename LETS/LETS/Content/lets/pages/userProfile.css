@@ -86,3 +86,16 @@
     padding-left: 0px;
   }
 }
+.information-cols .user_details_table table {
+  margin-bottom: 0px;
+}
+.information-cols .user_details_table table tr th p {
+  margin: 8px 0px;
+}
+.information-cols .user_details_table table tr td label {
+  margin: 8px 0px;
+}
+.information-cols .user_details_table table tr:first-child th,
+.information-cols .user_details_table table tr:first-child td {
+  border-top: none;
+}

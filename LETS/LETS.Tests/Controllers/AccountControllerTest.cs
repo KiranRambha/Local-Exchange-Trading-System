@@ -15,7 +15,7 @@ namespace LETS.Tests.Controllers
         public void ToDocument_UserWithAnId_IdRepresentedAsAnObjectId()
         {
             var user = new RegisterUserViewModel();
-            user.PersonId = ObjectId.GenerateNewId().ToString();
+            user.Id = ObjectId.GenerateNewId().ToString();
 
             var document = user.ToBsonDocument();
             Expect(document["_id"].BsonType, Is.EqualTo(BsonType.ObjectId));

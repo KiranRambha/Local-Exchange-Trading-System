@@ -1,5 +1,5 @@
 ﻿@using LETS.Models
-@model RegisterUserViewModel
+@model LetsUser
 @{
     ViewBag.Title = "My Profile";
     ViewBag.stylesheet = "userProfile.css";
@@ -18,9 +18,9 @@
                     <div class="information-card">
                         <div class="userinfo">
                             <div class="userprofile" style="background-image:url('/Content/images/DefaultProfile.jpg')"></div>
-                            <h4 class="username">@Model.About.FirstName @Model.About.LastName</h4>
+                            <h4 class="username">@Model.UserPersonalDetails.About.FirstName @Model.UserPersonalDetails.About.LastName</h4>
                             <h6 class="userrole">Developer</h6>
-                            <h5 class="useraccountbalance"><i class="fa fa-diamond fa-fw" aria-hidden="true"></i> @Model.Account.Credit</h5>
+                            <h5 class="useraccountbalance"><i class="fa fa-diamond fa-fw" aria-hidden="true"></i> @Model.UserTradingDetails.Credit</h5>
                         </div>
                         <div class="usermenu">
                             <ul class="nav">
@@ -56,50 +56,44 @@
 
                             <hr />
 
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        @Html.DisplayNameFor(model => model.About.Title): @Html.DisplayFor(model => model.About.Title)
-                                    </div>
-                                </div>
+                            <div class="user_details_table table-responsive">
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row"><p>@Html.DisplayNameFor(model => model.UserPersonalDetails.About.Title) :</p></th>
+                                            <td><label>@Html.DisplayFor(model => model.UserPersonalDetails.About.Title)</label></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row"><p>@Html.DisplayNameFor(model => model.UserPersonalDetails.About.FirstName) :</p></th>
+                                            <td><label>@Html.DisplayFor(model => model.UserPersonalDetails.About.FirstName)</label></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row"><p>@Html.DisplayNameFor(model => model.UserPersonalDetails.About.LastName) :</p></th>
+                                            <td><label>@Html.DisplayFor(model => model.UserPersonalDetails.About.LastName)</label></td>
+                                        </tr>
+
+                                        <tr>
+                                            <th scope="row"><p>@Html.DisplayNameFor(model => model.UserPersonalDetails.About.Gender) :</p></th>
+                                            <td><label>@Html.DisplayFor(model => model.UserPersonalDetails.About.Gender)</label></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row"><p>@Html.DisplayNameFor(model => model.UserPersonalDetails.Account.UserName) :</p></th>
+                                            <td><label>@Html.DisplayFor(model => model.UserPersonalDetails.Account.UserName)</label></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row"><p>@Html.DisplayNameFor(model => model.UserPersonalDetails.Account.Email) :</p></th>
+                                            <td><label>@Model.UserPersonalDetails.Account.Email</label></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
 
                             <div class="form-group">
                                 <div class="row">
-                                    <div class="col-md-12">
-                                        @Html.DisplayNameFor(model => model.About.FirstName): @Html.DisplayFor(model => model.About.FirstName)
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        @Html.DisplayNameFor(model => model.About.LastName): @Html.DisplayFor(model => model.About.LastName)
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        @Html.DisplayNameFor(model => model.About.Gender): @Html.DisplayFor(model => model.About.Gender)
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        @Html.DisplayNameFor(model => model.Account.UserName): @Html.DisplayFor(model => model.Account.UserName)
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        @Html.DisplayNameFor(model => model.Account.Email): @Html.DisplayFor(model => model.Account.Email)
+                                    <div class="col-md-6">
+                                        <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                                            <i class="fa fa-pencil fa-fw" aria-hidden="true"></i> Edit
+                                        </button>
                                     </div>
                                 </div>
                             </div>

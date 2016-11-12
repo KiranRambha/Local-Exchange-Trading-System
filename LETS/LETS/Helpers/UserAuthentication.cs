@@ -1,10 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
-using Microsoft.Owin.Security;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
-using System.Web;
 
 namespace LETS.Helpers
 {
@@ -18,7 +13,7 @@ namespace LETS.Helpers
                 new Claim("http://schemas.microsoft.com/accesscontrolservice/2010/07/claims/identityprovider", "ASP.NET Identity", "http://www.w3.org/2001/XMLSchema#string"),
 
                 new Claim(ClaimTypes.Name, username),
-                new Claim(ClaimTypes.Role, role),
+                new Claim(ClaimTypes.Role, role)
               },
               DefaultAuthenticationTypes.ApplicationCookie);
 

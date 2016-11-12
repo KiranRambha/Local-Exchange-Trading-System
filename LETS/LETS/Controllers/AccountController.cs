@@ -105,7 +105,7 @@ namespace LETS.Controllers
         {
             var recaptcha = new ReCaptcha();
             var responseFromServer = recaptcha.OnActionExecuting();
-            if (responseFromServer.StartsWith("true"))
+            if (responseFromServer.StartsWith("true", StringComparison.Ordinal))
             {
                 if (registerUser != null && ModelState.IsValid)
                 {
@@ -122,10 +122,12 @@ namespace LETS.Controllers
                         if (userByEmail.Count == 0)
                         {
                             var passwordEncryption = new PasswordHashAndSalt();
+                            registerUser.Id = Guid.NewGuid().ToString();
                             registerUser.Account.Password = passwordEncryption.getHashedPassword(registerUser.Account.Password);
                             registerUser.Account.ConfirmPassword = passwordEncryption.getHashedPassword(registerUser.Account.ConfirmPassword);
-                            registerUser.Account.Credit = 100;
+                            var tradingDetails = new LetsTradingDetails { Id = registerUser.Id, Credit = 100 };
                             DatabaseContext.RegisteredUsers.InsertOne(registerUser);
+                            DatabaseContext.LetsTradingDetails.InsertOne(tradingDetails);
                             return RedirectToAction("RegisteredUsers");
                         }
                         else
@@ -182,7 +184,7 @@ namespace LETS.Controllers
         {
             var recaptcha = new ReCaptcha();
             var responseFromServer = recaptcha.OnActionExecuting();
-            if (responseFromServer.StartsWith("true"))
+            if (responseFromServer.StartsWith("true", StringComparison.Ordinal))
             {
                 if (forgotUsername != null && ModelState.IsValid)
                 {
@@ -238,7 +240,7 @@ namespace LETS.Controllers
         {
             var recaptcha = new ReCaptcha();
             var responseFromServer = recaptcha.OnActionExecuting();
-            if (responseFromServer.StartsWith("true"))
+            if (responseFromServer.StartsWith("true", StringComparison.Ordinal))
             {
                 if (forgotPassword != null && ModelState.IsValid)
                 {
@@ -316,7 +318,18 @@ namespace LETS.Controllers
             var userByUsername = await DatabaseContext.RegisteredUsers.Find(new BsonDocument {
                     { "Account.UserName", username }
                 }).ToListAsync();
-            return View(userByUsername[0]);
+
+            var userTradingDetails = await DatabaseContext.LetsTradingDetails.Find(new BsonDocument {
+                    { "_id", userByUsername[0].Id }
+                }).ToListAsync();
+
+            var letsUser = new LetsUser
+            {
+                UserPersonalDetails = userByUsername[0],
+                UserTradingDetails = userTradingDetails[0]
+            };
+
+            return View(letsUser);
         }
 
         public void SendEmail(MailMessage mail)

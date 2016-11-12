@@ -1,11 +1,6 @@
 ﻿using LETS.Helpers;
-using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 
 namespace LETS.Models
 {
@@ -47,8 +42,7 @@ namespace LETS.Models
     public class RegisterUserViewModel
     {
         [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
-        public string PersonId { get; set; }
+        public string Id { get; set; }
 
         public About About { get; set; }
 
@@ -101,7 +95,19 @@ namespace LETS.Models
         public string ConfirmPassword { get; set; }
 
         public string TempPassword { get; set; }
+    }
+
+    public class LetsTradingDetails
+    {
+        [BsonId]
+        public string Id { get; set; }
 
         public int Credit { get; set; }
+    }
+
+    public class LetsUser
+    {
+        public RegisterUserViewModel UserPersonalDetails;
+        public LetsTradingDetails UserTradingDetails;
     }
 }

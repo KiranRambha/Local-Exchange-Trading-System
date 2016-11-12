@@ -10,11 +10,13 @@ namespace LETS.Helpers
 
         public LETSContext()
         {
-            string connectionString = string.Concat(Settings.Default.LETSConnectionString, "/", Settings.Default.LETSDatabaseName);
+            var connectionString = string.Concat(Settings.Default.LETSConnectionString, "/", Settings.Default.LETSDatabaseName);
             var client = new MongoClient(connectionString);
             Database = client.GetDatabase(Settings.Default.LETSDatabaseName);
         }
         
         public IMongoCollection<RegisterUserViewModel> RegisteredUsers => Database.GetCollection<RegisterUserViewModel>("registeredUsers");
+
+        public IMongoCollection<LetsTradingDetails> LetsTradingDetails => Database.GetCollection<LetsTradingDetails>("letsTradingDetails");
     }
 }
