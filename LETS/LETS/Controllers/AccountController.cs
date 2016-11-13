@@ -162,6 +162,16 @@ namespace LETS.Controllers
             }
             return View();
         }
+        
+        [AllowAnonymous]
+        public async Task<bool> CheckUserName(string userName)
+        {
+            var userByUsername = await DatabaseContext.RegisteredUsers.Find(new BsonDocument {
+                        { "Account.UserName", userName }
+                    }).ToListAsync();
+
+            return userByUsername.Count == 0;
+        }
 
         [AllowAnonymous]
         [HttpGet]
@@ -287,7 +297,7 @@ namespace LETS.Controllers
             }
             return View();
         }
-        
+
         public string CreatePassword()
         {
             var randomPassword = RandomCharacter;

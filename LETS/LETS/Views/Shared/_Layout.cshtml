@@ -17,7 +17,10 @@
             custom_theme_widget: 'recaptcha_widget'
         };
     </script>
-    <link rel="stylesheet" href="../../Content/lets/pages/@ViewBag.stylesheet"/>
+    @if (ViewBag.stylesheet != null && ViewBag.stylesheet.ToString() != "")
+    {
+        <link rel="stylesheet" href="../../Content/lets/pages/@ViewBag.stylesheet" />
+    }
     <title>@ViewBag.Title - Local Exchange Trading System</title>
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/customSharedCSS")

@@ -463,6 +463,13 @@
     <Content Include="Scripts\jQueryLib\jquery.validate.min.js" />
     <Content Include="Scripts\jQueryLib\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jQueryLib\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\lets\register.es5.js">
+      <DependentUpon>register.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\lets\register.es5.min.js">
+      <DependentUpon>register.es5.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\lets\register.js" />
     <Content Include="Scripts\lets\userProfile.js" />
     <Content Include="Scripts\mdl\material.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />

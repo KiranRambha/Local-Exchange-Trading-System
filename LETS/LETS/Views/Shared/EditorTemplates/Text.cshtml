@@ -24,6 +24,8 @@
     {
         modelValue = Html.NameForModel().ToString() + "=" + "'" + Model.ToString() + "'";
     }
+
+    var errorMessageId = string.Concat(Html.IdForModel().ToString(), "_Error_Block");
 }
 <div class="row">
     <div class="form-group @(ViewData["class"] != null ? ViewData["class"] : "col-xs-12") @(ViewData.ModelState != null && !ViewData.ModelState.IsValid && ViewData.ModelState[Html.NameForModel().ToString()] != null && ViewData.ModelState[Html.NameForModel().ToString()].Errors.Any() ? "has-error" : "")">
@@ -40,7 +42,7 @@
             </div>
         </div>
         <div class="error-block">
-            <div class="error-message" role="alert">
+            <div id="@errorMessageId" class="error-message" role="alert">
                 <label>@Html.ValidationMessageFor(model => model, String.Empty)</label>
             </div>
         </div>
