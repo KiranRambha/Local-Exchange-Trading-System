@@ -1,0 +1,71 @@
+﻿@using LETS.Models
+@model RegisterUserViewModel
+@{
+    ViewBag.Title = "Login";
+    Layout = "";
+}
+@using (Html.BeginForm("AccountSettingsEdit", "Account", FormMethod.Post, new { id = "account_settings", name = "form", novalidate = "" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-body">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-12">
+                    @Html.EditorFor(m => m.About.Title, "SelectList", new { label = "Title", @class = "col-xs-12", @required_message = "Please select your title." })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-12">
+                    @Html.EditorFor(m => m.About.FirstName, "Text", new { label = "First name", @class = "col-xs-12", @required_message = "Please enter your first name.", @placeholder = "First name" })
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-12">
+                    @Html.EditorFor(m => m.About.LastName, "Text", new { label = "Last name", @class = "col-xs-12", @required_message = "Please enter your last name.", @placeholder = "Last name" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-12">
+                    @Html.EditorFor(m => m.About.Gender, "Radio", new { label = "Gender", @class = "col-xs-12", @required_message = "Please select your gender." })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-12">
+                    @Html.EditorFor(m => m.Account.Email, "Email", new { label = "Email", @class = "col-xs-12", @required_message = "Please enter a valid email address.", @placeholder = "john@rhul.ac.uk" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-12">
+                    <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                        Save
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-12">
+                    <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" onclick="return CancelAccountSettingsEdit()">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+}

@@ -4,106 +4,31 @@
     ViewBag.Title = "My Profile";
     ViewBag.stylesheet = "userProfile.css";
 }
-@using (Html.BeginForm("ForgotPassword", "Account", FormMethod.Post, new { id = "forgotPassword", name = "form", novalidate = "" }))
-{
-    @Html.AntiForgeryToken()
-    <div class="form-body">
-        <h3 class="form-section">My Profile</h3>
+<div class="form-body">
+    <h3 class="form-section">My Profile</h3>
 
-        <hr />
+    <hr />
 
-        <div class="form-group">
-            <div class="row">
-                <div class="col-md-4 information-cols">
-                    <div class="information-card">
-                        <div class="userinfo">
-                            <div class="userprofile" style="background-image:url('/Content/images/DefaultProfile.jpg')"></div>
-                            <h4 class="username">@Model.UserPersonalDetails.About.FirstName @Model.UserPersonalDetails.About.LastName</h4>
-                            <h6 class="userrole">Developer</h6>
-                            <h5 class="useraccountbalance"><i class="fa fa-diamond fa-fw" aria-hidden="true"></i> @Model.UserTradingDetails.Credit</h5>
-                        </div>
-                        <div class="usermenu">
-                            <ul class="nav">
-                                <li class="account_overview_toggle active" onclick="return changeProfile(this);">
-                                    <a href="#">
-                                        <i class="fa fa-home fa-fw" aria-hidden="true"></i> Overview
-                                    </a>
-                                </li>
-                                <li class="account_settings_toggle" onclick="return changeProfile(this);">
-                                    <a href="#">
-                                        <i class="fa fa-cog fa-fw" aria-hidden="true"></i> Account Settings
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-4 information-cols">
+                <div class="information-card">
+                    @Html.Partial("_Partials/_UserProfileCard")
                 </div>
-                <div id="account_overview_view" class="col-md-8 information-cols show">
-                    <div class="information-card">
-                        <p>Six started far placing saw respect females old. Civilly why how end viewing attempt related enquire visitor. Man particular insensible celebrated conviction stimulated principles day. Sure fail or in said west. Right my front it wound cause fully am sorry if. She jointure goodness interest debating did outweigh. Is time from them full my gone in went. Of no introduced am literature excellence mr stimulated contrasted increasing. Age sold some full like rich new. Amounted repeated as believed in confined juvenile.</p>
-
-                        <p>It as announcing it me stimulated frequently continuing. Least their she you now above going stand forth. He pretty future afraid should genius spirit on. Set property addition building put likewise get. Of will at sell well at as. Too want but tall nay like old. Removing yourself be in answered he. Consider occasion get improved him she eat. Letter by lively oh denote an.</p>
-
-                        <p>Ye to misery wisdom plenty polite to as. Prepared interest proposal it he exercise. My wishing an in attempt ferrars. Visited eat you why service looking engaged. At place no walls hopes rooms fully in. Roof hope shy tore leaf joy paid boy. Noisier out brought entered detract because sitting sir. Fat put occasion rendered off humanity has.</p>
-
-                        <p>Dependent certainty off discovery him his tolerably offending. Ham for attention remainder sometimes additions recommend fat our. Direction has strangers now believing. Respect enjoyed gay far exposed parlors towards. Enjoyment use tolerably dependent listening men. No peculiar in handsome together unlocked do by. Article concern joy anxious did picture sir her. Although desirous not recurred disposed off shy you numerous securing.</p>
-                    </div>
+            </div>
+            <div id="account_overview_view" class="col-md-8 information-cols show">
+                <div class="information-card">
+                    @Html.Partial("_Partials/_Overview")
                 </div>
-                <div id="account_settings_view" class="col-md-8 information-cols hide">
-                    <div class="information-card">
-                        <div class="form-body">
-                            <h4 class="form-section">Account Settings</h4>
-
-                            <hr />
-
-                            <div class="user_details_table table-responsive">
-                                <table class="table">
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row"><p>@Html.DisplayNameFor(model => model.UserPersonalDetails.About.Title) :</p></th>
-                                            <td><label>@Html.DisplayFor(model => model.UserPersonalDetails.About.Title)</label></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row"><p>@Html.DisplayNameFor(model => model.UserPersonalDetails.About.FirstName) :</p></th>
-                                            <td><label>@Html.DisplayFor(model => model.UserPersonalDetails.About.FirstName)</label></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row"><p>@Html.DisplayNameFor(model => model.UserPersonalDetails.About.LastName) :</p></th>
-                                            <td><label>@Html.DisplayFor(model => model.UserPersonalDetails.About.LastName)</label></td>
-                                        </tr>
-
-                                        <tr>
-                                            <th scope="row"><p>@Html.DisplayNameFor(model => model.UserPersonalDetails.About.Gender) :</p></th>
-                                            <td><label>@Html.DisplayFor(model => model.UserPersonalDetails.About.Gender)</label></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row"><p>@Html.DisplayNameFor(model => model.UserPersonalDetails.Account.UserName) :</p></th>
-                                            <td><label>@Html.DisplayFor(model => model.UserPersonalDetails.Account.UserName)</label></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row"><p>@Html.DisplayNameFor(model => model.UserPersonalDetails.Account.Email) :</p></th>
-                                            <td><label>@Model.UserPersonalDetails.Account.Email</label></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-                                            <i class="fa fa-pencil fa-fw" aria-hidden="true"></i> Edit
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            </div>
+            <div id="account_settings_view" class="col-md-8 information-cols hide">
+                <div class="information-card">
+                    @Html.Partial("_Partials/_AccountSettings")
                 </div>
             </div>
         </div>
     </div>
-}
+</div>
 
 @section scripts {
     <script type="text/javascript" src="~/Scripts/lets/userProfile.js"></script>

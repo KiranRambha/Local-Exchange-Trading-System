@@ -128,6 +128,16 @@ namespace LETS.Controllers
                             var tradingDetails = new LetsTradingDetails { Id = registerUser.Id, Credit = 100 };
                             DatabaseContext.RegisteredUsers.InsertOne(registerUser);
                             DatabaseContext.LetsTradingDetails.InsertOne(tradingDetails);
+
+                            using (var mail = new MailMessage())
+                            {
+                                mail.To.Add(registerUser.Account.Email);
+                                mail.Subject = "Welcome to Royal Holloway LETS";
+                                mail.Body = "<p>Hello " + registerUser.About.FirstName + ",</p><h3>Thanks for joining Royal Holloway LETS</h3><p>Please find your account details below</p><p>Title : <b>" + registerUser.About.Title + "</b></p><p>First Name : <b>" + registerUser.About.FirstName + "</b></p><p>Last Name : <b>" + registerUser.About.LastName + "</b></p><p>Gender : <b>" + registerUser.About.Gender + "</b></p><p>User Name : <b>" + registerUser.Account.UserName + "</b></p><p>Kind Regards,<br/>Royal Holloway LETS</p>";
+                                SendEmail(mail);
+                                ModelState.AddModelError("Success", "You have successfully signed up for Royal Holloway LETS, We have also sent you can email with your account details for your future reference.");
+                            }
+
                             return RedirectToAction("RegisteredUsers");
                         }
                         else
@@ -353,6 +363,48 @@ namespace LETS.Controllers
                 smtp.EnableSsl = true;
                 smtp.Send(mail);
             }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> AccountSettingsEdit(RegisterUserViewModel registeredUser)
+        {
+            var userName = Session["UserName"].ToString();
+
+            var userByUsername = await DatabaseContext.RegisteredUsers.Find(new BsonDocument {
+                    { "Account.UserName", userName }
+                }).ToListAsync();
+
+            var userByEmail = await DatabaseContext.RegisteredUsers.Find(new BsonDocument {
+                    { "Account.Email", registeredUser.Account.Email }
+                }).ToListAsync();
+
+            registeredUser.Id = userByUsername[0].Id;
+            registeredUser.Account.UserName = userByUsername[0].Account.UserName;
+            registeredUser.Account.Password = userByUsername[0].Account.Password;
+            registeredUser.Account.ConfirmPassword = userByUsername[0].Account.Password;
+            ModelState.Clear();
+            TryValidateModel(registeredUser);
+
+            if (ModelState.IsValid)
+            {
+                if (userByEmail.Count <= 1)
+                {
+                    await DatabaseContext.RegisteredUsers.ReplaceOneAsync(r => r.Account.UserName == registeredUser.Account.UserName, registeredUser);
+                }
+            }
+            return RedirectToAction("UserProfile", "Account");
+        }
+
+        public async Task<ActionResult> GetAccountSettingsPartial()
+        {
+            var username = Session["UserName"].ToString();
+
+            var userByUsername = await DatabaseContext.RegisteredUsers.Find(new BsonDocument {
+                    { "Account.UserName", username }
+                }).ToListAsync();
+
+            return View("AccountSettingsEdit", userByUsername[0]);
         }
     }
 }

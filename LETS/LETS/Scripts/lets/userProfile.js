@@ -13,3 +13,24 @@
         $("#account_settings_view").addClass("show").removeClass("hide");
     }
 };
+
+function AccountSettings() {
+    $("#account_settings_edit_button").slideUp();
+    $(".user_details_table").slideUp();
+    $.ajax({
+        type: "POST",
+        url: "GetAccountSettingsPartial",
+        cache: false,
+        success: function (data) {
+            $("#user_panel").prepend(data);
+            $("#account_settings").valid();
+        }
+    });
+}
+
+function CancelAccountSettingsEdit() {
+    $("#account_settings").slideUp();
+    $("#account_settings_edit_button").slideDown();
+    $(".user_details_table").slideDown();
+    $("#account_settings").remove();
+}

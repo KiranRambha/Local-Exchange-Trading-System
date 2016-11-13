@@ -1,0 +1,50 @@
+﻿@using LETS.Models
+@model LetsUser
+<div class="form-body">
+    <h4 class="form-section">Account Settings</h4>
+
+    <hr />
+    <div id="user_panel">
+        <div class="user_details_table table-responsive">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th scope="row"><p>@Html.DisplayNameFor(model => model.UserPersonalDetails.About.Title) :</p></th>
+                        <td><label>@Html.DisplayFor(model => model.UserPersonalDetails.About.Title)</label></td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><p>@Html.DisplayNameFor(model => model.UserPersonalDetails.About.FirstName) :</p></th>
+                        <td><label>@Html.DisplayFor(model => model.UserPersonalDetails.About.FirstName)</label></td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><p>@Html.DisplayNameFor(model => model.UserPersonalDetails.About.LastName) :</p></th>
+                        <td><label>@Html.DisplayFor(model => model.UserPersonalDetails.About.LastName)</label></td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row"><p>@Html.DisplayNameFor(model => model.UserPersonalDetails.About.Gender) :</p></th>
+                        <td><label>@Html.DisplayFor(model => model.UserPersonalDetails.About.Gender)</label></td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><p>@Html.DisplayNameFor(model => model.UserPersonalDetails.Account.UserName) :</p></th>
+                        <td><label>@Html.DisplayFor(model => model.UserPersonalDetails.Account.UserName)</label></td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><p>@Html.DisplayNameFor(model => model.UserPersonalDetails.Account.Email) :</p></th>
+                        <td><label>@Model.UserPersonalDetails.Account.Email</label></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="account_settings_edit_button" class="form-group">
+        <div class="row">
+            <div class="col-md-6">
+                <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" onclick="return AccountSettings();">
+                    <i class="fa fa-pencil fa-fw" aria-hidden="true"></i> Edit
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

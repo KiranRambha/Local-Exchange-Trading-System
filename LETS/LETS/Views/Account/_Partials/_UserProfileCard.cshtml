@@ -1,0 +1,22 @@
+﻿@using LETS.Models
+@model LetsUser
+<div class="userinfo">
+    <div class="userprofile" style="background-image:url('/Content/images/DefaultProfile.jpg')"></div>
+    <h4 class="username">@Model.UserPersonalDetails.About.FirstName @Model.UserPersonalDetails.About.LastName</h4>
+    <h6 class="userrole">Developer</h6>
+    <h5 class="useraccountbalance"><i class="fa fa-diamond fa-fw" aria-hidden="true"></i> @Model.UserTradingDetails.Credit</h5>
+</div>
+<div class="usermenu">
+    <ul class="nav">
+        <li class="account_overview_toggle active" onclick="return changeProfile(this);">
+            <a href="#">
+                <i class="fa fa-home fa-fw" aria-hidden="true"></i> Overview
+            </a>
+        </li>
+        <li class="account_settings_toggle" onclick="return changeProfile(this);">
+            <a href="#">
+                <i class="fa fa-cog fa-fw" aria-hidden="true"></i> Account Settings
+            </a>
+        </li>
+    </ul>
+</div>
