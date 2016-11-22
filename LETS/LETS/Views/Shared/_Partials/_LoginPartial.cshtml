@@ -7,7 +7,7 @@
 
         <ul class="nav navbar-nav navbar-right authenticated">
             <li class="@(ViewBag.Title == "My Profile" ? "active" : "")">
-                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "UserProfile", "Account", routeValues: null, htmlAttributes: new { title = "Manage" })
+                @Html.ActionLink(User.Identity.GetUserName(), "UserProfile", "Account", routeValues: null, htmlAttributes: new { title = "Manage" })
             </li>
             <li>@Html.ActionLink("Log off", "Logoff", new { controller = "Account" }, new { @class = "mdl-js-button mdl-js-ripple-effect" })</li>
         </ul>

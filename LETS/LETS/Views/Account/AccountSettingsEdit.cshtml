@@ -1,7 +1,6 @@
 ﻿@using LETS.Models
 @model RegisterUserViewModel
 @{
-    ViewBag.Title = "Login";
     Layout = "";
 }
 @using (Html.BeginForm("AccountSettingsEdit", "Account", FormMethod.Post, new { id = "account_settings", name = "form", novalidate = "" }))
@@ -23,7 +22,6 @@
                 </div>
             </div>
         </div>
-        
         <div class="form-group">
             <div class="row">
                 <div class="col-md-12">
@@ -57,7 +55,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="form-group">
             <div class="row">
                 <div class="col-md-12">

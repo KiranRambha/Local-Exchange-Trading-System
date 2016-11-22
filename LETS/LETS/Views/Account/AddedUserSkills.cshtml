@@ -1,0 +1,26 @@
+﻿@using LETS.Models
+@model LetsTradingDetails
+@{
+    Layout = "";
+}
+<div id="skill_list" class="user_skills_list">
+    @if (Model.Skills != null && Model.Skills.Count > 0)
+    {
+        foreach (var skill in Model.Skills)
+        {
+            if (!string.IsNullOrEmpty(skill))
+            {
+                <div class="user_skill alert alert-info" role="alert">
+                    <button type="button" value="@skill" class="close" data-dismiss="alert" aria-label="Close" onclick="return removeSkill(this);"><span aria-hidden="true">&times;</span></button>
+                    <strong>@skill</strong>
+                </div>
+            }
+        }
+    }
+    else
+    {
+        <div class="no_user_skills alert alert-warning" role="alert">
+            <strong>You haven't added any skills to your profile.</strong>
+        </div>
+    }
+</div>

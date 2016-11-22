@@ -66,5 +66,9 @@
   {
     "outputFile": "Scripts/lets/register.es5.js",
     "inputFile": "Scripts/lets/register.js"
+  },
+  {
+    "outputFile": "Content/lets/shared/typeAhead.css",
+    "inputFile": "Content/lets/shared/typeAhead.less"
   }
 ]

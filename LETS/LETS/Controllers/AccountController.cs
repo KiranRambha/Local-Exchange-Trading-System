@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 using System.Net.Mail;
 using System.Net;
 using System;
+using System.Collections.Generic;
+using Microsoft.AspNet.Identity;
+using static System.Configuration.ConfigurationManager;
 
 namespace LETS.Controllers
 {
@@ -52,9 +55,8 @@ namespace LETS.Controllers
                     if (userByUsername[0].Account.UserName.Equals(loginUser.UserName) && (userByUsername[0].Account.Password.Equals(loginUser.Password) || (!string.IsNullOrEmpty(userByUsername[0].Account.TempPassword) && userByUsername[0].Account.TempPassword.Equals(loginUser.Password))))
                     {
                         var userAuthentication = new UserAuthentication();
-                        var identity = userAuthentication.AuthenticateUser(userByUsername[0].About.FirstName);
+                        var identity = userAuthentication.AuthenticateUser(userByUsername[0].Account.UserName);
                         HttpContext.GetOwinContext().Authentication.SignIn(new AuthenticationProperties { IsPersistent = false }, identity);
-                        Session["UserName"] = userByUsername[0].Account.UserName;
                         return RedirectToAction("ComponentsGuide", "Home");
                     }
                     else
@@ -172,7 +174,7 @@ namespace LETS.Controllers
             }
             return View();
         }
-        
+
         [AllowAnonymous]
         public async Task<bool> CheckUserName(string userName)
         {
@@ -334,7 +336,7 @@ namespace LETS.Controllers
         [HttpGet]
         public async Task<ActionResult> UserProfile()
         {
-            var username = Session["UserName"].ToString();
+            var username = User.Identity.GetUserName();
             var userByUsername = await DatabaseContext.RegisteredUsers.Find(new BsonDocument {
                     { "Account.UserName", username }
                 }).ToListAsync();
@@ -359,7 +361,9 @@ namespace LETS.Controllers
 
             using (var smtp = new SmtpClient("smtp.gmail.com", 587))
             {
-                smtp.Credentials = new NetworkCredential("rhulletsteam@gmail.com", "zyvb492@rhul@egham");
+                var email = AppSettings.GetValues("RHLETS.Email").FirstOrDefault();
+                var password = AppSettings.GetValues("RHLETS.Password").FirstOrDefault();
+                smtp.Credentials = new NetworkCredential(email, password);
                 smtp.EnableSsl = true;
                 smtp.Send(mail);
             }
@@ -369,7 +373,7 @@ namespace LETS.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> AccountSettingsEdit(RegisterUserViewModel registeredUser)
         {
-            var userName = Session["UserName"].ToString();
+            var userName = User.Identity.GetUserName();
 
             var userByUsername = await DatabaseContext.RegisteredUsers.Find(new BsonDocument {
                     { "Account.UserName", userName }
@@ -398,13 +402,78 @@ namespace LETS.Controllers
 
         public async Task<ActionResult> GetAccountSettingsPartial()
         {
-            var username = Session["UserName"].ToString();
+            var username = User.Identity.GetUserName();
 
             var userByUsername = await DatabaseContext.RegisteredUsers.Find(new BsonDocument {
                     { "Account.UserName", username }
                 }).ToListAsync();
 
             return View("AccountSettingsEdit", userByUsername[0]);
+        }
+
+        public async Task<ActionResult> GetAddSkillsPartial()
+        {
+            var username = User.Identity.GetUserName();
+
+            var userByUsername = await DatabaseContext.RegisteredUsers.Find(new BsonDocument {
+                    { "Account.UserName", username }
+                }).ToListAsync();
+
+            var userTradingDetails = await DatabaseContext.LetsTradingDetails.Find(new BsonDocument {
+                    { "_id", userByUsername[0].Id }
+                }).ToListAsync();
+
+            return View("AddSkills", userTradingDetails[0]);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> SkillsSettingsEdit(LetsTradingDetails letsTradingDetails)
+        {
+            await AddSkill(letsTradingDetails.Skill);
+            return RedirectToAction("UserProfile", "Account");
+        }
+
+        public async Task<ActionResult> AddSkill(string skill)
+        {
+            var username = User.Identity.GetUserName();
+
+            var userByUsername = await DatabaseContext.RegisteredUsers.Find(new BsonDocument {
+                    { "Account.UserName", username }
+                }).ToListAsync();
+
+            var userTradingDetails = await DatabaseContext.LetsTradingDetails.Find(new BsonDocument {
+                    { "_id", userByUsername[0].Id }
+                }).ToListAsync();
+
+            if (userTradingDetails[0].Skills == null)
+            {
+                userTradingDetails[0].Skills = new List<string>();
+            }
+
+            if (!string.IsNullOrEmpty(skill) && !userTradingDetails[0].Skills.Contains(skill))
+            {
+                userTradingDetails[0].Skills.Add(skill);
+                await DatabaseContext.LetsTradingDetails.ReplaceOneAsync(r => r.Id == userTradingDetails[0].Id, userTradingDetails[0]);
+            }
+            return View("AddedUserSkills", userTradingDetails[0]);
+        }
+
+        public async Task<ActionResult> RemoveSkill(string skill)
+        {
+            var username = User.Identity.GetUserName();
+
+            var userByUsername = await DatabaseContext.RegisteredUsers.Find(new BsonDocument {
+                    { "Account.UserName", username }
+                }).ToListAsync();
+
+            var userTradingDetails = await DatabaseContext.LetsTradingDetails.Find(new BsonDocument {
+                    { "_id", userByUsername[0].Id }
+                }).ToListAsync();
+
+            userTradingDetails[0].Skills.Remove(skill);
+            await DatabaseContext.LetsTradingDetails.ReplaceOneAsync(r => r.Id == userTradingDetails[0].Id, userTradingDetails[0]);
+            return null;
         }
     }
 }

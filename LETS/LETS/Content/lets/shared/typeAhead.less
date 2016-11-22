@@ -1,0 +1,26 @@
+﻿@import "../../theme/variables.less";
+@import "../../theme/colors.less";
+
+.twitter-typeahead {
+    display: initial !important;
+
+    .tt-menu {
+        //display: block !important;
+        font-size: 22px;
+        position: inherit !important;
+        padding: 10px 0px;
+        margin-top: 5px;
+        background-color: @brand-primary-50;
+        border-radius: 5px;
+
+        .tt-suggestion {
+            padding: 5px 10px;
+
+            &:hover {
+                background-color: @brand-primary-900;
+                color: @brand-primary-50;
+                cursor: pointer;
+            }
+        }
+    }
+}

@@ -10,6 +10,15 @@
         border-radius: 5px;
         background-color: @brand-primary-200;
 
+        h4 {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .tab-pane {
+            margin-top: 20px;
+        }
+
         .userinfo {
             margin-bottom: 30px;
 
@@ -94,6 +103,30 @@
                 }
             }
         }
+
+        ul.nav.nav-tabs.nav-justified {
+            li {
+                a {
+                    border-radius: 0px;
+                    background-color: transparent;
+                    border: none;
+                    padding-top: 11.7px;
+                    padding-bottom: 11.7px;
+                }
+
+                border-bottom: 1px solid @brand-primary-500;
+
+                &.active {
+                    border-bottom: 3.5px solid @brand-primary-a400;
+
+                    a {
+                        color: @brand-primary-a400;
+                        padding-top: 10px;
+                        padding-bottom: 10px;
+                    }
+                }
+            }
+        }
     }
 
     @media (min-width: @screen-desktop) {
@@ -105,12 +138,14 @@
     .user_details_table {
         table {
             margin-bottom: 0px;
+
             tr {
                 th {
                     p {
                         margin: 8px 0px;
                     }
                 }
+
                 td {
                     label {
                         margin: 8px 0px;
@@ -122,6 +157,36 @@
                         border-top: none;
                     }
                 }
+            }
+        }
+    }
+
+    .add_skill {
+        margin: 22px 0px;
+
+        button {
+            padding: 0px 10px;
+        }
+    }
+
+    .user_skills_list {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        .no_user_skills {
+            width: 100%;
+        }
+
+        .user_skill {
+            margin-right: 10px;
+
+            button {
+                margin-left: 10px;
+            }
+
+            @media (max-width: @screen-phone) {
+                width: 100%;
             }
         }
     }

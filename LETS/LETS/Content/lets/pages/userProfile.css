@@ -7,6 +7,13 @@
   border-radius: 5px;
   background-color: #EEEEEE;
 }
+.information-cols .information-card h4 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.information-cols .information-card .tab-pane {
+  margin-top: 20px;
+}
 .information-cols .information-card .userinfo {
   margin-bottom: 30px;
 }
@@ -81,6 +88,24 @@
     margin-left: -2.5px;
   }
 }
+.information-cols .information-card ul.nav.nav-tabs.nav-justified li {
+  border-bottom: 1px solid #9E9E9E;
+}
+.information-cols .information-card ul.nav.nav-tabs.nav-justified li a {
+  border-radius: 0px;
+  background-color: transparent;
+  border: none;
+  padding-top: 11.7px;
+  padding-bottom: 11.7px;
+}
+.information-cols .information-card ul.nav.nav-tabs.nav-justified li.active {
+  border-bottom: 3.5px solid #FF9100;
+}
+.information-cols .information-card ul.nav.nav-tabs.nav-justified li.active a {
+  color: #FF9100;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
 @media (min-width: 992px) {
   .information-cols.col-md-8 {
     padding-left: 0px;
@@ -98,4 +123,29 @@
 .information-cols .user_details_table table tr:first-child th,
 .information-cols .user_details_table table tr:first-child td {
   border-top: none;
+}
+.information-cols .add_skill {
+  margin: 22px 0px;
+}
+.information-cols .add_skill button {
+  padding: 0px 10px;
+}
+.information-cols .user_skills_list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.information-cols .user_skills_list .no_user_skills {
+  width: 100%;
+}
+.information-cols .user_skills_list .user_skill {
+  margin-right: 10px;
+}
+.information-cols .user_skills_list .user_skill button {
+  margin-left: 10px;
+}
+@media (max-width: 480px) {
+  .information-cols .user_skills_list .user_skill {
+    width: 100%;
+  }
 }

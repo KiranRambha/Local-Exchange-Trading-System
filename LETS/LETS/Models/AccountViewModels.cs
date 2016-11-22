@@ -1,4 +1,5 @@
-﻿using LETS.Helpers;
+﻿using System.Collections.Generic;
+using LETS.Helpers;
 using MongoDB.Bson.Serialization.Attributes;
 using System.ComponentModel.DataAnnotations;
 
@@ -103,6 +104,12 @@ namespace LETS.Models
         public string Id { get; set; }
 
         public int Credit { get; set; }
+
+        [BsonIgnore]
+        [Required(ErrorMessage = "Please enter a skill.")]
+        public string Skill { get; set; }
+
+        public List<string> Skills { get; set; }
     }
 
     public class LetsUser
