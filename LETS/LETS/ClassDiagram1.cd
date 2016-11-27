@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="LETS.BundleConfig">
-    <Position X="2.75" Y="6.75" Width="1.5" />
+    <Position X="10" Y="7" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
       <FileName>App_Start\BundleConfig.cs</FileName>
@@ -22,7 +22,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="LETS.MvcApplication">
-    <Position X="4.75" Y="5.5" Width="2" />
+    <Position X="5.5" Y="5.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAABAAAAIAAAAAAAAAAA=</HashCode>
       <FileName>Global.asax.cs</FileName>
@@ -45,12 +45,12 @@
   <Class Name="LETS.Helpers.LETSContext">
     <Position X="10" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAEAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAEAAAAAAEAAAAAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Helpers\LETSContext.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LETS.Helpers.MetadataProvider">
-    <Position X="8" Y="8" Width="2.5" />
+    <Position X="8" Y="8.5" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Helpers\MetadataProvider.cs</FileName>
@@ -101,15 +101,15 @@
   <Class Name="LETS.Controllers.AccountController">
     <Position X="2.75" Y="2" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>BAAAAAABAAAAAAAIAAAAAAQAIAEBAACAAAQQAAAAAAA=</HashCode>
-      <FileName>Helpers\Controllers\AccountController.cs</FileName>
+      <HashCode>hAAAAIABAAAEgAACEAAAAAQAIgWBBACAAAAQAAAIAAA=</HashCode>
+      <FileName>Controllers\AccountController.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LETS.Controllers.HomeController">
     <Position X="9.75" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAgAAAAAEAAAAAAAA=</HashCode>
-      <FileName>Helpers\Controllers\HomeController.cs</FileName>
+      <FileName>Controllers\HomeController.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LETS.Models.LoginViewModel">
@@ -136,7 +136,7 @@
   <Class Name="LETS.Models.RegisterUserViewModel">
     <Position X="5.5" Y="0.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAEEAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <HashCode>AAACAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
       <FileName>Models\AccountViewModels.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -148,9 +148,9 @@
     </TypeIdentifier>
   </Class>
   <Class Name="LETS.Models.Account">
-    <Position X="7.75" Y="2.25" Width="1.5" />
+    <Position X="7.75" Y="2" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAACAQAAAAAAIAA=</HashCode>
+      <HashCode>AAAAAAAAACAAAAAAAFAAAAAAAEAAAAQCAQAAAAAAIAA=</HashCode>
       <FileName>Models\AccountViewModels.cs</FileName>
     </TypeIdentifier>
   </Class>

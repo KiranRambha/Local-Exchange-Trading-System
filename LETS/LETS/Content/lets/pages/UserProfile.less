@@ -112,18 +112,28 @@
                     border: none;
                     padding-top: 11.7px;
                     padding-bottom: 11.7px;
+                    color: @brand-primary-700;
+                    font-weight: bold;
+
+                    &:hover {
+                        color: @brand-primary-a200;
+                        border-bottom: 4px solid @brand-primary-a200;
+                    }
+
+                    @media (max-width: @screen-phone) {
+                        margin-bottom: 0px;
+                    }
                 }
 
                 border-bottom: 1px solid @brand-primary-500;
 
                 &.active {
-                    border-bottom: 3.5px solid @brand-primary-a400;
-
                     a {
                         color: @brand-primary-a400;
-                        padding-top: 10px;
-                        padding-bottom: 10px;
+                        border-bottom: 4px solid @brand-primary-a400;
                     }
+
+                    border-bottom: 1px solid @brand-primary-a400;
                 }
             }
         }

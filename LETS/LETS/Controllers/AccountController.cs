@@ -39,13 +39,13 @@ namespace LETS.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AllowAnonymous]
-        public async Task<ActionResult> Login(LoginViewModel loginUser)
+        public ActionResult Login(LoginViewModel loginUser)
         {
             if (loginUser != null && ModelState.IsValid)
             {
-                var userByUsername = await DatabaseContext.RegisteredUsers.Find(new BsonDocument {
+                var userByUsername = DatabaseContext.RegisteredUsers.Find(new BsonDocument {
                     { "Account.UserName", loginUser.UserName }
-                }).ToListAsync();
+                }).ToList();
 
                 var passowordEncryption = new PasswordHashAndSalt();
                 loginUser.Password = passowordEncryption.getHashedPassword(loginUser.Password);
@@ -103,7 +103,7 @@ namespace LETS.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AllowAnonymous]
-        public async Task<ActionResult> Register(RegisterUserViewModel registerUser)
+        public  ActionResult Register(RegisterUserViewModel registerUser)
         {
             var recaptcha = new ReCaptcha();
             var responseFromServer = recaptcha.OnActionExecuting();
@@ -111,13 +111,13 @@ namespace LETS.Controllers
             {
                 if (registerUser != null && ModelState.IsValid)
                 {
-                    var userByUsername = await DatabaseContext.RegisteredUsers.Find(new BsonDocument {
+                    var userByUsername = DatabaseContext.RegisteredUsers.Find(new BsonDocument {
                     { "Account.UserName", registerUser.Account.UserName }
-                }).ToListAsync();
+                }).ToList();
 
-                    var userByEmail = await DatabaseContext.RegisteredUsers.Find(new BsonDocument {
+                    var userByEmail = DatabaseContext.RegisteredUsers.Find(new BsonDocument {
                     { "Account.Email", registerUser.Account.Email }
-                }).ToListAsync();
+                }).ToList();
 
                     if (userByUsername.Count == 0)
                     {
@@ -176,11 +176,11 @@ namespace LETS.Controllers
         }
 
         [AllowAnonymous]
-        public async Task<bool> CheckUserName(string userName)
+        public  bool CheckUserName(string userName)
         {
-            var userByUsername = await DatabaseContext.RegisteredUsers.Find(new BsonDocument {
+            var userByUsername = DatabaseContext.RegisteredUsers.Find(new BsonDocument {
                         { "Account.UserName", userName }
-                    }).ToListAsync();
+                    }).ToList();
 
             return userByUsername.Count == 0;
         }
@@ -474,6 +474,32 @@ namespace LETS.Controllers
             userTradingDetails[0].Skills.Remove(skill);
             await DatabaseContext.LetsTradingDetails.ReplaceOneAsync(r => r.Id == userTradingDetails[0].Id, userTradingDetails[0]);
             return null;
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ChangePassword(RegisterUserViewModel registeredUser)
+        {
+            var username = User.Identity.GetUserName();
+            var userByUsername = await DatabaseContext.RegisteredUsers.Find(new BsonDocument {
+                    { "Account.UserName", username }
+                }).ToListAsync();
+            var passwordEncryption = new PasswordHashAndSalt();
+            var oldPassword = passwordEncryption.getHashedPassword(registeredUser.Account.OldPassword);
+            var newPassword = passwordEncryption.getHashedPassword(registeredUser.Account.NewPassword);
+            var confirmNewPassword = passwordEncryption.getHashedPassword(registeredUser.Account.ConfirmNewPassword);
+
+            if (userByUsername != null && userByUsername.Count > 0 && newPassword.Equals(confirmNewPassword))
+            {
+                if (userByUsername[0].Account.Password.Equals(oldPassword) ||
+                    (!string.IsNullOrEmpty(userByUsername[0].Account.TempPassword) && userByUsername[0].Account.TempPassword.Equals(oldPassword)))
+                {
+                    userByUsername[0].Account.Password = newPassword;
+                    await DatabaseContext.RegisteredUsers.ReplaceOneAsync(r => r.Account.UserName == userByUsername[0].Account.UserName, userByUsername[0]);
+                    TempData.Add("PasswordChanged", "Your Password was changed successfully.");
+                }
+            }
+            return RedirectToAction("UserProfile", "Account");
         }
     }
 }

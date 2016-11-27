@@ -3,11 +3,17 @@
 @{
     ViewBag.Title = "My Profile";
     ViewBag.stylesheet = "userProfile.css";
+    var message = TempData["PasswordChanged"]?.ToString() ?? "";
 }
 <div class="form-body">
     <h3 class="form-section">My Profile</h3>
 
     <hr />
+
+    <div class="alert alert-success @(string.IsNullOrEmpty(message) ? "hide" : "")">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>@message</strong>
+    </div>
 
     <div class="form-group">
         <div class="row">

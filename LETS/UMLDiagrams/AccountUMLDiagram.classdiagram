@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="a704c399-6187-4500-a557-ec9e868e8ba3" name="AccountUMLDiagram" linkedPackageId="9b93a5a3-9037-4d83-81f3-ab4195e92981" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+  <packagedElements>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="83711255-b801-41f2-863a-e7fd8c9967c5" name="AccountController" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="f6856282-4249-490d-9717-dbcb2d14acef" />
+        <ownedAttributesInternal>
+          <property Id="60f85783-8a3b-4bd3-ac0e-c3f401fdbd63" name="DatabaseContext" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="290c0e1b-2d15-4719-a146-2092e9a5ec79" />
+          </property>
+          <property Id="56568e7e-43f8-4a92-9154-7e9d14b80557" name="Random" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="fa087c13-22c1-44f8-9b20-f2410ee51c17" />
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation Id="1e599b60-b574-4f78-a5e0-cbee16ca62af" name="AccountSettingsEdit" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="aa23a78b-8dc2-4691-a0ac-e9a9e294bc2b" />
+          </operation>
+          <operation Id="ebb7da97-8594-4a25-a034-466438615e22" name="AddSkill" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="188adc7d-8d60-4cc0-8f95-3a6071d86ea2" />
+          </operation>
+          <operation Id="d26c49ed-a8b8-400e-922b-d77e844b5657" name="ChangePassword" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="175c120e-f67b-41f5-90ca-4880fe99b65a" />
+          </operation>
+          <operation Id="ad3bb4a8-7314-474f-9be7-04b2c6b460c2" name="CheckUserName" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="176b8630-9968-4be3-b9a3-22b45adb9bf0" />
+          </operation>
+          <operation Id="e4bcc443-284e-47f6-bd6e-f4e482781371" name="CreatePassword" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="7e900f0f-7f0e-4c7c-aed5-337d9e7c236b" />
+          </operation>
+          <operation Id="178ed5d9-9c34-4fce-b951-e64667bac127" name="ForgotPassword" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="a877b104-1d8a-4cd0-9a67-fb9d6881304a" />
+          </operation>
+          <operation Id="b19815fb-621c-449f-88b1-81859def5bcc" name="ForgotUsername" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="03f8f8f6-95d5-4cb0-9f90-c9edc53d3193" />
+          </operation>
+          <operation Id="da662dad-35c3-4c49-b212-943a835e775a" name="GetAccountSettingsPartial" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="fefe73c7-4862-4032-8c23-14d13a55c70a" />
+          </operation>
+          <operation Id="12383581-dae6-4199-816c-e88c83041edf" name="GetAddSkillsPartial" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="f04b8a93-ea51-40ca-9a07-1bd9cff0f197" />
+          </operation>
+          <operation Id="df68a2b7-7bbd-495e-a262-60179aba3a12" name="Login" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="500f96e9-a857-40d5-9cff-ced09748f798" />
+          </operation>
+          <operation Id="05937fbd-ebad-42d7-a9c4-52ab25b6ca26" name="Logoff" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="4e517fed-ee57-4d81-8e15-993fd6e37bc1" />
+          </operation>
+          <operation Id="fe466570-e03b-4d5b-a35f-678053dda059" name="Register" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="200a1a25-333a-4411-96a6-2fc153ce0100" />
+          </operation>
+          <operation Id="0c6c6eb0-7452-4008-b71f-1cbea72e6d48" name="RegisteredUsers" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="653c3f93-9c0e-432a-80c3-db331ba751f7" />
+          </operation>
+          <operation Id="cfb73e77-6356-484d-b5f3-e909fae6271c" name="RemoveSkill" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="25184514-efb1-483b-853a-b33c5e64a237" />
+          </operation>
+          <operation Id="6598db6a-e454-4cdc-bacb-51a493ae7315" name="SendEmail" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="7741690c-9f3d-4f40-b461-bbf9e7b202f7" />
+          </operation>
+          <operation Id="bd80910b-7e06-47e8-81c9-258a4cfdf77d" name="SkillsSettingsEdit" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="114dd272-2583-48e2-a538-a13e3252afdd" />
+          </operation>
+          <operation Id="d20b68f3-70ad-4098-bf13-f5c08da913a7" name="UserProfile" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="588938f0-3232-4d6f-be52-5f2d4225a55d" />
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+  </packagedElements>
+  <package Id="9b93a5a3-9037-4d83-81f3-ab4195e92981" name="UMLDiagrams">
+    <elementDefinition Id="da80e04c-0bd3-4d52-a5e2-9cd100f5a5e2" />
+    <profileInstances>
+      <packageHasProfileInstances Id="62e6034f-b93c-4cba-8f61-e297c7123522">
+        <profileInstance Id="01215502-17f2-4191-8f93-9ad8790c22c3" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="6ff71168-4769-4dcf-975d-a806c026eefa">
+        <profileInstance Id="c4480a7f-4633-4d24-b2e3-2f8cd380abf1" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+    </profileInstances>
+  </package>
+</logicalClassDesignerModel>

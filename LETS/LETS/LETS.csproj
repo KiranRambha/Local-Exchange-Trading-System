@@ -324,6 +324,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="ClassDiagram1.cd" />
+    <Content Include="ClassDiagram2.cd" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
@@ -527,6 +528,7 @@
     <Content Include="Views\Shared\EditorTemplates\TypeAhead.cshtml" />
     <Content Include="Views\Account\AddSkills.cshtml" />
     <Content Include="Views\Account\AddedUserSkills.cshtml" />
+    <Content Include="Views\Account\ChangePassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
