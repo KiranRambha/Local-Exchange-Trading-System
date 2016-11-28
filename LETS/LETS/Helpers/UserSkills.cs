@@ -8,7 +8,7 @@ namespace LETS.Helpers
 {
     public class UserSkills
     {
-        public string[] getUserSkills()
+        public string[] GetUserSkills()
         {
             var skills = new List<string>();
             using (var skillDataFile = new StreamReader(AppDomain.CurrentDomain.BaseDirectory + "\\Helpers\\SkillsList.txt"))

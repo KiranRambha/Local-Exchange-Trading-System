@@ -98,17 +98,14 @@ namespace LETS.Models
 
         public string TempPassword { get; set; }
 
-        [Required(ErrorMessage = "Please enter your old password")]
         [DataType(DataType.Password)]
         [BsonIgnore]
         public string OldPassword { get; set; }
-
-        [Required(ErrorMessage = "Please enter your new password")]
+        
         [RegularExpression(@"^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$", ErrorMessage = "Please enter at least eight characters, including upper, lower letters and numbers.")]
         [DataType(DataType.Password)]
         public string NewPassword { get; set; }
-
-        [Required(ErrorMessage = "Please confirm your new password.")]
+        
         [Compare("NewPassword", ErrorMessage = "Please ensure that the password here matches the password that you provided above.")]
         [RegularExpression(@"^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$", ErrorMessage = "Please enter at least eight characters, including one letter, number and special character.")]
         [DataType(DataType.Password)]
