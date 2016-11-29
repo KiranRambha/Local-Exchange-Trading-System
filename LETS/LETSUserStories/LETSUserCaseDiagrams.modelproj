@@ -5,10 +5,10 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{9a243d03-c0e2-4924-9e9c-297a3b968c93}</ProjectGuid>
+    <ProjectGuid>{00485efc-c1ad-49c4-ab4d-0a1fc0c47702}</ProjectGuid>
     <ArchitectureToolsVersion>2.0.0.0</ArchitectureToolsVersion>
-    <Name>UMLDiagrams</Name>
-    <RootNamespace>UMLDiagrams</RootNamespace>
+    <Name>LETSUserCaseDiagrams</Name>
+    <RootNamespace>LETSUserStories</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <OutputPath>bin\Debug\</OutputPath>
@@ -23,17 +23,14 @@
   <Import Project="$(VSToolsPath)\ArchitectureTools\Microsoft.VisualStudio.TeamArchitect.ModelingProject.targets" Condition="'$(VSToolsPath)' != ''" />
   <ItemGroup>
     <Folder Include="ModelDefinition\" />
-    <Content Include="AccountUMLDiagram.classdiagram">
+    <Content Include="AccountManagement.usecasediagram">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="AccountUMLDiagram.classdiagram.layout">
+    <Content Include="AccountManagement.usecasediagram.layout">
       <SubType>Content</SubType>
-      <DependentUpon>AccountUMLDiagram.classdiagram</DependentUpon>
+      <DependentUpon>AccountManagement.usecasediagram</DependentUpon>
     </Content>
-    <Content Include="ModelDefinition\Package_1008.uml">
-      <SubType>Content</SubType>
-    </Content>
-    <Content Include="ModelDefinition\UMLDiagrams.uml">
+    <Content Include="ModelDefinition\LETSUserStories.uml">
       <SubType>Content</SubType>
     </Content>
   </ItemGroup>

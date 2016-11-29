@@ -25,6 +25,84 @@
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
+        <suppliersInternal>
+          <dependency
+            Id="ab7e3a75-96eb-4bdc-80c8-0e84d2792946">
+            <classMoniker
+              Id="0ff4c60e-d3af-46aa-a850-74ac20d52d17"
+              LastKnownName="ForgotPasswordViewModel"
+              LastKnownLocation="UMLDiagrams.uml" />
+          </dependency>
+          <dependency
+            Id="729dd207-a32e-42b8-8b83-f8c6239655d7">
+            <classMoniker
+              Id="3df52363-747e-47ee-9678-ad4ffecc4589"
+              LastKnownName="ForgotUsernameViewModel"
+              LastKnownLocation="UMLDiagrams.uml" />
+          </dependency>
+          <dependency
+            Id="5f4031c2-d4e7-4eea-99e0-293323ee62bb">
+            <classMoniker
+              Id="8a1e720d-2ef3-43e0-90df-58db6c0bbd11"
+              LastKnownName="LoginViewModel"
+              LastKnownLocation="UMLDiagrams.uml" />
+          </dependency>
+          <dependency
+            Id="792760c0-af9b-4919-a6a4-3d339c286eda">
+            <classMoniker
+              Id="7d686dd7-1375-42c3-ac38-1cb25e4a9159"
+              LastKnownName="LetsUser"
+              LastKnownLocation="UMLDiagrams.uml" />
+          </dependency>
+          <dependency
+            Id="3333a84c-5abf-42b2-a932-ea58ae8f4b9a">
+            <classMoniker
+              Id="707668a1-619c-4620-a793-bacc7faccea4"
+              LastKnownName="ReCaptcha"
+              LastKnownLocation="UMLDiagrams.uml" />
+          </dependency>
+        </suppliersInternal>
+        <targetEnds>
+          <association
+            Id="753a5bab-b452-4ede-843e-7858e425c358"
+            isDerived="false"
+            sourceEndRoleName="AccountController"
+            targetEndRoleName="&lt;&lt;View&gt;&gt;"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="5dfd8d6e-f4d9-4caa-84f7-0ccafdf1f0fe"
+              LastKnownName="&lt;&lt;View&gt;&gt;"
+              LastKnownLocation="UMLDiagrams.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="034087ea-26ca-4e44-b016-4114cb99e692"
+                  name="AccountController"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="e105b775-4b88-48dc-8dbe-caa4a7b147fd"
+                  name="&lt;&lt;View&gt;&gt;"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
         <ownedAttributesInternal>
           <property
             Id="290c0e1b-2d15-4719-a146-2092e9a5ec79"
@@ -97,7 +175,17 @@
             isStatic="false"
             isAbstract="false"
             concurrency="Sequential"
-            isQuery="false" />
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="610d2414-d8c4-44ea-9f3a-6562c27fb182"
+                  name="+ 1 overload"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
           <operation
             Id="03f8f8f6-95d5-4cb0-9f90-c9edc53d3193"
             name="ForgotUsername"
@@ -105,7 +193,17 @@
             isStatic="false"
             isAbstract="false"
             concurrency="Sequential"
-            isQuery="false" />
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="85cb565e-af39-40bf-b11c-8c882dbf8194"
+                  name="+ 1 overload"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
           <operation
             Id="fefe73c7-4862-4032-8c23-14d13a55c70a"
             name="GetAccountSettingsPartial"
@@ -129,7 +227,17 @@
             isStatic="false"
             isAbstract="false"
             concurrency="Sequential"
-            isQuery="false" />
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="36e6e9cf-f90c-42fb-9481-1a89adc06efd"
+                  name="+ 1 overload"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
           <operation
             Id="4e517fed-ee57-4d81-8e15-993fd6e37bc1"
             name="Logoff"
@@ -145,7 +253,17 @@
             isStatic="false"
             isAbstract="false"
             concurrency="Sequential"
-            isQuery="false" />
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="cf6497cb-1ff4-45c7-99f6-1ba3558d1f71"
+                  name="+ 1 overload"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
           <operation
             Id="653c3f93-9c0e-432a-80c3-db331ba751f7"
             name="RegisteredUsers"
@@ -181,6 +299,788 @@
           <operation
             Id="588938f0-3232-4d6f-be52-5f2d4225a55d"
             name="UserProfile"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="ad94f3f4-4ca0-4013-82d9-aa2cdae5eff2"
+        name="Account"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <property
+            Id="02e8c8c2-3531-408c-8cc9-76032ced69dc"
+            name="ConfirmNewPassword"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+          <property
+            Id="2e05f9df-2b27-46db-bdba-4c50f10a3639"
+            name="NewPassword"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+          <property
+            Id="9fb15c88-e280-496a-a184-bc9aaad53a8c"
+            name="TempPassword"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+          <property
+            Id="03bfa32a-49b5-401f-9f3c-eab41d636a99"
+            name="OldPassword"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+          <property
+            Id="492dcd5b-b01c-4132-905d-1489e2cf4dd9"
+            name="Password"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+          <property
+            Id="146faa9e-07da-4574-abab-9e49fdcbad50"
+            name="ConfirmPassword"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+          <property
+            Id="207d8c1d-363f-4f8e-9157-84974b4580c3"
+            name="UserName"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+          <property
+            Id="30456f12-32a2-4705-b8c5-43013cf91355"
+            name="Email"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+        </ownedAttributesInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="e6b506ed-11c0-47c9-8c3a-da74afa3182c"
+        name="About"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <property
+            Id="7f3fb9f6-74ac-4e8f-b925-0417ce9f78f8"
+            name="FirstName"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+          <property
+            Id="260596fa-5ea2-407e-80ec-33dac76e92c5"
+            name="LastName"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+          <property
+            Id="cbbef7d8-bb2d-4485-8e93-e6a93cbf22b2"
+            name="Gender"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+          <property
+            Id="51a5bbde-110a-4cf3-a5cb-9549457c4b2e"
+            name="Title"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+        </ownedAttributesInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="b006a249-910e-446e-ab44-52690e0ad763"
+        name="RegisterUserViewModel"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <targetEnds>
+          <association
+            Id="7a813a0d-377e-4910-b039-c527d49caf1d"
+            isDerived="false"
+            sourceEndRoleName="RegisterUserViewModel"
+            targetEndRoleName="About"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="e6b506ed-11c0-47c9-8c3a-da74afa3182c"
+              LastKnownName="About"
+              LastKnownLocation="UMLDiagrams.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="ba8182fd-2d37-4715-bf8e-e0b160d21dff"
+                  name="RegisterUserViewModel"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="Composite"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="7fda6e27-d23a-4cac-818a-8a41c280c1be"
+                  name="About"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="true" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="b9e08e84-ff9c-43fd-8fb6-0a180faceb47"
+            isDerived="false"
+            sourceEndRoleName="RegisterUserViewModel"
+            targetEndRoleName="Account"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="ad94f3f4-4ca0-4013-82d9-aa2cdae5eff2"
+              LastKnownName="Account"
+              LastKnownLocation="UMLDiagrams.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="2da15af3-3eb6-437a-9ba5-e83890279fbb"
+                  name="RegisterUserViewModel"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="Composite"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="198152f6-438e-4023-a877-81a8d7021e4d"
+                  name="Account"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="true" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+        <ownedAttributesInternal>
+          <property
+            Id="150a9187-a2f9-49b2-873a-87bb253ffe94"
+            name="About"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+          <property
+            Id="fec4ff35-3a4f-4415-8b14-bbada3c8132c"
+            name="Account"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+          <property
+            Id="eea69c1c-278f-46cb-9b74-bc58d091de5e"
+            name="Id"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+        </ownedAttributesInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="8a1e720d-2ef3-43e0-90df-58db6c0bbd11"
+        name="LoginViewModel"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <property
+            Id="a2180925-8906-437f-a55b-6fa7725ce06a"
+            name="UserName"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+          <property
+            Id="5178847c-6eae-4b81-9ede-1f27f79e3699"
+            name="Password"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+          <property
+            Id="c9073849-fee1-4bf8-891d-a62407cf8ef0"
+            name="RememberMe"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+        </ownedAttributesInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="3df52363-747e-47ee-9678-ad4ffecc4589"
+        name="ForgotUsernameViewModel"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <property
+            Id="c18ee74a-ed5b-4c74-a2f2-749b22054195"
+            name="Email"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+        </ownedAttributesInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="a42e5572-4ec9-48d9-b15a-027d670c304d"
+        name="UserAuthentication"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedOperationsInternal>
+          <operation
+            Id="6349f4b3-4fd2-48fe-8609-5ee00f0eb7b0"
+            name="AuthenticateUser"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="7d686dd7-1375-42c3-ac38-1cb25e4a9159"
+        name="LetsUser"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <targetEnds>
+          <association
+            Id="f4050f06-692d-41b3-89a1-871391a30363"
+            isDerived="false"
+            sourceEndRoleName="LetsUser"
+            targetEndRoleName="RegisterUserViewModel"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="b006a249-910e-446e-ab44-52690e0ad763"
+              LastKnownName="RegisterUserViewModel"
+              LastKnownLocation="UMLDiagrams.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="52d281ff-f008-4274-8da2-a88e005dd9ae"
+                  name="LetsUser"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="Composite"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="8d367853-6bfc-4eb3-a5b2-7712320b244a"
+                  name="RegisterUserViewModel"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="true" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="8bb87033-4a87-408f-a68d-91e865ebc97e"
+            isDerived="false"
+            sourceEndRoleName="LetsUser"
+            targetEndRoleName="LetsTradingDetails"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="18983a73-ac46-4a05-8527-6ee5da55a63f"
+              LastKnownName="LetsTradingDetails"
+              LastKnownLocation="UMLDiagrams.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="632ae427-df87-4bfb-a278-7eaac9c5fed5"
+                  name="LetsUser"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="Composite"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="cd75fc2c-5eb8-4b73-99e2-434a9520fc6f"
+                  name="LetsTradingDetails"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="true" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+        <ownedAttributesInternal>
+          <property
+            Id="db5808fb-e9f9-4b5a-94e1-40295607f289"
+            name="UserPersonalDetails"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+          <property
+            Id="d486a777-5c23-4752-abfc-bc749727abf1"
+            name="UserTradingDetails"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="2c48eca0-60b1-4939-a395-d776c41d5f51"
+            name="LETSContext"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="0ff4c60e-d3af-46aa-a850-74ac20d52d17"
+        name="ForgotPasswordViewModel"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <property
+            Id="48a0e5b6-f23f-40bb-af37-7cff3b746b1c"
+            name="Email"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+          <property
+            Id="5fbc3dab-1227-47c7-8cac-0f138bdbc1a6"
+            name="UserName"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+        </ownedAttributesInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="707668a1-619c-4620-a793-bacc7faccea4"
+        name="ReCaptcha"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <targetEnds>
+          <association
+            Id="64ed4279-0356-483d-b5f7-513af259c044"
+            isDerived="false"
+            sourceEndRoleName="ReCaptcha"
+            targetEndRoleName="Theme"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="bd2e5921-0748-4a69-acd8-96f66626f995"
+              LastKnownName="Theme"
+              LastKnownLocation="UMLDiagrams.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="21cc4beb-9558-4574-87c1-84dd5b62a266"
+                  name="ReCaptcha"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="Shared"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="0ca6945d-664c-4ccf-af2f-28443ea27d12"
+                  name="Theme"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="8eb5bf9a-fb29-40c8-8ab4-9855f9ea48bb"
+            isDerived="false"
+            sourceEndRoleName="ReCaptcha"
+            targetEndRoleName="Enumeration1"
+            isLeaf="false"
+            isAbstract="false">
+            <enumerationMoniker
+              Id="1e4f96d5-3ca9-4d42-be66-b2f8bca391d6"
+              LastKnownName="Enumeration1"
+              LastKnownLocation="UMLDiagrams.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="fe800a7f-ec00-4520-9e8f-8909564c2e0e"
+                  name="ReCaptcha"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="Shared"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="efbaefe2-7c9f-4a37-b122-c0d7361c6b7c"
+                  name="Enumeration1"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+        <ownedOperationsInternal>
+          <operation
+            Id="975c964c-74d6-45e6-a636-9e80b9d893bc"
+            name="OnActionExecuting"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="bd2e5921-0748-4a69-acd8-96f66626f995"
+        name="Theme"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <property
+            Id="caf146de-9732-49c9-9e52-2960400bb362"
+            name="White"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+          <property
+            Id="2d4e484c-e94a-466e-885c-07737c9dadcc"
+            name="Red"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+          <property
+            Id="066e5e0c-26cd-40f3-b961-6bd05e06d06f"
+            name="BlackGlass"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+          <property
+            Id="d2fb2235-5517-4db6-9c1d-4e42a49ba73f"
+            name="Clean"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+        </ownedAttributesInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="18983a73-ac46-4a05-8527-6ee5da55a63f"
+        name="LetsTradingDetails"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <property
+            Id="9f2dfc85-b528-4b17-93f7-9cb2d0fe0ade"
+            name="Credit"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+          <property
+            Id="2a637093-ca5f-4253-9e1c-8ffd79ebb8a0"
+            name="Skill"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+          <property
+            Id="6989d047-ec6d-4639-a663-ae99258f6729"
+            name="Id"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+          <property
+            Id="5ea2f60c-7a27-4abe-9f0e-a2181712f3d8"
+            name="Skills"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+        </ownedAttributesInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <enumeration
+        Id="1e4f96d5-3ca9-4d42-be66-b2f8bca391d6"
+        name="Enumeration1"
+        isAbstract="false"
+        isLeaf="false">
+        <ownedLiterals>
+          <enumerationLiteral
+            Id="e6e4a29a-9e00-4406-a43f-720c56a3492d"
+            name="BlackGlass" />
+          <enumerationLiteral
+            Id="d82f0f0a-8543-4d26-920f-af5c621405f7"
+            name="Clean" />
+          <enumerationLiteral
+            Id="a37745b9-954b-408d-a9e2-f63ca60de7fe"
+            name="Red" />
+          <enumerationLiteral
+            Id="c063a74a-67cc-49e5-bda2-f80cd640cab6"
+            name="White" />
+        </ownedLiterals>
+      </enumeration>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="a68dd277-e4b5-4d08-837a-7b6147031bc3"
+        LastKnownName="&lt;&lt;Views&gt;&gt;"
+        LastKnownLocation="Package_1008.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <enumeration
+        Id="12b1c432-9655-47fe-9996-9ff57584b103"
+        name="Enumeration2"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="5dfd8d6e-f4d9-4caa-84f7-0ccafdf1f0fe"
+        name="&lt;&lt;View&gt;&gt;"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedOperationsInternal>
+          <operation
+            Id="e0bd23a7-a682-4af9-9b37-d31fca33af4c"
+            name="LoadPage"
             isLeaf="false"
             isStatic="false"
             isAbstract="false"

@@ -1,0 +1,723 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<modelStoreModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/dsltools/UseCaseModel"
+  dslVersion="1.0.0.0"
+  Id="50ab1359-6b81-430f-bde6-7c955696242e"
+  name="LETSUserStories" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <profileInstances>
+    <packageHasProfileInstances
+      Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b">
+      <profileInstance
+        Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791"
+        name="StandardProfileL2" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances
+      Id="29349502-908c-4fda-9054-c48619c59ed0">
+      <profileInstance
+        Id="532ea607-fb19-44b8-8502-3351b05452be"
+        name="StandardProfileL3" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <packageHasNamedElement>
+      <actor
+        Id="f0f46bf8-2bf0-4062-a9a1-a2dd8a99ddbb"
+        name="System User"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <actor
+        Id="4ccec453-a55b-447d-9c05-08fe207eec4f"
+        name="System Database"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <actor
+        Id="dc941460-543c-4206-82a1-3355201ab0fa"
+        name="User"
+        isAbstract="false"
+        isLeaf="false">
+        <targetEnds>
+          <association
+            Id="2c502cfd-783d-45a4-82af-26c4ff2f2910"
+            isDerived="false"
+            sourceEndRoleName="System User"
+            targetEndRoleName="SignUp"
+            isLeaf="false"
+            name="SignUp"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="114b01d0-ec6b-4db7-9abe-6f17f8453f76"
+              LastKnownName="Register"
+              LastKnownLocation="LETSUserStories.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="1c5078dc-e89d-4c2a-a54f-71312d88cbe0"
+                  name="System User"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="6c7820f7-d32e-4517-9e8d-5954424e09b0"
+                  name="SignUp"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="26c15ee7-f6e6-400c-8518-7eef0b8a73e2"
+            isDerived="false"
+            sourceEndRoleName="System User"
+            targetEndRoleName="Login"
+            isLeaf="false"
+            name="Enter Credentials"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="70a6384f-19d0-4b03-9e3a-25079acf2543"
+              LastKnownName="Login"
+              LastKnownLocation="LETSUserStories.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="593b0891-59e3-4767-9999-5b6befab863b"
+                  name="System User"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="ae74a530-0892-4dc8-9356-11e7eeec9fb3"
+                  name="Login"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="118f3567-d304-49cb-aa05-51bc39b8d1c6"
+            isDerived="false"
+            sourceEndRoleName="System User"
+            targetEndRoleName="My profile"
+            isLeaf="false"
+            name="Only if authenticated"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="9739dbd1-db97-4af8-929b-d6331db51ca2"
+              LastKnownName="My profile"
+              LastKnownLocation="LETSUserStories.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="6deb2f3b-5cae-4547-b58a-c2ee0b0f90ad"
+                  name="System User"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="a1311b62-6ca6-4ab2-9dad-d7d95cd3a6a0"
+                  name="My profile"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </actor>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <actor
+        Id="2b6584b4-9869-47d4-b92f-63e4a8ac95d6"
+        name="Database"
+        isAbstract="false"
+        isLeaf="false">
+        <targetEnds>
+          <association
+            Id="27c621e6-ed70-48de-b0f0-ba8dc437a41d"
+            isDerived="false"
+            sourceEndRoleName="System Database"
+            targetEndRoleName="Login"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="70a6384f-19d0-4b03-9e3a-25079acf2543"
+              LastKnownName="Login"
+              LastKnownLocation="LETSUserStories.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="b0b7a32d-b47c-466d-9c61-fbe9635351ba"
+                  name="System Database"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="656d9fd2-6af3-4e3e-a73e-f2f65c2b11dc"
+                  name="Login"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </actor>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="83f776f3-ccc6-4aa5-996a-a32c43877948"
+        name="UseCase1"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <subsystem
+        Id="e7f24d14-3518-41c3-b3ff-dc27ac63c567"
+        name="Account Management System"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="114b01d0-ec6b-4db7-9abe-6f17f8453f76"
+        name="Register"
+        isAbstract="false"
+        isLeaf="false">
+        <targetEnds>
+          <association
+            Id="ab369941-5bd8-42fa-a979-484dfc064296"
+            isDerived="false"
+            sourceEndRoleName="Register"
+            targetEndRoleName="System Database"
+            isLeaf="false"
+            name="Store User Details"
+            isAbstract="false">
+            <actorMoniker
+              Id="2b6584b4-9869-47d4-b92f-63e4a8ac95d6"
+              LastKnownName="Database"
+              LastKnownLocation="LETSUserStories.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="40d87f73-733c-49e6-ab97-90e25e93401a"
+                  name="Register"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="7c744883-ea54-4620-8968-0b49c9296e3c"
+                  name="System Database"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+        <subjects>
+          <subsystemMoniker
+            Id="e7f24d14-3518-41c3-b3ff-dc27ac63c567"
+            LastKnownName="Account Management System"
+            LastKnownLocation="LETSUserStories.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="70a6384f-19d0-4b03-9e3a-25079acf2543"
+        name="Login"
+        isAbstract="false"
+        isLeaf="false">
+        <targetEnds>
+          <association
+            Id="b0280e3c-4844-44c6-9acb-fcf512015c95"
+            isDerived="false"
+            sourceEndRoleName="Login"
+            targetEndRoleName="System Database"
+            isLeaf="false"
+            name="Validate Credentials (return T/F)"
+            isAbstract="false">
+            <actorMoniker
+              Id="2b6584b4-9869-47d4-b92f-63e4a8ac95d6"
+              LastKnownName="Database"
+              LastKnownLocation="LETSUserStories.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="3dac02a0-8214-4822-ae8c-caf0ef1a7c12"
+                  name="Login"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="8a26d01f-a165-4f57-902c-ee300f2174a3"
+                  name="System Database"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="81791bd0-48ce-4018-b832-ac80836537bf"
+            isDerived="false"
+            sourceEndRoleName="Login"
+            targetEndRoleName="Forgot Username"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="c75315db-5ce5-4f0c-bfa8-0e79fa2eb4bf"
+              LastKnownName="Forgot Username"
+              LastKnownLocation="LETSUserStories.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="b6cca218-0886-4cc8-b5ed-ce0d42097537"
+                  name="Login"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="76f9025f-7e36-4167-b95e-6c2024a2144e"
+                  name="Forgot Username"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="52ad4299-a217-4524-8aad-dc575c39c4df"
+            isDerived="false"
+            sourceEndRoleName="Login"
+            targetEndRoleName="Forgot Password"
+            isLeaf="false"
+            isAbstract="false">
+            <useCaseMoniker
+              Id="3e429cfb-196a-4d6e-9419-ceaf7481c183"
+              LastKnownName="Forgot Password"
+              LastKnownLocation="LETSUserStories.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="367c435c-1d62-4a95-abed-345ac5f17cbc"
+                  name="Login"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="b9eef0e8-0caa-40d3-be12-733e18a683c8"
+                  name="Forgot Password"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+        <additions>
+          <include
+            Id="93d32de0-b170-4b9b-b9b1-006662af874a">
+            <useCaseMoniker
+              Id="9739dbd1-db97-4af8-929b-d6331db51ca2"
+              LastKnownName="My profile"
+              LastKnownLocation="LETSUserStories.uml" />
+          </include>
+        </additions>
+        <subjects>
+          <subsystemMoniker
+            Id="e7f24d14-3518-41c3-b3ff-dc27ac63c567"
+            LastKnownName="Account Management System"
+            LastKnownLocation="LETSUserStories.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="c75315db-5ce5-4f0c-bfa8-0e79fa2eb4bf"
+        name="Forgot Username"
+        isAbstract="false"
+        isLeaf="false">
+        <targetEnds>
+          <association
+            Id="5779c867-aa50-49b0-a246-2ee60af5ad4a"
+            isDerived="false"
+            sourceEndRoleName="Forgot Username"
+            targetEndRoleName="System Database"
+            isLeaf="false"
+            isAbstract="false">
+            <actorMoniker
+              Id="2b6584b4-9869-47d4-b92f-63e4a8ac95d6"
+              LastKnownName="Database"
+              LastKnownLocation="LETSUserStories.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="bd8a7da2-222f-404f-9d24-2aec375c8027"
+                  name="Forgot Username"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="9164d3c0-d957-42a5-81c9-28455b33bc31"
+                  name="System Database"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+        <subjects>
+          <subsystemMoniker
+            Id="e7f24d14-3518-41c3-b3ff-dc27ac63c567"
+            LastKnownName="Account Management System"
+            LastKnownLocation="LETSUserStories.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="3e429cfb-196a-4d6e-9419-ceaf7481c183"
+        name="Forgot Password"
+        isAbstract="false"
+        isLeaf="false">
+        <targetEnds>
+          <association
+            Id="eb222aa4-64b3-4e9f-94be-0f32d8e8e747"
+            isDerived="false"
+            sourceEndRoleName="Forgot Password"
+            targetEndRoleName="System Database"
+            isLeaf="false"
+            isAbstract="false">
+            <actorMoniker
+              Id="2b6584b4-9869-47d4-b92f-63e4a8ac95d6"
+              LastKnownName="Database"
+              LastKnownLocation="LETSUserStories.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="b0fd4a10-3708-456a-927c-0e2c70643996"
+                  name="Forgot Password"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="f533edfa-267a-4ba1-8512-28d8ea8a384c"
+                  name="System Database"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+        <subjects>
+          <subsystemMoniker
+            Id="e7f24d14-3518-41c3-b3ff-dc27ac63c567"
+            LastKnownName="Account Management System"
+            LastKnownLocation="LETSUserStories.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="9739dbd1-db97-4af8-929b-d6331db51ca2"
+        name="My profile"
+        isAbstract="false"
+        isLeaf="false">
+        <extendedCases>
+          <extend
+            Id="e36998b9-7355-40a4-a33e-c5c994bb9d74">
+            <useCaseMoniker
+              Id="83242201-8af6-4808-bc82-db89240c6658"
+              LastKnownName="Add Skills"
+              LastKnownLocation="LETSUserStories.uml" />
+          </extend>
+          <extend
+            Id="419d2e6a-5aa3-4d15-b4b8-ec0d6d892c5c">
+            <useCaseMoniker
+              Id="80677a9e-13d8-45ab-b011-d0db231a23ba"
+              LastKnownName="Remove Skills"
+              LastKnownLocation="LETSUserStories.uml" />
+          </extend>
+          <extend
+            Id="dd2d9e5d-47ed-4ecc-8672-9c9d8ed945d8">
+            <useCaseMoniker
+              Id="052d610d-3ce7-49c7-b420-ded780b8257a"
+              LastKnownName="Change Password"
+              LastKnownLocation="LETSUserStories.uml" />
+          </extend>
+        </extendedCases>
+        <subjects>
+          <subsystemMoniker
+            Id="e7f24d14-3518-41c3-b3ff-dc27ac63c567"
+            LastKnownName="Account Management System"
+            LastKnownLocation="LETSUserStories.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="ccfee6f7-9970-4fbd-95b0-eeb94c17beed"
+        name="Send Email"
+        isAbstract="false"
+        isLeaf="false">
+        <suppliersInternal>
+          <dependency
+            Id="43b416cc-269a-4f53-8507-4b3c2a2fe896">
+            <useCaseMoniker
+              Id="114b01d0-ec6b-4db7-9abe-6f17f8453f76"
+              LastKnownName="Register"
+              LastKnownLocation="LETSUserStories.uml" />
+          </dependency>
+          <dependency
+            Id="439e08d8-65e6-42fb-a23c-a6cf694d928f">
+            <useCaseMoniker
+              Id="c75315db-5ce5-4f0c-bfa8-0e79fa2eb4bf"
+              LastKnownName="Forgot Username"
+              LastKnownLocation="LETSUserStories.uml" />
+          </dependency>
+          <dependency
+            Id="f1693608-e07b-4727-823a-55272a7e7878">
+            <useCaseMoniker
+              Id="3e429cfb-196a-4d6e-9419-ceaf7481c183"
+              LastKnownName="Forgot Password"
+              LastKnownLocation="LETSUserStories.uml" />
+          </dependency>
+        </suppliersInternal>
+        <targetEnds>
+          <association
+            Id="25c0181a-b293-493a-bfc0-57daf3352105"
+            isDerived="false"
+            sourceEndRoleName="Send Email"
+            targetEndRoleName="Email System"
+            isLeaf="false"
+            isAbstract="false">
+            <actorMoniker
+              Id="d467e9e7-66c6-4a38-a3f9-c19ed3704b87"
+              LastKnownName="Email System"
+              LastKnownLocation="LETSUserStories.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="e6ff0fa4-cc45-45fc-9b41-7a31fb8b4e6b"
+                  name="Send Email"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="94157230-be16-4cb9-b918-7439d33f3cc5"
+                  name="Email System"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+        <subjects>
+          <subsystemMoniker
+            Id="e7f24d14-3518-41c3-b3ff-dc27ac63c567"
+            LastKnownName="Account Management System"
+            LastKnownLocation="LETSUserStories.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <actor
+        Id="d467e9e7-66c6-4a38-a3f9-c19ed3704b87"
+        name="Email System"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="83242201-8af6-4808-bc82-db89240c6658"
+        name="Add Skills"
+        isAbstract="false"
+        isLeaf="false">
+        <subjects>
+          <subsystemMoniker
+            Id="e7f24d14-3518-41c3-b3ff-dc27ac63c567"
+            LastKnownName="Account Management System"
+            LastKnownLocation="LETSUserStories.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="80677a9e-13d8-45ab-b011-d0db231a23ba"
+        name="Remove Skills"
+        isAbstract="false"
+        isLeaf="false">
+        <subjects>
+          <subsystemMoniker
+            Id="e7f24d14-3518-41c3-b3ff-dc27ac63c567"
+            LastKnownName="Account Management System"
+            LastKnownLocation="LETSUserStories.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase
+        Id="052d610d-3ce7-49c7-b420-ded780b8257a"
+        name="Change Password"
+        isAbstract="false"
+        isLeaf="false">
+        <subjects>
+          <subsystemMoniker
+            Id="e7f24d14-3518-41c3-b3ff-dc27ac63c567"
+            LastKnownName="Account Management System"
+            LastKnownLocation="LETSUserStories.uml" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+  </packagedElements>
+  <primitiveType
+    Id="220a3521-e091-4221-bae9-3ef9018e845c"
+    name="Integer"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="8943dc84-709e-4f62-b15a-a3273aa6f165"
+    name="Boolean"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+    name="String"
+    isAbstract="false"
+    isLeaf="false" />
+  <primitiveType
+    Id="3ab42e7d-4969-445a-b209-471f5cb8209c"
+    name="UnlimitedNatural"
+    isAbstract="false"
+    isLeaf="false" />
+</modelStoreModel>

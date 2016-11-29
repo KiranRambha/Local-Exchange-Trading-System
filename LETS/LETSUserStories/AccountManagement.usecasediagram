@@ -1,0 +1,338 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<useCaseModelRoot xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" dslVersion="1.0.0.0" Id="931d36ab-aae0-4557-b975-4c2623e572a1" name="AccountManagement" linkedPackageId="a8e9f0e6-90e9-4d7d-89bd-fec464d26a2f" xmlns="http://schemas.microsoft.com/dsltools/UseCaseModel">
+  <profileInstances>
+    <packageHasProfileInstances Id="7d770f80-3ec0-45ed-8421-9722f1cdbaa9">
+      <profileInstance Id="fafff476-a7a3-4f33-948d-2a561a35c0eb" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="d13b389d-7646-4bd6-8e8c-3a343ef5076f">
+      <profileInstance Id="22b9b691-f9bb-4ea5-9553-5b7d9187ad22" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <useCaseModelRootHasTypes>
+      <actor Id="a656791b-3d52-4ff2-90ce-c4a91daa83a1" name="User" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="dc941460-543c-4206-82a1-3355201ab0fa" />
+        <targetEnds>
+          <association Id="83b9ef77-bb56-44af-bab3-ce0c20954606" isDerived="false" sourceEndRoleName="System User" targetEndRoleName="SignUp" isLeaf="false" name="SignUp" isAbstract="false">
+            <useCaseMoniker Id="3da3c5c4-4697-41e6-976a-644a9a874661" LastKnownName="Register" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="5437027e-efeb-4742-831e-e9685e19208d" name="System User" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="1c5078dc-e89d-4c2a-a54f-71312d88cbe0" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="942de1dc-d61a-4d33-831c-5f1b718e728a" name="SignUp" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="6c7820f7-d32e-4517-9e8d-5954424e09b0" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="2c502cfd-783d-45a4-82af-26c4ff2f2910" />
+          </association>
+          <association Id="de58b82c-1390-4684-92b2-7a68651e693b" isDerived="false" sourceEndRoleName="System User" targetEndRoleName="Login" isLeaf="false" name="Enter Credentials" isAbstract="false">
+            <useCaseMoniker Id="2861fda5-22d9-4e99-9b3c-7fde73ce1d85" LastKnownName="Login" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="def76f4e-4175-48bc-863e-ffe0742d4763" name="System User" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="593b0891-59e3-4767-9999-5b6befab863b" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="0674e86f-60ba-4e6e-a53b-838d2f1f4c54" name="Login" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="ae74a530-0892-4dc8-9356-11e7eeec9fb3" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="26c15ee7-f6e6-400c-8518-7eef0b8a73e2" />
+          </association>
+          <association Id="26e60f92-ed56-49f4-9401-8c31f39dcbb2" isDerived="false" sourceEndRoleName="System User" targetEndRoleName="My profile" isLeaf="false" name="Only if authenticated" isAbstract="false">
+            <useCaseMoniker Id="73d9be05-d23a-423e-bdc5-176b8ba5ee43" LastKnownName="My profile" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="2365deaa-c2cb-479e-91ac-a33553f48131" name="System User" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="6deb2f3b-5cae-4547-b58a-c2ee0b0f90ad" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="20b251dc-5220-47e9-80ed-ba0b9d05671f" name="My profile" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="a1311b62-6ca6-4ab2-9dad-d7d95cd3a6a0" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="118f3567-d304-49cb-aa05-51bc39b8d1c6" />
+          </association>
+        </targetEnds>
+      </actor>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <actor Id="afef8cb2-771b-4c27-8da0-dc0ea95d7251" name="Database" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="2b6584b4-9869-47d4-b92f-63e4a8ac95d6" />
+        <targetEnds>
+          <association Id="40385b93-132d-4b0f-a199-3d1000a855ed" isDerived="false" sourceEndRoleName="System Database" targetEndRoleName="Login" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="2861fda5-22d9-4e99-9b3c-7fde73ce1d85" LastKnownName="Login" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="f7d41251-8fd9-4b0c-ba5a-2a079ea2d7ac" name="System Database" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="b0b7a32d-b47c-466d-9c61-fbe9635351ba" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="45023cd4-f585-45ca-833e-cfa805d79106" name="Login" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="656d9fd2-6af3-4e3e-a73e-f2f65c2b11dc" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="27c621e6-ed70-48de-b0f0-ba8dc437a41d" />
+          </association>
+        </targetEnds>
+      </actor>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <subsystem Id="6e289479-1afc-4e5f-8245-dff32ae11938" name="Account Management System" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="e7f24d14-3518-41c3-b3ff-dc27ac63c567" />
+      </subsystem>
+    </useCaseModelRootHasTypes>
+    <packageHasNamedElement>
+      <useCase Id="3da3c5c4-4697-41e6-976a-644a9a874661" name="Register" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="114b01d0-ec6b-4db7-9abe-6f17f8453f76" />
+        <targetEnds>
+          <association Id="e70cc3e0-201f-4df1-8d3e-ae1980e82479" isDerived="false" sourceEndRoleName="Register" targetEndRoleName="System Database" isLeaf="false" name="Store User Details" isAbstract="false">
+            <actorMoniker Id="afef8cb2-771b-4c27-8da0-dc0ea95d7251" LastKnownName="Database" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="1c03badf-5a28-4652-aec5-1884eb808c16" name="Register" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="40d87f73-733c-49e6-ab97-90e25e93401a" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="4ab3609c-c937-47b3-ae62-b15893b4a373" name="System Database" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="7c744883-ea54-4620-8968-0b49c9296e3c" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="ab369941-5bd8-42fa-a979-484dfc064296" />
+          </association>
+        </targetEnds>
+        <subjects>
+          <subsystemMoniker Id="6e289479-1afc-4e5f-8245-dff32ae11938" LastKnownName="Account Management System" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase Id="2861fda5-22d9-4e99-9b3c-7fde73ce1d85" name="Login" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="70a6384f-19d0-4b03-9e3a-25079acf2543" />
+        <targetEnds>
+          <association Id="1b0d0138-2558-4db9-b4ef-77e9542752cb" isDerived="false" sourceEndRoleName="Login" targetEndRoleName="System Database" isLeaf="false" name="Validate Credentials (return T/F)" isAbstract="false">
+            <actorMoniker Id="afef8cb2-771b-4c27-8da0-dc0ea95d7251" LastKnownName="Database" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="fdab74fd-ba9f-4019-92f1-51e0c4502387" name="Login" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="3dac02a0-8214-4822-ae8c-caf0ef1a7c12" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="25333336-5ee4-4a53-aba9-10f42bea92dd" name="System Database" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="8a26d01f-a165-4f57-902c-ee300f2174a3" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="b0280e3c-4844-44c6-9acb-fcf512015c95" />
+          </association>
+          <association Id="7d62e32c-1b1d-449a-833e-bfcba39be633" isDerived="false" sourceEndRoleName="Login" targetEndRoleName="Forgot Username" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="c551c16a-77fc-4e7d-9106-a3b7fc3fb294" LastKnownName="Forgot Username" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="44e0da0c-2b13-4bdf-9c02-82f8ab9efdcc" name="Login" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="b6cca218-0886-4cc8-b5ed-ce0d42097537" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="dfcbe22c-89cd-4072-9184-8ff20a783683" name="Forgot Username" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="76f9025f-7e36-4167-b95e-6c2024a2144e" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="81791bd0-48ce-4018-b832-ac80836537bf" />
+          </association>
+          <association Id="95d922b4-eab3-4ace-b0a5-e24441a6a9ff" isDerived="false" sourceEndRoleName="Login" targetEndRoleName="Forgot Password" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="ffd5a583-23a2-4ef4-a700-b6dd34d1768c" LastKnownName="Forgot Password" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="4ba71e60-114d-4078-8edb-a6d6436773ff" name="Login" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="367c435c-1d62-4a95-abed-345ac5f17cbc" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="39d21148-4234-4d4d-a53c-1dddfa9f768d" name="Forgot Password" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="b9eef0e8-0caa-40d3-be12-733e18a683c8" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="52ad4299-a217-4524-8aad-dc575c39c4df" />
+          </association>
+        </targetEnds>
+        <additions>
+          <include Id="1539470e-0d60-4623-a8e5-0eb69f93714d">
+            <useCaseMoniker Id="73d9be05-d23a-423e-bdc5-176b8ba5ee43" LastKnownName="My profile" />
+            <elementDefinition Id="93d32de0-b170-4b9b-b9b1-006662af874a" />
+          </include>
+        </additions>
+        <subjects>
+          <subsystemMoniker Id="6e289479-1afc-4e5f-8245-dff32ae11938" LastKnownName="Account Management System" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase Id="c551c16a-77fc-4e7d-9106-a3b7fc3fb294" name="Forgot Username" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="c75315db-5ce5-4f0c-bfa8-0e79fa2eb4bf" />
+        <targetEnds>
+          <association Id="157fc36e-c8eb-4b5b-b95c-2eea36eccd9f" isDerived="false" sourceEndRoleName="Forgot Username" targetEndRoleName="System Database" isLeaf="false" isAbstract="false">
+            <actorMoniker Id="afef8cb2-771b-4c27-8da0-dc0ea95d7251" LastKnownName="Database" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="346a412d-3975-406c-9957-1e53deabc8fa" name="Forgot Username" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="bd8a7da2-222f-404f-9d24-2aec375c8027" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="72660954-20ed-431c-b05f-5a133ae9e475" name="System Database" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="9164d3c0-d957-42a5-81c9-28455b33bc31" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="5779c867-aa50-49b0-a246-2ee60af5ad4a" />
+          </association>
+        </targetEnds>
+        <subjects>
+          <subsystemMoniker Id="6e289479-1afc-4e5f-8245-dff32ae11938" LastKnownName="Account Management System" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase Id="ffd5a583-23a2-4ef4-a700-b6dd34d1768c" name="Forgot Password" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="3e429cfb-196a-4d6e-9419-ceaf7481c183" />
+        <targetEnds>
+          <association Id="8be1f102-8ac1-40f5-9f4c-cdab702b199f" isDerived="false" sourceEndRoleName="Forgot Password" targetEndRoleName="System Database" isLeaf="false" isAbstract="false">
+            <actorMoniker Id="afef8cb2-771b-4c27-8da0-dc0ea95d7251" LastKnownName="Database" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="60aaae5a-1714-4765-80bc-bb4acf0bc01c" name="Forgot Password" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="b0fd4a10-3708-456a-927c-0e2c70643996" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="9023c42f-2b95-4b2f-9a43-a36a42bab950" name="System Database" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="f533edfa-267a-4ba1-8512-28d8ea8a384c" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="eb222aa4-64b3-4e9f-94be-0f32d8e8e747" />
+          </association>
+        </targetEnds>
+        <subjects>
+          <subsystemMoniker Id="6e289479-1afc-4e5f-8245-dff32ae11938" LastKnownName="Account Management System" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase Id="73d9be05-d23a-423e-bdc5-176b8ba5ee43" name="My profile" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="9739dbd1-db97-4af8-929b-d6331db51ca2" />
+        <extendedCases>
+          <extend Id="4d5775c7-9c6d-4289-b8b6-6f8631c807fe">
+            <useCaseMoniker Id="fac59194-6191-42de-b736-26932cd43767" LastKnownName="Add Skills" />
+            <elementDefinition Id="e36998b9-7355-40a4-a33e-c5c994bb9d74" />
+          </extend>
+          <extend Id="8c517f17-2128-4ae9-bb12-df05f820f150">
+            <useCaseMoniker Id="6311ca9e-d7e2-41f1-8e97-d01c5b694115" LastKnownName="Remove Skills" />
+            <elementDefinition Id="419d2e6a-5aa3-4d15-b4b8-ec0d6d892c5c" />
+          </extend>
+          <extend Id="ea31c985-46bd-4200-bf6a-220727fa82ff">
+            <useCaseMoniker Id="e19c6a94-b03b-4930-ac6f-7b25204f70ff" LastKnownName="Change Password" />
+            <elementDefinition Id="dd2d9e5d-47ed-4ecc-8672-9c9d8ed945d8" />
+          </extend>
+        </extendedCases>
+        <subjects>
+          <subsystemMoniker Id="6e289479-1afc-4e5f-8245-dff32ae11938" LastKnownName="Account Management System" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase Id="d8a95318-8590-4dfc-88d2-945471bbbe57" name="Send Email" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="ccfee6f7-9970-4fbd-95b0-eeb94c17beed" />
+        <suppliersInternal>
+          <dependency Id="122b4278-2226-4063-be68-54d371da21db">
+            <useCaseMoniker Id="3da3c5c4-4697-41e6-976a-644a9a874661" LastKnownName="Register" />
+            <elementDefinition Id="43b416cc-269a-4f53-8507-4b3c2a2fe896" />
+          </dependency>
+          <dependency Id="ca6e381c-886b-40e8-a198-e6c017f34f37">
+            <useCaseMoniker Id="c551c16a-77fc-4e7d-9106-a3b7fc3fb294" LastKnownName="Forgot Username" />
+            <elementDefinition Id="439e08d8-65e6-42fb-a23c-a6cf694d928f" />
+          </dependency>
+          <dependency Id="5be48608-5110-45dd-bb52-a891cb831256">
+            <useCaseMoniker Id="ffd5a583-23a2-4ef4-a700-b6dd34d1768c" LastKnownName="Forgot Password" />
+            <elementDefinition Id="f1693608-e07b-4727-823a-55272a7e7878" />
+          </dependency>
+        </suppliersInternal>
+        <targetEnds>
+          <association Id="b039c8f2-0037-45ce-b696-09e7b360cc81" isDerived="false" sourceEndRoleName="Send Email" targetEndRoleName="Email System" isLeaf="false" isAbstract="false">
+            <actorMoniker Id="8b88fc3f-0113-4a9c-a646-8087f166dc60" LastKnownName="Email System" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="680aa451-d0fa-490b-b7d9-4daa1b6ce561" name="Send Email" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="e6ff0fa4-cc45-45fc-9b41-7a31fb8b4e6b" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="06bb2096-dc1c-457b-bd2c-311612bc0607" name="Email System" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="94157230-be16-4cb9-b918-7439d33f3cc5" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="25c0181a-b293-493a-bfc0-57daf3352105" />
+          </association>
+        </targetEnds>
+        <subjects>
+          <subsystemMoniker Id="6e289479-1afc-4e5f-8245-dff32ae11938" LastKnownName="Account Management System" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <useCaseModelRootHasTypes>
+      <actor Id="8b88fc3f-0113-4a9c-a646-8087f166dc60" name="Email System" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="d467e9e7-66c6-4a38-a3f9-c19ed3704b87" />
+      </actor>
+    </useCaseModelRootHasTypes>
+    <packageHasNamedElement>
+      <useCase Id="fac59194-6191-42de-b736-26932cd43767" name="Add Skills" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="83242201-8af6-4808-bc82-db89240c6658" />
+        <subjects>
+          <subsystemMoniker Id="6e289479-1afc-4e5f-8245-dff32ae11938" LastKnownName="Account Management System" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase Id="6311ca9e-d7e2-41f1-8e97-d01c5b694115" name="Remove Skills" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="80677a9e-13d8-45ab-b011-d0db231a23ba" />
+        <subjects>
+          <subsystemMoniker Id="6e289479-1afc-4e5f-8245-dff32ae11938" LastKnownName="Account Management System" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <useCase Id="e19c6a94-b03b-4930-ac6f-7b25204f70ff" name="Change Password" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="052d610d-3ce7-49c7-b420-ded780b8257a" />
+        <subjects>
+          <subsystemMoniker Id="6e289479-1afc-4e5f-8245-dff32ae11938" LastKnownName="Account Management System" />
+        </subjects>
+      </useCase>
+    </packageHasNamedElement>
+  </packagedElements>
+  <package Id="a8e9f0e6-90e9-4d7d-89bd-fec464d26a2f" name="LETSUserStories">
+    <elementDefinition Id="50ab1359-6b81-430f-bde6-7c955696242e" />
+  </package>
+</useCaseModelRoot>

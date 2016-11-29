@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LETS.Tests", "LETS.Tests\LE
 EndProject
 Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "UMLDiagrams", "UMLDiagrams\UMLDiagrams.modelproj", "{9A243D03-C0E2-4924-9E9C-297A3B968C93}"
 EndProject
+Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "LETSUserCaseDiagrams", "LETSUserStories\LETSUserCaseDiagrams.modelproj", "{00485EFC-C1AD-49C4-AB4D-0A1FC0C47702}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{9A243D03-C0E2-4924-9E9C-297A3B968C93}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9A243D03-C0E2-4924-9E9C-297A3B968C93}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9A243D03-C0E2-4924-9E9C-297A3B968C93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00485EFC-C1AD-49C4-AB4D-0A1FC0C47702}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00485EFC-C1AD-49C4-AB4D-0A1FC0C47702}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00485EFC-C1AD-49C4-AB4D-0A1FC0C47702}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00485EFC-C1AD-49C4-AB4D-0A1FC0C47702}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
