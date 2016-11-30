@@ -21,6 +21,10 @@ namespace LETS.Controllers
         public readonly LETSContext DatabaseContext = new LETSContext();
         private static readonly Random Random = new Random();
 
+        /// <summary>
+        /// Get method for the Login Page
+        /// </summary>
+        /// <returns>returns Login view if the user is not authenticated, else takes the user to the index page</returns>
         [AllowAnonymous]
         [HttpGet]
         public ActionResult Login()
@@ -35,6 +39,11 @@ namespace LETS.Controllers
             }
         }
 
+        /// <summary>
+        /// Post method for the Login Page
+        /// </summary>
+        /// <param name="loginUser">Holds the entered user credentials i.e. Username and Password</param>
+        /// <returns>Verifies the user credentials, takes them to the user profile page if valid else takes them back to the login page.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AllowAnonymous]
@@ -56,7 +65,7 @@ namespace LETS.Controllers
                         var userAuthentication = new UserAuthentication();
                         var identity = userAuthentication.AuthenticateUser(userByUsername[0].Account.UserName);
                         HttpContext.GetOwinContext().Authentication.SignIn(new AuthenticationProperties { IsPersistent = false }, identity);
-                        return RedirectToAction("ComponentsGuide", "Home");
+                        return RedirectToAction("UserProfile", "Account");
                     }
                     else
                     {
@@ -75,6 +84,10 @@ namespace LETS.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Get method for the Logoff page.
+        /// </summary>
+        /// <returns>Logs off the user, kills the session and redirects the user to the index page.</returns>
         [HttpGet]
         public ActionResult Logoff()
         {
@@ -88,6 +101,10 @@ namespace LETS.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        /// <summary>
+        /// Get method for the Register Page
+        /// </summary>
+        /// <returns>returns the Register page if the user is not authenticated else takes the user to the index page.</returns>
         [AllowAnonymous]
         [HttpGet]
         public ActionResult Register()
@@ -102,6 +119,11 @@ namespace LETS.Controllers
             }
         }
 
+        /// <summary>
+        /// Post method for the Register Page
+        /// </summary>
+        /// <param name="registerUser">Holds the data entered by the user on the registration page.</param>
+        /// <returns>saves the data to the database, sends an email and reloads the page.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AllowAnonymous]
@@ -177,6 +199,11 @@ namespace LETS.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Checks if a username is present in the database or not
+        /// </summary>
+        /// <param name="userName">represents the username entered by the user</param>
+        /// <returns>returns true or false depending on if the username is present in the database or not</returns>
         [AllowAnonymous]
         public bool CheckUserName(string userName)
         {
@@ -187,6 +214,10 @@ namespace LETS.Controllers
             return userByUsername.Count == 0;
         }
 
+        /// <summary>
+        /// Get Method for the ForgotUsername page.
+        /// </summary>
+        /// <returns>returns the forgot username page if the user is not authenticated else takes the user to the index page.</returns>
         [AllowAnonymous]
         [HttpGet]
         public ActionResult ForgotUsername()
@@ -201,6 +232,11 @@ namespace LETS.Controllers
             }
         }
 
+        /// <summary>
+        /// Post method for the forgot username
+        /// </summary>
+        /// <param name="forgotUsername">Holds the details entered by the user on the forgot username page.</param>
+        /// <returns>sends an email to the user and returns the user to the login page.</returns>
         [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -243,6 +279,10 @@ namespace LETS.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Get method for the forgotpassword page
+        /// </summary>
+        /// <returns>returns the forgotpassword if the user is not authenticated else takes the user to the index page.</returns>
         [AllowAnonymous]
         [HttpGet]
         public ActionResult ForgotPassword()
@@ -257,6 +297,11 @@ namespace LETS.Controllers
             }
         }
 
+        /// <summary>
+        /// Post method for the forgotpassword page
+        /// </summary>
+        /// <param name="forgotPassword">Stores the data entered by the user on the page</param>
+        /// <returns>sends an email to the user and takes the user to the login page.</returns>
         [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -312,6 +357,10 @@ namespace LETS.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Creates a random password when the user clicks and submit forgot password.
+        /// </summary>
+        /// <returns>returns a random string as a password.</returns>
         public string CreatePassword()
         {
             var randomPassword = RandomCharacter;
@@ -327,6 +376,10 @@ namespace LETS.Controllers
             }
         }
 
+        /// <summary>
+        /// Get method for the RegisteredUsers Page.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Authorize(Roles = "admin")]
         public ActionResult RegisteredUsers()
@@ -335,6 +388,10 @@ namespace LETS.Controllers
             return View(registeredUsers);
         }
 
+        /// <summary>
+        /// Get method for the UserProfile page.
+        /// </summary>
+        /// <returns>returns the user profile page is the user is authenticated.</returns>
         [HttpGet]
         public async Task<ActionResult> UserProfile()
         {
@@ -356,6 +413,10 @@ namespace LETS.Controllers
             return View(letsUser);
         }
 
+        /// <summary>
+        /// Sends an email to the email address provided
+        /// </summary>
+        /// <param name="mail">Contains the data of the email like the body and the mailTo: address</param>
         public void SendEmail(MailMessage mail)
         {
             mail.From = new MailAddress("rhulletsteam@gmail.com");
@@ -371,6 +432,11 @@ namespace LETS.Controllers
             }
         }
 
+        /// <summary>
+        /// Post method for the account settings partial
+        /// </summary>
+        /// <param name="registeredUser">stores the data entered by the user on the account settings partial</param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> AccountSettingsEdit(RegisterUserViewModel registeredUser)
@@ -402,6 +468,10 @@ namespace LETS.Controllers
             return RedirectToAction("UserProfile", "Account");
         }
 
+        /// <summary>
+        /// Get Method for the account settings partial
+        /// </summary>
+        /// <returns>returns the account settings partial when the user clicks edit on the user profile page.</returns>
         public async Task<ActionResult> GetAccountSettingsPartial()
         {
             var username = User.Identity.Name;
@@ -413,6 +483,10 @@ namespace LETS.Controllers
             return View("AccountSettingsEdit", userByUsername[0]);
         }
 
+        /// <summary>
+        /// Get method for the Add skills partial
+        /// </summary>
+        /// <returns>returns the add skills partial when the user clicks edit/add skills button.</returns>
         public async Task<ActionResult> GetAddSkillsPartial()
         {
             if (User != null)
@@ -434,6 +508,11 @@ namespace LETS.Controllers
             return null;
         }
 
+        /// <summary>
+        /// Post method for the skills edit partial
+        /// </summary>
+        /// <param name="letsTradingDetails">stores the skills entered by the user.</param>
+        /// <returns>reloads the user profile page.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> SkillsSettingsEdit(LetsTradingDetails letsTradingDetails)
@@ -442,6 +521,11 @@ namespace LETS.Controllers
             return RedirectToAction("UserProfile", "Account");
         }
 
+        /// <summary>
+        /// Adds the skill to the user profile
+        /// </summary>
+        /// <param name="skill">stores the skill entered by the user</param>
+        /// <returns>adds the skill and returns the skills partial</returns>
         public async Task<ActionResult> AddSkill(string skill)
         {
             var username = User.Identity.Name;
@@ -468,6 +552,11 @@ namespace LETS.Controllers
             return View("AddedUserSkills", userTradingDetails[0]);
         }
 
+        /// <summary>
+        /// Removes the user skills from the user profile
+        /// </summary>
+        /// <param name="skill">stores the skill that needs to be removed from the user profile</param>
+        /// <returns>removes the user skill and returns the skills partial</returns>
         public async Task<ActionResult> RemoveSkill(string skill)
         {
             if (User != null)
@@ -488,6 +577,11 @@ namespace LETS.Controllers
             return null;
         }
 
+        /// <summary>
+        /// Allows the user to change their account passwords
+        /// </summary>
+        /// <param name="registeredUser">stores the users old password, new password and confirm password</param>
+        /// <returns>verifies and changes the password and reloads the user profile page with an notification message.</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ChangePassword(RegisterUserViewModel registeredUser)
