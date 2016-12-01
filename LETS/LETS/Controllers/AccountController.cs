@@ -18,7 +18,7 @@ namespace LETS.Controllers
     [Authorize]
     public class AccountController : Controller
     {
-        public readonly LETSContext DatabaseContext = new LETSContext();
+        public readonly LETSContext DatabaseContext = new LETSContext(); 
         private static readonly Random Random = new Random();
 
         /// <summary>
