@@ -22,18 +22,18 @@
     </div>
 
     <div class="form-group">
-        <div class="row">
+        <div class="row tab-content">
             <div class="col-md-4 information-cols">
                 <div class="information-card">
                     @Html.Partial("_Partials/_UserProfileCard")
                 </div>
             </div>
-            <div id="account_overview_view" class="col-md-8 information-cols show">
+            <div id="account_overview_view" class="col-md-8 information-cols tab-pane active fade in">
                 <div class="information-card">
                     @Html.Partial("_Partials/_Overview")
                 </div>
             </div>
-            <div id="account_settings_view" class="col-md-8 information-cols hide">
+            <div id="account_settings_view" class="col-md-8 information-cols tab-pane fade">
                 <div class="information-card">
                     @Html.Partial("_Partials/_AccountSettings")
                 </div>
