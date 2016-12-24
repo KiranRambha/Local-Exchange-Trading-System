@@ -2,6 +2,7 @@
 @model LoginViewModel
 @{
     ViewBag.Title = "Login";
+    var Registered = TempData["Registered"]?.ToString() ?? "";
 }
 @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { id = "login", name = "form", novalidate = "" }))
 {
@@ -10,6 +11,12 @@
         <h3 class="form-section">Login</h3>
 
         <hr />
+        
+        <div class="alert alert-success @(string.IsNullOrEmpty(Registered) ? "hide" : "")">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>@Registered</strong>
+        </div>
+
         <div class="form-group">
             <div class="row">
                 <div class="col-md-6">

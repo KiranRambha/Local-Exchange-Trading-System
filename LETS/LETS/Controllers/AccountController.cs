@@ -161,10 +161,10 @@ namespace LETS.Controllers
                                 mail.Subject = "Welcome to Royal Holloway LETS";
                                 mail.Body = "<p>Hello " + registerUser.About.FirstName + ",</p><h3>Thanks for joining Royal Holloway LETS</h3><p>Please find your account details below</p><p>Title : <b>" + registerUser.About.Title + "</b></p><p>First Name : <b>" + registerUser.About.FirstName + "</b></p><p>Last Name : <b>" + registerUser.About.LastName + "</b></p><p>Gender : <b>" + registerUser.About.Gender + "</b></p><p>User Name : <b>" + registerUser.Account.UserName + "</b></p><p>Kind Regards,<br/>Royal Holloway LETS</p>";
                                 SendEmail(mail);
-                                ModelState.AddModelError("Success", "You have successfully signed up for Royal Holloway LETS, We have also sent you can email with your account details for your future reference.");
+                                TempData.Add("Registered", "You have successfully signed up for Royal Holloway LETS, We have also sent you can email with your account details for your future reference.");
                             }
 
-                            return RedirectToAction("RegisteredUsers");
+                            return RedirectToAction("Login");
                         }
                         else
                         {
