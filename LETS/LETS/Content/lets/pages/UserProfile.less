@@ -23,20 +23,56 @@
             margin-bottom: 30px;
 
             .userprofile {
+                background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url('/Content/images/KiranRambha.jpg');
+
+                .picture-edit {
+                    display: none;
+                }
+
+                &:hover {
+                    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('/Content/images/KiranRambha.jpg');
+                    display: inline-block;
+                    width: 200px;
+                    height: 230px;
+                    display: table;
+                    margin: 0 auto;
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    background-size: cover;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    .picture-edit {
+                        display: block;
+                        text-align: center;
+                        vertical-align: middle;
+                        line-height: 230px;
+                        margin: 0px;
+                    }
+                }
+
                 display: inline-block;
                 width: 200px;
-                height: 200px;
-                border-radius: 50%;
+                height: 230px;
                 display: table;
                 margin: 0 auto;
                 background-repeat: no-repeat;
-                background-position: center center;
+                background-position: center;
                 background-size: cover;
+                border-radius: 5px;
 
                 @media (max-width: @screen-tablet) {
                     width: 200px;
-                    height: 200px;
+                    height: 230px;
                 }
+            }
+
+            .mid {
+                font-weight: 900;
+                color: white;
+                text-transform: uppercase;
+                top: 50%;
+                left: 50%;
+                font-size: 2rem;
             }
 
             .username {

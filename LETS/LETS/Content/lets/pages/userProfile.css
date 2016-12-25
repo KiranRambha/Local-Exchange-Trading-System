@@ -18,21 +18,53 @@
   margin-bottom: 30px;
 }
 .information-cols .information-card .userinfo .userprofile {
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url('/Content/images/KiranRambha.jpg');
   display: inline-block;
   width: 200px;
-  height: 200px;
-  border-radius: 50%;
+  height: 230px;
   display: table;
   margin: 0 auto;
   background-repeat: no-repeat;
-  background-position: center center;
+  background-position: center;
   background-size: cover;
+  border-radius: 5px;
+}
+.information-cols .information-card .userinfo .userprofile .picture-edit {
+  display: none;
+}
+.information-cols .information-card .userinfo .userprofile:hover {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/Content/images/KiranRambha.jpg');
+  display: inline-block;
+  width: 200px;
+  height: 230px;
+  display: table;
+  margin: 0 auto;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.information-cols .information-card .userinfo .userprofile:hover .picture-edit {
+  display: block;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 230px;
+  margin: 0px;
 }
 @media (max-width: 768px) {
   .information-cols .information-card .userinfo .userprofile {
     width: 200px;
-    height: 200px;
+    height: 230px;
   }
+}
+.information-cols .information-card .userinfo .mid {
+  font-weight: 900;
+  color: white;
+  text-transform: uppercase;
+  top: 50%;
+  left: 50%;
+  font-size: 2rem;
 }
 .information-cols .information-card .userinfo .username {
   text-align: center;

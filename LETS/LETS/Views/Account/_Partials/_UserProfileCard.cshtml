@@ -1,8 +1,11 @@
 ﻿@using LETS.Models
 @model LetsUser
 <div class="userinfo">
-    <div class="userprofile" style="background-image:url('/Content/images/DefaultProfile.jpg')"></div>
-    <h4 class="username">@Model.UserPersonalDetails.About.FirstName @Model.UserPersonalDetails.About.LastName</h4>
+    <div class="userprofile mid" data-toggle="modal" data-target="#ChangeProfilePictureModal">
+        <h4 class="picture-edit">Edit</h4>
+    </div>
+    @Html.Partial("_Partials/_ChangeProfilePicture")
+    <h4 class="username" >@Model.UserPersonalDetails.About.FirstName @Model.UserPersonalDetails.About.LastName</h4>
     <h6 class="userrole">Developer</h6>
     <h5 class="useraccountbalance"><i class="fa fa-diamond fa-fw" aria-hidden="true"></i> @Model.UserTradingDetails.Credit</h5>
 </div>
