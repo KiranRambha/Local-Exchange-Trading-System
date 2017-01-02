@@ -65,3 +65,40 @@ function removeSkill(button) {
         });
     }
 }
+
+function UploadDocument() {
+    var form = document.getElementById('change_avatar');
+    if ($('#change_avatar').valid()) {
+        var formdata = new FormData(form); //FormData object
+        var fileInput = document.getElementById('fileUpload');
+        //Iterating through each files selected in fileInput
+        for (i = 0; i < fileInput.files.length; i++) {
+            //Appending each file to FormData object
+            formdata.append(fileInput.files[i].name, fileInput.files[i]);
+        }
+        //Creating an XMLHttpRequest and sending
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'ChangeProfilePicture');
+        if (xhr.upload) {
+            xhr.upload.addEventListener('progress', progressHandlingFunction, false);
+        }
+        xhr.send(formdata);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200 && xhr.responseURL.indexOf("500") < 0) {
+                location.reload();
+            } else {
+                $('.progress-bar').css('width', '0%').attr('aria-valuenow', 0);
+            }
+        }
+    }
+    return false;
+}
+
+function progressHandlingFunction(e) {
+    if (e.lengthComputable) {
+        if (e.lengthComputable) {
+            var percentComplete = (e.loaded / e.total) * 100;
+            $('.progress-bar').css('width', percentComplete + '%').attr('aria-valuenow', percentComplete);
+        }
+    }
+}

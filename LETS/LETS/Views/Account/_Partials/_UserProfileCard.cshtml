@@ -2,7 +2,7 @@
 @model LetsUser
 <div class="userinfo">
     <div class="userprofile mid" data-toggle="modal" data-target="#ChangeProfilePictureModal">
-        <h4 class="picture-edit">Edit</h4>
+        <label class="picture-edit"><i class="fa fa-camera fa-fw" aria-hidden="true"></i> Edit</label>
     </div>
     @Html.Partial("_Partials/_ChangeProfilePicture")
     <h4 class="username" >@Model.UserPersonalDetails.About.FirstName @Model.UserPersonalDetails.About.LastName</h4>

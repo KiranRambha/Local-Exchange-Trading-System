@@ -60,15 +60,15 @@
     "inputFile": "Content/lets/shared/utilities.less"
   },
   {
-    "outputFile": "Content/lets/pages/userProfile.css",
-    "inputFile": "Content/lets/pages/userProfile.less"
-  },
-  {
     "outputFile": "Scripts/lets/register.es5.js",
     "inputFile": "Scripts/lets/register.js"
   },
   {
     "outputFile": "Content/lets/shared/typeAhead.css",
     "inputFile": "Content/lets/shared/typeAhead.less"
+  },
+  {
+    "outputFile": "Content/lets/pages/userProfile.css",
+    "inputFile": "Content/lets/pages/userProfile.less"
   }
 ]

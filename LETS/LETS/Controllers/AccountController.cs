@@ -11,6 +11,8 @@ using System.Net.Mail;
 using System.Net;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using MongoDB.Driver.GridFS;
 using static System.Configuration.ConfigurationManager;
 
 namespace LETS.Controllers
@@ -18,7 +20,7 @@ namespace LETS.Controllers
     [Authorize]
     public class AccountController : Controller
     {
-        public readonly LETSContext DatabaseContext = new LETSContext(); 
+        public readonly LETSContext DatabaseContext = new LETSContext();
         private static readonly Random Random = new Random();
 
         /// <summary>
@@ -151,6 +153,7 @@ namespace LETS.Controllers
                             registerUser.Id = Guid.NewGuid().ToString();
                             registerUser.Account.Password = passwordEncryption.getHashedPassword(registerUser.Account.Password);
                             registerUser.Account.ConfirmPassword = passwordEncryption.getHashedPassword(registerUser.Account.ConfirmPassword);
+                            registerUser.About.ImageId = "586a7d67cf43d7340cb54670";
                             var tradingDetails = new LetsTradingDetails { Id = registerUser.Id, Credit = 100 };
                             DatabaseContext.RegisteredUsers.InsertOne(registerUser);
                             DatabaseContext.LetsTradingDetails.InsertOne(tradingDetails);
@@ -620,6 +623,67 @@ namespace LETS.Controllers
                 TempData.Add("PasswordNotChanged", "There was an error in changing you password. Please try again.");
             }
             return RedirectToAction("UserProfile", "Account");
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> ChangeProfilePicture()
+        {
+            var numberOfDocuments = (Request.Files.Count / 2);
+            for (var i = 0; i < numberOfDocuments; i++)
+            {
+                var file = Request.Files[i];
+
+                if (!string.IsNullOrEmpty(file?.FileName) && file.ContentType.Equals("image/jpeg"))
+                {
+                    var username = User.Identity.Name;
+
+                    var userByUsername = await DatabaseContext.RegisteredUsers.Find(new BsonDocument {
+                        { "Account.UserName", username }
+                    }).ToListAsync();
+
+                    if (!userByUsername[0].About.ImageId.Equals("586a7d67cf43d7340cb54670"))
+                    {
+                        await DeleteImage(userByUsername[0].About.ImageId);
+                    }
+
+                    var options = new GridFSUploadOptions
+                    {
+                        Metadata = new BsonDocument("contentType", file.ContentType)
+                    };
+
+                    var imageId = await DatabaseContext.ProfilePicturesBucket.UploadFromStreamAsync(file.FileName, file.InputStream, options);
+
+                    userByUsername[0].About.ImageId = imageId.ToString();
+                    await DatabaseContext.RegisteredUsers.ReplaceOneAsync(r => r.Account.UserName == userByUsername[0].Account.UserName, userByUsername[0]);
+                }
+            }
+            return RedirectToAction("UserProfile", "Account");
+        }
+
+        public async Task<ActionResult> GetProfilePicture()
+        {
+            var username = User.Identity.Name;
+
+            var userByUsername = await DatabaseContext.RegisteredUsers.Find(new BsonDocument {
+                        { "Account.UserName", username }
+                    }).ToListAsync();
+            try
+            {
+                var imageId = userByUsername[0].About.ImageId;
+
+                var stream = await DatabaseContext.ProfilePicturesBucket.OpenDownloadStreamAsync(new ObjectId(imageId));
+                var contentType = stream.FileInfo.Metadata["contentType"].AsString;
+                return File(stream, contentType);
+            }
+            catch (GridFSFileNotFoundException)
+            {
+                return HttpNotFound();
+            }
+        }
+
+        public async Task DeleteImage(string imageId)
+        {
+            await DatabaseContext.ProfilePicturesBucket.DeleteAsync(new ObjectId(imageId));
         }
     }
 }

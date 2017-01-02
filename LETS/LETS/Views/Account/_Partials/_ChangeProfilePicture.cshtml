@@ -1,16 +1,44 @@
-﻿<div id="ChangeProfilePictureModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Modal Header</h4>
-            </div>
-            <div class="modal-body">
-                <p>Some text in the modal.</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+﻿<div id="ChangeProfilePictureModal" class="modal fade" role="dialog" data-backdrop="static">
+    @using (Html.BeginForm("ChangeProfilePicture", "Account", FormMethod.Post, new { id = "change_avatar", name = "form", novalidate = "", enctype = "multipart/form-data" }))
+    {
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Change Avatar</h4>
+                </div>
+                <div class="modal-body">
+                    <fieldset>
+                        <div class="row">
+                            <div class="form-group col-xs-12">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <label>Choose your picture</label>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <input required class="form-control" type="file" name="file" id="fileUpload" accept="image/*" />
+                                    </div>
+                                </div>
+                                <div id="progressbar" class="row">
+                                    <div class="form-group col-xs-12">
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <div class="progress progress-striped">
+                                                    <div class="progress-bar progress-bar-striped progress-bar-custom active" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:0"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="return UploadDocument();">Upload</button>
+                </div>
             </div>
         </div>
-    </div>
+    }
 </div>
