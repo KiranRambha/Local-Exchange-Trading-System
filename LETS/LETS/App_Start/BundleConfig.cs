@@ -28,6 +28,7 @@ namespace LETS
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/BootstrapJsLib/bootstrap.js",
                       "~/Scripts/BootstrapJsLib/respond.js",
+                      "~/Scripts/BootstrapJsLib/bootstrap-filestyle.js",
                       "~/Scripts/mdl/material.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/shared").IncludeDirectory(

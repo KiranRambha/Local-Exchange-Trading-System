@@ -539,8 +539,6 @@
     <Content Include="Scripts\BootstrapJsLib\bootstrap.js" />
     <Content Include="Scripts\BootstrapJsLib\bootstrap.min.js" />
     <None Include="Scripts\jQueryLib\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jQueryLib\jquery.fileupload-ui.js" />
-    <Content Include="Scripts\jQueryLib\jquery.fileupload.js" />
     <Content Include="Scripts\jQueryLib\jquery.validate.js" />
     <Content Include="Scripts\jQueryLib\jquery.validate.min.js" />
     <Content Include="Scripts\jQueryLib\jquery-3.1.1.js" />
