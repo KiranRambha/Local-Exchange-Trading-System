@@ -606,6 +606,7 @@
     <Content Include="Views\Account\AddedUserSkills.cshtml" />
     <Content Include="Views\Account\ChangePassword.cshtml" />
     <Content Include="Views\Account\_Partials\_ChangeProfilePicture.cshtml" />
+    <Content Include="Views\Account\_Partials\_CreateNewRequestPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

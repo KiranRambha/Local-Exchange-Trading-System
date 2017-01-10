@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using LETS.Helpers;
 using MongoDB.Bson.Serialization.Attributes;
 using System.ComponentModel.DataAnnotations;
+using System.Web.WebPages.Scope;
 
 namespace LETS.Models
 {
@@ -127,6 +129,32 @@ namespace LETS.Models
         public string Skill { get; set; }
 
         public List<string> Skills { get; set; }
+
+        public List<Request> Requests { get; set; }
+
+        [BsonIgnore]
+        public Request Request { get; set; }
+    }
+
+    public class Request
+    {
+        public string Id { get; set; }
+
+        [Required]
+        public string Description { get; set; }
+
+        public DateTime Date { get; set; }
+
+        public bool HasDeleted { get; set; }
+
+        [BsonIgnore]
+        [Required]
+        public string Tag { get; set; }
+
+        public List<string> Tags { get; set; }
+
+        [Required]
+        public int? Budget { get; set; }
     }
 
     public class LetsUser
