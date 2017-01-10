@@ -69,8 +69,6 @@ namespace LETS.Models
         [Display(Name = "Gender")]
         [CategoryLookup("RegisterUser.Gender")]
         public string Gender { get; set; }
-
-        public string ImageId { get; set; }
     }
 
     public class Account
@@ -113,6 +111,8 @@ namespace LETS.Models
         [DataType(DataType.Password)]
         [BsonIgnore]
         public string ConfirmNewPassword { get; set; }
+
+        public string ImageId { get; set; }
     }
 
     public class LetsTradingDetails

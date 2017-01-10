@@ -57,3 +57,17 @@ body .form-group {
     width: 100%;
   }
 }
+.container.body-content.Index {
+  background-image: url(/Content/images/RoyalHolloway1.jpg);
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.container.body-content.Index .panel.panel-default {
+  display: none;
+}

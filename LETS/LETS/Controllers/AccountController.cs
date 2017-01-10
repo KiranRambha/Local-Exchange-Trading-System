@@ -66,7 +66,7 @@ namespace LETS.Controllers
                     {
                         var userAuthentication = new UserAuthentication();
                         var identity = userAuthentication.AuthenticateUser(userByUsername[0].Account.UserName);
-                        HttpContext.GetOwinContext().Authentication.SignIn(new AuthenticationProperties { IsPersistent = false }, identity);
+                        HttpContext.GetOwinContext().Authentication.SignIn(new AuthenticationProperties { IsPersistent = false, ExpiresUtc = DateTime.UtcNow + TimeSpan.FromMinutes(15) }, identity);
                         return RedirectToAction("UserProfile", "Account");
                     }
                     else
@@ -153,7 +153,7 @@ namespace LETS.Controllers
                             registerUser.Id = Guid.NewGuid().ToString();
                             registerUser.Account.Password = passwordEncryption.getHashedPassword(registerUser.Account.Password);
                             registerUser.Account.ConfirmPassword = passwordEncryption.getHashedPassword(registerUser.Account.ConfirmPassword);
-                            registerUser.About.ImageId = "586a7d67cf43d7340cb54670";
+                            registerUser.Account.ImageId = "586a7d67cf43d7340cb54670";
                             var tradingDetails = new LetsTradingDetails { Id = registerUser.Id, Credit = 100 };
                             DatabaseContext.RegisteredUsers.InsertOne(registerUser);
                             DatabaseContext.LetsTradingDetails.InsertOne(tradingDetails);
@@ -641,9 +641,9 @@ namespace LETS.Controllers
                         { "Account.UserName", username }
                     }).ToListAsync();
 
-                    if (!userByUsername[0].About.ImageId.Equals("586a7d67cf43d7340cb54670"))
+                    if (!userByUsername[0].Account.ImageId.Equals("586a7d67cf43d7340cb54670"))
                     {
-                        await DeleteImage(userByUsername[0].About.ImageId);
+                        await DeleteImage(userByUsername[0].Account.ImageId);
                     }
 
                     var options = new GridFSUploadOptions
@@ -653,7 +653,7 @@ namespace LETS.Controllers
 
                     var imageId = await DatabaseContext.ProfilePicturesBucket.UploadFromStreamAsync(file.FileName, file.InputStream, options);
 
-                    userByUsername[0].About.ImageId = imageId.ToString();
+                    userByUsername[0].Account.ImageId = imageId.ToString();
                     await DatabaseContext.RegisteredUsers.ReplaceOneAsync(r => r.Account.UserName == userByUsername[0].Account.UserName, userByUsername[0]);
                 }
             }
@@ -669,7 +669,7 @@ namespace LETS.Controllers
                     }).ToListAsync();
             try
             {
-                var imageId = userByUsername[0].About.ImageId;
+                var imageId = userByUsername[0].Account.ImageId;
 
                 var stream = await DatabaseContext.ProfilePicturesBucket.OpenDownloadStreamAsync(new ObjectId(imageId));
                 var contentType = stream.FileInfo.Metadata["contentType"].AsString;

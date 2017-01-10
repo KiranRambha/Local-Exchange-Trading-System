@@ -298,6 +298,8 @@
     <Content Include="Content\images\DefaultProfile.jpg" />
     <Content Include="Content\images\KiranRambha.jpg" />
     <Content Include="Content\images\rhul.jpg" />
+    <Content Include="Content\images\RoyalHolloway.jpg" />
+    <Content Include="Content\images\RoyalHolloway1.jpg" />
     <Content Include="Content\lets\pages\userProfile.css">
       <DependentUpon>userProfile.less</DependentUpon>
     </Content>
