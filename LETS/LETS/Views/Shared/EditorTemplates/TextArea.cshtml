@@ -1,0 +1,50 @@
+﻿@model string
+
+@{
+    //Build up the data dictionary for variables to be used in the HTML
+    var dataDictionary = new Dictionary<string, object>();
+    var inputClass = ViewData["inputclass"] != null ? ViewData["inputclass"] : "col-xs-12";
+
+    //Add the required validation message if present
+    if (ViewData.ContainsKey("required_message") && ViewData["required_message"] != null)
+    {
+        dataDictionary.Add("required", "true");
+        dataDictionary.Add("data-val-required", ViewData["required_message"]);
+    }
+
+    //Add the core input attributes
+    dataDictionary.Add("type", "text");
+    dataDictionary.Add("class", "form-control");
+    dataDictionary.Add("placeholder", ViewData.ContainsKey("placeholder") && ViewData["placeholder"] != null ? ViewData["placeholder"].ToString() : "");
+
+    //Angular model
+    dataDictionary.Add("ng-model", Html.NameForModel().ToString());
+    var modelValue = "";
+    if (Model != null)
+    {
+        modelValue = Html.NameForModel().ToString() + "=" + "'" + Model.ToString() + "'";
+    }
+
+    var errorMessageId = string.Concat(Html.IdForModel().ToString(), "_Error_Block");
+}
+<div class="row">
+    <div class="form-group @(ViewData["class"] != null ? ViewData["class"] : "col-xs-12") @(ViewData.ModelState != null && !ViewData.ModelState.IsValid && ViewData.ModelState[Html.NameForModel().ToString()] != null && ViewData.ModelState[Html.NameForModel().ToString()].Errors.Any() ? "has-error" : "")">
+        <div ng-init="@modelValue" class="row">
+            <div class="col-xs-12">
+                @Html.LabelFor(m => m, ViewData.ContainsKey("label") && ViewData["label"] != null ? ViewData["label"].ToString() : Html.NameForModel().ToString())
+                @if (ViewData.ContainsKey("subtext") && ViewData["subtext"] != null)
+                {
+                    <p>@ViewData["subtext"]</p>
+                }
+            </div>
+            <div class="textarea @inputClass">
+                @Html.TextAreaFor(m => m, dataDictionary)
+            </div>
+        </div>
+        <div class="error-block">
+            <div id="@errorMessageId" class="error-message" role="alert">
+                <label>@Html.ValidationMessageFor(model => model, String.Empty)</label>
+            </div>
+        </div>
+    </div>
+</div>

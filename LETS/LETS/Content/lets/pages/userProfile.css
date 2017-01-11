@@ -235,3 +235,28 @@
     font-size: 13px !important;
   }
 }
+.modal .modal-dialog .modal-content {
+  background-color: #FAFAFA;
+}
+.modal .modal-dialog .modal-content .form-group .form-control {
+  background-color: #FAFAFA;
+}
+#CreateNewRequestModal .modal-content h4 {
+  margin: 0px !important;
+}
+#CreateNewRequestModal .modal-content button.close {
+  margin: 6px 0px !important;
+}
+#NewRequestTags {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+#NewRequestTags .request-tag {
+  margin-right: 10px;
+}
+#NewRequestTags .request-tag button.close {
+  margin: 0px !important;
+  margin-left: 5px !important;
+  margin-top: -1px !important;
+}

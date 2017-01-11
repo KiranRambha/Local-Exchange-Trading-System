@@ -13,6 +13,11 @@ $("input").on('blur', function () {
     $("form").validate().element(this);
 });
 
+$("textarea").on('blur', function () {
+    $(this).valid();
+    $("form").validate().element(this);
+});
+
 $("select").on('blur', function () {
     $(this).valid();
     $("form").validate().element(this);

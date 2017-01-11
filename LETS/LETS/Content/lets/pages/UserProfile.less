@@ -298,3 +298,45 @@
         font-size: 13px !important;
     }
 }
+
+.modal {
+    .modal-dialog {
+        .modal-content {
+            background-color: @brand-primary-50;
+
+            .form-group {
+                .form-control {
+                    background-color: @brand-primary-50;
+                }
+            }
+        }
+    }
+}
+
+#CreateNewRequestModal {
+    .modal-content {
+        h4 {
+            margin: 0px !important;
+        }
+
+        button.close {
+            margin: 6px 0px !important;
+        }
+    }
+}
+
+#NewRequestTags {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    .request-tag {
+        margin-right: 10px;
+
+        button.close {
+            margin: 0px !important;
+            margin-left: 5px !important;
+            margin-top: -1px !important;
+        }
+    }
+}

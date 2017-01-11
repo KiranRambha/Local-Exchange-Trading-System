@@ -154,7 +154,7 @@ namespace LETS.Models
         public List<string> Tags { get; set; }
 
         [Required]
-        public int? Budget { get; set; }
+        public string Budget { get; set; }
     }
 
     public class LetsUser

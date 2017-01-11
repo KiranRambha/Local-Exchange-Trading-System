@@ -6,7 +6,7 @@
   position: inherit !important;
   padding: 10px 0px;
   margin-top: 5px;
-  background-color: #FAFAFA;
+  background-color: #E0E0E0;
   border-radius: 5px;
 }
 .twitter-typeahead .tt-menu .tt-suggestion {
@@ -14,6 +14,6 @@
 }
 .twitter-typeahead .tt-menu .tt-suggestion:hover {
   background-color: #212121;
-  color: #FAFAFA;
+  color: #E0E0E0;
   cursor: pointer;
 }

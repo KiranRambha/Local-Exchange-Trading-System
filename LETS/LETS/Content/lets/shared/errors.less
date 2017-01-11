@@ -43,6 +43,19 @@
             margin-top: -28px;
             color: @brand-danger;
         }
+
+        .textarea {
+            textarea.form-control {
+                resize: none;
+                box-shadow: none;
+                border: 1px solid @brand-danger;
+
+                &:focus {
+                    border: 2px solid @brand-danger;
+                    box-shadow: none;
+                }
+            }
+        }
     }
 
     &.success {
@@ -77,6 +90,19 @@
             float: right;
             margin-top: -28px;
             color: @brand-success;
+        }
+
+        .textarea {
+            textarea.form-control {
+                resize: none;
+                box-shadow: none;
+                border: 1px solid @brand-success;
+
+                &:focus {
+                    border: 2px solid @brand-success;
+                    box-shadow: none;
+                }
+            }
         }
     }
 }

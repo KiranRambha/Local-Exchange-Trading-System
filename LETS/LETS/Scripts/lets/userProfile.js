@@ -1,4 +1,8 @@
-﻿function AccountSettings() {
+﻿$(document).ready(function () {
+    initTypeAhead();
+});
+
+function AccountSettings() {
     $("#account_settings_edit_button").slideUp();
     $(".user_details_table").slideUp();
     $.ajax({
@@ -101,4 +105,13 @@ function progressHandlingFunction(e) {
             $('.progress-bar').css('width', percentComplete + '%').attr('aria-valuenow', percentComplete);
         }
     }
+}
+
+function AddTag() {
+    var tag = $("#UserTradingDetails_Request_Tag").val();
+    var list = $(".tag").text();
+    if (tag != null && tag !== "" && list.indexOf(tag) < 0) {
+        $("#NewRequestTags").append("<div class=\"tag request-tag alert alert-info\" role=\"alert\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button><strong>" + tag + "</strong></div>");
+    }
+    $("#UserTradingDetails_Request_Tag").val("");
 }

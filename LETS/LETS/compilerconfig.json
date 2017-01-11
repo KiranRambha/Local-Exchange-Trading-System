@@ -70,5 +70,9 @@
   {
     "outputFile": "Content/lets/pages/userProfile.css",
     "inputFile": "Content/lets/pages/userProfile.less"
+  },
+  {
+    "outputFile": "Content/lets/shared/textarea.css",
+    "inputFile": "Content/lets/shared/textarea.less"
   }
 ]
