@@ -109,9 +109,70 @@ function progressHandlingFunction(e) {
 
 function AddTag() {
     var tag = $("#UserTradingDetails_Request_Tag").val();
-    var list = $(".tag").text();
-    if (tag != null && tag !== "" && list.indexOf(tag) < 0) {
+    var tags = [];
+
+    $('.tag').children('strong').each(function () {
+        tags.push(this.innerHTML);
+    });
+
+    if (tag != null && tag !== "" && jQuery.inArray(tag, tags) === -1) {
         $("#NewRequestTags").append("<div class=\"tag request-tag alert alert-info\" role=\"alert\"><button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button><strong>" + tag + "</strong></div>");
+        tags.push(tag);
     }
+
+    console.log(tags);
+
     $("#UserTradingDetails_Request_Tag").val("");
+}
+
+$("#create_request").on('submit', function (e) {
+    var tempFormData = $('#create_request').serializeArray();
+
+    var formData = new Array();
+
+    formData.push({ name: tempFormData[0].name, value: tempFormData[0].value });
+
+    formData.push({ name: "description", value: tempFormData[1].value });
+
+    formData.push({ name: "budget", value: tempFormData[2].value });
+
+    formData.push({ name: "tag", value: tempFormData[3].value });
+
+    var requestTags = [];
+
+    $('.tag').children('strong').each(function () {
+        requestTags.push(this.innerHTML);
+    });
+    
+    if (requestTags.length > 0) {
+        if ($('#create_request').valid()) {
+            formData.push({ name: "tags", value: requestTags });
+            formData = jQuery.param(formData);
+            e.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: "PostRequest",
+                data: formData,
+                success: function(data) {
+                    resetForm($('#create_request'));
+                    $('#create_request div').removeClass('success').removeClass('has-error');
+                    $('.tag').remove();
+                    $('#CreateNewRequestModal').modal('toggle');
+                }
+            });
+        }
+    } else {
+        e.preventDefault();
+    }
+});
+
+function resetForm($form) {
+    $form.find('input:text, input:password, input:file, select, textarea').val('');
+    $form.find('input:radio, input:checkbox').removeAttr('checked').removeAttr('selected');
+}
+
+function CloseNewRequest() {
+    resetForm($('#create_request'));
+    $('#create_request div').removeClass('success').removeClass('has-error');
+    $('.tag').remove();
 }

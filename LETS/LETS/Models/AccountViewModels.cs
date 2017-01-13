@@ -86,7 +86,7 @@ namespace LETS.Models
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Please enter a password")]
-        [RegularExpression(@"^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$", 
+        [RegularExpression(@"^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$",
             ErrorMessage = "Please enter at least eight characters, including upper, lower letters and numbers")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
@@ -103,11 +103,11 @@ namespace LETS.Models
         [DataType(DataType.Password)]
         [BsonIgnore]
         public string OldPassword { get; set; }
-        
+
         [RegularExpression(@"^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$", ErrorMessage = "Please enter at least eight characters, including upper, lower letters and numbers.")]
         [DataType(DataType.Password)]
         public string NewPassword { get; set; }
-        
+
         [Compare("NewPassword", ErrorMessage = "Please ensure that the password here matches the password that you provided above.")]
         [RegularExpression(@"^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$", ErrorMessage = "Please enter at least eight characters, including one letter, number and special character.")]
         [DataType(DataType.Password)]
@@ -130,15 +130,15 @@ namespace LETS.Models
 
         public List<string> Skills { get; set; }
 
-        public List<Request> Requests { get; set; }
+        public List<RequestPost> Requests { get; set; }
 
         [BsonIgnore]
-        public Request Request { get; set; }
+        public RequestPost Request { get; set; }
     }
 
-    public class Request
+    public class RequestPost
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
 
         [Required]
         public string Description { get; set; }
@@ -147,14 +147,15 @@ namespace LETS.Models
 
         public bool HasDeleted { get; set; }
 
-        [BsonIgnore]
-        [Required]
-        public string Tag { get; set; }
+        public bool HasCompleted { get; set; }
 
-        public List<string> Tags { get; set; }
+        [BsonIgnore]
+        public string Tag { get; set; }
 
         [Required]
         public string Budget { get; set; }
+
+        public List<string> Tags { get; set; }
     }
 
     public class LetsUser

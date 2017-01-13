@@ -412,7 +412,6 @@ namespace LETS.Controllers
                 UserPersonalDetails = userByUsername[0],
                 UserTradingDetails = userTradingDetails[0]
             };
-
             return View(letsUser);
         }
 
@@ -684,6 +683,46 @@ namespace LETS.Controllers
         public async Task DeleteImage(string imageId)
         {
             await DatabaseContext.ProfilePicturesBucket.DeleteAsync(new ObjectId(imageId));
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<bool> PostRequest(string description, string budget, string tags)
+        {
+            var username = User.Identity.Name;
+
+            var userByUsername = await DatabaseContext.RegisteredUsers.Find(new BsonDocument {
+                    { "Account.UserName", username }
+                }).ToListAsync();
+
+            var userTradingDetails = await DatabaseContext.LetsTradingDetails.Find(new BsonDocument {
+                    { "_id", userByUsername[0].Id }
+                }).ToListAsync();
+
+            userTradingDetails[0].Request = new RequestPost();
+
+            if (userTradingDetails[0].Requests == null)
+            {
+                userTradingDetails[0].Requests = new List<RequestPost>();
+            }
+
+            userTradingDetails[0].Request.Id = userTradingDetails[0].Requests.Count();
+            userTradingDetails[0].Request.HasDeleted = false;
+            userTradingDetails[0].Request.HasCompleted = false;
+            userTradingDetails[0].Request.Date = DateTime.Now;
+            userTradingDetails[0].Request.Description = description;
+            userTradingDetails[0].Request.Budget = budget;
+
+            var tagArray = tags.Split(',');
+            var tagList = new List<string>(tagArray.Length);
+            tagList.AddRange(tagArray);
+            tagList.Reverse();
+
+            userTradingDetails[0].Request.Tags = tagList;
+            userTradingDetails[0].Requests.Add(userTradingDetails[0].Request);
+
+            await DatabaseContext.LetsTradingDetails.ReplaceOneAsync(r => r.Id == userTradingDetails[0].Id, userTradingDetails[0]);
+            return true;
         }
     }
 }

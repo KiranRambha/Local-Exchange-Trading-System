@@ -2,12 +2,13 @@
 @model LetsUser
 
 <div id="CreateNewRequestModal" class="modal fade" role="dialog" data-backdrop="static">
-    @using (Html.BeginForm("ChangeProfilePicture", "Account", FormMethod.Post, new { id = "create_request", name = "form", novalidate = "", enctype = "multipart/form-data" }))
+    @using (Html.BeginForm("PostRequest", "Account", FormMethod.Post, new { id = "create_request", name = "form", novalidate = "" }))
     {
+        @Html.AntiForgeryToken()
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <button type="button" class="close" data-dismiss="modal" onclick="return CloseNewRequest();">&times;</button>
                     <h4 class="modal-title">Create a New Request</h4>
                 </div>
                 <div class="modal-body">
@@ -31,7 +32,7 @@
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-md-10">
-                                    @Html.EditorFor(m => m.UserTradingDetails.Request.Tag, "TypeAhead", new { label = "Add tags appropriate to your request", @class = "col-xs-12", @required_message = "Please add atleast one tag before submitting the request", @placeholder = "Gardening" })
+                                    @Html.EditorFor(m => m.UserTradingDetails.Request.Tag, "TypeAhead", new { label = "Add tags appropriate to your request", @class = "col-xs-12", @placeholder = "Gardening" })
                                 </div>
                                 <div class="col-md-2 add_skill">
                                     <button type="button" class="mdl-button mdl-js-button mdl-button--raised" onclick="return AddTag()">
@@ -40,16 +41,15 @@
                                 </div>
                             </div>
                         </div>
-
                         <div id="NewRequestTags" class="form-group">
                         </div>
                     </fieldset>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--primary" data-dismiss="modal">
+                    <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--primary" data-dismiss="modal" onclick="return CloseNewRequest();">
                         <i class="fa fa-times" aria-hidden="true"></i> Close
                     </button>
-                    <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                    <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
                         <i class="fa fa-paper-plane" aria-hidden="true"></i> Post
                     </button>
                 </div>

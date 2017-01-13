@@ -80,6 +80,23 @@ body {
     background-position: center;
     background-size: cover;
 
+    .text-layer {
+        opacity: 0.7;
+        margin: auto;
+        background-color: whitesmoke;
+
+        h1 {
+            font-family: 'Bungee Shade', cursive;
+            text-align: center;
+            font-size: 50px;
+            color: darkmagenta;
+
+            @media (max-width: @screen-phone) {
+                font-size: 40px;
+            }
+        }
+    }
+
     .panel.panel-default {
         display: none;
     }
