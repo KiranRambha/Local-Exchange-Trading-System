@@ -455,6 +455,7 @@ namespace LETS.Controllers
 
             registeredUser.Id = userByUsername[0].Id;
             registeredUser.Account.UserName = userByUsername[0].Account.UserName;
+            registeredUser.Account.ImageId = userByUsername[0].Account.ImageId;
             registeredUser.Account.Password = userByUsername[0].Account.Password;
             registeredUser.Account.ConfirmPassword = userByUsername[0].Account.Password;
             ModelState.Clear();
@@ -640,7 +641,7 @@ namespace LETS.Controllers
                         { "Account.UserName", username }
                     }).ToListAsync();
 
-                    if (!userByUsername[0].Account.ImageId.Equals("586a7d67cf43d7340cb54670"))
+                    if (userByUsername[0].Account.ImageId != null && !userByUsername[0].Account.ImageId.Equals("586a7d67cf43d7340cb54670"))
                     {
                         await DeleteImage(userByUsername[0].Account.ImageId);
                     }

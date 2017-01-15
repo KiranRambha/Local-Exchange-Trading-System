@@ -9,7 +9,7 @@ namespace LETS
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jQueryLib/jquery-{version}.js"));
+                        "~/Scripts/jQueryLib/jquery-3.1.1.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jQueryLib/jquery.validate*"));
@@ -37,7 +37,7 @@ namespace LETS
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/theme/bootstrap.css",
                       "~/Content/mdl/material.css",
-                      "~/Content/fontawesome/less/font-awesome.css",
+                      //"~/Content/fontawesome/less/font-awesome.css",
                       "~/Content/site.css"));
 
             bundles.Add(new StyleBundle("~/Content/customSharedCSS").IncludeDirectory(

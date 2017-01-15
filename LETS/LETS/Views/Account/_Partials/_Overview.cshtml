@@ -1,9 +1,30 @@
-﻿<div class="form-body">
+﻿@using LETS.Models
+@model LetsUser
+@{
+    Model.UserTradingDetails.Requests.Reverse();
+}
+
+<div class="form-body">
     <button type="button" data-toggle="modal" data-target="#CreateNewRequestModal" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent pull-right mobile-request-button">
         <i class="fa fa-plus fa-fw" aria-hidden="true"></i> Create New Request
     </button>
     @Html.Partial("_Partials/_CreateNewRequestPartial")
 
     <h4 class="form-section"><i class="fa fa-home fa-fw" aria-hidden="true"></i> Overview</h4>
-    <h5>Nothing to show here</h5>
+    @foreach (var request in Model.UserTradingDetails.Requests)
+    {
+        <div class="mdl-textfield--full-width mdl-card mdl-shadow--2dp mg-bt-10 auto-min-height">
+            <div class="mdl-card__title pd-b-8">
+                <h2 class="mdl-card__title-text">@(request.Description.Length > 100 ? request.Description.Substring(0, 100) + "..." : request.Description)</h2>
+            </div>
+            <div class="mdl-card__supporting-text mdl-textfield--full-width pd-t-4">
+                @request.Date.ToString("F")
+            </div>
+            <div class="mdl-card__actions mdl-card--border">
+                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                    Expand
+                </a>
+            </div>
+        </div>
+    }
 </div>
