@@ -648,6 +648,8 @@
     <Content Include="Views\Account\_Partials\_ChangeProfilePicture.cshtml" />
     <Content Include="Views\Account\_Partials\_CreateNewRequestPartial.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\TextArea.cshtml" />
+    <Content Include="Views\Account\ExpandedRequest.cshtml" />
+    <Content Include="Views\Account\NewPostedRequest.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

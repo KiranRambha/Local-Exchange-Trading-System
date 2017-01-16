@@ -1,0 +1,34 @@
+﻿@using LETS.Models
+@model LetsUser
+
+@{
+    Layout = null;
+
+    var request = Model.UserTradingDetails.Requests.Last();
+}
+
+<div id="@string.Concat(Model.UserPersonalDetails.Account.UserName, "__request__", request.Id)" class="mdl-textfield--full-width mdl-card mdl-shadow--2dp mg-bt-10 auto-min-height post-card new_posted_request temp_hide">
+    <div class="mdl-card__title pd-b-8 request-title">
+        <div class="row">
+            <div class="col-sm-8">
+                <h2 class="mdl-card__title-text">@(request.Title.Length > 100 ? request.Title.Substring(0, 100) + "..." : request.Title)</h2>
+            </div>
+            <div class="col-sm-4">
+                <span class="mdl-chip budget-chip pull-right">
+                    <span class="mdl-chip__text"><strong><i class="fa fa-diamond fa-fw" aria-hidden="true"></i> @request.Budget</strong></span>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="mdl-card__supporting-text mdl-textfield--full-width pd-t-4">
+        @request.Date.ToString("F")
+    </div>
+    <div class="mdl-card__actions mdl-card--border">
+        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" onclick='return UserRequestExpand("@Model.UserPersonalDetails.Account.UserName", "@request.Id");'>
+            Expand
+        </a>
+        <span class="mdl-chip tag-chip pull-right">
+            <span class="mdl-chip__text"><strong>@request.Tags.Last()</strong></span>
+        </span>
+    </div>
+</div>

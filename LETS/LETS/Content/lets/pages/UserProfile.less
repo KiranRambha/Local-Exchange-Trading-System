@@ -340,3 +340,61 @@
         }
     }
 }
+
+.mdl-card.post-card {
+    background-color: @brand-primary-300;
+
+    .mdl-button {
+        &:hover {
+            text-decoration: none;
+        }
+    }
+
+    .mdl-card__title.request-title {
+        display: block;
+    }
+}
+
+.mdl-chip {
+    &.tag-chip {
+        background-color: @brand-secondary-a400;
+
+        &:active {
+            background-color: @brand-secondary-a700;
+        }
+
+        @media (max-width: @screen-phone) {
+            width: 100%;
+            text-align: center;
+        }
+    }
+
+    &.budget-chip {
+        background-color: #F0AD4E;
+
+        &:active {
+            background-color: #F0AD4E;
+        }
+
+        @media (max-width: @screen-phone) {
+            text-align: center;
+            float: left !important;
+        }
+    }
+}
+
+#ExpandedRequest {
+    .modal-content {
+        h4 {
+            margin: 0px !important;
+        }
+
+        button.close {
+            margin: 6px 0px !important;
+        }
+    }
+}
+
+.new_posted_request.temp_hide {
+    display: none;
+}

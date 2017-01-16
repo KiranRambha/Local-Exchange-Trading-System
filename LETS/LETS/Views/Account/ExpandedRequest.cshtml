@@ -1,0 +1,68 @@
+﻿@using LETS.Models
+@model RequestPost
+@{
+    Layout = "";
+    Model.Tags.Reverse();
+}
+<div id="ExpandedRequest" class="modal fade" role="dialog" data-backdrop="static">
+    @using (Html.BeginForm("PostRequest", "Account", FormMethod.Post, new { id = "expanded_request", name = "form", novalidate = "" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" onclick="return CloseNewRequest();">&times;</button>
+                    <h4 class="modal-title">@Html.DisplayFor(model => model.Title)</h4>
+                </div>
+                <div class="modal-body">
+                    <fieldset>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <label>Description</label>
+                            </div>
+                            <div class="col-xs-12">
+                                <p>@Html.DisplayFor(model => model.Description)</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <label>Budget</label>
+                            </div>
+                            <div class="col-xs-12">
+                                <span class="mdl-chip budget-chip width-mobile-100">
+                                    <span class="mdl-chip__text"><strong><i class="fa fa-diamond fa-fw" aria-hidden="true"></i> @Model.Budget</strong></span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <label>Tags</label>
+                            </div>
+                            <div class="col-xs-12">
+                                @foreach (var tag in @Model.Tags)
+                                {
+                                    <span class="mdl-chip tag-chip">
+                                        <span class="mdl-chip__text"><strong>@tag</strong></span>
+                                    </span>
+                                }
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <strong class="pull-right">@Html.DisplayFor(model => model.Date)</strong>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--primary" data-dismiss="modal">
+                        <i class="fa fa-times" aria-hidden="true"></i> Close
+                    </button>
+                    @*<button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                            <i class="fa fa-paper-plane" aria-hidden="true"></i> Post
+                        </button>*@
+                </div>
+            </div>
+        </div>
+    }
+</div>

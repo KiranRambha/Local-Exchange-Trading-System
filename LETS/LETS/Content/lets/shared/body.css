@@ -99,3 +99,19 @@ body .form-group {
 .pd-t-4 {
   padding-top: 4px;
 }
+.loading {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 70px;
+  color: #FAFAFA;
+}
+.width-100 {
+  width: 100% !important;
+}
+@media (max-width: 480px) {
+  .width-mobile-100 {
+    width: 100%;
+  }
+}

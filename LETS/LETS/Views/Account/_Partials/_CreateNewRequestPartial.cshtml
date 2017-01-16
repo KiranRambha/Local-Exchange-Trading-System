@@ -16,7 +16,7 @@
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-md-12">
-                                    @Html.EditorFor(m => m.UserTradingDetails.Request.Description, "TextArea", new { label = "What is your request?", @class = "col-xs-12", @required_message = "You cannot post a request without explaining it.", @placeholder = "Explain your request in detail" })
+                                    @Html.EditorFor(m => m.UserTradingDetails.Request.Title, "Text", new { label = "What the title of the request?", @class = "col-xs-12", @required_message = "Please select a title for your request", @placeholder = "Title of the request" })
                                 </div>
                             </div>
                         </div>
@@ -24,7 +24,15 @@
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-md-12">
-                                    @Html.EditorFor(m => m.UserTradingDetails.Request.Budget, "Text", new { label = "What is the budget?", @class = "col-xs-12", @required_message = "Please provide the maximum LETS credit you are willing to spend on this request", @placeholder = "41.99" })
+                                    @Html.EditorFor(m => m.UserTradingDetails.Request.Description, "TextArea", new {label = "What is your request?", @class = "col-xs-12", @required_message = "You cannot post a request without explaining it.", @placeholder = "Explain your request in detail"})
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    @Html.EditorFor(m => m.UserTradingDetails.Request.Budget, "Text", new {label = "What is the budget?", @class = "col-xs-12", @required_message = "Please provide the maximum LETS credit you are willing to spend on this request", @placeholder = "41.99"})
                                 </div>
                             </div>
                         </div>
@@ -32,7 +40,7 @@
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-md-10">
-                                    @Html.EditorFor(m => m.UserTradingDetails.Request.Tag, "TypeAhead", new { label = "Add tags appropriate to your request", @class = "col-xs-12", @placeholder = "Gardening" })
+                                    @Html.EditorFor(m => m.UserTradingDetails.Request.Tag, "TypeAhead", new {label = "Add tags appropriate to your request", @class = "col-xs-12", @placeholder = "Gardening"})
                                 </div>
                                 <div class="col-md-2 add_skill">
                                     <button type="button" class="mdl-button mdl-js-button mdl-button--raised" onclick="return AddTag()">

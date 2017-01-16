@@ -117,3 +117,22 @@ body {
 .pd-t-4 {
     padding-top: 4px;
 }
+
+.loading {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 70px;
+    color: @brand-primary-50;
+}
+
+.width-100 {
+    width: 100% !important;
+}
+
+.width-mobile-100 {
+    @media (max-width: @screen-phone) {
+        width: 100%;
+    }
+}

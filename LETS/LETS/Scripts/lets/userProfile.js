@@ -71,27 +71,27 @@ function removeSkill(button) {
 }
 
 function UploadDocument() {
-    var form = document.getElementById('change_avatar');
-    if ($('#change_avatar').valid()) {
+    var form = document.getElementById("change_avatar");
+    if ($("#change_avatar").valid()) {
         var formdata = new FormData(form); //FormData object
-        var fileInput = document.getElementById('fileUpload');
+        var fileInput = document.getElementById("fileUpload");
         //Iterating through each files selected in fileInput
-        for (i = 0; i < fileInput.files.length; i++) {
+        for (var i = 0; i < fileInput.files.length; i++) {
             //Appending each file to FormData object
             formdata.append(fileInput.files[i].name, fileInput.files[i]);
         }
         //Creating an XMLHttpRequest and sending
         var xhr = new XMLHttpRequest();
-        xhr.open('POST', 'ChangeProfilePicture');
+        xhr.open("POST", "ChangeProfilePicture");
         if (xhr.upload) {
-            xhr.upload.addEventListener('progress', progressHandlingFunction, false);
+            xhr.upload.addEventListener("progress", progressHandlingFunction, false);
         }
         xhr.send(formdata);
         xhr.onreadystatechange = function () {
             if (xhr.readyState == 4 && xhr.status == 200 && xhr.responseURL.indexOf("500") < 0) {
                 location.reload();
             } else {
-                $('.progress-bar').css('width', '0%').attr('aria-valuenow', 0);
+                $(".progress-bar").css("width", "0%").attr("aria-valuenow", 0);
             }
         }
     }
@@ -102,7 +102,7 @@ function progressHandlingFunction(e) {
     if (e.lengthComputable) {
         if (e.lengthComputable) {
             var percentComplete = (e.loaded / e.total) * 100;
-            $('.progress-bar').css('width', percentComplete + '%').attr('aria-valuenow', percentComplete);
+            $(".progress-bar").css("width", percentComplete + "%").attr("aria-valuenow", percentComplete);
         }
     }
 }
@@ -111,7 +111,7 @@ function AddTag() {
     var tag = $("#UserTradingDetails_Request_Tag").val();
     var tags = [];
 
-    $('.tag').children('strong').each(function () {
+    $(".tag").children("strong").each(function () {
         tags.push(this.innerHTML);
     });
 
@@ -125,27 +125,37 @@ function AddTag() {
     $("#UserTradingDetails_Request_Tag").val("");
 }
 
-$("#create_request").on('submit', function (e) {
-    var tempFormData = $('#create_request').serializeArray();
+$("#create_request").on("submit", function (e) {
+    var tempFormData = $("#create_request").serializeArray();
 
     var formData = new Array();
 
     formData.push({ name: tempFormData[0].name, value: tempFormData[0].value });
 
-    formData.push({ name: "description", value: tempFormData[1].value });
+    formData.push({ name: "title", value: tempFormData[1].value });
 
-    formData.push({ name: "budget", value: tempFormData[2].value });
+    formData.push({ name: "description", value: tempFormData[2].value });
 
-    formData.push({ name: "tag", value: tempFormData[3].value });
+    formData.push({ name: "budget", value: tempFormData[3].value });
+
+    formData.push({ name: "tag", value: tempFormData[4].value });
 
     var requestTags = [];
 
-    $('.tag').children('strong').each(function () {
+    $(".tag").children("strong").each(function () {
         requestTags.push(this.innerHTML);
     });
     
     if (requestTags.length > 0) {
-        if ($('#create_request').valid()) {
+        $("#CreateNewRequestModal").modal("toggle");
+
+        $("body").append("<div id = \"spinner_overlay\" class=\"modal-backdrop fade in\"></div>");
+
+        $("body").addClass("modal-open");
+
+        $("#spinner_overlay").html("<div class=\"loading\"><i class='fa fa-refresh fa-spin'></i></div>");
+
+        if ($("#create_request").valid()) {
             formData.push({ name: "tags", value: requestTags });
             formData = jQuery.param(formData);
             e.preventDefault();
@@ -153,11 +163,13 @@ $("#create_request").on('submit', function (e) {
                 type: "POST",
                 url: "PostRequest",
                 data: formData,
-                success: function(data) {
-                    resetForm($('#create_request'));
-                    $('#create_request div').removeClass('success').removeClass('has-error');
-                    $('.tag').remove();
-                    $('#CreateNewRequestModal').modal('toggle');
+                success: function (partialView) {
+                    $(".personal_requests").prepend(partialView);
+                    resetForm($("#create_request"));
+                    $("#create_request div").removeClass("success").removeClass("has-error");
+                    $(".tag").remove();
+                    $("#spinner_overlay").remove();
+                    $(".new_posted_request").show("slow");
                 }
             });
         }
@@ -167,12 +179,30 @@ $("#create_request").on('submit', function (e) {
 });
 
 function resetForm($form) {
-    $form.find('input:text, input:password, input:file, select, textarea').val('');
-    $form.find('input:radio, input:checkbox').removeAttr('checked').removeAttr('selected');
+    $form.find("input:text, input:password, input:file, select, textarea").val("");
+    $form.find("input:radio, input:checkbox").removeAttr("checked").removeAttr("selected");
 }
 
 function CloseNewRequest() {
-    resetForm($('#create_request'));
-    $('#create_request div').removeClass('success').removeClass('has-error');
-    $('.tag').remove();
+    resetForm($("#create_request"));
+    $("#create_request div").removeClass("success").removeClass("has-error");
+    $(".tag").remove();
+}
+
+function UserRequestExpand(username, postId) {
+    $("#ExpandedRequest").remove();
+    $("body").append("<div id = \"spinner_overlay\" class=\"modal-backdrop fade in\"></div>");
+    $("body").addClass("modal-open");
+    $("#spinner_overlay").html("<div class=\"loading\"><i class='fa fa-refresh fa-spin'></i></div>");
+    $.ajax({
+        type: "POST",
+        url: "ExpandPost",
+        data: { username: username, postId: postId },
+        cache: false,
+        success: function (partialView) {
+            $(".container.body-content").append(partialView);
+            $("#ExpandedRequest").modal("toggle");
+            $("#spinner_overlay").remove();
+        }
+    });
 }
