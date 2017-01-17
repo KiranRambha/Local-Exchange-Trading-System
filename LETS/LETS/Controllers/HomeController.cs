@@ -17,6 +17,12 @@ namespace LETS.Controllers
         }
 
         [HttpGet]
+        public ActionResult Home()
+        {
+            return View();
+        }
+
+        [HttpGet]
         public ActionResult ComponentsGuide()
         {
             return View();
