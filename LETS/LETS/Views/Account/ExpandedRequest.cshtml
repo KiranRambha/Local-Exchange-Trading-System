@@ -24,7 +24,7 @@
                                 <p>@Html.DisplayFor(model => model.Description)</p>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="form-group row">
                             <div class="col-xs-12">
                                 <label>Budget</label>
                             </div>
@@ -49,7 +49,7 @@
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
-                                <strong class="pull-right">@Html.DisplayFor(model => model.Date)</strong>
+                                <strong class="pull-right">@Model.Date.ToString("F")</strong>
                             </div>
                         </div>
                     </fieldset>

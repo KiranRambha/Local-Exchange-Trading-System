@@ -27,8 +27,16 @@
         <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" onclick='return UserRequestExpand("@Model.UserPersonalDetails.Account.UserName", "@request.Id");'>
             Expand
         </a>
-        <span class="mdl-chip tag-chip pull-right">
-            <span class="mdl-chip__text"><strong>@request.Tags.Last()</strong></span>
-        </span>
+        <div class="width-mobile-100 pull-right">
+            <span class="mdl-chip tag-chip">
+                <span class="mdl-chip__text"><strong>@request.Tags.Last()</strong></span>
+            </span>
+            @if (request.Tags.Count > 1)
+            {
+                <span class="mdl-chip tag-chip">
+                    <span class="mdl-chip__text"><strong>+@(request.Tags.Count - 1)</strong></span>
+                </span>
+            }
+        </div>
     </div>
 </div>
