@@ -166,4 +166,27 @@ namespace LETS.Models
         public RegisterUserViewModel UserPersonalDetails;
         public LetsTradingDetails UserTradingDetails;
     }
+
+    public class UsersTimeLinePost
+    {
+        //[BsonIgnore]
+        //public string ImageId { get; set; }
+
+        [BsonIgnore]
+        public string UserName { get; set; }
+
+        [BsonIgnore]
+        public string FirstName { get; set; }
+
+        [BsonIgnore]
+        public string LastName { get; set; }
+
+        [BsonIgnore]
+        public RequestPost Request { get; set; }
+    }
+
+    public class UserTimeLinePostsList
+    {
+        public List<UsersTimeLinePost> UserTimelinePostsList { get; set; }
+    }
 }

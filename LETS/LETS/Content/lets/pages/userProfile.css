@@ -270,10 +270,10 @@
   display: block;
 }
 .mdl-chip.tag-chip {
-  background-color: #00E676;
+  background-color: #9E9E9E;
 }
 .mdl-chip.tag-chip:active {
-  background-color: #00C853;
+  background-color: #9E9E9E;
 }
 @media (max-width: 480px) {
   .mdl-chip.tag-chip {

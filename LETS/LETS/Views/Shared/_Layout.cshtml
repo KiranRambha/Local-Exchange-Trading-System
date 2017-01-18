@@ -41,7 +41,7 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li class="@(ViewBag.Title == "Home" ? "active" : "")">@Html.ActionLink("Home", "Home", new { controller = "Home" }, new { @class = "mdl-js-button mdl-js-ripple-effect" })</li>
+                    <li class="@(ViewBag.Title == "Home" ? "active" : "")">@Html.ActionLink("Timeline", "Home", new { controller = "Home" }, new { @class = "mdl-js-button mdl-js-ripple-effect" })</li>
                     <li class="@(ViewBag.Title == "Components" ? "active" : "")">@Html.ActionLink("Components", "ComponentsGuide", new { controller = "Home" }, new { @class = "mdl-js-button mdl-js-ripple-effect" })</li>
                 </ul>
                 @Html.Partial("_Partials/_LoginPartial")
