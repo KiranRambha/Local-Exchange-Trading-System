@@ -74,5 +74,9 @@
   {
     "outputFile": "Content/lets/shared/textarea.css",
     "inputFile": "Content/lets/shared/textarea.less"
+  },
+  {
+    "outputFile": "Content/lets/pages/timeline.css",
+    "inputFile": "Content/lets/pages/timeline.less"
   }
 ]

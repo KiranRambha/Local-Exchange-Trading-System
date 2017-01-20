@@ -2,45 +2,42 @@
 @model UserTimeLinePostsList
 @{
     ViewBag.Title = "Home";
+    ViewBag.stylesheet = "timeline.css";
 }
 
 <div class="form-body">
     <h3 class="form-section"><i class="fa fa-rss fa-fw" aria-hidden="true"></i>Timeline</h3>
     <hr />
-    <div class="row">
-        <div class="personal_requests col-xs-12">
-            @foreach (var post in Model.UserTimelinePostsList)
-            {
-                <div id="@string.Concat(post.UserName, "__request__", post.Request.Id)" class="mdl-textfield--full-width mdl-card mdl-shadow--2dp mg-bt-10 auto-min-height post-card temp_hide">
-                    <div class="mdl-card__actions mdl-card--border">
-                        <h5>@post.FirstName @post.LastName</h5>
-                        <div class="mdl-card__supporting-text mdl-textfield--full-width pd-t-4">
-                            @post.Request.Date.ToString("F")
-                        </div>
-                    </div>
-                    <div class="mdl-card__title pd-b-8 request-title">
-                        <div class="col-xs-12">
-                            <div class="row">
-                                <div class="col-xs-8">
-                                    <h2 class="mdl-card__title-text">@(post.Request.Title.Length > 100 ? post.Request.Title.Substring(0, 100) + "..." : post.Request.Title)</h2>
-                                </div>
-                                <div class="col-xs-4">
-                                    <span class="mdl-chip budget-chip pull-right">
-                                        <span class="mdl-chip__text"><strong><i class="fa fa-diamond fa-fw" aria-hidden="true"></i> @post.Request.Budget</strong></span>
-                                    </span>
-                                </div>
+    <div class="timeline__posts row">
+        @foreach (var post in Model.UserTimelinePostsList)
+        {
+            <div class="col-md-4 post-position">
+                <div class="mdl-card timeline-card">
+                    <div class="mdl-card__username">
+                        <div class="row">
+                            <div class="col-xs-8">
+                                <label>@post.FirstName @post.LastName</label>
+                                <p class="date-posted">@post.Request.Date.ToString("F")</p>
+                            </div>
+                            <div class="col-xs-4">
+                                <span class="mdl-chip budget-chip pull-right">
+                                    <span class="mdl-chip__text"><strong><i class="fa fa-diamond fa-fw" aria-hidden="true"></i> @post.Request.Budget</strong></span>
+                                </span>
                             </div>
                         </div>
                     </div>
-                    <div class="mdl-card__actions mdl-card--border">
-                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" onclick='return UserRequestExpand("@post.UserName", "@post.Request.Id");'>
-                            Expand
-                        </a>
-                        <div class="width-mobile-100 pull-right">
+                    <div class="mdl-card__title">
+                        @(post.Request.Title.Length > 55 ? post.Request.Title.Substring(0, 55).TrimEnd() + "..." : post.Request.Title)
+                    </div>
+                    <div class="mdl-card__supporting-text">
+                        @(post.Request.Description.Length > 80 ? post.Request.Description.Substring(0, 80).TrimEnd() + "..." : post.Request.Description)
+                    </div>
+                    <div class="mdl-card__actions">
+                        <div class="width-mobile-100">
                             <span class="mdl-chip tag-chip">
                                 <span class="mdl-chip__text"><strong>@post.Request.Tags.Last()</strong></span>
                             </span>
-                            @if (post.Request.Tags.Count > 1)
+                            @if (@post.Request.Tags.Count > 1)
                             {
                                 <span class="mdl-chip tag-chip">
                                     <span class="mdl-chip__text"><strong>+@(post.Request.Tags.Count - 1)</strong></span>
@@ -49,7 +46,7 @@
                         </div>
                     </div>
                 </div>
-            }
-        </div>
+            </div>
+        }
     </div>
 </div>

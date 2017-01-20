@@ -63,6 +63,7 @@ namespace LETS.Controllers
                     {
                         var timelinePost = new UsersTimeLinePost
                         {
+                            ImageId = user.UserPersonalDetails.Account.ImageId,
                             UserName = user.UserPersonalDetails.Account.UserName,
                             FirstName = user.UserPersonalDetails.About.FirstName,
                             LastName = user.UserPersonalDetails.About.LastName,

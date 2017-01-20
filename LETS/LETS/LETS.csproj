@@ -329,6 +329,12 @@
     <Content Include="Content\images\rhul.jpg" />
     <Content Include="Content\images\RoyalHolloway.jpg" />
     <Content Include="Content\images\RoyalHolloway1.jpg" />
+    <Content Include="Content\lets\pages\timeline.css">
+      <DependentUpon>timeline.less</DependentUpon>
+    </Content>
+    <Content Include="Content\lets\pages\timeline.min.css">
+      <DependentUpon>timeline.css</DependentUpon>
+    </Content>
     <Content Include="Content\lets\pages\userProfile.css">
       <DependentUpon>userProfile.less</DependentUpon>
     </Content>
@@ -485,6 +491,7 @@
     <Content Include="Content\lets\pages\userProfile.less" />
     <Content Include="Content\lets\shared\typeAhead.less" />
     <Content Include="Content\lets\shared\textarea.less" />
+    <Content Include="Content\lets\pages\timeline.less" />
     <None Include="Content\Site.less" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />

@@ -169,8 +169,8 @@ namespace LETS.Models
 
     public class UsersTimeLinePost
     {
-        //[BsonIgnore]
-        //public string ImageId { get; set; }
+        [BsonIgnore]
+        public string ImageId { get; set; }
 
         [BsonIgnore]
         public string UserName { get; set; }
