@@ -70,18 +70,21 @@ body .form-group {
 }
 .container.body-content.Index .text-layer {
   opacity: 0.7;
-  margin: auto 0;
+  /*margin: auto 0;*/
   background-color: whitesmoke;
+  position: absolute;
+  bottom: 15%;
+  width: 100%;
 }
 .container.body-content.Index .text-layer h1 {
-  font-family: 'Bungee Shade', cursive;
+  font-family: 'Bungee Inline', cursive;
   text-align: center;
   font-size: 50px;
-  color: darkmagenta;
+  color: #FF6D00;
 }
 @media (max-width: 480px) {
   .container.body-content.Index .text-layer h1 {
-    font-size: 40px;
+    font-size: 20px;
   }
 }
 .container.body-content.Index .panel.panel-default {

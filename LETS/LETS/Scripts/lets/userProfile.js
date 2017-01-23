@@ -145,7 +145,7 @@ $("#create_request").on("submit", function (e) {
     $(".tag").children("strong").each(function () {
         requestTags.push(this.innerHTML);
     });
-    
+
     if (requestTags.length > 0) {
         $("#CreateNewRequestModal").modal("toggle");
 
@@ -193,7 +193,7 @@ function UserRequestExpand(username, postId) {
     $("#ExpandedRequest").remove();
     $("body").append("<div id = \"spinner_overlay\" class=\"modal-backdrop fade in\"></div>");
     $("body").addClass("modal-open");
-    $("#spinner_overlay").html("<div class=\"loading\"><i class='fa fa-refresh fa-spin'></i></div>");
+    $("#spinner_overlay").html("<div class=\"loading\"><i class=\"fa fa-refresh fa-spin\" aria-hidden=\"true\"></i></div>");
     $.ajax({
         type: "POST",
         url: "ExpandPost",

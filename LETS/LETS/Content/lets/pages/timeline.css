@@ -58,3 +58,8 @@
 .timeline__posts .post-position {
   padding: 2.5px;
 }
+.timeline__posts .post-position:hover {
+  box-shadow: inset 0 0px 0px #616161, 0px 0px 10px #616161;
+  background-color: #E0E0E0;
+  cursor: pointer;
+}

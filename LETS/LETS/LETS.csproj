@@ -603,6 +603,7 @@
       <DependentUpon>register.es5.js</DependentUpon>
     </Content>
     <Content Include="Scripts\lets\register.js" />
+    <Content Include="Scripts\lets\timeline.js" />
     <Content Include="Scripts\lets\userProfile.js" />
     <Content Include="Scripts\mdl\material.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />

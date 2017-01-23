@@ -35,6 +35,7 @@ namespace LETS.Controllers
             usersTradingDetails.Remove(currentUserTradingDetails);
             userTimeLinePosts.UserTimelinePostsList = GetUserTimeListPosts(usersPersonalDetails, usersTradingDetails);
             userTimeLinePosts.UserTimelinePostsList.Reverse();
+            userTimeLinePosts.UserTimelinePostsList = userTimeLinePosts.UserTimelinePostsList.Take(12).ToList();
             return View(userTimeLinePosts);
         }
 
