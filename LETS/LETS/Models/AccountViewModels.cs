@@ -155,10 +155,21 @@ namespace LETS.Models
         [BsonIgnore]
         public string Tag { get; set; }
 
+        public List<string> Tags { get; set; }
+
         [Required]
         public string Budget { get; set; }
 
-        public List<string> Tags { get; set; }
+        [BsonIgnore]
+        public string Bid { get; set; }
+
+        public List<Bid> Bids;
+    }
+
+    public class Bid
+    {
+        public string Username { get; set; }
+        public int Amount { get; set; }
     }
 
     public class LetsUser

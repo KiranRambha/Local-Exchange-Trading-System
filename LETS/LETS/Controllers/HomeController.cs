@@ -6,6 +6,7 @@ using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using MongoDB.Bson;
 
 namespace LETS.Controllers
 {
@@ -94,6 +95,43 @@ namespace LETS.Controllers
                 return RedirectToAction("Index", "Home");
             }
             return View();
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> ExpandPost(string username, int postId)
+        {
+            var user = username;
+
+            var userByUsername = await DatabaseContext.RegisteredUsers.Find(new BsonDocument
+                {
+                    {"Account.UserName", user}
+                }).ToListAsync();
+
+            var userTradingDetails = await DatabaseContext.LetsTradingDetails.Find(new BsonDocument
+                {
+                    {"_id", userByUsername[0].Id}
+                }).ToListAsync();
+            
+            var userPost = new UsersTimeLinePost();
+            var post = userTradingDetails[0].Requests.ElementAt(postId);
+            userPost.FirstName = userByUsername[0].About.FirstName;
+            userPost.LastName = userByUsername[0].About.LastName;
+            userPost.UserName = userByUsername[0].Account.UserName;
+            userPost.Request = new RequestPost
+            {
+                Date = post.Date,
+                Budget = post.Budget,
+                Description = post.Description,
+                Tags = post.Tags,
+                Title = post.Title
+            };
+            return View("ExpandedRequest", userPost);
+        }
+
+        [HttpPost]
+        public void PostUserBid(int bid)
+        {
+            Console.WriteLine(bid);
         }
     }
 }

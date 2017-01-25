@@ -24,17 +24,6 @@
   font-size: 12px;
   color: #757575;
 }
-.timeline__posts .timeline-card .mdl-card__username .budget-chip {
-  background-color: #F0AD4E;
-}
-.timeline__posts .timeline-card .mdl-card__username .budget-chip:active {
-  background-color: #F0AD4E;
-}
-@media (max-width: 480px) {
-  .timeline__posts .timeline-card .mdl-card__username .budget-chip {
-    text-align: center;
-  }
-}
 .timeline__posts .timeline-card .mdl-card__title {
   font-size: 20px;
   padding: 0px 16px;
@@ -46,9 +35,6 @@
   position: absolute;
   bottom: 0;
   padding: 16px;
-}
-.timeline__posts .timeline-card .mdl-card__actions .mdl-chip.tag-chip {
-  background-color: #9E9E9E;
 }
 @media (max-width: 768px) {
   .timeline__posts .timeline-card .mdl-card__actions {
@@ -62,4 +48,39 @@
   box-shadow: inset 0 0px 0px #616161, 0px 0px 10px #616161;
   background-color: #E0E0E0;
   cursor: pointer;
+}
+.expanded-date-posted {
+  margin: 0px;
+  font-size: 12px;
+  color: #757575;
+  line-height: 1.5;
+}
+.mdl-chip.budget-chip {
+  background-color: #F0AD4E;
+}
+.mdl-chip.budget-chip:active {
+  background-color: #F0AD4E;
+}
+@media (max-width: 480px) {
+  .mdl-chip.budget-chip {
+    text-align: center;
+  }
+}
+.mdl-chip.tag-chip {
+  background-color: #9E9E9E;
+}
+@media (max-width: 480px) {
+  .mdl-chip.tag-chip {
+    text-align: center;
+    width: 100%;
+  }
+}
+.mdl-button.submit-bid-btn {
+  width: 100%;
+  margin-top: 23px;
+}
+@media (max-width: 480px) {
+  .mdl-button.submit-bid-btn {
+    margin: 0px;
+  }
 }

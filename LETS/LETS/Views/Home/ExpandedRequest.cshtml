@@ -1,0 +1,82 @@
+﻿@using LETS.Models
+@model UsersTimeLinePost
+@{
+    Layout = "";
+    Model.Request.Tags.Reverse();
+}
+<div id="ExpandedRequest" class="modal fade" role="dialog" data-backdrop="static">
+    @using (Html.BeginForm("PostRequest", "Account", FormMethod.Post, new { id = "expanded_request", name = "form", novalidate = "" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" onclick="return CloseNewRequest();">&times;</button>
+                    <label class="modal-title">@Model.FirstName @Model.LastName</label>
+                    <p class="expanded-date-posted">@Model.Request.Date.ToString("F")</p>
+                </div>
+                <div class="modal-body">
+                    <fieldset>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <h4 class="modal-title">@Html.DisplayFor(model => model.Request.Title)</h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <p>@Html.DisplayFor(model => model.Request.Description)</p>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-xs-12">
+                                <label>Budget</label>
+                            </div>
+                            <div class="col-xs-12">
+                                <span class="mdl-chip budget-chip width-mobile-100">
+                                    <span class="mdl-chip__text"><strong><i class="fa fa-diamond fa-fw" aria-hidden="true"></i> @Model.Request.Budget</strong></span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-xs-12">
+                                <label>Tags</label>
+                            </div>
+                            <div class="col-xs-12">
+                                @foreach (var tag in @Model.Request.Tags)
+                                {
+                                    <span class="mdl-chip tag-chip">
+                                        <span class="mdl-chip__text"><strong>@tag</strong></span>
+                                    </span>
+                                }
+                            </div>
+                        </div>
+                        @using (Html.BeginForm("PostUserBid", "Home", FormMethod.Post, new { id = "user_bid_form", name = "form", novalidate = "" }))
+                        {
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-sm-8">
+                                        @Html.EditorFor(m => m.Request.Bid, "Text", new { label = "What is your bid", @class = "col-xs-12", @required_message = "What is your bid.", @placeholder = "Enter your max. bid" })
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group col-xs-12 ">
+                                            <div class="row">
+                                                <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent submit-bid-btn">
+                                                    <i class="fa fa-paper-plane" aria-hidden="true"></i> Submit Bid
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </fieldset>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--primary" data-dismiss="modal">
+                        <i class="fa fa-times" aria-hidden="true"></i> Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    }
+</div>
