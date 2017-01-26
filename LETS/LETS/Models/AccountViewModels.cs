@@ -161,7 +161,7 @@ namespace LETS.Models
         public string Budget { get; set; }
 
         [BsonIgnore]
-        public string Bid { get; set; }
+        public float? Bid { get; set; }
 
         public List<Bid> Bids;
     }
@@ -169,7 +169,7 @@ namespace LETS.Models
     public class Bid
     {
         public string Username { get; set; }
-        public int Amount { get; set; }
+        public float Amount { get; set; }
     }
 
     public class LetsUser

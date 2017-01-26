@@ -123,15 +123,52 @@ namespace LETS.Controllers
                 Budget = post.Budget,
                 Description = post.Description,
                 Tags = post.Tags,
-                Title = post.Title
+                Title = post.Title,
+                Id = post.Id,
+                Bids = post.Bids
             };
             return View("ExpandedRequest", userPost);
         }
 
         [HttpPost]
-        public void PostUserBid(int bid)
+        public async Task<ActionResult> PostUserBid(string username, int postId, float bid)
         {
-            Console.WriteLine(bid);
+            var user = username;
+
+            var userByUsername = await DatabaseContext.RegisteredUsers.Find(new BsonDocument
+                {
+                    {"Account.UserName", user}
+                }).ToListAsync();
+
+            var userTradingDetails = await DatabaseContext.LetsTradingDetails.Find(new BsonDocument
+                {
+                    {"_id", userByUsername[0].Id}
+                }).ToListAsync();
+
+            var post = userTradingDetails[0].Requests.ElementAt(postId);
+
+            var userBid = new Bid
+            {
+                Username = User.Identity.Name,
+                Amount = bid
+            };
+
+            if (post.Bids == null)
+            {
+                post.Bids = new List<Bid>();
+            }
+
+            if (post.Bids.Find(item => item.Username.Equals(User.Identity.Name)) != null)
+            {
+                var existingBid = post.Bids.Find(item => item.Username.Equals(User.Identity.Name));
+                post.Bids.Remove(existingBid);
+            }
+
+            post.Bids.Add(userBid);
+
+            await DatabaseContext.LetsTradingDetails.ReplaceOneAsync(r => r.Id == userTradingDetails[0].Id, userTradingDetails[0]);
+
+            return null;
         }
     }
 }

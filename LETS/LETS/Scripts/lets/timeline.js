@@ -17,7 +17,7 @@ function gotoPreviousPage() {
 }
 
 function CloseNewRequest() {
-    resetForm($("#create_request"));
+    resetForm($("#expanded_request"));
     $("#create_request div").removeClass("success").removeClass("has-error");
     $(".tag").remove();
 }
@@ -42,4 +42,30 @@ function openPost(post) {
             $("#spinner_overlay").remove();
         }
     });
+}
+
+function submitBit() {
+    var tempFormData = $("#user_bid_form").serializeArray();
+
+    if ($('#user_bid_form').valid()) {
+        var postId = $("#user_bid_form").attr('class');
+        var postOwner = postId.substr(0, postId.indexOf("__"));
+        var temp = postOwner.concat("__request__");
+        var postDatabaseId = parseInt(postId.substr(temp.length));
+        var bid = parseFloat(tempFormData[1].value);
+        var formData = new Array();
+        formData.push({ name: tempFormData[0].name, value: tempFormData[0].value });
+        formData.push({ name: "username", value: postOwner });
+        formData.push({ name: "postId", value: postDatabaseId });
+        formData.push({ name: "bid", value:  bid });
+
+        $.ajax({
+            type: "POST",
+            url: "PostUserBid",
+            data: formData,
+            success: function (partialViewResult) {
+                console.log(partialViewResult);
+            }
+        });
+    }
 }

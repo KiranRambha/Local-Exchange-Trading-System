@@ -84,3 +84,14 @@
     margin: 0px;
   }
 }
+@media (min-width: 768px) {
+  #ExpandedRequest .modal-dialog {
+    width: 70%;
+  }
+}
+.modal .modal-dialog .modal-content {
+  background-color: #EEEEEE;
+}
+.modal .modal-dialog .modal-content .modal-header .close {
+  margin: 10px 0px;
+}

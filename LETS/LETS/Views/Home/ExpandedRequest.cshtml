@@ -5,9 +5,6 @@
     Model.Request.Tags.Reverse();
 }
 <div id="ExpandedRequest" class="modal fade" role="dialog" data-backdrop="static">
-    @using (Html.BeginForm("PostRequest", "Account", FormMethod.Post, new { id = "expanded_request", name = "form", novalidate = "" }))
-    {
-        @Html.AntiForgeryToken()
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -50,19 +47,44 @@
                                 }
                             </div>
                         </div>
-                        @using (Html.BeginForm("PostUserBid", "Home", FormMethod.Post, new { id = "user_bid_form", name = "form", novalidate = "" }))
+                        @using (Html.BeginForm("PostUserBid", "Home", FormMethod.Post, new { id = "user_bid_form", name = "form", novalidate = "", Class = string.Concat(Model.UserName, "__request__", Model.Request.Id) }))
                         {
+                            @Html.AntiForgeryToken()
                             <div class="form-group">
                                 <div class="row">
-                                    <div class="col-sm-8">
-                                        @Html.EditorFor(m => m.Request.Bid, "Text", new { label = "What is your bid", @class = "col-xs-12", @required_message = "What is your bid.", @placeholder = "Enter your max. bid" })
-                                    </div>
                                     <div class="col-sm-4">
+                                        @Html.EditorFor(m => m.Request.Bid, "Number", new { label = "What is your bid", @class = "col-xs-12", @required_message = "What is your bid.", @placeholder = "Enter your bid" })
+                                    </div>
+                                    <div class="col-sm-3">
                                         <div class="form-group col-xs-12 ">
                                             <div class="row">
-                                                <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent submit-bid-btn">
+                                                <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent submit-bid-btn" onclick="return submitBit();">
                                                     <i class="fa fa-paper-plane" aria-hidden="true"></i> Submit Bid
                                                 </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <div class="row">
+                                            <div class="form-group col-xs-12 ">
+                                                <div ng-init="" class="row">
+                                                    <div class="col-xs-12">
+                                                        <label>Users' Bids</label>
+                                                    </div>
+                                                    <div class="col-xs-12">
+                                                        @if (Model.Request.Bids != null && Model.Request.Bids.Count > 0)
+                                                        {
+                                                            foreach (var bid in Model.Request.Bids)
+                                                            {
+                                                                <p>@bid.Username: @bid.Amount</p>
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            <p id="no_bids">Be the first one to place a Bid.</p>
+                                                        }
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -78,5 +100,4 @@
                 </div>
             </div>
         </div>
-    }
 </div>
