@@ -95,3 +95,11 @@
 .modal .modal-dialog .modal-content .modal-header .close {
   margin: 10px 0px;
 }
+.mdl-chip.bid-chip {
+  width: 100%;
+  text-align: center;
+  background-color: #00E676;
+}
+.bid-chip.new-bid-chip.temp_hide {
+  display: none;
+}

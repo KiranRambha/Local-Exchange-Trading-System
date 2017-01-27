@@ -18,7 +18,7 @@ function gotoPreviousPage() {
 
 function CloseNewRequest() {
     resetForm($("#expanded_request"));
-    $("#create_request div").removeClass("success").removeClass("has-error");
+    $("#expanded_request div").removeClass("success").removeClass("has-error");
     $(".tag").remove();
 }
 
@@ -38,6 +38,7 @@ function openPost(post) {
         cache: false,
         success: function (partialView) {
             $(".container.body-content").append(partialView);
+            $.validator.unobtrusive.parse("#ExpandedRequest");
             $("#ExpandedRequest").modal("toggle");
             $("#spinner_overlay").remove();
         }
@@ -46,7 +47,7 @@ function openPost(post) {
 
 function submitBit() {
     var tempFormData = $("#user_bid_form").serializeArray();
-
+    event.preventDefault();
     if ($('#user_bid_form').valid()) {
         var postId = $("#user_bid_form").attr('class');
         var postOwner = postId.substr(0, postId.indexOf("__"));
@@ -58,14 +59,26 @@ function submitBit() {
         formData.push({ name: "username", value: postOwner });
         formData.push({ name: "postId", value: postDatabaseId });
         formData.push({ name: "bid", value:  bid });
-
         $.ajax({
             type: "POST",
             url: "PostUserBid",
             data: formData,
             success: function (partialViewResult) {
-                console.log(partialViewResult);
+                $("#no_bids").remove();
+                var id = $(partialViewResult).attr('id');
+                $("#"+id).slideUp("slow");
+                $("#"+id).remove();
+                $('.bids_holder').append(partialViewResult);
+                $('.new_bid_chip').slideDown("slow");
+                $('#Request_Bid').val(null);
+                $("#user_bid_form div").removeClass("success").removeClass("has-error");
             }
         });
     }
+}
+
+
+function resetForm($form) {
+    $form.find("input:text, input:password, input:file, select, textarea").val("");
+    $form.find("input:radio, input:checkbox").removeAttr("checked").removeAttr("selected");
 }

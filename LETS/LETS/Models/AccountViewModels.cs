@@ -158,7 +158,7 @@ namespace LETS.Models
         public List<string> Tags { get; set; }
 
         [Required]
-        public string Budget { get; set; }
+        public float? Budget { get; set; }
 
         [BsonIgnore]
         public float? Bid { get; set; }

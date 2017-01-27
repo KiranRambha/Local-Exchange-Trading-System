@@ -688,7 +688,7 @@ namespace LETS.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> PostRequest(string title, string description, string budget, string tags)
+        public async Task<ActionResult> PostRequest(string title, string description, float budget, string tags)
         {
             var username = User.Identity.Name;
 

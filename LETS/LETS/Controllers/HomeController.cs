@@ -168,7 +168,7 @@ namespace LETS.Controllers
 
             await DatabaseContext.LetsTradingDetails.ReplaceOneAsync(r => r.Id == userTradingDetails[0].Id, userTradingDetails[0]);
 
-            return null;
+            return View("UsersBidChip", userBid);
         }
     }
 }

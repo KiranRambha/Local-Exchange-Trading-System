@@ -90,6 +90,9 @@ body .form-group {
 .container.body-content.Index .panel.panel-default {
   display: none;
 }
+.mg-0 {
+  margin: 0px;
+}
 .mg-bt-10 {
   margin-bottom: 10px;
 }
@@ -117,4 +120,69 @@ body .form-group {
   .width-mobile-100 {
     width: 100%;
   }
+}
+/*.modal-body-touch {
+    min-height: 100px;
+    max-height: 330px;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+@media (min-height: 600px) {
+    .modal-body-touch {
+        max-height: 550px;
+    }
+}
+
+@media (min-height: 800px) {
+    .modal-body-touch {
+        max-height: 700px;
+    }
+}
+
+@media (min-height: 1000px) {
+    .modal-body-touch {
+        max-height: 900px;
+    }
+}
+
+@media (min-height: 1200px) {
+    .modal-body-touch-body {
+        max-height: 1100px;
+    }
+}*/
+/*@media only screen and (max-device-width:768px) {
+
+    body.modal-open {
+        // block scroll for mobile;
+        // causes underlying page to jump to top;
+        // prevents scrolling on all screens
+        overflow: hidden;
+        position: fixed;
+    }
+}
+
+body.viewport-lg {
+    // block scroll for desktop;
+    // will not jump to top;
+    // will not prevent scroll on mobile
+    position: absolute;
+}
+
+body {
+    overflow-x: hidden;
+    overflow-y: scroll !important;
+}*/
+.modal-open .modal.custom_modal {
+  overflow-y: hidden;
+}
+.modal-open .modal.custom_modal .modal__scroll {
+  max-height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }

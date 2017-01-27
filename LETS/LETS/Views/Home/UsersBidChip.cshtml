@@ -1,0 +1,13 @@
+﻿@using LETS.Models
+@model Bid
+@{
+    Layout = null;
+}
+
+<div id="@string.Concat(Model.Username, "_Bid")" class="row new_bid_chip temp_hide">
+    <div class="col-xs-12">
+        <span class="mdl-chip bid-chip">
+            <span class="mdl-chip__text"><strong><label>@Model.Username</label> — <i class="fa fa-diamond fa-fw" aria-hidden="true"></i> @Model.Amount</strong></span>
+        </span>
+    </div>
+</div>

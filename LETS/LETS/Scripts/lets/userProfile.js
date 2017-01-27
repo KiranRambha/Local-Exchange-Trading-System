@@ -179,6 +179,7 @@ $("#create_request").on("submit", function (e) {
 });
 
 function resetForm($form) {
+    $('#UserTradingDetails_Request_Budget').val(null);
     $form.find("input:text, input:password, input:file, select, textarea").val("");
     $form.find("input:radio, input:checkbox").removeAttr("checked").removeAttr("selected");
 }
