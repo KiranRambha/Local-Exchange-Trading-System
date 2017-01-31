@@ -369,6 +369,19 @@
         }
     }
 
+    &.bid-chip {
+        text-align: center;
+        background-color: @brand-primary-a400;
+
+        &:active {
+            background-color: @brand-primary-a400;
+        }
+
+        @media (max-width: @screen-phone) {
+            width: 100%;
+        }
+    }
+
     &.budget-chip {
         background-color: @brand-primary-gold;
 
@@ -397,4 +410,20 @@
 
 .new_posted_request.temp_hide {
     display: none;
+}
+
+.modal.fade:not(.in).left .modal-dialog {
+    -webkit-transform: translate3d(-25%, 0, 0);
+    transform: translate3d(-25%, 0, 0);
+}
+
+.mdl-button--accent.mdl-button--accent.mdl-button--raised.mdl-chip.bid-chip {
+    color: @brand-primary-900;
+    background-color: @brand-primary-a400;
+
+    &[disabled][disabled] {
+        background-color: rgba(0, 0, 0, 0.12);
+        color: rgba(0, 0, 0, 0.26);
+        box-shadow: none;
+    }
 }

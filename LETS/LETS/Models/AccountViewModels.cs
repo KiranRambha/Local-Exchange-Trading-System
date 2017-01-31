@@ -158,10 +158,14 @@ namespace LETS.Models
         public List<string> Tags { get; set; }
 
         [Required]
-        public float? Budget { get; set; }
+        [RegularExpression(@"^[1-9]\d*$", ErrorMessage = "Please enter a positive integer value.")]
+        public int? Budget { get; set; }
 
         [BsonIgnore]
-        public float? Bid { get; set; }
+        [RegularExpression(@"^[1-9]\d*$", ErrorMessage = "Please enter a positive integer value.")]
+        public int? Bid { get; set; }
+
+        public string IsAssignedTo { get; set; }
 
         public List<Bid> Bids;
     }
@@ -169,7 +173,8 @@ namespace LETS.Models
     public class Bid
     {
         public string Username { get; set; }
-        public float Amount { get; set; }
+        [RegularExpression(@"^[1-9]\d*$", ErrorMessage = "Please enter a positive integer value.")]
+        public int Amount { get; set; }
     }
 
     public class LetsUser

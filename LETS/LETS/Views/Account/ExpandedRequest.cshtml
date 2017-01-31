@@ -34,7 +34,7 @@
                                 </span>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="form-group row">
                             <div class="col-xs-12">
                                 <label>Tags</label>
                             </div>
@@ -49,6 +49,42 @@
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
+                                @if (Model.IsAssignedTo == null)
+                                {
+                                    <label>Select the bid that suites you the best</label>
+                                }
+                                else
+                                {
+                                    <label>You have assigned this request to the below highlighted user</label>
+                                }
+                            </div>
+                            <div class="col-xs-12">
+                                @if (Model.Bids != null)
+                                {
+                                    foreach (var bid in @Model.Bids)
+                                    {
+                                        if (Model.IsAssignedTo == null)
+                                        {
+                                            <button id="@bid.Username-bid-chip" type="button" class="select-bidder mdl-chip mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" data-toggle="tooltip" data-placement="bottom" title="Accept @bid.Username's Deal" onclick="return BidAcceptRejectModal('@bid.Username');">
+                                                <span class="mdl-chip__text"><strong>@bid.Username — <i class="fa fa-diamond fa-fw" aria-hidden="true"></i> @bid.Amount</strong></span>
+                                            </button>
+                                        }
+                                        else
+                                        {
+                                            <span id="@bid.Username-bid-chip" class="mdl-chip bid-chip mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effects mdl-button--accent" @((Model.IsAssignedTo == null || Model.IsAssignedTo.Equals(bid.Username)) ? "" : "disabled")>
+                                                <span class="mdl-chip__text"><strong>@bid.Username — <i class="fa fa-diamond fa-fw" aria-hidden="true"></i> @bid.Amount</strong></span>
+                                            </span>
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    <span>No Bids Yet</span>
+                                }
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
                                 <strong class="pull-right">@Model.Date.ToString("F")</strong>
                             </div>
                         </div>
@@ -58,11 +94,36 @@
                     <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--primary" data-dismiss="modal">
                         <i class="fa fa-times" aria-hidden="true"></i> Close
                     </button>
-                    @*<button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-                            <i class="fa fa-paper-plane" aria-hidden="true"></i> Post
-                        </button>*@
                 </div>
             </div>
         </div>
     }
 </div>
+@if (Model.Bids != null && Model.IsAssignedTo == null)
+{
+    foreach (var bid in @Model.Bids)
+    {
+        using (Html.BeginForm("AcceptUserBid", "Account", FormMethod.Post, new { id = @bid.Username + "_Bid_Form", name = "form", novalidate = "" }))
+        {
+            <div class="modal fade bid-accept-reject-modal left" id="@bid.Username" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabel">@Html.DisplayFor(model => model.Title)</h4>
+                        </div>
+                        <div class="modal-body">
+                            <label>Do you want to accept @bid.Username's Deal?</label>
+                            <p>@bid.Username is willing to do this task for you in return for <i class="fa fa-diamond fa-fw" aria-hidden="true"></i> @bid.Amount</p>
+                            <p>If you are ok with this deal please click Accept or else click Close.</p>
+                            <div class="alert alert-danger" role="alert"><strong>Warning!</strong> You cannot change your decision once you click ACCEPT.</div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onclick="return ShowExpandedRequest('@bid.Username');"><i class="fa fa-chevron-left fa-fw" aria-hidden="true"></i> Back</button>
+                            <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" onclick="return AcceptUserBid('@Model.Id', '@bid.Username');"><i class="fa fa-check fa-fw" aria-hidden="true"></i> Accept</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+}

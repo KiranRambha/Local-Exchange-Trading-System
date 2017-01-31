@@ -32,7 +32,7 @@
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-md-12">
-                                    @Html.EditorFor(m => m.UserTradingDetails.Request.Budget, "Number", new {label = "What is the budget?", @class = "col-xs-12", @required_message = "Please provide the maximum LETS credit you are willing to spend on this request", @placeholder = "41.99"})
+                                    @Html.EditorFor(m => m.UserTradingDetails.Request.Budget, "Number", new {label = "What is the budget?", @class = "col-xs-12", @required_message = "Please provide the maximum LETS credit you are willing to spend on this request", @placeholder = "51", minimum = 1, maximum = Model.UserTradingDetails.Credit})
                                 </div>
                             </div>
                         </div>

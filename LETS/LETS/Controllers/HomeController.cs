@@ -131,7 +131,7 @@ namespace LETS.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> PostUserBid(string username, int postId, float bid)
+        public async Task<ActionResult> PostUserBid(string username, int postId, int bid)
         {
             var user = username;
 

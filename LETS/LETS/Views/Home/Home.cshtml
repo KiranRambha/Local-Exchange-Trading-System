@@ -7,8 +7,10 @@
 }
 
 <div class="form-body">
-    <h3 class="form-section"><i class="fa fa-rss fa-fw" aria-hidden="true"></i>Timeline</h3>
-    <hr />
+    <h3 class="form-section timeline_heading">
+        <i class="fa fa-rss fa-fw" aria-hidden="true"></i>Timeline
+    </h3>
+    <hr/>
     <div class="timeline__posts row">
         @foreach (var post in Model.UserTimelinePostsList)
         {
@@ -52,7 +54,7 @@
     </div>
     <nav aria-label="...">
         <ul class="pager">
-            <li class="previous @(current_page_number == 1 ? "disabled" : "")"><a href=""  onclick="return gotoPreviousPage();" id="previous_page"><span aria-hidden="true">&larr;</span> Previous</a></li>
+            <li class="previous @(current_page_number == 1 ? "disabled" : "")"><a href="" onclick="return gotoPreviousPage();" id="previous_page"><span aria-hidden="true">&larr;</span> Previous</a></li>
             <li><span class="current_page_number">@current_page_number</span></li>
             <li class="next"><a href="" id="next_page" onclick="return gotoNextPage();">Next <span aria-hidden="true">&rarr;</span></a></li>
         </ul>

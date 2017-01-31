@@ -192,6 +192,7 @@ function CloseNewRequest() {
 
 function UserRequestExpand(username, postId) {
     $("#ExpandedRequest").remove();
+    $(".bid-accept-reject-modal").remove();
     $("body").append("<div id = \"spinner_overlay\" class=\"modal-backdrop fade in\"></div>");
     $("body").addClass("modal-open");
     $("#spinner_overlay").html("<div class=\"loading\"><i class=\"fa fa-refresh fa-spin\" aria-hidden=\"true\"></i></div>");
@@ -202,8 +203,43 @@ function UserRequestExpand(username, postId) {
         cache: false,
         success: function (partialView) {
             $(".container.body-content").append(partialView);
+            $('[data-toggle="tooltip"]').tooltip();
             $("#ExpandedRequest").modal("toggle");
             $("#spinner_overlay").remove();
+        }
+    });
+}
+
+function BidAcceptRejectModal(username) {
+    if ($("#" + username).length !== 0) {
+        $("#ExpandedRequest").modal("hide");
+        setTimeout(function () {
+            $("#" + username).modal("show");
+        }, 450);
+    }
+}
+
+function ShowExpandedRequest(username) {
+    $("#" + username).modal("hide");
+    setTimeout(function () {
+        $("#ExpandedRequest").modal("show");
+    }, 450);
+}
+
+function AcceptUserBid(postid, username) {
+    $.ajax({
+        type: "POST",
+        url: "AcceptUserBid",
+        data: { postId: postid, userName: username },
+        cache: false,
+        success: function (value) {
+            $('.select-bidder').prop('disabled', true);
+            $('.select-bidder').addClass("bid-chip");
+            $('#' + username + '-bid-chip').prop('disabled', false);
+            ShowExpandedRequest(username);
+            setTimeout(function () {
+                $('.bid-accept-reject-modal').remove();
+            }, 450);
         }
     });
 }

@@ -9,7 +9,12 @@
         min-height: 250px;
         position: relative;
         background-color: @brand-primary-300;
-
+        -webkit-touch-callout: none; /* iOS Safari */
+        -webkit-user-select: none; /* Safari */
+        -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+        user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
         @media (max-width: @screen-tablet) {
             min-height: auto;
         }
@@ -122,7 +127,7 @@
 .mdl-chip.bid-chip {
     width: 100%;
     text-align: center;
-    background-color: @brand-secondary-a400;
+    background-color: @brand-primary-a400;
 }
 
 .bid-chip.new-bid-chip.temp_hide {

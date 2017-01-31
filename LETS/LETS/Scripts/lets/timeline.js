@@ -53,7 +53,7 @@ function submitBit() {
         var postOwner = postId.substr(0, postId.indexOf("__"));
         var temp = postOwner.concat("__request__");
         var postDatabaseId = parseInt(postId.substr(temp.length));
-        var bid = parseFloat(tempFormData[1].value);
+        var bid = parseInt(tempFormData[1].value);
         var formData = new Array();
         formData.push({ name: tempFormData[0].name, value: tempFormData[0].value });
         formData.push({ name: "username", value: postOwner });

@@ -688,7 +688,7 @@ namespace LETS.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> PostRequest(string title, string description, float budget, string tags)
+        public async Task<ActionResult> PostRequest(string title, string description, int budget, string tags)
         {
             var username = User.Identity.Name;
 
@@ -750,6 +750,30 @@ namespace LETS.Controllers
                 }).ToListAsync();
 
             return View("ExpandedRequest", userTradingDetails[0].Requests.ElementAt(postId));
+        }
+
+        [HttpPost]
+        public async Task<bool> AcceptUserBid(string username, int postId)
+        {
+            var user = User.Identity.Name;
+
+            var userByUsername = await DatabaseContext.RegisteredUsers.Find(new BsonDocument
+                {
+                    {"Account.UserName", user}
+                }).ToListAsync();
+
+            var userTradingDetails = await DatabaseContext.LetsTradingDetails.Find(new BsonDocument
+                {
+                    {"_id", userByUsername[0].Id}
+                }).ToListAsync();
+
+            var post = userTradingDetails[0].Requests.ElementAt(postId);
+
+            post.IsAssignedTo = username;
+
+            await DatabaseContext.LetsTradingDetails.ReplaceOneAsync(r => r.Id == userTradingDetails[0].Id, userTradingDetails[0]);
+
+            return true;
         }
     }
 }

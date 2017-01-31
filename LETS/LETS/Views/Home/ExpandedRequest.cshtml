@@ -53,7 +53,7 @@
                             @Html.AntiForgeryToken()
                             <div class="row">
                                 <div class="col-sm-4">
-                                    @Html.EditorFor(m => m.Request.Bid, "Number", new { label = "What is your bid", @class = "col-xs-12", @required_message = "What is your bid.", @placeholder = "Enter your bid" })
+                                    @Html.EditorFor(m => m.Request.Bid, "Number", new { label = "What is your bid", @class = "col-xs-12", @required_message = "What is your bid.", @placeholder = "Enter your bid", @minimum = 1, @maximum = @Model.Request.Budget })
                                 </div>
                                 <div class="row mg-0 col-sm-3">
                                     <div class="form-group col-xs-12 ">

@@ -281,6 +281,18 @@
     text-align: center;
   }
 }
+.mdl-chip.bid-chip {
+  text-align: center;
+  background-color: #FF9100;
+}
+.mdl-chip.bid-chip:active {
+  background-color: #FF9100;
+}
+@media (max-width: 480px) {
+  .mdl-chip.bid-chip {
+    width: 100%;
+  }
+}
 .mdl-chip.budget-chip {
   background-color: #F0AD4E;
 }
@@ -301,4 +313,17 @@
 }
 .new_posted_request.temp_hide {
   display: none;
+}
+.modal.fade:not(.in).left .modal-dialog {
+  -webkit-transform: translate3d(-25%, 0, 0);
+  transform: translate3d(-25%, 0, 0);
+}
+.mdl-button--accent.mdl-button--accent.mdl-button--raised.mdl-chip.bid-chip {
+  color: #212121;
+  background-color: #FF9100;
+}
+.mdl-button--accent.mdl-button--accent.mdl-button--raised.mdl-chip.bid-chip[disabled][disabled] {
+  background-color: rgba(0, 0, 0, 0.12);
+  color: rgba(0, 0, 0, 0.26);
+  box-shadow: none;
 }
