@@ -23,7 +23,7 @@ namespace LETS.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> Home()
+        public async Task<ActionResult> TimeLine()
         {
             var username = User.Identity.Name;
             var userTimeLinePosts = new UserTimeLinePostsList();
@@ -37,7 +37,7 @@ namespace LETS.Controllers
             userTimeLinePosts.UserTimelinePostsList = GetUserTimeListPosts(usersPersonalDetails, usersTradingDetails);
             userTimeLinePosts.UserTimelinePostsList.Reverse();
             userTimeLinePosts.UserTimelinePostsList = userTimeLinePosts.UserTimelinePostsList.Take(12).ToList();
-            return View(userTimeLinePosts);
+            return View("TimeLine", userTimeLinePosts);
         }
 
         private static List<UsersTimeLinePost> GetUserTimeListPosts(List<RegisterUserViewModel> usersPersonalDetails, List<LetsTradingDetails> usersTradingDetails)

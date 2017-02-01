@@ -658,7 +658,7 @@
     <Content Include="Views\Shared\EditorTemplates\TextArea.cshtml" />
     <Content Include="Views\Account\ExpandedRequest.cshtml" />
     <Content Include="Views\Account\NewPostedRequest.cshtml" />
-    <Content Include="Views\Home\Home.cshtml" />
+    <Content Include="Views\Home\Timeline.cshtml" />
     <Content Include="Views\Home\ExpandedRequest.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Number.cshtml" />
     <Content Include="Views\Home\UsersBidChip.cshtml" />

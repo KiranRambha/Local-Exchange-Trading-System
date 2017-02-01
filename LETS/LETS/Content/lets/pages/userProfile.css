@@ -315,8 +315,8 @@
   display: none;
 }
 .modal.fade:not(.in).left .modal-dialog {
-  -webkit-transform: translate3d(-25%, 0, 0);
-  transform: translate3d(-25%, 0, 0);
+  -webkit-transform: translate3d(-50%, 0, 0);
+  transform: translate3d(-50%, 0, 0);
 }
 .mdl-button--accent.mdl-button--accent.mdl-button--raised.mdl-chip.bid-chip {
   color: #212121;
@@ -326,4 +326,12 @@
   background-color: rgba(0, 0, 0, 0.12);
   color: rgba(0, 0, 0, 0.26);
   box-shadow: none;
+}
+.text-budget-chip {
+  font-weight: bold;
+  line-height: 32px;
+  padding: 0 12px;
+  border-radius: 16px;
+  background-color: #F0AD4E;
+  display: inline-block;
 }
