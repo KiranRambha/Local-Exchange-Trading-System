@@ -170,5 +170,40 @@ namespace LETS.Controllers
 
             return View("UsersBidChip", userBid);
         }
+        
+        public ActionResult Chat()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult TeamManagement()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult TeamManagement(string username)
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult CreateTeamRequest(TeamManagement newTeamDetails)
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public async Task<JsonResult> GetUserNames(string username)
+        {
+            var filter = new BsonDocument {{"Account.UserName", new BsonDocument {{ "$regex", username } }}};
+
+            var userByUsername = await DatabaseContext.RegisteredUsers.Find(filter).ToListAsync();
+
+            var userNameList = userByUsername.Select(user => user.Account.UserName).ToList();
+
+            return Json(userNameList.ToArray(), JsonRequestBehavior.AllowGet);
+        }
     }
 }

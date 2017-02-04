@@ -11,6 +11,7 @@ namespace LETS
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
+            app.MapSignalR();
         }
 
         private void ConfigureAuth(IAppBuilder app)

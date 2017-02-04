@@ -66,3 +66,22 @@ function initTypeAhead() {
         });
     });
 }
+
+function initUserNameTypeAhead() {
+    $('input.type-ahead').each(function () {
+        var selectList = $(this).prev();
+        var selectOptions = $(selectList).find('option');
+        var values = $.map(selectOptions, function (option) {
+            return option.value;
+        });
+        $(this).typeahead({
+            hint: true,
+            highlight: true,
+            minLength: 1
+        },
+        {
+            name: 'text',
+            source: substringMatcher(values)
+        });
+    });
+}

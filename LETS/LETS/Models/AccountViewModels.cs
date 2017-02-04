@@ -205,4 +205,46 @@ namespace LETS.Models
     {
         public List<UsersTimeLinePost> UserTimelinePostsList { get; set; }
     }
+
+    public class AllTeams
+    {
+        public int Id { get; set; }
+        public List<TeamManagement> AllTeamsList { get; set; }
+    }
+
+    public class TeamManagement
+    {
+        [BsonId]
+        public int Id { get; set; }
+
+        public string TeamName { get; set; }
+
+        public string TeamDescription { get; set; }
+        
+        public string Admin { get; set; }
+
+        public List<Member> TeamMembers { get; set; }
+
+        public List<Message> Messages { get; set; }
+
+        [BsonIgnore]
+        public string Username { get; set; }
+    }
+
+    public class Member
+    {
+        public string UserName { get; set; }
+
+        public string FirstName { get; set; }
+
+        public string LastName { get; set; }
+    }
+
+    public class Message
+    {
+        public string UserName { get; set; }
+
+        [Required]
+        public string Chat { get; set; }
+    }
 }

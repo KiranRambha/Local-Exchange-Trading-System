@@ -72,7 +72,8 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li class="@(ViewBag.Title == "Home" ? "active" : "")">@Html.ActionLink("Timeline", "TimeLine", new {controller = "Home"}, new {@class = "mdl-js-button mdl-js-ripple-effect"})</li>
-                    <li class="@(ViewBag.Title == "Components" ? "active" : "")">@Html.ActionLink("Components", "ComponentsGuide", new {controller = "Home"}, new {@class = "mdl-js-button mdl-js-ripple-effect"})</li>
+                    <li class="@(ViewBag.Title == "TeamManagement" ? "active" : "")">@Html.ActionLink("Team Management", "TeamManagement", new { controller = "Home" }, new { @class = "mdl-js-button mdl-js-ripple-effect" })</li>
+                    @*<li class="@(ViewBag.Title == "Components" ? "active" : "")">@Html.ActionLink("Components", "ComponentsGuide", new {controller = "Home"}, new {@class = "mdl-js-button mdl-js-ripple-effect"})</li>*@
                 </ul>
                 @Html.Partial("_Partials/_LoginPartial")
             </div>
