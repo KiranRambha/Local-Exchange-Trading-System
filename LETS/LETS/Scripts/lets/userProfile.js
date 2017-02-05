@@ -1,4 +1,8 @@
-﻿function AccountSettings() {
+﻿$(document).ready(function () {
+    initSkillsTypeAhead();
+});
+
+function AccountSettings() {
     $("#account_settings_edit_button").slideUp();
     $(".user_details_table").slideUp();
     $.ajax({
@@ -242,7 +246,7 @@ function AcceptUserBid(postid, username) {
 
 
 function initSkillsTypeAhead() {
-    $('#Skill.type-ahead').typeahead({
+    $('.type-ahead').typeahead({
         hint: true,
         highlight: true,
         minLength: 1

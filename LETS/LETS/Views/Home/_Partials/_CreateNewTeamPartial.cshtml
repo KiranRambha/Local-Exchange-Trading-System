@@ -27,10 +27,19 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-groups">
                             <div class="row">
-                                <div class="col-md-12">
-                                    @Html.EditorFor(m => m.Username, "TypeAhead", new { label = "What the title of the request?", @class = "col-xs-12", @required_message = "Please select a title for your request", @placeholder = "Title of the request" })
+                                <div class="col-xs-8">
+                                    @Html.EditorFor(m => m.Username, "TypeAhead", new { label = "Search LETS", @class = "col-xs-12", @placeholder = "UserName" })
+                                </div>
+                                <div class="col-xs-4 add_user">
+                                    <button type="button" class="mdl-button mdl-typography--button-color-contrast mdl-button--accent mdl-js-button mdl-button--raised" onclick="return AddUser()">
+                                        <i class="fa fa-plus fa-fw" aria-hidden="true"></i> Add
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12 added-team-members-list">
                                 </div>
                             </div>
                         </div>

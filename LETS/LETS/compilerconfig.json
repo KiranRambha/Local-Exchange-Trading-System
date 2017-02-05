@@ -78,5 +78,9 @@
   {
     "outputFile": "Content/lets/pages/timeline.css",
     "inputFile": "Content/lets/pages/timeline.less"
+  },
+  {
+    "outputFile": "Content/lets/pages/teammanagement.css",
+    "inputFile": "Content/lets/pages/teammanagement.less"
   }
 ]

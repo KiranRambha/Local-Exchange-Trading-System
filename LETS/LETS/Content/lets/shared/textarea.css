@@ -2,7 +2,8 @@
   resize: none;
   border-radius: 0px;
   border: 1px solid #616161;
-  background-color: #FAFAFA;
+  background-color: #EEEEEE;
+  border-bottom: 1px solid #616161;
   height: 150px;
 }
 .textarea textarea.form-control:focus {

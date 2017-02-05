@@ -215,7 +215,7 @@ namespace LETS.Models
     public class TeamManagement
     {
         [BsonId]
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         public string TeamName { get; set; }
 

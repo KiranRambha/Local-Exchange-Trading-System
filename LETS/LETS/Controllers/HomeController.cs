@@ -204,9 +204,34 @@ namespace LETS.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreateTeamRequest(TeamManagement newTeamDetails)
+        public async Task<ActionResult> CreateTeamRequest(string TeamName, string TeamDescription, string teamMembers)
         {
-            return View();
+            var teamMembersArray = teamMembers.Split(',');
+            var teamMembersList = new List<string>(teamMembersArray.Length);
+            teamMembersList.AddRange(teamMembersArray);
+
+            TeamManagement team = new TeamManagement();
+            team.Id = Guid.NewGuid().ToString();
+            team.TeamName = TeamName;
+            team.TeamMembers = new List<Member>();
+            team.TeamDescription = TeamDescription;
+            team.Admin = User.Identity.Name;
+            
+            foreach (var user in teamMembersList)
+            {
+                var userByUsername = await DatabaseContext.RegisteredUsers.Find(new BsonDocument {
+                    { "Account.UserName", user }
+                }).ToListAsync();
+
+                var member = new Member
+                {
+                    UserName = userByUsername[0].Account.UserName,
+                    FirstName = userByUsername[0].About.FirstName,
+                    LastName = userByUsername[0].About.LastName
+                };
+                team.TeamMembers.Add(member);
+            }
+            return null;
         }
 
         [HttpGet]
@@ -219,6 +244,22 @@ namespace LETS.Controllers
             var userNameList = userByUsername.Select(user => user.Account.UserName).ToList();
 
             return Json(userNameList.ToArray(), JsonRequestBehavior.AllowGet);
+        }
+
+        public async Task<ActionResult> AddUser(string username)
+        {
+            var userByUsername = await DatabaseContext.RegisteredUsers.Find(new BsonDocument {
+                    { "Account.UserName", username }
+                }).ToListAsync();
+
+            if (userByUsername != null && userByUsername.Count > 0 && !userByUsername[0].Account.UserName.Equals(User.Identity.Name))
+            {
+                return View("AddedUserName", userByUsername[0]);
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

@@ -1,0 +1,9 @@
+﻿@using LETS.Models
+@model RegisterUserViewModel
+@{
+    Layout = "";
+}
+<span class="mdl-chip mdl-chip--deletable team-addition-chip" id="@string.Concat(Model.Account.UserName, "_Team_Addition_Chip")">
+    <span class="mdl-chip__text">@Model.Account.UserName</span>
+    <button type="button" class="mdl-chip__action" onclick="return removeAddedTeamUser(@string.Concat(Model.Account.UserName, "_Team_Addition_Chip"));"><i class="material-icons">cancel</i></button>
+</span>
