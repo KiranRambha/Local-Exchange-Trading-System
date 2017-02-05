@@ -214,7 +214,6 @@ namespace LETS.Controllers
             team.Id = Guid.NewGuid().ToString();
             team.TeamName = TeamName;
             team.TeamMembers = new List<Member>();
-            team.TeamDescription = TeamDescription;
             team.Admin = User.Identity.Name;
             
             foreach (var user in teamMembersList)

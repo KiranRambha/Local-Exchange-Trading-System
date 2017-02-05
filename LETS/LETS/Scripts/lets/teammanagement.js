@@ -64,8 +64,6 @@ $("#create_team").on("submit", function (e) {
 
     formData.push({ name: "TeamName", value: tempFormData[1].value });
 
-    formData.push({ name: "TeamDescription", value: tempFormData[2].value });
-
     var teamMembers = [];
 
     $(".added-team-members-list").children(".team-addition-chip").each(function () {
