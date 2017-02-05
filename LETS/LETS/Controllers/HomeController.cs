@@ -212,7 +212,7 @@ namespace LETS.Controllers
         [HttpGet]
         public async Task<JsonResult> GetUserNames(string username)
         {
-            var filter = new BsonDocument { { "Account.UserName", new BsonDocument { { "$regex", ".*" + username + ".*" } } } };
+            var filter = new BsonDocument { { "Account.UserName", new BsonDocument { { "$regex", ".*" + username + ".*" }, { "$options", "i" } } } };
 
             var userByUsername = await DatabaseContext.RegisteredUsers.Find(filter).ToListAsync();
 
