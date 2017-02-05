@@ -5,6 +5,7 @@ using System.Web.Mvc;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using MongoDB.Bson;
 
@@ -19,6 +20,20 @@ namespace LETS.Controllers
         [HttpGet]
         public ActionResult Index()
         {
+            //using (var skillDataFile = new StreamReader(AppDomain.CurrentDomain.BaseDirectory + "\\Helpers\\SkillsList.txt"))
+            //{
+            //    while (!skillDataFile.EndOfStream)
+            //    {
+            //        var tempskill = skillDataFile.ReadLine();
+            //        var userskill = new UserSkill();
+            //        if (!string.IsNullOrEmpty(tempskill))
+            //        {
+            //            userskill.Id = Guid.NewGuid().ToString();
+            //            userskill.Skill = tempskill;
+            //            DatabaseContext.LetsSkillsDatabase.InsertOne(userskill);
+            //        }
+            //    }
+            //}
             return View();
         }
 
@@ -111,7 +126,7 @@ namespace LETS.Controllers
                 {
                     {"_id", userByUsername[0].Id}
                 }).ToListAsync();
-            
+
             var userPost = new UsersTimeLinePost();
             var post = userTradingDetails[0].Requests.ElementAt(postId);
             userPost.FirstName = userByUsername[0].About.FirstName;
@@ -170,7 +185,7 @@ namespace LETS.Controllers
 
             return View("UsersBidChip", userBid);
         }
-        
+
         public ActionResult Chat()
         {
             return View();
@@ -197,7 +212,7 @@ namespace LETS.Controllers
         [HttpGet]
         public async Task<JsonResult> GetUserNames(string username)
         {
-            var filter = new BsonDocument {{"Account.UserName", new BsonDocument {{ "$regex", username } }}};
+            var filter = new BsonDocument { { "Account.UserName", new BsonDocument { { "$regex", ".*" + username + ".*" } } } };
 
             var userByUsername = await DatabaseContext.RegisteredUsers.Find(filter).ToListAsync();
 

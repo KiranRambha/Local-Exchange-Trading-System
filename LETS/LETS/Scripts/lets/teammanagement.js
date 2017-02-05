@@ -14,7 +14,6 @@
             data: { username: query },
             dataType: 'json',
             success: function (json) {
-                // in this example, json is simply an array of strings
                 return processAsync(json);
             }
         });

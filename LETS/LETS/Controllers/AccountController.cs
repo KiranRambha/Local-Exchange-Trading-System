@@ -775,5 +775,17 @@ namespace LETS.Controllers
 
             return true;
         }
+
+        [HttpGet]
+        public async Task<JsonResult> GetUserSkills(string skill)
+        {
+            var filter = new BsonDocument { { "Skill", new BsonDocument { { "$regex", ".*" + skill + ".*" }, { "$options", "i" } } } };
+
+            var userSkills = await DatabaseContext.LetsSkillsDatabase.Find(filter).Limit(15).ToListAsync();
+
+            var userSkillList = userSkills.Select(m => m.Skill).ToList();
+
+            return Json(userSkillList.ToArray(), JsonRequestBehavior.AllowGet);
+        }
     }
 }

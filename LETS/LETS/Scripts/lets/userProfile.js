@@ -1,8 +1,4 @@
-﻿$(document).ready(function () {
-    initTypeAhead();
-});
-
-function AccountSettings() {
+﻿function AccountSettings() {
     $("#account_settings_edit_button").slideUp();
     $(".user_details_table").slideUp();
     $.ajax({
@@ -32,7 +28,7 @@ function SkillsSettings() {
         cache: false,
         success: function (data) {
             $("#user_skills_panel").prepend(data);
-            initTypeAhead();
+            initSkillsTypeAhead();
         }
     });
 }
@@ -240,6 +236,31 @@ function AcceptUserBid(postid, username) {
             setTimeout(function () {
                 $('.bid-accept-reject-modal').remove();
             }, 450);
+        }
+    });
+}
+
+
+function initSkillsTypeAhead() {
+    $('#Skill.type-ahead').typeahead({
+        hint: true,
+        highlight: true,
+        minLength: 1
+    },
+    {
+        limit: 14,
+        async: true,
+        source: function (query, processSync, processAsync) {
+            processSync();
+            return $.ajax({
+                url: "/Account/GetUserSkills",
+                type: 'GET',
+                data: { skill: query },
+                dataType: 'json',
+                success: function (json) {
+                    return processAsync(json);
+                }
+            });
         }
     });
 }

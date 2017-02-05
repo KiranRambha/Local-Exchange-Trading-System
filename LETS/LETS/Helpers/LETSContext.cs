@@ -24,6 +24,8 @@ namespace LETS.Helpers
 
         public IMongoCollection<LetsTradingDetails> LetsTradingDetails => Database.GetCollection<LetsTradingDetails>("letsTradingDetails");
 
+        public IMongoCollection<UserSkill> LetsSkillsDatabase => Database.GetCollection<UserSkill>("letsSkillsDatabase");
+
         public GridFSBucket ProfilePicturesBucket { get; set; }
     }
 }

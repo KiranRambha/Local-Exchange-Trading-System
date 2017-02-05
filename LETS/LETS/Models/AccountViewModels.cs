@@ -247,4 +247,12 @@ namespace LETS.Models
         [Required]
         public string Chat { get; set; }
     }
+
+    public class UserSkill
+    {
+        [BsonId]
+        public string Id { get; set; }
+
+        public string Skill { get; set; }
+    }
 }
