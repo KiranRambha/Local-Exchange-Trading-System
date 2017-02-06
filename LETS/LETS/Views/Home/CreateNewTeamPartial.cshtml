@@ -1,5 +1,5 @@
 ﻿@using LETS.Models
-@model TeamManagement
+@model AllTeams
 
 <div id="CreateNewTeamModal" class="modal fade" role="dialog" data-backdrop="static">
     @using (Html.BeginForm("CreateTeamRequest", "Home", FormMethod.Post, new { id = "create_team", name = "form", novalidate = "" }))
@@ -16,14 +16,14 @@
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-md-12">
-                                    @Html.EditorFor(m => m.TeamName, "Text", new { label = "Team Name", @class = "col-xs-12", @required_message = "Please enter the name of your team", @placeholder = "Football Team" })
+                                    @Html.EditorFor(m => m.Team.TeamName, "Text", new { label = "Team Name", @class = "col-xs-12", @required_message = "Please enter the name of your team", @placeholder = "Football Team" })
                                 </div>
                             </div>
                         </div>
                         <div>
                             <div class="row">
                                 <div class="col-xs-8">
-                                    @Html.EditorFor(m => m.Username, "TypeAhead", new { label = "Search LETS", @class = "col-xs-12", @placeholder = "UserName" })
+                                    @Html.EditorFor(m => m.Team.Username, "TypeAhead", new { label = "Search LETS", @class = "col-xs-12", @placeholder = "UserName" })
                                 </div>
                                 <div class="col-xs-4 add_user">
                                     <button type="button" class="mdl-button mdl-typography--button-color-contrast mdl-button--accent mdl-js-button mdl-button--raised" onclick="return AddUser()">

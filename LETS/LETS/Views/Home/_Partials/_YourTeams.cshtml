@@ -1,0 +1,41 @@
+﻿@using LETS.Models
+@model AllTeams
+@foreach (var team in Model.AllTeamsList)
+{
+    <div class="col-md-6">
+        <div id="#tempid" class="mdl-textfield--full-width mdl-card mdl-shadow--2dp mg-bt-10 auto-min-height post-card temp_hide">
+            <div class="mdl-card__title pd-b-8 request-title">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <h2 class="mdl-card__title-text">@team.TeamName</h2>
+                    </div>
+                    <div class="col-sm-4">
+                        <span class="mdl-chip display-chip pull-right">
+                            <span class="mdl-chip__text"><strong>Admin : @team.Admin</strong></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mdl-card__supporting-text mdl-textfield--full-width pd-t-4">
+                @foreach (var member in team.TeamMembers)
+                {
+                    <span class="mdl-chip display-chip">
+                        <span class="mdl-chip__text"><strong>@member.UserName</strong></span>
+                    </span>
+
+                }
+            </div>
+            <div class="mdl-card__actions mdl-card--border">
+                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                    Expand
+                </a>
+                <div class="width-mobile-100 pull-right">
+                    <span class="mdl-chip display-chip">
+                        <span class="mdl-chip__text"><strong>Number of Unread Messages</strong></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+}

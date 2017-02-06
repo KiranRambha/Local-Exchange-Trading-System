@@ -683,8 +683,9 @@
     <Content Include="Views\Home\UsersBidChip.cshtml" />
     <Content Include="Views\Home\Chat.cshtml" />
     <Content Include="Views\Home\TeamManagement.cshtml" />
-    <Content Include="Views\Home\_Partials\_CreateNewTeamPartial.cshtml" />
+    <Content Include="Views\Home\CreateNewTeamPartial.cshtml" />
     <Content Include="Views\Home\AddedUserName.cshtml" />
+    <Content Include="Views\Home\_Partials\_YourTeams.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

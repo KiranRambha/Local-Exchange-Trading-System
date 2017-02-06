@@ -1,3 +1,24 @@
 ﻿.add_user {
   margin: 22px 0px;
 }
+.mdl-card.post-card {
+  background-color: #E0E0E0;
+}
+.mdl-card.post-card .mdl-button:hover {
+  text-decoration: none;
+}
+.mdl-card.post-card .mdl-card__title.request-title {
+  display: block;
+}
+.mdl-chip.display-chip {
+  background-color: #9E9E9E;
+}
+.mdl-chip.display-chip:active {
+  background-color: #9E9E9E;
+}
+@media (max-width: 480px) {
+  .mdl-chip.display-chip {
+    width: 100%;
+    text-align: center;
+  }
+}

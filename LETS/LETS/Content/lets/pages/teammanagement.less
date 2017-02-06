@@ -4,3 +4,32 @@
 .add_user {
     margin: 22px 0px;
 }
+
+.mdl-card.post-card {
+    background-color: @brand-primary-300;
+
+    .mdl-button {
+        &:hover {
+            text-decoration: none;
+        }
+    }
+
+    .mdl-card__title.request-title {
+        display: block;
+    }
+}
+
+.mdl-chip {
+    &.display-chip {
+        background-color: @brand-primary-500;
+
+        &:active {
+            background-color: @brand-primary-500;
+        }
+
+        @media (max-width: @screen-phone) {
+            width: 100%;
+            text-align: center;
+        }
+    }
+}

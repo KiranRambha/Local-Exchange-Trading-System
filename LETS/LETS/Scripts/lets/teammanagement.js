@@ -1,4 +1,4 @@
-﻿$('#Username.type-ahead').typeahead({
+﻿$('.type-ahead').typeahead({
     hint: true,
     highlight: true,
     minLength: 1
@@ -21,7 +21,7 @@
 });
 
 function AddUser() {
-    var username = $("#Username").val();
+    var username = $("#Team_Username").val();
     if (username != null && username !== "") {
         $.ajax({
             type: "POST",
@@ -33,7 +33,7 @@ function AddUser() {
                     var id = $(data).attr("id");
                     if (!$("#" + id).length) {
                         $(".added-team-members-list").append(data);
-                        $("#Username").val("");
+                        $("#Team_Username").val("");
                     }
                 }
             }
@@ -62,7 +62,7 @@ $("#create_team").on("submit", function (e) {
 
     formData.push({ name: tempFormData[0].name, value: tempFormData[0].value });
 
-    formData.push({ name: "TeamName", value: tempFormData[1].value });
+    formData.push({ name: "teamName", value: tempFormData[1].value });
 
     var teamMembers = [];
 

@@ -1,5 +1,5 @@
 ﻿@using LETS.Models
-@model Message
+@model AllTeams
 @{
     ViewBag.Title = "TeamManagement";
     ViewBag.stylesheet = "teammanagement.css";
@@ -12,18 +12,21 @@
         <div class="row">
             <div class="col-md-12">
                 <button type="button" data-toggle="modal" data-target="#CreateNewTeamModal" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent pull-right mobile-request-button">
-                    <i class="fa fa-plus fa-fw" aria-hidden="true"></i> Create New Request
+                    <i class="fa fa-plus fa-fw" aria-hidden="true"></i> Create New Team
                 </button>
             </div>
         </div>
     </div>
-    @Html.Partial("_Partials/_CreateNewTeamPartial")
-    @using (Html.BeginForm("TeamManagement", "Home", FormMethod.Post, new { id = "expanded_request", name = "form", novalidate = "" }))
+    @Html.Partial("CreateNewTeamPartial")
+    <div class="row">
+        @Html.Partial("_Partials/_YourTeams")
+    </div>
+    @*@using (Html.BeginForm("TeamManagement", "Home", FormMethod.Post, new { id = "expanded_request", name = "form", novalidate = "" }))
             {
         <div class="form-group">
             <div class="row">
                 <div class="col-md-6">
-                    @Html.EditorFor(m => m.Chat, "Text", new { label = "Message", @class = "col-xs-12", @required_message = "Please enter your message.", @placeholder = "Message" })
+                    @Html.EditorFor(m => m.Message, "Text", new { label = "Message", @class = "col-xs-12", @required_message = "Please enter your message.", @placeholder = "Message" })
                 </div>
             </div>
         </div>
@@ -45,7 +48,7 @@
                 </div>
             </div>
         </div>
-    }
+    }*@
 </div>
 @section scripts {
     <!--Script references. -->

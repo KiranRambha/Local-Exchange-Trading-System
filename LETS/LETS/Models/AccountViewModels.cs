@@ -208,7 +208,7 @@ namespace LETS.Models
 
     public class AllTeams
     {
-        public int Id { get; set; }
+        public TeamManagement Team { get; set; }
         public List<TeamManagement> AllTeamsList { get; set; }
     }
 
@@ -224,6 +224,9 @@ namespace LETS.Models
         public List<Member> TeamMembers { get; set; }
 
         public List<Message> Messages { get; set; }
+
+        [BsonIgnore]
+        public string Message { get; set; }
 
         [BsonIgnore]
         public string Username { get; set; }

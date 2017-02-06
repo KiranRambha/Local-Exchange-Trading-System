@@ -192,9 +192,19 @@ namespace LETS.Controllers
         }
 
         [HttpGet]
-        public ActionResult TeamManagement()
+        public async Task<ActionResult> TeamManagement()
         {
-            return View();
+            var userName = User.Identity.Name;
+            var listOfTeams = new List<TeamManagement>();
+
+            var teamByMembership = await DatabaseContext.LetsTeamsDatabase.Find(new BsonDocument {
+                    { "TeamMembers", new BsonDocument { { "$elemMatch", new BsonDocument { { "UserName", userName } } } } }
+                }).ToListAsync();
+
+            var allTeams = new AllTeams();
+            allTeams.AllTeamsList = teamByMembership;
+            allTeams.Team = new TeamManagement();
+            return View(allTeams);
         }
 
         [HttpPost]
@@ -204,25 +214,40 @@ namespace LETS.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> CreateTeamRequest(string TeamName, string TeamDescription, string teamMembers)
+        public async Task<ActionResult> CreateTeamRequest(string teamName, string teamMembers)
         {
             var teamMembersArray = teamMembers.Split(',');
             var teamMembersList = new List<string>(teamMembersArray.Length);
             teamMembersList.AddRange(teamMembersArray);
 
-            TeamManagement team = new TeamManagement();
-            team.Id = Guid.NewGuid().ToString();
-            team.TeamName = TeamName;
-            team.TeamMembers = new List<Member>();
-            team.Admin = User.Identity.Name;
-            
+            var team = new TeamManagement
+            {
+                Id = Guid.NewGuid().ToString(),
+                TeamName = teamName,
+                TeamMembers = new List<Member>(),
+                Admin = User.Identity.Name
+            };
+
+            var adminUsername = await DatabaseContext.RegisteredUsers.Find(new BsonDocument {
+                    { "Account.UserName", User.Identity.Name }
+                }).ToListAsync();
+
+            var member = new Member
+            {
+                UserName = adminUsername[0].Account.UserName,
+                FirstName = adminUsername[0].About.FirstName,
+                LastName = adminUsername[0].About.LastName
+            };
+
+            team.TeamMembers.Add(member);
+
             foreach (var user in teamMembersList)
             {
                 var userByUsername = await DatabaseContext.RegisteredUsers.Find(new BsonDocument {
                     { "Account.UserName", user }
                 }).ToListAsync();
 
-                var member = new Member
+                member = new Member
                 {
                     UserName = userByUsername[0].Account.UserName,
                     FirstName = userByUsername[0].About.FirstName,
@@ -230,6 +255,9 @@ namespace LETS.Controllers
                 };
                 team.TeamMembers.Add(member);
             }
+
+            DatabaseContext.LetsTeamsDatabase.InsertOne(team);
+
             return null;
         }
 
