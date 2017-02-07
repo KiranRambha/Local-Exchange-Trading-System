@@ -2,8 +2,8 @@
 @model AllTeams
 @foreach (var team in Model.AllTeamsList)
 {
-    <div class="col-md-6">
-        <div id="#tempid" class="mdl-textfield--full-width mdl-card mdl-shadow--2dp mg-bt-10 auto-min-height post-card temp_hide">
+    <div class="col-md-12">
+        <div id="@team.Id" class="mdl-textfield--full-width mdl-card mdl-shadow--2dp mg-bt-10 auto-min-height post-card">
             <div class="mdl-card__title pd-b-8 request-title">
                 <div class="row">
                     <div class="col-sm-8">
@@ -23,12 +23,19 @@
                     <span class="mdl-chip display-chip">
                         <span class="mdl-chip__text"><strong>@member.UserName</strong></span>
                     </span>
-
                 }
             </div>
+            
+            <div id="@team.Id-messagebox" class="message-box">
+                @Html.Partial("MessagingComponent")
+            </div>
+
             <div class="mdl-card__actions mdl-card--border">
-                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                <a id="@team.Id-messagebox-expand-btn" class="mdl-button mdl-button--colored mdl-js-buttons mdl-js-ripple-effects expand-btn" onclick="return ExpandMessageBox('@team.Id-messagebox');">
                     Expand
+                </a>
+                <a id="@team.Id-messagebox-collapse-btn" class="mdl-button mdl-button--colored mdl-js-buttons mdl-js-ripple-effects collapse-btn togglehide" onclick="return ExpandMessageBox('@team.Id-messagebox');">
+                    Collapse
                 </a>
                 <div class="width-mobile-100 pull-right">
                     <span class="mdl-chip display-chip">

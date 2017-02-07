@@ -686,6 +686,9 @@
     <Content Include="Views\Home\CreateNewTeamPartial.cshtml" />
     <Content Include="Views\Home\AddedUserName.cshtml" />
     <Content Include="Views\Home\_Partials\_YourTeams.cshtml" />
+    <Content Include="Views\Home\YourTeamTemplate.cshtml" />
+    <Content Include="Views\Home\MessagingComponent.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\MessageInput.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

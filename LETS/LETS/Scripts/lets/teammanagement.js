@@ -88,10 +88,10 @@ $("#create_team").on("submit", function (e) {
                 url: "CreateTeamRequest",
                 data: formData,
                 success: function (partialView) {
-                    $(".personal_requests").prepend(partialView);
+                    $("#yourteams").prepend(partialView);
                     CloseNewRequest();
                     $("#spinner_overlay").remove();
-                    //$(".new_posted_request").show("slow");
+                    $(".new_posted_request").show("slow");
                 }
             });
         }
@@ -99,3 +99,22 @@ $("#create_team").on("submit", function (e) {
         e.preventDefault();
     }
 });
+
+function ExpandMessageBox(id) {
+    $("#" + id).toggle();
+    if ($("#" + id + "-expand-btn").hasClass("togglehide")) {
+        $("#" + id + "-expand-btn").removeClass("togglehide");
+        $("#" + id + "-collapse-btn").addClass("togglehide");
+    } else {
+        $("#" + id + "-expand-btn").addClass("togglehide");
+        $("#" + id + "-collapse-btn").removeClass("togglehide");
+    }
+}
+
+$("#create_team").on("submit", function (e) {
+    e.preventDefault();
+});
+
+function sendMessage() {
+    event.preventDefault();
+}

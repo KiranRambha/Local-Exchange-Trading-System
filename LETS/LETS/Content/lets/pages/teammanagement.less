@@ -33,3 +33,62 @@
         }
     }
 }
+
+.message-box {
+    min-height: 300px;
+    max-height: 300px;
+    display: none;
+}
+
+.message_box {
+    min-height: 300px;
+    max-height: 300px;
+    background-color: @brand-primary-200;
+
+    .message_canvas {
+        height: 265px;
+        overflow: auto;
+
+        .custom-message-padding {
+            padding: 5px;
+
+            .message-chip {
+                white-space: normal;
+                height: inherit;
+                max-width: 70%;
+                width: auto;
+            }
+        }
+    }
+
+    .message_input {
+        width: 100%;
+
+        .form-group {
+            margin-bottom: 0px;
+
+            input.form-control {
+                height: 36px;
+                padding: 6px;
+                border-top: 2px solid @brand-primary-600;
+                border-bottom: none;
+            }
+
+            @media (max-width: @screen-phone) {
+                .send-button {
+                    width: 64px;
+                }
+            }
+        }
+    }
+}
+
+.collapse-btn, .expand-btn {
+    &.togglehide {
+        display: none;
+    }
+}
+
+.post-card.temp_hide {
+    display: none;
+}

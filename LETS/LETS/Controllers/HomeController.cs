@@ -258,7 +258,7 @@ namespace LETS.Controllers
 
             DatabaseContext.LetsTeamsDatabase.InsertOne(team);
 
-            return null;
+            return View("YourTeamTemplate", team);
         }
 
         [HttpGet]
@@ -287,6 +287,11 @@ namespace LETS.Controllers
             {
                 return null;
             }
+        }
+
+        public ActionResult SendMessage()
+        {
+            return null;
         }
     }
 }

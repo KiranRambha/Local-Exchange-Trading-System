@@ -9,8 +9,10 @@
 });
 
 $("input").on('blur', function () {
-    $(this).valid();
-    $("form").validate().element(this);
+    if (!$(this).hasClass("message-input")) {
+        $(this).valid();
+        $("form").validate().element(this);
+    }
 });
 
 $("textarea").on('blur', function () {
