@@ -3,7 +3,7 @@
 @foreach (var team in Model.AllTeamsList)
 {
     <div class="col-md-12">
-        <div id="@team.Id" class="mdl-textfield--full-width mdl-card mdl-shadow--2dp mg-bt-10 auto-min-height post-card">
+        <div id="@team.Id-team" class="mdl-textfield--full-width mdl-card mdl-shadow--2dp mg-bt-10 auto-min-height post-card">
             <div class="mdl-card__title pd-b-8 request-title">
                 <div class="row">
                     <div class="col-sm-8">
@@ -27,7 +27,42 @@
             </div>
             
             <div id="@team.Id-messagebox" class="message-box">
-                @Html.Partial("MessagingComponent")
+                <div class="message_box">
+                    <div id="@team.Id-message_canvas" class="message_canvas">
+                        <div class="col-xs-12 custom-message-padding">
+                            <span class="mdl-chip message-chip width-mobile-100">
+                                <span class="mdl-chip__text"><strong>Username 1</strong> Shy ham had esteem happen active county. Winding morning am shyness evident to. Garrets because elderly new manners however one village she.</span>
+                            </span>
+                        </div>
+                        <div class="col-xs-12 custom-message-padding">
+                            <span class="mdl-chip message-chip width-mobile-100">
+                                <span class="mdl-chip__text"><strong>Username 2</strong> Shy ham had estee</span>
+                            </span>
+                        </div>
+                        <div class="col-xs-12 custom-message-padding">
+                            <span class="mdl-chip message-chip width-mobile-100 pull-right">
+                                <span class="mdl-chip__text"><strong>Username 3</strong> Ferrars all spirits his imagine effects amongst neither. It bachelor cheerful of mistaken. Tore has sons put upon wife use bred seen. Its dissimilar invitation ten has discretion unreserved. Had you him humoured jointure ask expenses learning. Blush on in jokes sense do do. Brother hundred he assured reached on up no. On am nearer missed lovers. To it mother extent temper figure better. </span>
+                            </span>
+                        </div>
+                        <div class="col-xs-12 custom-message-padding">
+                            <span class="mdl-chip message-chip width-mobile-100">
+                                <span class="mdl-chip__text"><strong>Username 4</strong> Impossible considered invitation him men instrument saw celebrated unpleasant. Put rest and must set kind next many near nay. He exquisite continued explained middleton am. Voice hours young woody has she think equal. Estate moment he at on wonder</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="message_input">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    @using (Html.BeginForm("SendMessage", "Home", FormMethod.Post, new { id = team.Id + "-send-btn-form", @class = "message_form", name = "form", novalidate = "", onSubmit = "return sendMessage('" + team.Id + "');" }))
+                                    {
+                                        @Html.EditorFor(m => m.Team.Message, "MessageInput", new { id = team.Id + "-Team-Message", label = "", @class = "col-xs-12", @placeholder = "Type a Message..." })
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="mdl-card__actions mdl-card--border">

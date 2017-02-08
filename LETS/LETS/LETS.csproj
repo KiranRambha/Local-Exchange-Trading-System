@@ -604,7 +604,7 @@
     <Content Include="Scripts\BootstrapJsLib\bootstrap.js" />
     <Content Include="Scripts\BootstrapJsLib\bootstrap.min.js" />
     <None Include="Scripts\jQueryLib\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.signalR-2.2.1.js" />
+    <Content Include="Scripts\Shared\jquery.signalR-2.2.1.js" />
     <Content Include="Scripts\jquery.signalR-2.2.1.min.js" />
     <Content Include="Scripts\jQueryLib\jquery.validate.js" />
     <Content Include="Scripts\jQueryLib\jquery.validate.min.js" />

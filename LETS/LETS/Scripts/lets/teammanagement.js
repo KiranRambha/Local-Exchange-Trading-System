@@ -115,6 +115,9 @@ $("#create_team").on("submit", function (e) {
     e.preventDefault();
 });
 
-function sendMessage() {
+function sendMessage(id) {
     event.preventDefault();
+    var formData = $("#" + id + "-send-btn-form").serializeArray();
+    var message = formData[0].value;
+    console.log(id + " :- " + message);
 }

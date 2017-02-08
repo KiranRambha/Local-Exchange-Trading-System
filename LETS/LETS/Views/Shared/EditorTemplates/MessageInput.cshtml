@@ -13,12 +13,13 @@
     }
 
     //Add the core input attributes
+    dataDictionary.Add("id", ViewData["id"]);
     dataDictionary.Add("type", "text");
     dataDictionary.Add("class", "form-control message-input");
     dataDictionary.Add("placeholder", ViewData.ContainsKey("placeholder") && ViewData["placeholder"] != null ? ViewData["placeholder"].ToString() : "");
 
     //Angular model
-    dataDictionary.Add("ng-model", Html.NameForModel().ToString());
+    //dataDictionary.Add("ng-model", Html.NameForModel().ToString());
     var modelValue = "";
     if (Model != null)
     {
@@ -41,7 +42,7 @@
                 <div class="mdl-textfield--full-width">
                     @Html.TextBoxFor(m => m, dataDictionary)
                 </div>
-                <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent send-button">
+                <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent send-button">
                     <i class="fa fa-paper-plane" aria-hidden="true"></i> Send
                 </button>
             </div>
