@@ -17,6 +17,7 @@
     dataDictionary.Add("type", "text");
     dataDictionary.Add("class", "form-control message-input");
     dataDictionary.Add("placeholder", ViewData.ContainsKey("placeholder") && ViewData["placeholder"] != null ? ViewData["placeholder"].ToString() : "");
+    dataDictionary.Add("autocomplete", "off");
 
     //Angular model
     //dataDictionary.Add("ng-model", Html.NameForModel().ToString());
