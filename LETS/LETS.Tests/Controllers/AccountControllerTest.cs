@@ -7,15 +7,20 @@ using LETS.Models;
 using MongoDB.Bson;
 using Assert = NUnit.Framework.Assert;
 using System.Configuration;
+using System.IO;
 using System.Security.Principal;
 using System.Net.Http;
 using System.Net.Mail;
+using System.Runtime.Versioning;
+using System.Text;
 using System.Web;
 using System.Web.Routing;
 using System.Web.Security;
 using Microsoft.Owin;
 using Moq;
 using System.Threading.Tasks;
+using System.Web.Helpers;
+using System.Web.UI.WebControls;
 
 namespace LETS.Tests.Controllers
 {
@@ -439,6 +444,88 @@ namespace LETS.Tests.Controllers
             var controller = new AccountController();
             var result = controller.CreatePassword();
             Assert.IsInstanceOf(typeof(string), result);
+        }
+
+        [Test]
+        public void TestExpandPost()
+        {
+            var controller = new AccountController();
+            var result = controller.ExpandPost("beastmaster", 0);
+            Assert.IsInstanceOf(typeof(Task<ActionResult>), result);
+        }
+
+        [Test]
+        public void TestGetUserSkills()
+        {
+            var controller = new AccountController();
+            var result = controller.GetUserSkills("ASP.NET");
+            Assert.IsInstanceOf(typeof(Task<JsonResult>), result);
+        }
+
+        [Test]
+        public void TestPostRequest()
+        {
+            var controller = new AccountController { ControllerContext = MockControllerContext() };
+            var result = controller.PostRequest("test", "test", 1, "test1,test2");
+            Assert.IsInstanceOf(typeof(Task<ActionResult>), result);
+        }
+
+        [Test]
+        public void TestGetProfilePicture()
+        {
+            var controller = new AccountController { ControllerContext = MockControllerContext() };
+            var result = controller.GetProfilePicture();
+            Assert.IsInstanceOf(typeof(Task<ActionResult>), result);
+        }
+
+        [Test]
+        public void TestAcceptUserBid()
+        {
+            var controller = new AccountController { ControllerContext = MockControllerContext() };
+            var result = controller.AcceptUserBid("test", 0);
+            Assert.IsInstanceOf(typeof(Task<bool>), result);
+        }
+
+        [Test]
+        public void TestChangeProfilePicture1()
+        {
+            var controller = new AccountController { ControllerContext = MockControllerContext() };
+            var result = controller.ChangeProfilePicture();
+            Assert.IsInstanceOf(typeof(Task<ActionResult>), result);
+        }
+
+        [Test]
+        public void TestDeleteImage()
+        {
+            var controller = new AccountController { ControllerContext = MockControllerContext() };
+            var result = controller.DeleteImage("1234");
+            Assert.IsInstanceOf(typeof(Task), result);
+        }
+
+        [Test]
+        public void TestChangeProfilePicture2()
+        {
+            var controller = new AccountController { ControllerContext = MockControllerContext() };
+            Mock<ControllerContext> cc = new Mock<ControllerContext>();
+            UTF8Encoding enc = new UTF8Encoding();
+
+            Mock<HttpPostedFileBase> file1 = new Mock<HttpPostedFileBase>();
+            file1.Expect(d => d.FileName).Returns("~/Content/images/DefaultProfile.jpg");
+            file1.Expect(d => d.ContentType).Returns("image/jpeg");
+            file1.Expect(d => d.InputStream).Returns(new MemoryStream(enc.GetBytes("~/Content/images/DefaultProfile.jpg")));
+
+            cc.Expect(d => d.HttpContext.Request.Files.Count).Returns(2);
+            cc.Expect(d => d.HttpContext.Request.Files[0]).Returns(file1.Object);
+
+            var principal = new Mock<IPrincipal>();
+            principal.Setup(p => p.IsInRole("user")).Returns(true);
+            principal.SetupGet(x => x.Identity.Name).Returns("beastmaster");
+            cc.SetupGet(x => x.HttpContext.User).Returns(principal.Object);
+
+            controller.ControllerContext = cc.Object;
+
+            var result = controller.ChangeProfilePicture();
+            Assert.IsInstanceOf(typeof(Task<ActionResult>), result);
         }
     }
 }
