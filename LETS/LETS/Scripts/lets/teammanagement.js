@@ -120,8 +120,17 @@ $("#create_team").on("submit", function (e) {
     e.preventDefault();
 });
 
+$('.message_form').on('submit', function (e) {
+    e.preventDefault();
+});
+
 function sendMessage(id) {
-    event.preventDefault();
+    try {
+        event.preventDefault();
+    } catch (err) {
+        console.log(err);
+    }
+
     teamID = id;
     var chat = $.connection.chatHub;
 
