@@ -25,30 +25,26 @@
                     </span>
                 }
             </div>
-            
+
             <div id="@team.Id-messagebox" class="message-box">
                 <div class="message_box">
                     <div id="@team.Id-message_canvas" class="message_canvas">
-                        <div class="col-xs-12 custom-message-padding">
-                            <div class="mdl-chip message-chip width-mobile-100">
-                                <div class="mdl-chip__text"><p class="mg-0"><strong>Username 1</strong></p> <p class="mg-0 custom_message_size">Shy ham had esteem happen active county. Winding morning am shyness evident to. Garrets because elderly new manners however one village she.</p></div>
-                            </div>
-                        </div>
-                        <div class="col-xs-12 custom-message-padding">
-                            <div class="mdl-chip message-chip width-mobile-100">
-                                <div class="mdl-chip__text"><p class="mg-0"><strong>Username 2</strong></p><p class="mg-0 custom_message_size">saslkkf lsjflkasj asdlkffjlkas</p></div>
-                            </div>
-                        </div>
-                        <div class="col-xs-12 custom-message-padding">
-                            <div class="mdl-chip message-chip width-mobile-100 pull-right my-message">
-                                <div class="mdl-chip__text"><p class="mg-0"><strong>Username 3</strong></p> <p class="mg-0 custom_message_size">Ferrars all spirits his imagine effects amongst neither. It bachelor cheerful of mistaken. Tore has sons put upon wife use bred seen. Its dissimilar invitation ten has discretion unreserved. Had you him humoured jointure ask expenses learning. Blush on in jokes sense do do. Brother hundred he assured reached on up no. On am nearer missed lovers. To it mother extent temper figure better.</p></div>
-                            </div>
-                        </div>
-                        <div class="col-xs-12 custom-message-padding">
-                            <div class="mdl-chip message-chip width-mobile-100">
-                                <div class="mdl-chip__text"><p class="mg-0"><strong>Username 4</strong></p> <p class="mg-0 custom_message_size">Impossible considered invitation him men instrument saw celebrated unpleasant. Put rest and must set kind next many near nay. He exquisite continued explained middleton am. Voice hours young woody has she think equal. Estate moment he at on wonder</p></div>
-                            </div>
-                        </div>
+                        @if (team.Messages != null && team.Messages.Count > 0)
+                        {
+                            foreach (var message in @team.Messages)
+                            {
+                                <div class="col-xs-12 custom-message-padding">
+                                    <div class="mdl-chip message-chip width-mobile-100 @(User.Identity.Name.Equals(message.UserName) ? "pull-right my-message" : "")">
+                                        <div class="mdl-chip__text">
+                                            <p class="mg-0">
+                                                <strong>@message.UserName</strong>
+                                            </p>
+                                            <p class="mg-0 custom_message_size">@message.Chat</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
                     </div>
                     <div class="message_input">
                         <div class="form-group">
@@ -72,11 +68,11 @@
                 <a id="@team.Id-messagebox-collapse-btn" class="mdl-button mdl-button--colored mdl-js-buttons mdl-js-ripple-effects collapse-btn togglehide" onclick="return ExpandMessageBox('@team.Id-messagebox');">
                     Collapse
                 </a>
-                <div class="width-mobile-100 pull-right">
-                    <span class="mdl-chip display-chip">
-                        <span class="mdl-chip__text"><strong>Number of Unread Messages</strong></span>
-                    </span>
-                </div>
+                @*<div class="width-mobile-100 pull-right">
+                        <span class="mdl-chip display-chip">
+                            <span class="mdl-chip__text"><strong>Number of Unread Messages</strong></span>
+                        </span>
+                    </div>*@
             </div>
         </div>
     </div>

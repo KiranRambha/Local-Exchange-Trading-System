@@ -1,4 +1,4 @@
-﻿var autoId = "";
+﻿var teamID = "";
 
 $('.type-ahead').typeahead({
     hint: true,
@@ -122,16 +122,16 @@ $("#create_team").on("submit", function (e) {
 
 function sendMessage(id) {
     event.preventDefault();
-    autoId = id;
+    teamID = id;
     var chat = $.connection.chatHub;
 
     chat.client.addNewMessageToPage = function (name, message) {
         if (name === $("#Authenticated-User").text()) {
-            $("#" + autoId + "-message_canvas").append("<div class='col-xs-12 custom-message-padding'><div class='mdl-chip message-chip width-mobile-100 pull-right my-message'><div class='mdl-chip__text'><p class='mg-0'><strong>" + htmlEncode(name) + "</strong></p><p class='mg-0 custom_message_size'>" + htmlEncode(message) + "</p></div></div></div>");
+            $("#" + teamID + "-message_canvas").append("<div class='col-xs-12 custom-message-padding'><div class='mdl-chip message-chip width-mobile-100 pull-right my-message'><div class='mdl-chip__text'><p class='mg-0'><strong>" + htmlEncode(name) + "</strong></p><p class='mg-0 custom_message_size'>" + htmlEncode(message) + "</p></div></div></div>");
         } else {
-            $("#" + autoId + "-message_canvas").append("<div class='col-xs-12 custom-message-padding'><div class='mdl-chip message-chip width-mobile-100'><div class='mdl-chip__text'><strong><p class='mg-0 custom_message_size'>" + htmlEncode(name) + "</strong></p><p class='mg-0 custom_message_size'>" + htmlEncode(message) + "</p></div></div></div>");
+            $("#" + teamID + "-message_canvas").append("<div class='col-xs-12 custom-message-padding'><div class='mdl-chip message-chip width-mobile-100'><div class='mdl-chip__text'><strong><p class='mg-0 custom_message_size'>" + htmlEncode(name) + "</strong></p><p class='mg-0 custom_message_size'>" + htmlEncode(message) + "</p></div></div></div>");
         }
-        $("#" + autoId +"-message_canvas").scrollTop($("#" + autoId + "-message_canvas")[0].scrollHeight);
+        $("#" + teamID +"-message_canvas").scrollTop($("#" + teamID + "-message_canvas")[0].scrollHeight);
     };
 
     $("#" + id + "-Team-Message").focus();
@@ -139,12 +139,12 @@ function sendMessage(id) {
     // Start the connection.
     $.connection.hub.start().done(function () {
         var name = $("#Authenticated-User").text();
-        var message = $("#" + autoId + "-Team-Message").val();
+        var message = $("#" + teamID + "-Team-Message").val();
         if (name != null && message != null && name !== "" && message !== "") {
             // Call the Send method on the hub.
-            chat.server.send(name, message);
+            chat.server.send(name, message, teamID);
             // Clear text box and reset focus for next comment.
-            $("#" + autoId + "-Team-Message").val("").focus();
+            $("#" + teamID + "-Team-Message").val("").focus();
         }
     });
 

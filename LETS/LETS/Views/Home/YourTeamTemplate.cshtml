@@ -28,7 +28,22 @@
         </div>
 
         <div id="@Model.Id-messagebox" class="message-box">
-
+            <div class="message_box">
+                <div id="@Model.Id-message_canvas" class="message_canvas">
+                </div>
+                <div class="message_input">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-12">
+                                @using (Html.BeginForm("SendMessage", "Home", FormMethod.Post, new { id = Model.Id + "-send-btn-form", @class = "message_form", name = "form", novalidate = "", onSubmit = "return sendMessage('" + Model.Id + "');" }))
+                                {
+                                    @Html.EditorFor(m => Model.Message, "MessageInput", new { id = Model.Id + "-Team-Message", label = "", @class = "col-xs-12", @placeholder = "Type a Message..." })
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="mdl-card__actions mdl-card--border">
@@ -38,11 +53,6 @@
             <a id="@Model.Id-messagebox-collapse-btn" class="mdl-button mdl-button--colored mdl-js-buttons mdl-js-ripple-effects collapse-btn togglehide" onclick="return ExpandMessageBox('@Model.Id-messagebox');">
                 Collapse
             </a>
-            <div class="width-mobile-100 pull-right">
-                <span class="mdl-chip display-chip">
-                    <span class="mdl-chip__text"><strong>Number of Unread Messages</strong></span>
-                </span>
-            </div>
         </div>
     </div>
 </div>
