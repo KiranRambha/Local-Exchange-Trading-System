@@ -322,6 +322,27 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\favicon\browserconfig.xml" />
+    <Content Include="Content\favicon\faviconit-instructions.txt" />
+    <Content Include="Content\favicon\rhul-114.png" />
+    <Content Include="Content\favicon\rhul-120.png" />
+    <Content Include="Content\favicon\rhul-144.png" />
+    <Content Include="Content\favicon\rhul-150.png" />
+    <Content Include="Content\favicon\rhul-152.png" />
+    <Content Include="Content\favicon\rhul-16.png" />
+    <Content Include="Content\favicon\rhul-160.png" />
+    <Content Include="Content\favicon\rhul-180.png" />
+    <Content Include="Content\favicon\rhul-192.png" />
+    <Content Include="Content\favicon\rhul-310.png" />
+    <Content Include="Content\favicon\rhul-32.png" />
+    <Content Include="Content\favicon\rhul-57.png" />
+    <Content Include="Content\favicon\rhul-60.png" />
+    <Content Include="Content\favicon\rhul-64.png" />
+    <Content Include="Content\favicon\rhul-70.png" />
+    <Content Include="Content\favicon\rhul-72.png" />
+    <Content Include="Content\favicon\rhul-76.png" />
+    <Content Include="Content\favicon\rhul-96.png" />
+    <Content Include="Content\favicon\rhul.ico" />
     <Content Include="Content\fontawesome\css\font-awesome.css" />
     <Content Include="Content\fontawesome\css\font-awesome.min.css" />
     <Content Include="Content\fontawesome\fonts\fontawesome-webfont.svg" />
