@@ -1,0 +1,126 @@
+﻿@using LETS.Models
+@model RequestPost
+@{
+    Layout = "";
+    Model.Tags.Reverse();
+}
+<div id="ExpandedYourJob" class="modal fade" role="dialog" data-backdrop="static">
+    @using (Html.BeginForm("PostRequest", "Account", FormMethod.Post, new { id = Model.OwnerId + "-expandedjob-" + Model.Id, name = "form", novalidate = "" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" onclick="return CloseNewRequest();">&times;</button>
+                    <h4 class="modal-title">@Html.DisplayFor(model => model.Title)</h4>
+                </div>
+                <div class="modal-body">
+                    <fieldset>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <label>Description</label>
+                            </div>
+                            <div class="col-xs-12">
+                                <p>@Html.DisplayFor(model => model.Description)</p>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-xs-12">
+                                <label>Budget</label>
+                            </div>
+                            <div class="col-xs-12">
+                                <span class="mdl-chip budget-chip width-mobile-100">
+                                    <span class="mdl-chip__text"><strong><i class="fa fa-diamond fa-fw" aria-hidden="true"></i> @Model.Budget</strong></span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-xs-12">
+                                <label>Tags</label>
+                            </div>
+                            <div class="col-xs-12">
+                                @foreach (var tag in @Model.Tags)
+                                {
+                                    <span class="mdl-chip tag-chip">
+                                        <span class="mdl-chip__text"><strong>@tag</strong></span>
+                                    </span>
+                                }
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                @if (Model.IsAssignedTo == null)
+                                {
+                                    <label>Select the bid that suites you the best</label>
+                                }
+                                else
+                                {
+                                    <label>You have assigned this request to the below highlighted user</label>
+                                }
+                            </div>
+                            <div class="col-xs-12">
+                                @if (Model.Bids != null)
+                                {
+                                    foreach (var bid in @Model.Bids)
+                                    {
+                                        if (Model.IsAssignedTo == null)
+                                        {
+                                            <button id="@bid.Username-bid-chip" type="button" class="select-bidder mdl-chip mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" data-toggle="tooltip" data-placement="bottom" title="Accept @bid.Username's Deal" onclick="return BidAcceptRejectModal('@bid.Username');">
+                                                <span class="mdl-chip__text"><strong>@bid.Username — <i class="fa fa-diamond fa-fw" aria-hidden="true"></i> @bid.Amount</strong></span>
+                                            </button>
+                                        }
+                                        else
+                                        {
+                                            <span id="@bid.Username-bid-chip" class="mdl-chip bid-chip mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effects mdl-button--accent" @((Model.IsAssignedTo == null || Model.IsAssignedTo.Equals(bid.Username)) ? "" : "disabled")>
+                                                <span class="mdl-chip__text"><strong>@bid.Username — <i class="fa fa-diamond fa-fw" aria-hidden="true"></i> @bid.Amount</strong></span>
+                                            </span>
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    <span>No Bids Yet</span>
+                                }
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <strong class="pull-right">@Model.Date.ToString("F")</strong>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" onclick="return MarkJobCompleted();">
+                        <i class="fa fa-check" aria-hidden="true"></i> Mark Completed
+                    </button>
+                    <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--primary" data-dismiss="modal">
+                        <i class="fa fa-times" aria-hidden="true"></i> Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@using (Html.BeginForm("MarkJobCompleted", "Account", FormMethod.Post, new { id = "JobCompletedForm", name = "form", novalidate = "" }))
+{
+    <div class="modal fade bid-accept-reject-modal left" id="MarkJobCompleted" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">@Html.DisplayFor(model => model.Title)</h4>
+                </div>
+                <div class="modal-body">
+                    <label>Are you sure you want to mark this deal as completed?</label>
+                    <p>Marking this job as completed will automatically notify the owner about the completion</p>
+                    <div class="alert alert-danger" role="alert"><strong>Warning!</strong> You cannot change your decision once you click CONFIRM.</div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onclick="return GoBackToExpandedYourJob();"><i class="fa fa-chevron-left fa-fw" aria-hidden="true"></i> Back</button>
+                    <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" onclick="return ConfirmJobComplete('@Model.OwnerId-expandedjob-@Model.Id');"><i class="fa fa-check fa-fw" aria-hidden="true"></i> Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}

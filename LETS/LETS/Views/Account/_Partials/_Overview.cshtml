@@ -15,49 +15,65 @@
     @Html.Partial("_Partials/_CreateNewRequestPartial")
 
     <h4 class="form-section"><i class="fa fa-home fa-fw" aria-hidden="true"></i> Overview</h4>
-    <div class="personal_requests">
-        @if (Model.UserTradingDetails.Requests != null)
-        {
-            foreach (var request in Model.UserTradingDetails.Requests)
-            {
-                <div id="@string.Concat(Model.UserPersonalDetails.Account.UserName, "__request__", request.Id)" class="mdl-textfield--full-width mdl-card mdl-shadow--2dp mg-bt-10 auto-min-height post-card temp_hide">
-                    <div class="mdl-card__title pd-b-8 request-title">
-                        <div class="row">
-                            <div class="col-sm-8">
-                                <h2 class="mdl-card__title-text">@(request.Title.Length > 100 ? request.Title.Substring(0, 100) + "..." : request.Title)</h2>
+    
+    <ul class="nav nav-tabs nav-justified">
+        <li class="active">
+            <a href="#user_posts" data-toggle="tab" aria-expanded="true">Your Posts</a>
+        </li>
+        <li class="">
+            <a href="#user_jobs" data-toggle="tab" aria-expanded="false">Your Jobs</a>
+        </li>
+    </ul>
+    
+    <div class="tab-content">
+        <div class="tab-pane active fade in" id="user_posts">
+            <div class="personal_requests">
+                @if (Model.UserTradingDetails.Requests != null)
+                {
+                    foreach (var request in Model.UserTradingDetails.Requests)
+                    {
+                        <div id="@string.Concat(Model.UserPersonalDetails.Account.UserName, "__request__", request.Id)" class="mdl-textfield--full-width mdl-card mdl-shadow--2dp mg-bt-10 auto-min-height post-card temp_hide">
+                            <div class="mdl-card__title pd-b-8 request-title">
+                                <div class="row">
+                                    <div class="col-sm-8">
+                                        <h2 class="mdl-card__title-text">@(request.Title.Length > 100 ? request.Title.Substring(0, 100) + "..." : request.Title)</h2>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <span class="mdl-chip budget-chip pull-right">
+                                            <span class="mdl-chip__text"><strong><i class="fa fa-diamond fa-fw" aria-hidden="true"></i> @request.Budget</strong></span>
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-sm-4">
-                                <span class="mdl-chip budget-chip pull-right">
-                                    <span class="mdl-chip__text"><strong><i class="fa fa-diamond fa-fw" aria-hidden="true"></i> @request.Budget</strong></span>
-                                </span>
+                            <div class="mdl-card__supporting-text mdl-textfield--full-width pd-t-4">
+                                @request.Date.ToString("F")
+                            </div>
+                            <div class="mdl-card__actions mdl-card--border">
+                                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" onclick='return UserRequestExpand("@Model.UserPersonalDetails.Account.UserName", "@request.Id");'>
+                                    Expand
+                                </a>
+                                <div class="width-mobile-100 pull-right">
+                                    <span class="mdl-chip tag-chip">
+                                        <span class="mdl-chip__text"><strong>@request.Tags.Last()</strong></span>
+                                    </span>
+                                    @if (request.Tags.Count > 1)
+                                    {
+                                        <span class="mdl-chip tag-chip">
+                                            <span class="mdl-chip__text"><strong>+@(request.Tags.Count - 1)</strong></span>
+                                        </span>
+                                    }
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="mdl-card__supporting-text mdl-textfield--full-width pd-t-4">
-                        @request.Date.ToString("F")
-                    </div>
-                    <div class="mdl-card__actions mdl-card--border">
-                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" onclick='return UserRequestExpand("@Model.UserPersonalDetails.Account.UserName", "@request.Id");'>
-                            Expand
-                        </a>
-                        <div class="width-mobile-100 pull-right">
-                            <span class="mdl-chip tag-chip">
-                                <span class="mdl-chip__text"><strong>@request.Tags.Last()</strong></span>
-                            </span>
-                            @if (request.Tags.Count > 1)
-                            {
-                                <span class="mdl-chip tag-chip">
-                                    <span class="mdl-chip__text"><strong>+@(request.Tags.Count - 1)</strong></span>
-                                </span>
-                            }
-                        </div>
-                    </div>
-                </div>
-            }
-        }
-        else
-        {
-            <h5>Nothing to show here</h5>
-        }
+                    }
+                }
+                else
+                {
+                    <h5>Nothing to show here</h5>
+                }
+            </div>
+        </div>
+        <div class="tab-pane fade" id="user_jobs">
+        </div>
     </div>
 </div>

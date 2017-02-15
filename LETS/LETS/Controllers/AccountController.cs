@@ -710,6 +710,7 @@ namespace LETS.Controllers
             userTradingDetails[0].Request.Id = userTradingDetails[0].Requests.Count();
             userTradingDetails[0].Request.HasDeleted = false;
             userTradingDetails[0].Request.HasCompleted = false;
+            userTradingDetails[0].Request.JobCompleted = false;
             userTradingDetails[0].Request.Date = DateTime.Now;
             userTradingDetails[0].Request.Description = description;
             userTradingDetails[0].Request.Title = title;
@@ -786,6 +787,58 @@ namespace LETS.Controllers
             var userSkillList = userSkills.Select(m => m.Skill).ToList();
 
             return Json(userSkillList.ToArray(), JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> GetUserJobs()
+        {
+            var userName = User.Identity.Name;
+
+            var userTradingDetails = await DatabaseContext.LetsTradingDetails.Find(new BsonDocument {
+                    { "Requests", new BsonDocument { { "$elemMatch", new BsonDocument { { "IsAssignedTo", userName } } } } }
+                }).ToListAsync();
+
+            return View("UserJobs", userTradingDetails);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> ExpandYourJob(string userId, string postId)
+        {
+            var userByUsername = await DatabaseContext.RegisteredUsers.Find(new BsonDocument
+                {
+                    {"_id", userId}
+                }).ToListAsync();
+
+            var userTradingDetails = await DatabaseContext.LetsTradingDetails.Find(new BsonDocument
+                {
+                    {"_id", userByUsername[0].Id}
+                }).ToListAsync();
+
+            var post = userTradingDetails[0].Requests.ElementAt(Convert.ToInt32(postId));
+            post.OwnerId = userId;
+            return View("ExpandedYourJob", post);
+        }
+
+        [HttpPost]
+        public async Task<bool> MarkJobCompleted(string userId, string postId)
+        {
+            var userByUsername = await DatabaseContext.RegisteredUsers.Find(new BsonDocument
+                {
+                    {"_id", userId}
+                }).ToListAsync();
+
+            var userTradingDetails = await DatabaseContext.LetsTradingDetails.Find(new BsonDocument
+                {
+                    {"_id", userByUsername[0].Id}
+                }).ToListAsync();
+
+            var post = userTradingDetails[0].Requests.ElementAt(Convert.ToInt32(postId));
+
+            post.JobCompleted = true;
+            
+            await DatabaseContext.LetsTradingDetails.ReplaceOneAsync(r => r.Id == userTradingDetails[0].Id, userTradingDetails[0]);
+
+            return true;
         }
     }
 }

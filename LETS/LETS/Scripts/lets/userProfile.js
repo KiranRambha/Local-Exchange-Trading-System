@@ -1,5 +1,14 @@
 ﻿$(document).ready(function () {
     initSkillsTypeAhead();
+
+    $.ajax({
+        type: "POST",
+        url: "GetUserJobs",
+        cache: false,
+        success: function (data) {
+            $("#user_jobs").append(data);
+        }
+    });
 });
 
 function AccountSettings() {
@@ -73,14 +82,11 @@ function removeSkill(button) {
 function UploadDocument() {
     var form = document.getElementById("change_avatar");
     if ($("#change_avatar").valid()) {
-        var formdata = new FormData(form); //FormData object
+        var formdata = new FormData(form);
         var fileInput = document.getElementById("fileUpload");
-        //Iterating through each files selected in fileInput
         for (var i = 0; i < fileInput.files.length; i++) {
-            //Appending each file to FormData object
             formdata.append(fileInput.files[i].name, fileInput.files[i]);
         }
-        //Creating an XMLHttpRequest and sending
         var xhr = new XMLHttpRequest();
         xhr.open("POST", "ChangeProfilePicture");
         if (xhr.upload) {
@@ -265,6 +271,85 @@ function initSkillsTypeAhead() {
                     return processAsync(json);
                 }
             });
+        }
+    });
+}
+
+function ExpandYourJob(id) {
+    var userId = id.substr(0, id.indexOf("-request-"));
+
+    var postId = id.substr(id.indexOf("-request-") + ("-request-").length, id.length);
+
+    $("body").append("<div id = \"spinner_overlay\" class=\"modal-backdrop fade in\"></div>");
+
+    $("body").addClass("modal-open");
+
+    $("#spinner_overlay").html("<div class=\"loading\"><i class=\"fa fa-refresh fa-spin\" aria-hidden=\"true\"></i></div>");
+
+    var formData = new Array();
+
+    formData.push({ name: "userId", value: userId });
+
+    formData.push({ name: "postId", value: postId });
+
+    formData = jQuery.param(formData);
+
+    $.ajax({
+        type: "POST",
+        url: "ExpandYourJob",
+        cache: false,
+        data: formData,
+        success: function (data) {
+            $("#ExpandedYourJob").remove();
+            $("#MarkJobCompleted").remove();
+            $("#JobCompletedForm").remove();
+            $("body").append(data);
+            $("#ExpandedYourJob").modal("show");
+            $("#spinner_overlay").remove();
+        }
+    });
+}
+
+function MarkJobCompleted() {
+    $("#ExpandedYourJob").modal("hide");
+    setTimeout(function () {
+        $("#MarkJobCompleted").modal("show");
+    }, 450);
+    return true;
+}
+
+function GoBackToExpandedYourJob() {
+    $("#MarkJobCompleted").modal("hide");
+    setTimeout(function () {
+        $("#ExpandedYourJob").modal("show");
+    }, 450);
+    return true;
+}
+
+function ConfirmJobComplete(id) {
+    console.log(id);
+    var userId = id.substr(0, id.indexOf("-expandedjob-"));
+
+    var postId = id.substr(id.indexOf("-expandedjob-") + ("-expandedjob-").length, id.length);
+
+    var formData = new Array();
+
+    formData.push({ name: "userId", value: userId });
+
+    formData.push({ name: "postId", value: postId });
+
+    formData = jQuery.param(formData);
+
+    $.ajax({
+        type: "POST",
+        url: "MarkJobCompleted",
+        cache: false,
+        data: formData,
+        success: function (data) {
+            console.log(data);
+            $("#MarkJobCompleted").modal("hide");
+            $("#" + userId + "-request-" + postId).hide("slow");
+            $("#"+ userId + "-request-" + postId).remove();
         }
     });
 }

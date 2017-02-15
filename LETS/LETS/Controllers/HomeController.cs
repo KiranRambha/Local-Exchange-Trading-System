@@ -201,9 +201,11 @@ namespace LETS.Controllers
                     { "TeamMembers", new BsonDocument { { "$elemMatch", new BsonDocument { { "UserName", userName } } } } }
                 }).ToListAsync();
 
-            var allTeams = new AllTeams();
-            allTeams.AllTeamsList = teamByMembership;
-            allTeams.Team = new TeamManagement();
+            var allTeams = new AllTeams
+            {
+                AllTeamsList = teamByMembership,
+                Team = new TeamManagement()
+            };
             return View(allTeams);
         }
 

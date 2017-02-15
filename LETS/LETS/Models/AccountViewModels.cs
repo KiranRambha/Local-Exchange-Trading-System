@@ -168,6 +168,11 @@ namespace LETS.Models
         public string IsAssignedTo { get; set; }
 
         public List<Bid> Bids;
+
+        public bool JobCompleted { get; set; }
+
+        [BsonIgnore]
+        public string OwnerId { get; set; }
     }
 
     public class Bid
