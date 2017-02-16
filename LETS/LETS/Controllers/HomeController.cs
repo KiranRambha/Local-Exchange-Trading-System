@@ -51,7 +51,7 @@ namespace LETS.Controllers
             usersTradingDetails.Remove(currentUserTradingDetails);
             userTimeLinePosts.UserTimelinePostsList = GetUserTimeListPosts(usersPersonalDetails, usersTradingDetails);
             userTimeLinePosts.UserTimelinePostsList.Reverse();
-            userTimeLinePosts.UserTimelinePostsList = userTimeLinePosts.UserTimelinePostsList.Take(12).ToList();
+            //userTimeLinePosts.UserTimelinePostsList = userTimeLinePosts.UserTimelinePostsList.Take(12).ToList();
             return View("TimeLine", userTimeLinePosts);
         }
 
@@ -78,15 +78,19 @@ namespace LETS.Controllers
                 {
                     foreach (var request in user.UserTradingDetails.Requests)
                     {
-                        var timelinePost = new UsersTimeLinePost
+                        if (string.IsNullOrEmpty(request.IsAssignedTo))
                         {
-                            ImageId = user.UserPersonalDetails.Account.ImageId,
-                            UserName = user.UserPersonalDetails.Account.UserName,
-                            FirstName = user.UserPersonalDetails.About.FirstName,
-                            LastName = user.UserPersonalDetails.About.LastName,
-                            Request = request
-                        };
-                        timelinePostsList.Add(timelinePost);
+                            var timelinePost = new UsersTimeLinePost
+                            {
+                                ImageId = user.UserPersonalDetails.Account.ImageId,
+                                UserName = user.UserPersonalDetails.Account.UserName,
+                                FirstName = user.UserPersonalDetails.About.FirstName,
+                                LastName = user.UserPersonalDetails.About.LastName,
+                                Request = request
+                            };
+
+                            timelinePostsList.Add(timelinePost);
+                        }
                     }
                 }
             }

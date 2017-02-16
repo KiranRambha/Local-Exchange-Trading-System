@@ -7,7 +7,7 @@
 {
     foreach (var request in modal.Requests)
     {
-        if (!string.IsNullOrEmpty(request.IsAssignedTo) && request.IsAssignedTo.Equals(User.Identity.Name))
+        if (!string.IsNullOrEmpty(request.IsAssignedTo) && request.IsAssignedTo.Equals(User.Identity.Name) && !request.JobCompleted)
         {
             <div id="@modal.Id-request-@request.Id" class="mdl-textfield--full-width mdl-card mdl-shadow--2dp mg-bt-10 auto-min-height post-card temp_hide">
                 <div class="mdl-card__title pd-b-8 request-title">
