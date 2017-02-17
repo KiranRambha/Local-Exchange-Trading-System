@@ -380,3 +380,42 @@ function ArchiveJob(postId) {
         }
     });
 }
+
+function DeleteRequest(postId) {
+    $("#ExpandedRequest").modal("hide");
+
+    $("body").append("<div id = \"spinner_overlay\" class=\"modal-backdrop fade in\"></div>");
+
+    setTimeout(function () {
+        $("body").addClass("modal-open");
+        $("#spinner_overlay").html("<div class=\"loading\"><i class='fa fa-refresh fa-spin'></i></div>");
+    }, 450);
+
+    var formData = new Array();
+
+    formData.push({ name: "postId", value: parseInt(postId) });
+
+    formData = jQuery.param(formData);
+
+    $.ajax({
+        type: "POST",
+        url: "DeleteRequest",
+        cache: false,
+        data: formData,
+        success: function (data) {
+            $("#spinner_overlay").remove();
+            setTimeout(function () {
+                $("body").removeClass("modal-open");
+            }, 450);
+
+            if (data === "True") {
+                var user = $('#Authenticated-User').text();
+                $("#" + user + "__request__" + postId).hide("slow");
+
+                setTimeout(function () {
+                    $("#" + user + "__request__" + postId).remove();
+                }, 450);
+            }
+        }
+    });
+}

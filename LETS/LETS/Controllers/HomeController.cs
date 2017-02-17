@@ -78,7 +78,7 @@ namespace LETS.Controllers
                 {
                     foreach (var request in user.UserTradingDetails.Requests)
                     {
-                        if (string.IsNullOrEmpty(request.IsAssignedTo))
+                        if (string.IsNullOrEmpty(request.IsAssignedTo) && !request.HasDeleted)
                         {
                             var timelinePost = new UsersTimeLinePost
                             {

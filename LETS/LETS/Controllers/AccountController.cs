@@ -880,5 +880,29 @@ namespace LETS.Controllers
 
             await DatabaseContext.LetsTradingDetails.ReplaceOneAsync(r => r.Id == isAssignedToTradingDetails[0].Id, isAssignedToTradingDetails[0]);
         }
+
+        [HttpPost]
+        public async Task<bool> DeleteRequest(int postId)
+        {
+            var user = User.Identity.Name;
+
+            var userByUsername = await DatabaseContext.RegisteredUsers.Find(new BsonDocument
+                {
+                    {"Account.UserName", user}
+                }).ToListAsync();
+
+            var userTradingDetails = await DatabaseContext.LetsTradingDetails.Find(new BsonDocument
+                {
+                    {"_id", userByUsername[0].Id}
+                }).ToListAsync();
+
+            if (string.IsNullOrEmpty(userTradingDetails[0].Requests[postId].IsAssignedTo))
+            {
+                userTradingDetails[0].Requests[postId].HasDeleted = true;
+                await DatabaseContext.LetsTradingDetails.ReplaceOneAsync(r => r.Id == userTradingDetails[0].Id, userTradingDetails[0]);
+            }
+            
+            return (string.IsNullOrEmpty(userTradingDetails[0].Requests[postId].IsAssignedTo));
+        }
     }
 }
