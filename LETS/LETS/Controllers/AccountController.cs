@@ -835,10 +835,50 @@ namespace LETS.Controllers
             var post = userTradingDetails[0].Requests.ElementAt(Convert.ToInt32(postId));
 
             post.JobCompleted = true;
-            
+
             await DatabaseContext.LetsTradingDetails.ReplaceOneAsync(r => r.Id == userTradingDetails[0].Id, userTradingDetails[0]);
 
             return true;
+        }
+
+        [HttpPost]
+        public async Task ArchiveJob(int postId)
+        {
+            var user = User.Identity.Name;
+
+            var userByUsername = await DatabaseContext.RegisteredUsers.Find(new BsonDocument
+                {
+                    {"Account.UserName", user}
+                }).ToListAsync();
+
+            var userTradingDetails = await DatabaseContext.LetsTradingDetails.Find(new BsonDocument
+                {
+                    {"_id", userByUsername[0].Id}
+                }).ToListAsync();
+
+            var isAssignedTo = userTradingDetails[0].Requests[postId].IsAssignedTo;
+
+            userTradingDetails[0].Requests[postId].HasCompleted = true;
+
+            var credit = userTradingDetails[0].Requests[postId].Bids.Find(item => item.Username.Equals(isAssignedTo)).Amount;
+
+            userTradingDetails[0].Credit = userTradingDetails[0].Credit - credit;
+
+            var userbyAssignedTo = await DatabaseContext.RegisteredUsers.Find(new BsonDocument
+                {
+                    {"Account.UserName", isAssignedTo}
+                }).ToListAsync();
+
+            var isAssignedToTradingDetails = await DatabaseContext.LetsTradingDetails.Find(new BsonDocument
+                {
+                    {"_id", userbyAssignedTo[0].Id}
+                }).ToListAsync();
+
+            isAssignedToTradingDetails[0].Credit = isAssignedToTradingDetails[0].Credit + credit;
+
+            await DatabaseContext.LetsTradingDetails.ReplaceOneAsync(r => r.Id == userTradingDetails[0].Id, userTradingDetails[0]);
+
+            await DatabaseContext.LetsTradingDetails.ReplaceOneAsync(r => r.Id == isAssignedToTradingDetails[0].Id, isAssignedToTradingDetails[0]);
         }
     }
 }

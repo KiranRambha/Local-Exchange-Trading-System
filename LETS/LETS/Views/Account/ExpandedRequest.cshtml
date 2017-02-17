@@ -91,6 +91,13 @@
                     </fieldset>
                 </div>
                 <div class="modal-footer">
+                    @if (Model.JobCompleted)
+                    {
+                        <label class="blink pull-left job-completed-text">@Model.IsAssignedTo has completed this request</label>
+                        <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" onclick="return ArchiveJob('@Model.Id');">
+                            <i class="fa fa-archive" aria-hidden="true"></i> Mark Completed
+                        </button>
+                    }
                     <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--primary" data-dismiss="modal">
                         <i class="fa fa-times" aria-hidden="true"></i> Close
                     </button>

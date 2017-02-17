@@ -327,7 +327,6 @@ function GoBackToExpandedYourJob() {
 }
 
 function ConfirmJobComplete(id) {
-    console.log(id);
     var userId = id.substr(0, id.indexOf("-expandedjob-"));
 
     var postId = id.substr(id.indexOf("-expandedjob-") + ("-expandedjob-").length, id.length);
@@ -346,10 +345,38 @@ function ConfirmJobComplete(id) {
         cache: false,
         data: formData,
         success: function (data) {
-            console.log(data);
             $("#MarkJobCompleted").modal("hide");
             $("#" + userId + "-request-" + postId).hide("slow");
             $("#"+ userId + "-request-" + postId).remove();
+        }
+    });
+}
+
+function ArchiveJob(postId) {
+    $("#ExpandedRequest").modal("hide");
+
+    $("body").append("<div id = \"spinner_overlay\" class=\"modal-backdrop fade in\"></div>");
+
+    setTimeout(function () {
+        $("body").addClass("modal-open");
+        $("#spinner_overlay").html("<div class=\"loading\"><i class='fa fa-refresh fa-spin'></i></div>");
+    }, 450);
+
+    var formData = new Array();
+
+    formData.push({ name: "postId", value: parseInt(postId) });
+
+    formData = jQuery.param(formData);
+
+    $.ajax({
+        type: "POST",
+        url: "ArchiveJob",
+        cache: false,
+        data: formData,
+        success: function (data) {
+            $("#spinner_overlay").remove();
+            $("body").removeClass("modal-open");
+            location.reload();
         }
     });
 }

@@ -436,3 +436,61 @@
     background-color: @brand-primary-gold;
     display: inline-block;
 }
+
+.job-completed {
+    color: @brand-secondary-a400;
+    margin: 5px 0px;
+
+    @media (max-width: @screen-phone) {
+        float: right !important;
+        margin: 5px;
+    }
+}
+
+.job-completed-text {
+    margin: 7px 0px;
+    color: @brand-primary-a700;
+}
+
+.blink {
+	-webkit-animation: blink .50s linear infinite;
+	-moz-animation: blink .50s linear infinite;
+	-ms-animation: blink .50s linear infinite;
+	-o-animation: blink .50s linear infinite;
+	 animation: blink .50s linear infinite;
+}
+
+@-webkit-keyframes blink {
+	0% { opacity: 1; }
+	50% { opacity: 1; }
+	50.01% { opacity: 0; }
+	100% { opacity: 0; }
+}
+
+@-moz-keyframes blink {
+	0% { opacity: 1; }
+	50% { opacity: 1; }
+	50.01% { opacity: 0; }
+	100% { opacity: 0; }
+}
+
+@-ms-keyframes blink {
+	0% { opacity: 1; }
+	50% { opacity: 1; }
+	50.01% { opacity: 0; }
+	100% { opacity: 0; }
+}
+
+@-o-keyframes blink {
+	0% { opacity: 1; }
+	50% { opacity: 1; }
+	50.01% { opacity: 0; }
+	100% { opacity: 0; }
+}
+
+@keyframes blink {
+	0% { opacity: 1; }
+	50% { opacity: 1; }
+	50.01% { opacity: 0; }
+	100% { opacity: 0; }
+}

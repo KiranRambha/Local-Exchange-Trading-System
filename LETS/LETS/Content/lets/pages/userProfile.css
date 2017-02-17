@@ -342,3 +342,94 @@
   background-color: #F0AD4E;
   display: inline-block;
 }
+.job-completed {
+  color: #00E676;
+  margin: 5px 0px;
+}
+@media (max-width: 480px) {
+  .job-completed {
+    float: right !important;
+    margin: 5px;
+  }
+}
+.job-completed-text {
+  margin: 7px 0px;
+  color: #FF6D00;
+}
+.blink {
+  -webkit-animation: blink .50s linear infinite;
+  -moz-animation: blink .50s linear infinite;
+  -ms-animation: blink .50s linear infinite;
+  -o-animation: blink .50s linear infinite;
+  animation: blink .50s linear infinite;
+}
+@-webkit-keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  50.01% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@-moz-keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  50.01% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@-ms-keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  50.01% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@-o-keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  50.01% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  50.01% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
