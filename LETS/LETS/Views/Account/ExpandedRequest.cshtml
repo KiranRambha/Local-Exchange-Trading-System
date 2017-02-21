@@ -98,10 +98,13 @@
                             <i class="fa fa-archive" aria-hidden="true"></i> Mark Completed
                         </button>
                     }
+                    @if (!Model.JobCompleted)
+                    {
+                        <button type="button" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect pull-left" @(!string.IsNullOrEmpty(Model.IsAssignedTo) ? "disabled" : "") onclick="return DeleteRequest('@Model.Id')">
+                            <i class="material-icons">delete</i>
+                        </button>
 
-                    <button type="button" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect pull-left" @(!string.IsNullOrEmpty(Model.IsAssignedTo) ? "disabled" : "") onclick="return DeleteRequest('@Model.Id')">
-                        <i class="material-icons">delete</i>
-                    </button>
+                    }
 
                     <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--primary" data-dismiss="modal">
                         <i class="fa fa-times" aria-hidden="true"></i> Close

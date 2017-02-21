@@ -131,6 +131,18 @@ namespace LETS.Controllers
                     {"_id", userByUsername[0].Id}
                 }).ToListAsync();
 
+            var loggedUser = User.Identity.Name;
+
+            var loggedUserByUserName = await DatabaseContext.RegisteredUsers.Find(new BsonDocument
+                {
+                    {"Account.UserName", loggedUser}
+                }).ToListAsync();
+
+            var loggedTradingDetails = await DatabaseContext.LetsTradingDetails.Find(new BsonDocument
+                {
+                    {"_id", loggedUserByUserName[0].Id}
+                }).ToListAsync();
+
             var userPost = new UsersTimeLinePost();
             var post = userTradingDetails[0].Requests.ElementAt(postId);
             userPost.FirstName = userByUsername[0].About.FirstName;
@@ -144,7 +156,8 @@ namespace LETS.Controllers
                 Tags = post.Tags,
                 Title = post.Title,
                 Id = post.Id,
-                Bids = post.Bids
+                Bids = post.Bids,
+                MyCredits = loggedTradingDetails[0].Credit
             };
             return View("ExpandedRequest", userPost);
         }
@@ -166,28 +179,49 @@ namespace LETS.Controllers
 
             var post = userTradingDetails[0].Requests.ElementAt(postId);
 
-            var userBid = new Bid
-            {
-                Username = User.Identity.Name,
-                Amount = bid
-            };
+            var loggedUser = User.Identity.Name;
 
-            if (post.Bids == null)
+            var loggedUserByUserName = await DatabaseContext.RegisteredUsers.Find(new BsonDocument
+                {
+                    {"Account.UserName", loggedUser}
+                }).ToListAsync();
+
+            var loggedTradingDetails = await DatabaseContext.LetsTradingDetails.Find(new BsonDocument
+                {
+                    {"_id", loggedUserByUserName[0].Id}
+                }).ToListAsync();
+
+            if (loggedTradingDetails[0].Credit <= 200)
             {
-                post.Bids = new List<Bid>();
+                var userBid = new Bid
+                {
+                    Username = User.Identity.Name,
+                    Amount = bid
+                };
+
+                if (post.Bids == null)
+                {
+                    post.Bids = new List<Bid>();
+                }
+
+                if (post.Bids.Find(item => item.Username.Equals(User.Identity.Name)) != null)
+                {
+                    var existingBid = post.Bids.Find(item => item.Username.Equals(User.Identity.Name));
+                    post.Bids.Remove(existingBid);
+                }
+
+                post.Bids.Add(userBid);
+
+                await
+                    DatabaseContext.LetsTradingDetails.ReplaceOneAsync(r => r.Id == userTradingDetails[0].Id,
+                        userTradingDetails[0]);
+
+                return View("UsersBidChip", userBid);
             }
-
-            if (post.Bids.Find(item => item.Username.Equals(User.Identity.Name)) != null)
+            else
             {
-                var existingBid = post.Bids.Find(item => item.Username.Equals(User.Identity.Name));
-                post.Bids.Remove(existingBid);
+                return null;
             }
-
-            post.Bids.Add(userBid);
-
-            await DatabaseContext.LetsTradingDetails.ReplaceOneAsync(r => r.Id == userTradingDetails[0].Id, userTradingDetails[0]);
-
-            return View("UsersBidChip", userBid);
         }
 
         public ActionResult Chat()

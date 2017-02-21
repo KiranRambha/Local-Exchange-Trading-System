@@ -343,7 +343,7 @@
   display: inline-block;
 }
 .job-completed {
-  color: #00E676;
+  color: #FF9100;
   margin: 5px 0px;
 }
 @media (max-width: 480px) {

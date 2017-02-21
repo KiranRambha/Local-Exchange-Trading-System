@@ -173,6 +173,9 @@ namespace LETS.Models
 
         [BsonIgnore]
         public string OwnerId { get; set; }
+
+        [BsonIgnore]
+        public int? MyCredits { get; set; }
     }
 
     public class Bid

@@ -9,7 +9,7 @@
 }
 
 <div class="form-body">
-    <button type="button" data-toggle="modal" data-target="#CreateNewRequestModal" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent pull-right mobile-request-button">
+    <button type="button" data-toggle="modal" data-target="#CreateNewRequestModal" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent pull-right mobile-request-button" @(Model.UserTradingDetails.Credit <= 0 ? "Disabled" : "")>
         <i class="fa fa-plus fa-fw" aria-hidden="true"></i> Create New Request
     </button>
     @Html.Partial("_Partials/_CreateNewRequestPartial")
