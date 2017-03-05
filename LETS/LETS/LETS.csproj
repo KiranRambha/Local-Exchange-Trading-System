@@ -712,6 +712,7 @@
     <Content Include="Views\Shared\EditorTemplates\MessageInput.cshtml" />
     <Content Include="Views\Account\UserJobs.cshtml" />
     <Content Include="Views\Account\ExpandedYourJob.cshtml" />
+    <Content Include="Views\Home\TimeLineFiltered.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -11,54 +11,74 @@
         <i class="fa fa-rss fa-fw" aria-hidden="true"></i>Timeline
     </h3>
     <hr/>
-    <div class="timeline__posts row">
-        @foreach (var post in Model.UserTimelinePostsList)
-        {
-            <div id="@string.Concat(post.UserName, "__request__", post.Request.Id)" class="col-md-4 post-position" onclick="return openPost(this)">
-                <div class="mdl-card timeline-card">
-                    <div class="mdl-card__username">
-                        <div class="row">
-                            <div class="col-xs-8">
-                                <label>@post.FirstName @post.LastName</label>
-                                <p class="date-posted">@post.Request.Date.ToString("F")</p>
-                            </div>
-                            <div class="col-xs-4">
-                                <span class="mdl-chip budget-chip pull-right">
-                                    <span class="mdl-chip__text"><strong><i class="fa fa-diamond fa-fw" aria-hidden="true"></i> @post.Request.Budget</strong></span>
-                                </span>
-                            </div>
+    <div class="row margin-bottom-1em">
+        <div class="col-md-12">
+            <div class="pull-right">
+                @using (Html.BeginForm("SearchPosts", "Home", FormMethod.Post, new { id = "SearchInputForm", name = "SearchInputForm", novalidate = "", onSubmit = "return searchPosts();" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+                        <label class="mdl-button mdl-js-button mdl-button--icon search" for="searchinput">
+                            <i class="material-icons">search</i>
+                        </label>
+                        <div class="mdl-textfield__expandable-holder">
+                            <input class="mdl-textfield__input search-post-input" type="text" id="searchinput">
                         </div>
                     </div>
-                    <div class="mdl-card__title">
-                        @(post.Request.Title.Length > 55 ? post.Request.Title.Substring(0, 55).TrimEnd() + "..." : post.Request.Title)
-                    </div>
-                    <div class="mdl-card__supporting-text">
-                        @(post.Request.Description.Length > 80 ? post.Request.Description.Substring(0, 80).TrimEnd() + "..." : post.Request.Description)
-                    </div>
-                    <div class="mdl-card__actions">
-                        <div class="width-mobile-100">
-                            <span class="mdl-chip tag-chip">
-                                <span class="mdl-chip__text"><strong>@post.Request.Tags.Last()</strong></span>
-                            </span>
-                            @if (@post.Request.Tags.Count > 1)
-                            {
+                }
+            </div>
+        </div>
+    </div>
+    <div class="timeline__post__list">
+        <div class="timeline__posts row">
+            @foreach (var post in Model.UserTimelinePostsList)
+            {
+                <div id="@string.Concat(post.UserName, "__request__", post.Request.Id)" class="col-md-4 post-position" onclick="return openPost(this)">
+                    <div class="mdl-card timeline-card">
+                        <div class="mdl-card__username">
+                            <div class="row">
+                                <div class="col-xs-8">
+                                    <label>@post.FirstName @post.LastName</label>
+                                    <p class="date-posted">@post.Request.Date.ToString("F")</p>
+                                </div>
+                                <div class="col-xs-4">
+                                    <span class="mdl-chip budget-chip pull-right">
+                                        <span class="mdl-chip__text"><strong><i class="fa fa-diamond fa-fw" aria-hidden="true"></i> @post.Request.Budget</strong></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mdl-card__title">
+                            @(post.Request.Title.Length > 55 ? post.Request.Title.Substring(0, 55).TrimEnd() + "..." : post.Request.Title)
+                        </div>
+                        <div class="mdl-card__supporting-text">
+                            @(post.Request.Description.Length > 80 ? post.Request.Description.Substring(0, 80).TrimEnd() + "..." : post.Request.Description)
+                        </div>
+                        <div class="mdl-card__actions">
+                            <div class="width-mobile-100">
                                 <span class="mdl-chip tag-chip">
-                                    <span class="mdl-chip__text"><strong>+@(post.Request.Tags.Count - 1)</strong></span>
+                                    <span class="mdl-chip__text"><strong>@post.Request.Tags.Last()</strong></span>
                                 </span>
-                            }
+                                @if (@post.Request.Tags.Count > 1)
+                                {
+                                    <span class="mdl-chip tag-chip">
+                                        <span class="mdl-chip__text"><strong>+@(post.Request.Tags.Count - 1)</strong></span>
+                                    </span>
+                                }
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        }
+            }
+        </div>
     </div>
-    <nav aria-label="...">
+    @*<nav aria-label="...">
         <ul class="pager">
             <li class="previous @(current_page_number == 1 ? "disabled" : "")"><a href="" onclick="return gotoPreviousPage();" id="previous_page"><span aria-hidden="true">&larr;</span> Previous</a></li>
             <li><span class="current_page_number">@current_page_number</span></li>
             <li class="next"><a href="" id="next_page" onclick="return gotoNextPage();">Next <span aria-hidden="true">&rarr;</span></a></li>
         </ul>
-    </nav>
+    </nav>*@
 </div>
 
 

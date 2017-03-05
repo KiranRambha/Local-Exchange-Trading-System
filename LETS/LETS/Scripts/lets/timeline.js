@@ -82,3 +82,32 @@ function resetForm($form) {
     $form.find("input:text, input:password, input:file, select, textarea").val("");
     $form.find("input:radio, input:checkbox").removeAttr("checked").removeAttr("selected");
 }
+
+function searchPosts() {
+    var tempFormData = $("#SearchInputForm").serializeArray();
+    try {
+        event.preventDefault();
+    } catch (err) {
+        console.log(err);
+    }
+    var searchInput = $("#searchinput").val();
+    console.log(searchInput);
+    var formData = new Array();
+    formData.push({ name: tempFormData[0].name, value: tempFormData[0].value });
+    formData.push({ name: "searchInput", value: searchInput });
+    $.ajax({
+        type: "POST",
+        url: "SearchPosts",
+        data: formData,
+        success: function (partialViewResult) {
+            console.log(partialViewResult);
+            $(".timeline__posts").slideUp("slow");
+            $(".timeline__posts").remove();
+            $(".timeline__post__list").append(partialViewResult);
+        }
+    });
+}
+
+$('.search-post-input').bind('blur', function () {
+    searchPosts();
+});

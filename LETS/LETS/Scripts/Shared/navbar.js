@@ -85,3 +85,9 @@ function initUserNameTypeAhead() {
         });
     });
 }
+
+$(document).ready(function () {
+    setTimeout(function () {
+        window.scrollTo(0, 0);
+    }, 4);
+});

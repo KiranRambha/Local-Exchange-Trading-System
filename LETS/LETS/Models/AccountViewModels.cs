@@ -211,6 +211,9 @@ namespace LETS.Models
 
     public class UserTimeLinePostsList
     {
+        [BsonIgnore]
+        public string SearchInput { get; set; }
+
         public List<UsersTimeLinePost> UserTimelinePostsList { get; set; }
     }
 

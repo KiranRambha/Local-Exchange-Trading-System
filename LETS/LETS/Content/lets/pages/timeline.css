@@ -114,3 +114,12 @@
 .bid-chip.new-bid-chip.temp_hide {
   display: none;
 }
+.mdl-textfield__input.search-post-input {
+  padding: 0px;
+}
+.mdl-button.mdl-js-button.mdl-button--icon.search {
+  width: 32px !important;
+}
+.margin-bottom-1em {
+  margin-bottom: 1em;
+}

@@ -333,5 +333,39 @@ namespace LETS.Controllers
         {
             return null;
         }
+
+        public async Task<ActionResult> SearchPosts(string searchInput)
+        {
+            var isPresent = false;
+            var username = User.Identity.Name;
+            var userTimeLinePosts = new UserTimeLinePostsList();
+            var usersPersonalDetails = await DatabaseContext.RegisteredUsers.Find(_ => true).ToListAsync();
+            var usersTradingDetails = await DatabaseContext.LetsTradingDetails.Find(_ => true).ToListAsync();
+            var userid = usersPersonalDetails.Find(user => user.Account.UserName.Equals(username)).Id;
+            var currentUserPersonalDetails = usersPersonalDetails.Find(user => user.Id.Equals(userid));
+            var currentUserTradingDetails = usersTradingDetails.Find(user => user.Id.Equals(userid));
+            usersPersonalDetails.Remove(currentUserPersonalDetails);
+            usersTradingDetails.Remove(currentUserTradingDetails);
+            userTimeLinePosts.UserTimelinePostsList = new List<UsersTimeLinePost>();
+            var tempList = GetUserTimeListPosts(usersPersonalDetails, usersTradingDetails);
+            foreach (var post in tempList)
+            {
+                foreach (var tag in post.Request.Tags)
+                {
+                    if (string.IsNullOrEmpty(searchInput) || tag.ToLower().Equals(searchInput.ToLower()))
+                    {
+                        isPresent = true;
+                    }
+                }
+
+                if (isPresent)
+                {
+                    userTimeLinePosts.UserTimelinePostsList.Add(post);
+                    isPresent = false;
+                }
+            }
+            userTimeLinePosts.UserTimelinePostsList.Reverse();
+            return View("TimeLineFiltered", userTimeLinePosts);
+        }
     }
 }
