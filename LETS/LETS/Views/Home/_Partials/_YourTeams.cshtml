@@ -68,11 +68,13 @@
                 <a id="@team.Id-messagebox-collapse-btn" class="mdl-button mdl-button--colored mdl-js-buttons mdl-js-ripple-effects collapse-btn togglehide" onclick="return ExpandMessageBox('@team.Id-messagebox');">
                     Collapse
                 </a>
-                @*<div class="width-mobile-100 pull-right">
-                        <span class="mdl-chip display-chip">
-                            <span class="mdl-chip__text"><strong>Number of Unread Messages</strong></span>
-                        </span>
-                    </div>*@
+                
+                @if (User.Identity.Name.Equals(team.Admin))
+                {
+                    <button type="button" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect pull-right">
+                        <i class="material-icons">delete</i>
+                    </button>
+                }
             </div>
         </div>
     </div>

@@ -21,6 +21,7 @@ using Moq;
 using System.Threading.Tasks;
 using System.Web.Helpers;
 using System.Web.UI.WebControls;
+using MongoDB.Driver.Core.Operations;
 
 namespace LETS.Tests.Controllers
 {
@@ -525,6 +526,30 @@ namespace LETS.Tests.Controllers
             controller.ControllerContext = cc.Object;
 
             var result = controller.ChangeProfilePicture();
+            Assert.IsInstanceOf(typeof(Task<ActionResult>), result);
+        }
+
+        [Test]
+        public void TestArchiveJob()
+        {
+            var controller = new AccountController { ControllerContext = MockControllerContext() };
+            var result = controller.ArchiveJob(0);
+            Assert.IsInstanceOf(typeof(Task), result);
+        }
+
+        [Test]
+        public void TestDeleteRequest()
+        {
+            var controller = new AccountController { ControllerContext = MockControllerContext() };
+            var result = controller.DeleteRequest(0);
+            Assert.IsInstanceOf(typeof(Task<Boolean>), result);
+        }
+
+        [Test]
+        public void TestGetUserJobs()
+        {
+            var controller = new AccountController { ControllerContext = MockControllerContext() };
+            var result = controller.GetUserJobs();
             Assert.IsInstanceOf(typeof(Task<ActionResult>), result);
         }
     }

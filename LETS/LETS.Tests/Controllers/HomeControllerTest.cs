@@ -166,5 +166,53 @@ namespace LETS.Tests.Controllers
             var result = await controller.ExpandPost("beastmaster", 0);
             Assert.IsInstanceOf(typeof(ViewResult), result);
         }
+
+        [Test]
+        public async Task TestCreateTeamRequest()
+        {
+            var controller = new HomeController { ControllerContext = MockControllerContext() };
+            var result = await controller.CreateTeamRequest("Temp Team", "KiranRambha,test,AmanRawal");
+            Assert.IsInstanceOf(typeof(ViewResult), result);
+        }
+
+        [Test]
+        public async Task TestGetUserNames()
+        {
+            var controller = new HomeController { ControllerContext = MockControllerContext() };
+            var result = await controller.GetUserNames("Kiran");
+            Assert.IsInstanceOf(typeof(JsonResult), result);
+        }
+
+        [Test]
+        public async Task TestSearchPosts1()
+        {
+            var controller = new HomeController { ControllerContext = MockControllerContext() };
+            var result = await controller.SearchPosts("test1");
+            Assert.IsInstanceOf(typeof(ViewResult), result);
+        }
+
+        [Test]
+        public async Task TestSearchPosts2()
+        {
+            var controller = new HomeController { ControllerContext = MockControllerContext() };
+            var result = await controller.SearchPosts("");
+            Assert.IsInstanceOf(typeof(ViewResult), result);
+        }
+
+        [Test]
+        public async Task TestPostUserBid()
+        {
+            var controller = new HomeController { ControllerContext = MockControllerContext() };
+            var result = await controller.PostUserBid("beastmaster", 0, 1);
+            Assert.IsInstanceOf(typeof(ViewResult), result);
+        }
+
+        [Test]
+        public async Task TestTimeline()
+        {
+            var controller = new HomeController { ControllerContext = MockControllerContext() };
+            var result = await controller.TimeLine();
+            Assert.IsInstanceOf(typeof(ViewResult), result);
+        }
     }
 }

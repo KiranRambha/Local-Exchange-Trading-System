@@ -232,6 +232,8 @@ namespace LETS.Models
         
         public string Admin { get; set; }
 
+        public string IsDeleted { get; set; }
+
         public List<Member> TeamMembers { get; set; }
 
         public List<Message> Messages { get; set; }
