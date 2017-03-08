@@ -101,9 +101,11 @@ function searchPosts() {
         data: formData,
         success: function (partialViewResult) {
             console.log(partialViewResult);
-            $(".timeline__posts").slideUp("slow");
-            $(".timeline__posts").remove();
-            $(".timeline__post__list").append(partialViewResult);
+            $(".normal_timeline_posts").slideUp("slow");
+            $(".normal_timeline_posts").remove();
+            $(".filtered__timeline").slideUp("slow");
+            $(".filtered__timeline").remove();
+            $(".normal_timeline__post__list").append(partialViewResult);
         }
     });
 }

@@ -40,8 +40,8 @@
                     </div>
                 </div>
             </div>
-            <div class="timeline__post__list">
-                <div class="timeline__posts row">
+            <div class="normal_timeline__post__list">
+                <div class="normal_timeline_posts timeline__posts row">
                     @foreach (var post in Model.UserTimelinePostsList)
                     {
                         <div id="@string.Concat(post.UserName, "__request__", post.Request.Id)" class="col-md-4 post-position" onclick="return openPost(this)">
@@ -85,8 +85,8 @@
             </div>
         </div>
         <div id="recommended_posts" class="tab-pane fade">
-            <div class="timeline__post__list">
-                <div class="timeline__posts row">
+            <div class="recommended_timeline__post__list">
+                <div class="recommended_timeline_posts timeline__posts row">
                     @foreach (var post in Model.UserTimelineRecommendedPostsList)
                     {
                         <div id="@string.Concat(post.UserName, "__request__", post.Request.Id)" class="col-md-4 post-position" onclick="return openPost(this)">
