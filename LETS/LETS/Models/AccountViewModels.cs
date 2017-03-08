@@ -215,6 +215,8 @@ namespace LETS.Models
         public string SearchInput { get; set; }
 
         public List<UsersTimeLinePost> UserTimelinePostsList { get; set; }
+
+        public List<UsersTimeLinePost> UserTimelineRecommendedPostsList { get; set; }
     }
 
     public class AllTeams
@@ -232,7 +234,7 @@ namespace LETS.Models
         
         public string Admin { get; set; }
 
-        public string IsDeleted { get; set; }
+        public bool? IsDeleted { get; set; }
 
         public List<Member> TeamMembers { get; set; }
 

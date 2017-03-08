@@ -20,20 +20,6 @@ namespace LETS.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            //using (var skillDataFile = new StreamReader(AppDomain.CurrentDomain.BaseDirectory + "\\Helpers\\SkillsList.txt"))
-            //{
-            //    while (!skillDataFile.EndOfStream)
-            //    {
-            //        var tempskill = skillDataFile.ReadLine();
-            //        var userskill = new UserSkill();
-            //        if (!string.IsNullOrEmpty(tempskill))
-            //        {
-            //            userskill.Id = Guid.NewGuid().ToString();
-            //            userskill.Skill = tempskill;
-            //            DatabaseContext.LetsSkillsDatabase.InsertOne(userskill);
-            //        }
-            //    }
-            //}
             return View();
         }
 
@@ -41,6 +27,14 @@ namespace LETS.Controllers
         public async Task<ActionResult> TimeLine()
         {
             var username = User.Identity.Name;
+            var userByUsername = await DatabaseContext.RegisteredUsers.Find(new BsonDocument {
+                    { "Account.UserName", username }
+                }).ToListAsync();
+
+            var userTradingDetails = await DatabaseContext.LetsTradingDetails.Find(new BsonDocument {
+                    { "_id", userByUsername[0].Id }
+                }).ToListAsync();
+
             var userTimeLinePosts = new UserTimeLinePostsList();
             var usersPersonalDetails = await DatabaseContext.RegisteredUsers.Find(_ => true).ToListAsync();
             var usersTradingDetails = await DatabaseContext.LetsTradingDetails.Find(_ => true).ToListAsync();
@@ -49,13 +43,13 @@ namespace LETS.Controllers
             var currentUserTradingDetails = usersTradingDetails.Find(user => user.Id.Equals(userid));
             usersPersonalDetails.Remove(currentUserPersonalDetails);
             usersTradingDetails.Remove(currentUserTradingDetails);
-            userTimeLinePosts.UserTimelinePostsList = GetUserTimeListPosts(usersPersonalDetails, usersTradingDetails);
+            userTimeLinePosts.UserTimelinePostsList = GetUserTimelinePosts(usersPersonalDetails, usersTradingDetails);
             userTimeLinePosts.UserTimelinePostsList.Reverse();
-            //userTimeLinePosts.UserTimelinePostsList = userTimeLinePosts.UserTimelinePostsList.Take(12).ToList();
+            userTimeLinePosts.UserTimelineRecommendedPostsList = GetUserTimelineRecommendedPosts(userTradingDetails[0], usersPersonalDetails, usersTradingDetails);
             return View("TimeLine", userTimeLinePosts);
         }
 
-        private static List<UsersTimeLinePost> GetUserTimeListPosts(List<RegisterUserViewModel> usersPersonalDetails, List<LetsTradingDetails> usersTradingDetails)
+        private static List<UsersTimeLinePost> GetUserTimelinePosts(List<RegisterUserViewModel> usersPersonalDetails, List<LetsTradingDetails> usersTradingDetails)
         {
             var userList = new List<LetsUser>();
             var timelinePostsList = new List<UsersTimeLinePost>();
@@ -90,6 +84,61 @@ namespace LETS.Controllers
                             };
 
                             timelinePostsList.Add(timelinePost);
+                        }
+                    }
+                }
+            }
+
+            timelinePostsList = timelinePostsList.OrderBy(post => post.Request.Date).ToList();
+            return timelinePostsList;
+        }
+
+        private static List<UsersTimeLinePost> GetUserTimelineRecommendedPosts(LetsTradingDetails currentuser, List<RegisterUserViewModel> usersPersonalDetails, List<LetsTradingDetails> usersTradingDetails)
+        {
+            var currentUser = currentuser;
+
+            var userList = new List<LetsUser>();
+            var timelinePostsList = new List<UsersTimeLinePost>();
+
+            //Building a list that contains all the users personal details and trading details
+            foreach (var userPersonalDetails in usersPersonalDetails)
+            {
+                var userTradingDetails = usersTradingDetails.Find(item => item.Id.Equals(userPersonalDetails.Id));
+                var letsUser = new LetsUser
+                {
+                    UserPersonalDetails = userPersonalDetails,
+                    UserTradingDetails = userTradingDetails
+                };
+                userList.Add(letsUser);
+            }
+
+            foreach (var user in userList)
+            {
+                if (user.UserTradingDetails.Requests != null)
+                {
+                    foreach (var request in user.UserTradingDetails.Requests)
+                    {
+                        if (string.IsNullOrEmpty(request.IsAssignedTo) && !request.HasDeleted)
+                        {
+                            foreach (var tag in request.Tags)
+                            {
+                                if (currentUser.Skills.Contains(tag))
+                                {
+                                    var timelinePost = new UsersTimeLinePost
+                                    {
+                                        ImageId = user.UserPersonalDetails.Account.ImageId,
+                                        UserName = user.UserPersonalDetails.Account.UserName,
+                                        FirstName = user.UserPersonalDetails.About.FirstName,
+                                        LastName = user.UserPersonalDetails.About.LastName,
+                                        Request = request
+                                    };
+
+                                    if (!timelinePostsList.Contains(timelinePost))
+                                    {
+                                        timelinePostsList.Add(timelinePost);
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -347,7 +396,7 @@ namespace LETS.Controllers
             usersPersonalDetails.Remove(currentUserPersonalDetails);
             usersTradingDetails.Remove(currentUserTradingDetails);
             userTimeLinePosts.UserTimelinePostsList = new List<UsersTimeLinePost>();
-            var tempList = GetUserTimeListPosts(usersPersonalDetails, usersTradingDetails);
+            var tempList = GetUserTimelinePosts(usersPersonalDetails, usersTradingDetails);
             foreach (var post in tempList)
             {
                 foreach (var tag in post.Request.Tags)
@@ -366,6 +415,26 @@ namespace LETS.Controllers
             }
             userTimeLinePosts.UserTimelinePostsList.Reverse();
             return View("TimeLineFiltered", userTimeLinePosts);
+        }
+
+        public async Task<bool> DeleteTeam(string teamId)
+        {
+            var userName = User.Identity.Name;
+
+            var teamByMembership = await DatabaseContext.LetsTeamsDatabase.Find(new BsonDocument {
+                    { "TeamMembers", new BsonDocument { { "$elemMatch", new BsonDocument { { "UserName", userName } } } } }
+                }).ToListAsync();
+
+            foreach (var team in teamByMembership)
+            {
+                if (team.Id.Equals(teamId))
+                {
+                    team.IsDeleted = true;
+                    await DatabaseContext.LetsTeamsDatabase.ReplaceOneAsync(r => r.Id == team.Id, team);
+                }
+            }
+
+            return true;
         }
     }
 }

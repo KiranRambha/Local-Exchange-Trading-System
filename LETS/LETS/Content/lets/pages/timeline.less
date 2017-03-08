@@ -145,3 +145,47 @@
 .margin-bottom-1em {
     margin-bottom: 1em;
 }
+
+ul.nav.nav-tabs.nav-justified {
+    li {
+        a {
+            border-radius: 0px;
+            background-color: transparent;
+            border: none;
+            padding-top: 11.7px;
+            padding-bottom: 11.7px;
+            color: @brand-primary-700;
+            font-weight: bold;
+
+            &:hover {
+                color: @brand-primary-a200;
+                border-bottom: 4px solid @brand-primary-a200;
+            }
+
+            @media (max-width: @screen-phone) {
+                margin-bottom: 0px;
+            }
+        }
+
+        border-bottom: 1px solid @brand-primary-500;
+
+        &.active {
+            a {
+                color: @brand-primary-a400;
+                border-bottom: 4px solid @brand-primary-a400;
+
+                &:hover, &:focus {
+                    border-top: 0px;
+                    border-left: 0px;
+                    border-right: 0px;
+                }
+            }
+
+            border-bottom: 1px solid @brand-primary-a400;
+        }
+    }
+}
+
+#recommended_posts {
+    margin-top: 60px;
+}

@@ -162,3 +162,17 @@ function sendMessage(id) {
         return encodedValue;
     }
 }
+
+function DeleteTeam(id) {
+    var formData = new Array();
+
+    formData.push({ name: "teamId", value: id });
+    $.ajax({
+        type: "POST",
+        url: "DeleteTeam",
+        data: formData,
+        success: function (partialView) {
+            $("#" + id + "-team").hide("slow");
+        }
+    });
+}

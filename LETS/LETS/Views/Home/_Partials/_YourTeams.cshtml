@@ -2,80 +2,83 @@
 @model AllTeams
 @foreach (var team in Model.AllTeamsList)
 {
-    <div class="col-md-12">
-        <div id="@team.Id-team" class="mdl-textfield--full-width mdl-card mdl-shadow--2dp mg-bt-10 auto-min-height post-card">
-            <div class="mdl-card__title pd-b-8 request-title">
-                <div class="row">
-                    <div class="col-sm-8">
-                        <h2 class="mdl-card__title-text">@team.TeamName</h2>
-                    </div>
-                    <div class="col-sm-4">
-                        <span class="mdl-chip display-chip pull-right">
-                            <span class="mdl-chip__text"><strong>Admin : @team.Admin</strong></span>
-                        </span>
+    if (team.IsDeleted == null || !team.IsDeleted.Value)
+    {
+        <div class="col-md-12">
+            <div id="@team.Id-team" class="mdl-textfield--full-width mdl-card mdl-shadow--2dp mg-bt-10 auto-min-height post-card">
+                <div class="mdl-card__title pd-b-8 request-title">
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <h2 class="mdl-card__title-text">@team.TeamName</h2>
+                        </div>
+                        <div class="col-sm-4">
+                            <span class="mdl-chip display-chip pull-right">
+                                <span class="mdl-chip__text"><strong>Admin : @team.Admin</strong></span>
+                            </span>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="mdl-card__supporting-text mdl-textfield--full-width pd-t-4">
-                @foreach (var member in team.TeamMembers)
-                {
-                    <span class="mdl-chip display-chip">
-                        <span class="mdl-chip__text"><strong>@member.UserName</strong></span>
-                    </span>
-                }
-            </div>
+                <div class="mdl-card__supporting-text mdl-textfield--full-width pd-t-4">
+                    @foreach (var member in team.TeamMembers)
+                    {
+                        <span class="mdl-chip display-chip">
+                            <span class="mdl-chip__text"><strong>@member.UserName</strong></span>
+                        </span>
+                    }
+                </div>
 
-            <div id="@team.Id-messagebox" class="message-box">
-                <div class="message_box">
-                    <div id="@team.Id-message_canvas" class="message_canvas">
-                        @if (team.Messages != null && team.Messages.Count > 0)
-                        {
-                            foreach (var message in @team.Messages)
+                <div id="@team.Id-messagebox" class="message-box">
+                    <div class="message_box">
+                        <div id="@team.Id-message_canvas" class="message_canvas">
+                            @if (team.Messages != null && team.Messages.Count > 0)
                             {
-                                <div class="col-xs-12 custom-message-padding">
-                                    <div class="mdl-chip message-chip width-mobile-100 @(User.Identity.Name.Equals(message.UserName) ? "pull-right my-message" : "")">
-                                        <div class="mdl-chip__text">
-                                            <p class="mg-0">
-                                                <strong>@message.UserName</strong>
-                                            </p>
-                                            <p class="mg-0 custom_message_size">@message.Chat</p>
+                                foreach (var message in @team.Messages)
+                                {
+                                    <div class="col-xs-12 custom-message-padding">
+                                        <div class="mdl-chip message-chip width-mobile-100 @(User.Identity.Name.Equals(message.UserName) ? "pull-right my-message" : "")">
+                                            <div class="mdl-chip__text">
+                                                <p class="mg-0">
+                                                    <strong>@message.UserName</strong>
+                                                </p>
+                                                <p class="mg-0 custom_message_size">@message.Chat</p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                }
                             }
-                        }
-                    </div>
-                    <div class="message_input">
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    @using (Html.BeginForm("SendMessage", "Home", FormMethod.Post, new { id = team.Id + "-send-btn-form", @class = "message_form", name = "form", novalidate = "", onSubmit = "return sendMessage('" + team.Id + "');" }))
-                                    {
-                                        @Html.EditorFor(m => m.Team.Message, "MessageInput", new { id = team.Id + "-Team-Message", label = "", @class = "col-xs-12", @placeholder = "Type a Message..." })
-                                    }
+                        </div>
+                        <div class="message_input">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        @using (Html.BeginForm("SendMessage", "Home", FormMethod.Post, new { id = team.Id + "-send-btn-form", @class = "message_form", name = "form", novalidate = "", onSubmit = "return sendMessage('" + team.Id + "');" }))
+                                        {
+                                            @Html.EditorFor(m => m.Team.Message, "MessageInput", new { id = team.Id + "-Team-Message", label = "", @class = "col-xs-12", @placeholder = "Type a Message..." })
+                                        }
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="mdl-card__actions mdl-card--border">
-                <a id="@team.Id-messagebox-expand-btn" class="mdl-button mdl-button--colored mdl-js-buttons mdl-js-ripple-effects expand-btn" onclick="return ExpandMessageBox('@team.Id-messagebox');">
-                    Expand
-                </a>
-                <a id="@team.Id-messagebox-collapse-btn" class="mdl-button mdl-button--colored mdl-js-buttons mdl-js-ripple-effects collapse-btn togglehide" onclick="return ExpandMessageBox('@team.Id-messagebox');">
-                    Collapse
-                </a>
-                
-                @if (User.Identity.Name.Equals(team.Admin))
-                {
-                    <button type="button" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect pull-right">
-                        <i class="material-icons">delete</i>
-                    </button>
-                }
+                <div class="mdl-card__actions mdl-card--border">
+                    <a id="@team.Id-messagebox-expand-btn" class="mdl-button mdl-button--colored mdl-js-buttons mdl-js-ripple-effects expand-btn" onclick="return ExpandMessageBox('@team.Id-messagebox');">
+                        Expand
+                    </a>
+                    <a id="@team.Id-messagebox-collapse-btn" class="mdl-button mdl-button--colored mdl-js-buttons mdl-js-ripple-effects collapse-btn togglehide" onclick="return ExpandMessageBox('@team.Id-messagebox');">
+                        Collapse
+                    </a>
+
+                    @if (User.Identity.Name.Equals(team.Admin))
+                    {
+                        <button type="button" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect pull-right" onclick="return DeleteTeam('@team.Id');">
+                            <i class="material-icons">delete</i>
+                        </button>
+                    }
+                </div>
             </div>
         </div>
-    </div>
+    }
 }
