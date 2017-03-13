@@ -713,6 +713,7 @@
     <Content Include="Views\Account\UserJobs.cshtml" />
     <Content Include="Views\Account\ExpandedYourJob.cshtml" />
     <Content Include="Views\Home\TimeLineFiltered.cshtml" />
+    <Content Include="Views\Home\GetLatestMessages.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

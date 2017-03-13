@@ -436,5 +436,15 @@ namespace LETS.Controllers
 
             return true;
         }
+
+        public async Task<ActionResult> GetLatestMessages(string teamId)
+        {
+            var team = teamId.Substring(0, teamId.Length - "-messagebox".Length);
+            var teamByMembership = await DatabaseContext.LetsTeamsDatabase.Find(new BsonDocument
+                {
+                    {"_id", team}
+                }).ToListAsync();
+            return View("GetLatestMessages", teamByMembership[0]);
+        }
     }
 }

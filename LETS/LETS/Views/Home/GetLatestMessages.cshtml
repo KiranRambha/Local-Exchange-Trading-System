@@ -1,0 +1,22 @@
+﻿@using LETS.Models
+@model TeamManagement
+@{
+    Layout = null;
+}
+
+@if (Model.Messages != null && Model.Messages.Count > 0)
+{
+    foreach (var message in Model.Messages)
+    {
+        <div class="col-xs-12 custom-message-padding">
+            <div class="mdl-chip message-chip width-mobile-100 @(User.Identity.Name.Equals(message.UserName) ? "pull-right my-message" : "")">
+                <div class="mdl-chip__text">
+                    <p class="mg-0">
+                        <strong>@message.UserName</strong>
+                    </p>
+                    <p class="mg-0 custom_message_size">@message.Chat</p>
+                </div>
+            </div>
+        </div>
+    }
+}

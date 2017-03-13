@@ -103,17 +103,28 @@ $("#create_team").on("submit", function (e) {
 });
 
 function ExpandMessageBox(id) {
-    $("#" + id).toggle();
-    if ($("#" + id + "-expand-btn").hasClass("togglehide")) {
-        $("#" + id + "-expand-btn").removeClass("togglehide");
-        $("#" + id + "-collapse-btn").addClass("togglehide");
-    } else {
-        $("#" + id + "-expand-btn").addClass("togglehide");
-        $("#" + id + "-collapse-btn").removeClass("togglehide");
-    }
-    var tempId = id.replace("-messagebox", "");
-    $("#" + tempId + "-message_canvas").scrollTop($("#" + tempId + "-message_canvas")[0].scrollHeight);
-    sendMessage(tempId);
+    var formData = new Array();
+    formData.push({ name: "teamId", value: id });
+    $.ajax({
+        type: "POST",
+        url: "GetLatestMessages",
+        data: formData,
+        success: function (partialView) {
+            $("#" + id.replace("-messagebox", "-message_canvas")).empty();
+            $("#" + id.replace("-messagebox", "-message_canvas")).append(partialView);
+            $("#" + id).toggle();
+            if ($("#" + id + "-expand-btn").hasClass("togglehide")) {
+                $("#" + id + "-expand-btn").removeClass("togglehide");
+                $("#" + id + "-collapse-btn").addClass("togglehide");
+            } else {
+                $("#" + id + "-expand-btn").addClass("togglehide");
+                $("#" + id + "-collapse-btn").removeClass("togglehide");
+            }
+            var tempId = id.replace("-messagebox", "");
+            $("#" + tempId + "-message_canvas").scrollTop($("#" + tempId + "-message_canvas")[0].scrollHeight);
+            sendMessage(tempId);
+        }
+    });
 }
 
 $("#create_team").on("submit", function (e) {
@@ -140,7 +151,7 @@ function sendMessage(id) {
         } else {
             $("#" + teamID + "-message_canvas").append("<div class='col-xs-12 custom-message-padding'><div class='mdl-chip message-chip width-mobile-100'><div class='mdl-chip__text'><strong><p class='mg-0 custom_message_size'>" + htmlEncode(name) + "</strong></p><p class='mg-0 custom_message_size'>" + htmlEncode(message) + "</p></div></div></div>");
         }
-        $("#" + teamID +"-message_canvas").scrollTop($("#" + teamID + "-message_canvas")[0].scrollHeight);
+        $("#" + teamID + "-message_canvas").scrollTop($("#" + teamID + "-message_canvas")[0].scrollHeight);
     };
 
     $("#" + id + "-Team-Message").focus();
@@ -176,3 +187,8 @@ function DeleteTeam(id) {
         }
     });
 }
+
+$('#yourteams').children('.my-team').each(function () {
+    var tempId = this.children[0].id;
+    var id = tempId.replace("-team", "");
+});
