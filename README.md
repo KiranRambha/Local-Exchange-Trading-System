@@ -1,3 +1,5 @@
+![Royal Holloway Local Exchange Trading System](/readmeimages/home.pmg?raw=true "Royal Holloway Local Exchange Trading System")
+
 # FullUnit_1617_KiranRambha Installation Guide
 The local exchange trading system that I have been working uses Microsoft ASP.NET MVC framework. To develop ASP.NET web application Microsoft requires the developers to use Visual Studio IDE. In this chapter I will explain the steps that developers needs to be followed to setup and run the project on their local machine.
 
