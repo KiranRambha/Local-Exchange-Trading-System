@@ -552,5 +552,21 @@ namespace LETS.Tests.Controllers
             var result = controller.GetUserJobs();
             Assert.IsInstanceOf(typeof(Task<ActionResult>), result);
         }
+
+       [Test]
+        public void TestMarkJobCompleted()
+        {
+            var controller = new AccountController { ControllerContext = MockControllerContext() };
+            var result = controller.MarkJobCompleted("19e06cf7-ac10-4d09-b9d4-779d475f2694", "0");
+            Assert.IsInstanceOf(typeof(Task<bool>), result);
+        }
+
+        [Test]
+        public void TestExpandYourJob()
+        {
+            var controller = new AccountController { ControllerContext = MockControllerContext() };
+            var result = controller.ExpandYourJob("19e06cf7-ac10-4d09-b9d4-779d475f2694", "0");
+            Assert.IsInstanceOf(typeof(Task<ActionResult>), result);
+        }
     }
 }

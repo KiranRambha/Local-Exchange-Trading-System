@@ -214,5 +214,22 @@ namespace LETS.Tests.Controllers
             var result = await controller.TimeLine();
             Assert.IsInstanceOf(typeof(ViewResult), result);
         }
+
+        [Test]
+        public async Task TestDeleteTeam()
+        {
+            var controller = new HomeController { ControllerContext = MockControllerContext() };
+            var result = await controller.DeleteTeam("0");
+            Assert.IsInstanceOf(typeof(bool), result);
+        }
+
+
+        [Test]
+        public async Task TestGetLatestMessages()
+        {
+            var controller = new HomeController { ControllerContext = MockControllerContext() };
+            var result = await controller.GetLatestMessages("5ecf9599-7ccc-4335-9fac-064ba4ad6930-messagebox");
+            Assert.IsInstanceOf(typeof(ActionResult), result);
+        }
     }
 }

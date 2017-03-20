@@ -112,7 +112,7 @@ function ExpandMessageBox(id) {
         success: function (partialView) {
             $("#" + id.replace("-messagebox", "-message_canvas")).empty();
             $("#" + id.replace("-messagebox", "-message_canvas")).append(partialView);
-            $("#" + id).toggle();
+            $("#" + id).toggle("slow");
             if ($("#" + id + "-expand-btn").hasClass("togglehide")) {
                 $("#" + id + "-expand-btn").removeClass("togglehide");
                 $("#" + id + "-collapse-btn").addClass("togglehide");
