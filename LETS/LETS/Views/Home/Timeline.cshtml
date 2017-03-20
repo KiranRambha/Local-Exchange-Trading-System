@@ -87,43 +87,52 @@
         <div id="recommended_posts" class="tab-pane fade">
             <div class="recommended_timeline__post__list">
                 <div class="recommended_timeline_posts timeline__posts row">
-                    @foreach (var post in Model.UserTimelineRecommendedPostsList)
+                    @if (Model.UserTimelineRecommendedPostsList.Count > 0)
                     {
-                        <div id="@string.Concat(post.UserName, "__request__", post.Request.Id)" class="col-md-4 post-position" onclick="return openPost(this)">
-                            <div class="mdl-card timeline-card">
-                                <div class="mdl-card__username">
-                                    <div class="row">
-                                        <div class="col-xs-8">
-                                            <label>@post.FirstName @post.LastName</label>
-                                            <p class="date-posted">@post.Request.Date.ToString("F")</p>
-                                        </div>
-                                        <div class="col-xs-4">
-                                            <span class="mdl-chip budget-chip pull-right">
-                                                <span class="mdl-chip__text"><strong><i class="fa fa-diamond fa-fw" aria-hidden="true"></i> @post.Request.Budget</strong></span>
-                                            </span>
+                        foreach (var post in Model.UserTimelineRecommendedPostsList)
+                        {
+                            <div id="@string.Concat(post.UserName, "__request__", post.Request.Id)" class="col-md-4 post-position" onclick="return openPost(this)">
+                                <div class="mdl-card timeline-card">
+                                    <div class="mdl-card__username">
+                                        <div class="row">
+                                            <div class="col-xs-8">
+                                                <label>@post.FirstName @post.LastName</label>
+                                                <p class="date-posted">@post.Request.Date.ToString("F")</p>
+                                            </div>
+                                            <div class="col-xs-4">
+                                                <span class="mdl-chip budget-chip pull-right">
+                                                    <span class="mdl-chip__text"><strong><i class="fa fa-diamond fa-fw" aria-hidden="true"></i> @post.Request.Budget</strong></span>
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="mdl-card__title">
-                                    @(post.Request.Title.Length > 55 ? post.Request.Title.Substring(0, 55).TrimEnd() + "..." : post.Request.Title)
-                                </div>
-                                <div class="mdl-card__supporting-text">
-                                    @(post.Request.Description.Length > 80 ? post.Request.Description.Substring(0, 80).TrimEnd() + "..." : post.Request.Description)
-                                </div>
-                                <div class="mdl-card__actions">
-                                    <div class="width-mobile-100">
-                                        <span class="mdl-chip tag-chip">
-                                            <span class="mdl-chip__text"><strong>@post.Request.Tags.Last()</strong></span>
-                                        </span>
-                                        @if (@post.Request.Tags.Count > 1)
-                                        {
+                                    <div class="mdl-card__title">
+                                        @(post.Request.Title.Length > 55 ? post.Request.Title.Substring(0, 55).TrimEnd() + "..." : post.Request.Title)
+                                    </div>
+                                    <div class="mdl-card__supporting-text">
+                                        @(post.Request.Description.Length > 80 ? post.Request.Description.Substring(0, 80).TrimEnd() + "..." : post.Request.Description)
+                                    </div>
+                                    <div class="mdl-card__actions">
+                                        <div class="width-mobile-100">
                                             <span class="mdl-chip tag-chip">
-                                                <span class="mdl-chip__text"><strong>+@(post.Request.Tags.Count - 1)</strong></span>
+                                                <span class="mdl-chip__text"><strong>@post.Request.Tags.Last()</strong></span>
                                             </span>
-                                        }
+                                            @if (@post.Request.Tags.Count > 1)
+                                            {
+                                                <span class="mdl-chip tag-chip">
+                                                    <span class="mdl-chip__text"><strong>+@(post.Request.Tags.Count - 1)</strong></span>
+                                                </span>
+                                            }
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                        }
+                    }
+                    else
+                    {
+                        <div class="col-sm-12">
+                            <h4>Sorry, There are no posts that match your skill set.</h4>
                         </div>
                     }
                 </div>
