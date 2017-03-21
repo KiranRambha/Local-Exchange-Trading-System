@@ -54,7 +54,7 @@ Some users might encounter this problem when running the project for the first t
 
 The simple trick is to right click on the LETS project solution and select “**Set as StartUp Project**” from the options as shown in the below picture. 
 
-<img src="/readmeimages/setasproject.jpg?raw=true" width="250">
+<img src="/readmeimages/setasproject.jpg?raw=true" width="600">
 
 This will set the LETS project as the start-up project and the start button will change to a browser launch play button.
 
