@@ -8,9 +8,9 @@ The services can also be viewed as favours which can mutually benefit the commun
 
 ## Motivation
 
-My motivation behind doing this project is to explore new technologies and deepen my interest in web development by implementing a system involving them. During my year in industry placement I got the opportunity to learn Web application development, but in that project I was working as a part of a team due to which I was not able to work on all the components of the system like backend database. This project will give me the opportunity to work from end-to-end, and will allow me to explore and learn new technologies that I never used before. I will also get the opportunity to conduct my own research on the requirements and technologies and solve the problems that arise during the development.
+My motivation behind doing this project was to explore new technologies and deepen my interest in web development by implementing a system involving using them. During my year in industry placement I had the opportunity to learn Web application development, but the project that I was working on was as a part of a team due to which I was not able to work on all the components of the system like backend database. This project gave me the opportunity to work from end-to-end, and also allowed me to explore and learn new technologies that I had never used before. I also got the opportunity to conduct my own research on the requirements and technologies and tackle problems that arised during the development process.
 
-I also wish to enhance my software engineering skills by correctly designing and implementing the web application following the best practices, performing the appropriate tests and using appropriate coding conventions.
+I also wanted to enhanced my software engineering skills by correctly designing and implementing the web application following the best practices, performing the appropriate tests and using appropriate coding conventions.
 
 ## Installation
 
