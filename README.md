@@ -26,7 +26,7 @@ Visual Studio 2015 requires 6GB of disk space at the minimum for the installatio
 
 
 ### Download and Install Visual Studio 2015
-Microsoft was a free version of Visual Studio available for everyone which can be downloaded from <a href="https://www.visualstudio.com/vs/community/" target="_blank">here</a>[here].
+Microsoft was a free version of Visual Studio available for everyone which can be downloaded from <a href="https://www.visualstudio.com/vs/community/" target="_blank">here</a>.
 
 After the visual studio installer has downloaded, run the executable and give the program admin rights to install the system packages and other dependencies.
 
