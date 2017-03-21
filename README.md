@@ -47,7 +47,7 @@ By default, visual studio should show a green play button on the top in the task
 
 There maybe some problems that you could encounter when trying to running the project on your local machine.
 
-#### There is no play button with the browser name in the taskbar  
+### There is no play button with the browser name in the taskbar  
 Some users might encounter this problem when running the project for the first time on their system. If you see a start button instead of a play button as shown in the below picture
 
 ![Start Button Instead of Play](/readmeimages/start.png?raw=true "Start Button Instead of Play")
@@ -58,7 +58,7 @@ The simple trick is to right click on the LETS project solution and select “**
 
 This will set the LETS project as the start-up project and the start button will change to a browser launch play button.
 
-#### There are few package/nuGet errors when running the project
+### There are few package/nuGet errors when running the project
 To solve this issue please right click on the main project solution and “**clean solution**” from the option.
 
 After the above step has completed please right click on the main project again and select “build solution” from the option. 
