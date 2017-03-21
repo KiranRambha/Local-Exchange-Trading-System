@@ -4,15 +4,13 @@
 
 **Local Exchange Trading System** or **LETS** is an internet based, not-for-profit inter-community trading network which provides its members with information service and the members can buy/sell goods and services among themselves using a local currency (LETS Credits) rather than the national currency. 
 
-These can also be viewed as favours which can mutually benefit the community and all its members. It not only enables the transfer of skills and services but also improves a person's or group's prospect, by providing them with skills such as learning a new language, or by simply providing them with an essential service such as gardening or plumbing.
-
-## Code Example
-
-Show what the library does as concisely as possible, developers should be able to figure out **how** your project solves their problem by looking at the code example. Make sure the API you are showing off is obvious, and that your code is short and concise.
+The services can also be viewed as favours which can mutually benefit the community and all its members. It not only enables the transfer of skills and services but also improves a person's or group's prospect, by providing them with skills such as learning a new language, or by simply providing them with an essential service such as gardening or plumbing.
 
 ## Motivation
 
-A short description of the motivation behind the creation and maintenance of the project. This should explain **why** the project exists.
+My motivation behind doing this project is to explore new technologies and deepen my interest in web development by implementing a system involving them. During my year in industry placement I got the opportunity to learn Web application development, but in that project I was working as a part of a team due to which I was not able to work on all the components of the system like backend database. This project will give me the opportunity to work from end-to-end, and will allow me to explore and learn new technologies that I never used before. I will also get the opportunity to conduct my own research on the requirements and technologies and solve the problems that arise during the development.
+
+I also wish to enhance my software engineering skills by correctly designing and implementing the web application following the best practices, performing the appropriate tests and using appropriate coding conventions.
 
 ## Installation
 
