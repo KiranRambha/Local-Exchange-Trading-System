@@ -43,17 +43,20 @@ After the visual studio installer has downloaded, run the executable and give th
 ### Running the Project
 By default, visual studio should show a green play button on the top in the taskbar with a browser name in it depending on the browser installed on the PC. Clicking on this button should run the project, open the browser and load the website in the browser. As the mongo database is hosted on the web and the project has been configured to connect to the database automatically there is no need to download or install or configure the database locally.
 
-## API Reference
+## Troubleshooting
 
-Depending on the size of the project, if it is small and simple enough the reference docs can be added to the README. For medium size to larger projects it is important to at least provide a link to where the API reference docs live.
+There maybe some problems that you could encounter when trying to running the project on your local machine.
 
-## Tests
+**There is no play button with the browser name in the taskbar**  
+Some users might encounter this problem when running the project for the first time on their system. If you see a start button instead of a play button as shown in the below picture
 
-Describe and show how to run the tests with code examples.
+![Start Button Instead of Play](/readmeimages/start.PNG?raw=true "Start Button Instead of Play")
 
-## Contributors
+The simple trick is to right click on the LETS project solution and select “**Set as StartUp Project**” from the options as shown in the below picture. 
 
-Let people know how they can dive into the project, include important links to things like issue trackers, irc, twitter accounts if applicable.
+![Set as Project](/readmeimages/setasproject.JPEG?raw=true "Set as Project")
+
+This will set the LETS project as the start-up project and the start button will change to a browser launch play button.
 
 ## License
 
