@@ -4,6 +4,8 @@
 
 **Local Exchange Trading System** or **LETS** is an internet based, not-for-profit inter-community trading network which provides its members with information service and the members can buy/sell goods and services among themselves using a local currency (LETS Credits) rather than the national currency. 
 
+These can also be viewed as favours which can mutually benefit the community and all its members. It not only enables the transfer of skills and services but also improves a person's or group's prospect, by providing them with skills such as learning a new language, or by simply providing them with an essential service such as gardening or plumbing.
+
 ## Code Example
 
 Show what the library does as concisely as possible, developers should be able to figure out **how** your project solves their problem by looking at the code example. Make sure the API you are showing off is obvious, and that your code is short and concise.
