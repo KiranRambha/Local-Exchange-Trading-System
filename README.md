@@ -14,7 +14,29 @@ I also wanted to enhanced my software engineering skills by correctly designing 
 
 ## Installation
 
-Provide code examples and explanations of how to get the project.
+The local exchange trading system that I have been working uses Microsoft ASP.NET MVC framework. To develop ASP.NET web application Microsoft requires the developers to use Visual Studio IDE. In this chapter I will explain the steps that developers needs to be followed to setup and run the project on their local machine.
+
+**System Requirements**
+At the time of writing this report, Microsoft limits the development of ASP.NET web application to windows operating system, so please Check your operating system and apply latest Windows Updates. 
+
+Visual Studio 2015 requires Windows 7 Service Pack 1 or newer so please make sure that at a minimum you have Service Pack 1 installed.
+
+Visual Studio 2015 requires 6GB of disk space at the minimum for the installation.
+
+**Download and Install Visual Studio 2015**
+Microsoft was a free version of Visual Studio available for everyone which can be downloaded from [here](https://www.visualstudio.com/vs/community/).
+
+After the visual studio installer has downloaded, run the executable and give the program admin rights to install the system packages and other dependencies.
+
+**Download the Local Exchange Trading System Project**
+1.	After the successful installation of visual studio, unzip the local exchange trading system project.
+
+2.	After the project has been unzipped, double click and navigate into the project folder named LETS.
+
+3.	This folder contains many folders like LETS, LETS.Tests, LETSUserStories, UMLDiagrams, etc. You will also see a file called LETS with Microsoft Visual Studio Solution (.sln) file extension. Double click and run this file. Windows will automatically open and load the project in visual studio.
+
+4.	Please agree to all the warning/popups that visual studio shows when opening the project. After opening the project visual studio will compile and configure the project for the local environment.
+
 
 ## API Reference
 
