@@ -16,15 +16,15 @@ My motivation behind doing this project was to explore new technologies and deep
 I also wanted to enhance my software engineering skills by correctly designing and implementing the web application following the best practices, performing the appropriate tests and using appropriate coding conventions.
 
 ## Directory Structure
-/LETS - The main project folder
-/LETS/LETS - This folder holds all the content and settings of the web application.  
-/LETS/LETS/Models - Holds all the Models that are used in the web application.  
-/LETS/LETS/Views - Holds all the Views and Web pages of the web application.  
-/LETS/LETS/Controllers - Holds the controllers of the web application.  
-/LETS/LETS/Scripts - Contains all the jQuery and javascript files and libraries used in the web application.  
-/LETS/LETS/Content - Contains all the LESS, CSS files and libraries that are used by the web application.  
-/LETS/LETS/Helpers - Contains all the other files and implementations like reCaptcha, Typeahead, Password Hashing, etc...  
-/LETS/LETS.TEST - Contains all the unit tests for the web application.  
+**/LETS** - The main project folder
+**/LETS/LETS** - This folder holds all the content and settings of the web application.  
+**/LETS/LETS/Models** - Holds all the Models that are used in the web application.  
+**/LETS/LETS/Views** - Holds all the Views and Web pages of the web application.  
+**/LETS/LETS/Controllers** - Holds the controllers of the web application.  
+**/LETS/LETS/Scripts** - Contains all the jQuery and javascript files and libraries used in the web application.  
+**/LETS/LETS/Content** - Contains all the LESS, CSS files and libraries that are used by the web application.  
+**/LETS/LETS/Helpers** - Contains all the other files and implementations like reCaptcha, Typeahead, Password Hashing, etc...  
+**/LETS/LETS.TEST** - Contains all the unit tests for the web application.  
 
 ## Installation
 
