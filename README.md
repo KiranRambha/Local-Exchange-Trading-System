@@ -16,7 +16,7 @@ My motivation behind doing this project was to explore new technologies and deep
 I also wanted to enhance my software engineering skills by correctly designing and implementing the web application following the best practices, performing the appropriate tests and using appropriate coding conventions.
 
 ## Directory Structure
-**/LETS** - The main project folder
+**/LETS** - The main project folder  
 **/LETS/LETS** - This folder holds all the content and settings of the web application.  
 **/LETS/LETS/Models** - Holds all the Models that are used in the web application.  
 **/LETS/LETS/Views** - Holds all the Views and Web pages of the web application.  
