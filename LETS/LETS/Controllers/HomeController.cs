@@ -16,6 +16,10 @@ namespace LETS.Controllers
     {
         public LETSContext DatabaseContext = new LETSContext();
 
+        /// <summary>
+        /// Get Method of the Index
+        /// </summary>
+        /// <returns>returns the index view that is the home page of the website.</returns>
         [AllowAnonymous]
         [HttpGet]
         public ActionResult Index()
@@ -23,6 +27,11 @@ namespace LETS.Controllers
             return View();
         }
 
+
+        /// <summary>
+        /// When the user clicks the timeline button on the website, this method gets called
+        /// </summary>
+        /// <returns>returns the timeline page</returns>
         [HttpGet]
         public async Task<ActionResult> TimeLine()
         {
@@ -49,6 +58,13 @@ namespace LETS.Controllers
             return View("TimeLine", userTimeLinePosts);
         }
 
+
+        /// <summary>
+        /// This method is used to create the list of posts on the user timeline.
+        /// </summary>
+        /// <param name="usersPersonalDetails">Users Personal Details</param>
+        /// <param name="usersTradingDetails">Users Trading Details</param>
+        /// <returns>Returns the list of posts that will be displayed on the timeline page.</returns>
         private static List<UsersTimeLinePost> GetUserTimelinePosts(List<RegisterUserViewModel> usersPersonalDetails, List<LetsTradingDetails> usersTradingDetails)
         {
             var userList = new List<LetsUser>();
@@ -93,6 +109,14 @@ namespace LETS.Controllers
             return timelinePostsList;
         }
 
+
+        /// <summary>
+        /// This method is used to create the list of recommended posts on the user timeline.
+        /// </summary>
+        /// <param name="currentuser">Logged in user details</param>
+        /// <param name="usersPersonalDetails">Users personal details</param>
+        /// <param name="usersTradingDetails">Users trading details</param>
+        /// <returns>Creates and returns a recommended user list</returns>
         private static List<UsersTimeLinePost> GetUserTimelineRecommendedPosts(LetsTradingDetails currentuser, List<RegisterUserViewModel> usersPersonalDetails, List<LetsTradingDetails> usersTradingDetails)
         {
             var currentUser = currentuser;
@@ -165,6 +189,12 @@ namespace LETS.Controllers
             return View();
         }
 
+        /// <summary>
+        /// This method is called when the user clicks on the expand post button on the timeline
+        /// </summary>
+        /// <param name="username">username of the post owner</param>
+        /// <param name="postId">Id of the post clicked</param>
+        /// <returns>Returns the details of the post that was clicked.</returns>
         [HttpPost]
         public async Task<ActionResult> ExpandPost(string username, int postId)
         {
@@ -211,6 +241,13 @@ namespace LETS.Controllers
             return View("ExpandedRequest", userPost);
         }
 
+        /// <summary>
+        /// This method is used to make bids on the timeline
+        /// </summary>
+        /// <param name="username">username of the owner of the post</param>
+        /// <param name="postId">postid of the owner where the bid was placed</param>
+        /// <param name="bid">the bid amount that was placed on the post</param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<ActionResult> PostUserBid(string username, int postId, int bid)
         {
@@ -278,6 +315,10 @@ namespace LETS.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Get method for the team management page.
+        /// </summary>
+        /// <returns>returns the team management when the user clicks the team management button</returns>
         [HttpGet]
         public async Task<ActionResult> TeamManagement()
         {
@@ -302,6 +343,12 @@ namespace LETS.Controllers
             return View();
         }
 
+        /// <summary>
+        /// This method is used to create a team on the team management page.
+        /// </summary>
+        /// <param name="teamName">The name of the team</param>
+        /// <param name="teamMembers">The list of members in the team</param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<ActionResult> CreateTeamRequest(string teamName, string teamMembers)
         {
@@ -350,6 +397,11 @@ namespace LETS.Controllers
             return View("YourTeamTemplate", team);
         }
 
+        /// <summary>
+        /// This method is used to get the usernames of the database.
+        /// </summary>
+        /// <param name="username">a string to match similar usernames in the database.</param>
+        /// <returns></returns>
         [HttpGet]
         public async Task<JsonResult> GetUserNames(string username)
         {
@@ -362,6 +414,11 @@ namespace LETS.Controllers
             return Json(userNameList.ToArray(), JsonRequestBehavior.AllowGet);
         }
 
+        /// <summary>
+        /// This method is used to add the username to a team.
+        /// </summary>
+        /// <param name="username">the username that needs to be added to the team</param>
+        /// <returns>returns the chip with the username that is going to be added to the team.</returns>
         public async Task<ActionResult> AddUser(string username)
         {
             var userByUsername = await DatabaseContext.RegisteredUsers.Find(new BsonDocument {
@@ -383,6 +440,11 @@ namespace LETS.Controllers
             return null;
         }
 
+        /// <summary>
+        /// This method is used to search for posts on the timeline page of the web application.
+        /// </summary>
+        /// <param name="searchInput">The string that is being searched</param>
+        /// <returns>returns the list of posts that match the search string.</returns>
         public async Task<ActionResult> SearchPosts(string searchInput)
         {
             var isPresent = false;
@@ -417,6 +479,12 @@ namespace LETS.Controllers
             return View("TimeLineFiltered", userTimeLinePosts);
         }
 
+
+        /// <summary>
+        /// This method is used to to delete a team.
+        /// </summary>
+        /// <param name="teamId">The id of the team that needs to be deleted.</param>
+        /// <returns>returns true when the team has been deleted.</returns>
         public async Task<bool> DeleteTeam(string teamId)
         {
             var userName = User.Identity.Name;
@@ -437,6 +505,11 @@ namespace LETS.Controllers
             return true;
         }
 
+        /// <summary>
+        /// This method is used to get all the latest messages in the team chat.
+        /// </summary>
+        /// <param name="teamId">The id of the team for which the messages need to be acquired.</param>
+        /// <returns>returns the lastest list of messages of the selected team.</returns>
         public async Task<ActionResult> GetLatestMessages(string teamId)
         {
             var team = teamId.Substring(0, teamId.Length - "-messagebox".Length);
