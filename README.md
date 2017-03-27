@@ -17,13 +17,21 @@ I also wanted to enhance my software engineering skills by correctly designing a
 
 ## Directory Structure
 **/LETS** - The main project folder  
+  
 **/LETS/LETS** - This folder holds all the content and settings of the web application.  
+  
 **/LETS/LETS/Models** - Holds all the Models that are used in the web application.  
+  
 **/LETS/LETS/Views** - Holds all the Views and Web pages of the web application.  
+  
 **/LETS/LETS/Controllers** - Holds the controllers of the web application.  
+  
 **/LETS/LETS/Scripts** - Contains all the jQuery and javascript files and libraries used in the web application.  
+  
 **/LETS/LETS/Content** - Contains all the LESS, CSS files and libraries that are used by the web application.  
+  
 **/LETS/LETS/Helpers** - Contains all the other files and implementations like reCaptcha, Typeahead, Password Hashing, etc...  
+  
 **/LETS/LETS.TEST** - Contains all the unit tests for the web application.  
 
 ## Installation
@@ -50,7 +58,7 @@ After the visual studio installer has downloaded, run the executable and give th
 
 2.	After the project has been unzipped, double click and navigate to the project folder named LETS.
 
-3.	This folder contains many folders like LETS, LETS.Tests, LETSUserStories, UMLDiagrams, etc. You will also see a file called LETS with Microsoft Visual Studio Solution (.sln) file extension. Double click and run this file. Windows will automatically open and load the project in visual studio.
+3.	This folder contains many folders like LETS, LETS.Tests, LETSUserStories, UMLDiagrams, etc. You will also see a file called **LETS with Microsoft Visual Studio Solution (.sln) file extension**. Double click and run this file. Windows will automatically open and load the project in visual studio.
 
 4.	Please agree to all the warning/popups that visual studio shows when opening the project. After opening the project visual studio will compile and configure the project for the local environment.
 
