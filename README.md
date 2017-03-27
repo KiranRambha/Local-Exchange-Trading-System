@@ -58,7 +58,7 @@ After the visual studio installer has downloaded, run the executable and give th
 
 2.	After the project has been unzipped, double click and navigate to the project folder named LETS.
 
-3.	This folder contains many folders like LETS, LETS.Tests, LETSUserStories, UMLDiagrams, etc. You will also see a file called LETS with Microsoft Visual Studio Solution (.sln) file extension. Double click and run this file. Windows will automatically open and load the project in visual studio.
+3.	This folder contains many folders like LETS, LETS.Tests, LETSUserStories, UMLDiagrams, etc. You will also see a file called **LETS with Microsoft Visual Studio Solution (.sln) file extension**. Double click and run this file. Windows will automatically open and load the project in visual studio.
 
 4.	Please agree to all the warning/popups that visual studio shows when opening the project. After opening the project visual studio will compile and configure the project for the local environment.
 
