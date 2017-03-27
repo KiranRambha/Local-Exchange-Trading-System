@@ -58,7 +58,7 @@
                                 <div class="row mg-0 col-sm-3">
                                     <div class="form-group col-xs-12 ">
                                         <div class="row">
-                                            <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent submit-bid-btn" onclick="return submitBit();" @(Model.Request.MyCredits > 200 ? "Disabled" : "")>
+                                            <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent submit-bid-btn" onclick="return submitBit();" @(Model.Request.MyCredits >= 200 ? "Disabled" : "")>
                                                 <i class="fa fa-paper-plane" aria-hidden="true"></i> Submit Bid
                                             </button>
                                         </div>
