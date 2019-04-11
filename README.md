@@ -5,6 +5,8 @@
 
 **The latest build of the website can be accessed <a target="_blank" href="http://rhlets.azurewebsites.net/">here</a>**
 
+**<a target="_blank" href="https://www.youtube.com/playlist?list=PLUaKFjYz28rT_AVYJGN6_wU8ZS-snqejm">Demo</a>**
+
 **Local Exchange Trading System** or **LETS** is an internet based, a not-for-profit inter-community trading network which provides its members with information service and the members can buy/sell goods and services among themselves using a local currency (LETS Credits) rather than the national currency. 
 
 The services can also be viewed as favours which can mutually benefit the community and all its members. It not only enables the transfer of skills and services but also improves a person's or group's prospect, by providing them with skills such as learning a new language, or by simply providing them with an essential service such as gardening or plumbing.
